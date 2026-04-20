@@ -1,0 +1,9 @@
+services:
+  app:
+    build:
+      context: .
+    image: burritos-analysis-remix:latest
+    container_name: burritos-analysis-remix
+    ports:
+      - "8080:80"
+    restart: unless-stopped
