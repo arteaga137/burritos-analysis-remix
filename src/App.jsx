@@ -117,10 +117,10 @@ const ANALYSIS_PHASES = [
 
 const MEMBER_AWARDS = {
   gabriel: {
-    title: 'Premio Barry Whitepaper de Convivencia',
-    blurb: 'Promete orden institucional y termina aplicando democracia iliberal con humor seco y expulsiones ejemplarizantes.',
+    title: 'Premio Donald J. Trump del Chat',
+    blurb: 'Gobierna por decreto, expulsa por impulso y despues vende la mano dura como si fuera estabilidad institucional.',
     icon: '🧾',
-    ribbon: 'Admin con licencia poetica',
+    ribbon: 'Autoritarismo con admin rights',
   },
   francisco: {
     title: 'Premio Diesel Premium del Debate',
@@ -141,10 +141,10 @@ const MEMBER_AWARDS = {
     ribbon: 'Intervencion de alta precision',
   },
   javier: {
-    title: 'Premio Gasolina Sobre Ascuas',
-    blurb: 'Si la conversacion estaba medio rota, la remata; si estaba estable, la rompe. Un clasico del caos innecesario.',
+    title: 'Premio Le Echo Mas Vaina',
+    blurb: 'Si el peo esta prendido, le sopla. Si no hay peo, lo monta. Llega solo a echarle mas vaina al chat.',
     icon: '🧨',
-    ribbon: 'Disrupcion sin franquicia',
+    ribbon: 'Candela importada',
   },
   luis: {
     title: 'Premio Te Bajo Eso a Tierra',
