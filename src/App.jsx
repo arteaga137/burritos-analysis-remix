@@ -65,6 +65,56 @@ const TIMELINE_READ_WEIGHTS = {
   sensible: 3,
 }
 
+const MONTH_INDEX = {
+  ene: 1,
+  feb: 2,
+  mar: 3,
+  abr: 4,
+  may: 5,
+  jun: 6,
+  jul: 7,
+  ago: 8,
+  sep: 9,
+  oct: 10,
+  nov: 11,
+  dic: 12,
+}
+
+const ANALYSIS_PHASES = [
+  {
+    id: 'kickoff',
+    label: 'Arranque',
+    range: 'Abr-May 2025',
+    from: 202504,
+    to: 202505,
+    accent: 'oklch(72% 0.18 60)',
+  },
+  {
+    id: 'fantasy',
+    label: 'Fantasy',
+    range: 'Ago-Sep 2025',
+    from: 202508,
+    to: 202509,
+    accent: 'oklch(76% 0.16 310)',
+  },
+  {
+    id: 'reorder',
+    label: 'Reorden',
+    range: 'Oct-Dic 2025',
+    from: 202510,
+    to: 202512,
+    accent: 'oklch(70% 0.16 145)',
+  },
+  {
+    id: 'fracture',
+    label: 'Fractura',
+    range: 'Ene-Mar 2026',
+    from: 202601,
+    to: 202603,
+    accent: 'oklch(62% 0.22 25)',
+  },
+]
+
 const normalizeText = (value) =>
   value
     .toLowerCase()
@@ -152,6 +202,50 @@ const buildEvidenceFragments = (member, item) => {
   }))
 }
 
+const parseEventDate = (value) => {
+  const [day, monthLabel, year] = value.split(' ')
+  const month = MONTH_INDEX[monthLabel] ?? 1
+
+  return {
+    day: Number(day),
+    month,
+    year: Number(year),
+    key: Number(year) * 100 + month,
+  }
+}
+
+const getEventPhase = (dateLabel) => {
+  const parsed = parseEventDate(dateLabel)
+  return (
+    ANALYSIS_PHASES.find((phase) => parsed.key >= phase.from && parsed.key <= phase.to) ??
+    ANALYSIS_PHASES[ANALYSIS_PHASES.length - 1]
+  )
+}
+
+const createMemberAccumulator = (member) => ({
+  member,
+  events: 0,
+  fragmentsAuthored: 0,
+  active: 0,
+  aggressive: 0,
+  pacifying: 0,
+  conservative: 0,
+  sensible: 0,
+  influence: 0,
+  volume: 0,
+})
+
+const deriveRoleLabel = (snapshot) => {
+  if (!snapshot || snapshot.volume === 0) return 'Latente'
+
+  if (snapshot.aggressive >= 2 && snapshot.aggressive > snapshot.pacifying) return 'Escalador'
+  if (snapshot.pacifying >= 2 && snapshot.pacifying >= snapshot.aggressive) return 'Pacificador'
+  if (snapshot.active >= 2 && snapshot.active >= snapshot.sensible) return 'Motor'
+  if (snapshot.sensible + snapshot.conservative >= 2) return 'Analítico'
+  if (snapshot.fragmentsAuthored >= 2) return 'Articulador'
+  return 'Observador'
+}
+
 const scoreEventImpact = (event) =>
   event.evidence.length * 2 +
   event.participants.length +
@@ -162,19 +256,13 @@ const scoreEventImpact = (event) =>
 
 const deriveTimelineAnalytics = (events) => {
   const topicCounts = new Map()
-  const memberStats = new Map(
-    MEMBERS.map((member) => [
-      member.id,
+  const memberStats = new Map(MEMBERS.map((member) => [member.id, createMemberAccumulator(member)]))
+  const phaseStats = new Map(
+    ANALYSIS_PHASES.map((phase) => [
+      phase.id,
       {
-        member,
-        events: 0,
-        fragmentsAuthored: 0,
-        active: 0,
-        aggressive: 0,
-        pacifying: 0,
-        conservative: 0,
-        sensible: 0,
-        influence: 0,
+        ...phase,
+        members: new Map(MEMBERS.map((member) => [member.id, createMemberAccumulator(member)])),
       },
     ]),
   )
@@ -182,6 +270,9 @@ const deriveTimelineAnalytics = (events) => {
   let totalFragments = 0
 
   events.forEach((event) => {
+    const phase = getEventPhase(event.date)
+    const phaseBucket = phaseStats.get(phase.id)
+
     totalFragments += event.evidence.length
     topicCounts.set(event.topic, (topicCounts.get(event.topic) ?? 0) + 1)
 
@@ -191,6 +282,14 @@ const deriveTimelineAnalytics = (events) => {
       const stat = memberStats.get(member.id)
       stat.events += 1
       stat.influence += 1
+      stat.volume += 1
+
+      const phaseMember = phaseBucket?.members.get(member.id)
+      if (phaseMember) {
+        phaseMember.events += 1
+        phaseMember.influence += 1
+        phaseMember.volume += 1
+      }
     })
 
     event.evidence.forEach((excerpt) => {
@@ -199,6 +298,14 @@ const deriveTimelineAnalytics = (events) => {
       const stat = memberStats.get(member.id)
       stat.fragmentsAuthored += 1
       stat.influence += 2
+      stat.volume += 2
+
+      const phaseMember = phaseBucket?.members.get(member.id)
+      if (phaseMember) {
+        phaseMember.fragmentsAuthored += 1
+        phaseMember.influence += 2
+        phaseMember.volume += 2
+      }
     })
 
     TIMELINE_READ_LABELS.forEach(({ key }) => {
@@ -208,11 +315,21 @@ const deriveTimelineAnalytics = (events) => {
         const stat = memberStats.get(member.id)
         stat[key] += 1
         stat.influence += TIMELINE_READ_WEIGHTS[key] ?? 1
+
+        const phaseMember = phaseBucket?.members.get(member.id)
+        if (phaseMember) {
+          phaseMember[key] += 1
+          phaseMember.influence += TIMELINE_READ_WEIGHTS[key] ?? 1
+        }
       })
     })
   })
 
-  const ranking = [...memberStats.values()]
+  const ranking = [...memberStats.values()].map((item) => ({
+    ...item,
+    leverage: item.volume ? item.influence / item.volume : 0,
+    role: deriveRoleLabel(item),
+  }))
   const dominantTopicEntry = [...topicCounts.entries()].sort((left, right) => right[1] - left[1])[0]
   const turningPoints = events
     .map((event) => ({
@@ -228,6 +345,55 @@ const deriveTimelineAnalytics = (events) => {
       .filter((item) => item.member.id !== 'system' && item.member.id !== 'group')
       .sort((left, right) => right[key] - left[key])[0]
 
+  const influenceRows = ranking
+    .filter((item) => item.volume > 0)
+    .sort((left, right) => {
+      if (right.influence !== left.influence) return right.influence - left.influence
+      return right.leverage - left.leverage
+    })
+    .slice(0, 6)
+
+  const roleDrift = ranking
+    .filter((item) => item.volume > 0)
+    .sort((left, right) => right.influence - left.influence)
+    .slice(0, 4)
+    .map((item) => ({
+      member: item.member,
+      currentRole: item.role,
+      phases: ANALYSIS_PHASES.map((phase) => {
+        const phaseItem = phaseStats.get(phase.id)?.members.get(item.member.id) ?? createMemberAccumulator(item.member)
+        const role = deriveRoleLabel(phaseItem)
+        return {
+          id: phase.id,
+          label: phase.label,
+          range: phase.range,
+          accent: phase.accent,
+          role,
+          influence: phaseItem.influence,
+          volume: phaseItem.volume,
+        }
+      }).filter((phase) => phase.volume > 0),
+    }))
+
+  const memberRoleDrift = Object.fromEntries(
+    MEMBERS.map((member) => [
+      member.id,
+      ANALYSIS_PHASES.map((phase) => {
+        const phaseItem = phaseStats.get(phase.id)?.members.get(member.id) ?? createMemberAccumulator(member)
+        return {
+          id: phase.id,
+          label: phase.label,
+          range: phase.range,
+          accent: phase.accent,
+          role: deriveRoleLabel(phaseItem),
+          influence: phaseItem.influence,
+          volume: phaseItem.volume,
+          leverage: phaseItem.volume ? phaseItem.influence / phaseItem.volume : 0,
+        }
+      }).filter((phase) => phase.volume > 0),
+    ]),
+  )
+
   return {
     totalEvents: events.length,
     totalFragments,
@@ -237,6 +403,9 @@ const deriveTimelineAnalytics = (events) => {
     topAggressive: byMetric('aggressive'),
     tensionPeak: turningPoints[0] ?? null,
     turningPoints,
+    influenceRows,
+    roleDrift,
+    memberRoleDrift,
   }
 }
 
@@ -544,6 +713,117 @@ const EvidenceExplorer = ({ fragment, allFragments, onClose }) => {
         )}
       </section>
     </div>
+  )
+}
+
+const InfluenceBoard = ({ analytics }) => (
+  <section className="analysis-section" aria-label="Influence vs volume">
+    <div className="analysis-section__header">
+      <div>
+        <h3>Influence vs volume</h3>
+        <p>Separa quién habla mucho de quién realmente reordena la conversación.</p>
+      </div>
+    </div>
+
+    <div className="influence-board">
+      {analytics.influenceRows.map((item, index) => {
+        const influenceWidth = Math.max((item.influence / analytics.influenceRows[0].influence) * 100, 12)
+
+        return (
+          <article key={item.member.id} className="influence-row">
+            <div className="influence-row__rank">0{index + 1}</div>
+            <div className="influence-row__identity">
+              <div className="influence-row__name">{item.member.name}</div>
+              <div className="influence-row__role" style={{ color: item.member.color }}>
+                {item.role}
+              </div>
+            </div>
+            <div className="influence-row__bar">
+              <div className="influence-row__fill" style={{ width: `${influenceWidth}%`, background: item.member.color }} />
+            </div>
+            <div className="influence-row__metrics">
+              <span>Influencia {item.influence}</span>
+              <span>Volumen {item.volume}</span>
+              <span>Leverage {item.leverage.toFixed(1)}x</span>
+            </div>
+          </article>
+        )
+      })}
+    </div>
+  </section>
+)
+
+const RoleDriftSection = ({ analytics }) => (
+  <section className="analysis-section" aria-label="Role drift">
+    <div className="analysis-section__header">
+      <div>
+        <h3>Role drift</h3>
+        <p>Cómo cambia el rol de los miembros más influyentes según la fase del grupo.</p>
+      </div>
+    </div>
+
+    <div className="role-drift-grid">
+      {analytics.roleDrift.map((entry) => (
+        <article key={entry.member.id} className="role-drift-card">
+          <div className="role-drift-card__header">
+            <div>
+              <div className="role-drift-card__name">{entry.member.name}</div>
+              <div className="role-drift-card__current" style={{ color: entry.member.color }}>
+                Rol dominante: {entry.currentRole}
+              </div>
+            </div>
+          </div>
+
+          <div className="role-drift-card__timeline">
+            {entry.phases.map((phase) => (
+              <div key={`${entry.member.id}-${phase.id}`} className="role-phase">
+                <div className="role-phase__meta">
+                  <span className="role-phase__label">{phase.label}</span>
+                  <span className="role-phase__range">{phase.range}</span>
+                </div>
+                <div className="role-phase__chip" style={{ '--role-accent': phase.accent }}>
+                  {phase.role}
+                </div>
+                <div className="role-phase__stats">
+                  <span>I {phase.influence}</span>
+                  <span>V {phase.volume}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+)
+
+const CompareRoleDrift = ({ member, analytics }) => {
+  const phases = analytics.memberRoleDrift[member.id] ?? []
+
+  if (phases.length === 0) return null
+
+  return (
+    <section className="compare-card__section">
+      <h4>Role drift</h4>
+      <div className="compare-role-drift">
+        {phases.map((phase) => (
+          <div key={`${member.id}-${phase.id}`} className="compare-role-phase">
+            <div>
+              <div className="compare-role-phase__label">{phase.label}</div>
+              <div className="compare-role-phase__range">{phase.range}</div>
+            </div>
+            <div className="compare-role-phase__role" style={{ '--role-accent': phase.accent }}>
+              {phase.role}
+            </div>
+            <div className="compare-role-phase__metrics">
+              <span>I {phase.influence}</span>
+              <span>V {phase.volume}</span>
+              <span>L {phase.leverage.toFixed(1)}x</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
   )
 }
 
@@ -953,6 +1233,8 @@ const TimelineView = ({ onSelectFragment }) => {
       </div>
 
       <TimelineInsights analytics={analytics} onSelectFragment={onSelectFragment} />
+      <InfluenceBoard analytics={analytics} />
+      <RoleDriftSection analytics={analytics} />
 
       <div className="timeline-list">
         {visibleEvents.map((event) => (
@@ -963,7 +1245,7 @@ const TimelineView = ({ onSelectFragment }) => {
   )
 }
 
-const CompareColumn = ({ member, onSelectFragment }) => {
+const CompareColumn = ({ member, onSelectFragment, analytics }) => {
   const evidenceItems = getEvidenceItems(member).slice(0, 2)
 
   return (
@@ -1026,6 +1308,8 @@ const CompareColumn = ({ member, onSelectFragment }) => {
         <h4>Evolución</h4>
         <p className="arc-text">{member.arc}</p>
       </section>
+
+      <CompareRoleDrift member={member} analytics={analytics} />
     </article>
   )
 }
@@ -1038,6 +1322,7 @@ const CompareView = ({
   onChangeLeft,
   onChangeRight,
   onSelectFragment,
+  analytics,
 }) => (
   <section className="compare-section" aria-label="Comparador de miembros">
     <div className="section-intro">
@@ -1073,8 +1358,8 @@ const CompareView = ({
     </div>
 
     <div className="compare-layout">
-      <CompareColumn member={leftMember} onSelectFragment={onSelectFragment} />
-      <CompareColumn member={rightMember} onSelectFragment={onSelectFragment} />
+      <CompareColumn member={leftMember} onSelectFragment={onSelectFragment} analytics={analytics} />
+      <CompareColumn member={rightMember} onSelectFragment={onSelectFragment} analytics={analytics} />
     </div>
   </section>
 )
@@ -1178,6 +1463,7 @@ const App = () => {
     ],
     [],
   )
+  const globalAnalytics = useMemo(() => deriveTimelineAnalytics(TIMELINE_EVENTS), [])
 
   const tabs = ['Perfiles', 'Relaciones', 'Timeline', 'Comparar']
 
@@ -1251,6 +1537,7 @@ const App = () => {
             onChangeLeft={setCompareLeftId}
             onChangeRight={setCompareRightId}
             onSelectFragment={setSelectedFragment}
+            analytics={globalAnalytics}
           />
         )}
       </main>
