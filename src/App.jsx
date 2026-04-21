@@ -403,6 +403,24 @@ const deriveEventCausality = (event) => {
   }
 }
 
+const pickEditorialLeader = (ranking, key, options = {}) => {
+  const { preferDisruptive = false } = options
+  const sorted = ranking
+    .filter((item) => item.member.id !== 'system' && item.member.id !== 'group')
+    .sort((left, right) => {
+      if (right[key] !== left[key]) return right[key] - left[key]
+      if (right.disruption !== left.disruption) return right.disruption - left.disruption
+      return right.influence - left.influence
+    })
+
+  if (preferDisruptive) {
+    const disruptive = sorted.find((item) => item.member.warning && item[key] > 0)
+    if (disruptive) return disruptive
+  }
+
+  return sorted[0]
+}
+
 const scoreEventImpact = (event) =>
   event.evidence.length * 2 +
   event.participants.length +
@@ -566,11 +584,6 @@ const deriveTimelineAnalytics = (events) => {
     .sort((left, right) => right.impactScore - left.impactScore)
     .slice(0, 3)
 
-  const byMetric = (key) =>
-    ranking
-      .filter((item) => item.member.id !== 'system' && item.member.id !== 'group')
-      .sort((left, right) => right[key] - left[key])[0]
-
   const influenceRows = ranking
     .filter((item) => item.volume > 0)
     .sort((left, right) => {
@@ -646,10 +659,10 @@ const deriveTimelineAnalytics = (events) => {
     totalEvents: events.length,
     totalFragments,
     dominantTopic: dominantTopicEntry?.[0] ?? 'Sin filtro',
-    topInfluence: byMetric('influence'),
-    topPacifier: byMetric('pacifying'),
-    topAggressive: byMetric('aggressionIndex'),
-    topProvocative: byMetric('provocationIndex'),
+    topInfluence: pickEditorialLeader(ranking, 'influence'),
+    topPacifier: pickEditorialLeader(ranking, 'pacifying'),
+    topAggressive: pickEditorialLeader(ranking, 'aggressionIndex', { preferDisruptive: true }),
+    topProvocative: pickEditorialLeader(ranking, 'provocationIndex', { preferDisruptive: true }),
     tensionPeak: turningPoints[0] ?? null,
     turningPoints,
     influenceRows,
@@ -727,64 +740,100 @@ const EventCausalityPanel = ({ event }) => {
   )
 }
 
-const TimelineEventCard = ({ event, onSelectFragment }) => {
+const TimelineEventCard = ({ event, onSelectFragment, expanded, onToggle }) => {
   const [activePane, setActivePane] = useState('read')
   const eventFragments = useMemo(() => buildEventFragments(event), [event])
+  const causality = useMemo(() => deriveEventCausality(event), [event])
+  const previewItems = [
+    { label: 'Dispara', value: causality.trigger },
+    { label: 'Escalan', value: causality.amplifiers[0] ?? 'Sin patrón claro' },
+    { label: 'Calma', value: causality.pacifiers[0] ?? causality.stabilizers[0] ?? 'Nadie destaca' },
+    { label: 'Fragmentos', value: String(eventFragments.length) },
+  ]
 
   return (
     <article
-      className="timeline-card"
+      className={`timeline-card${expanded ? ' is-expanded' : ''}`}
       style={{ '--timeline-accent': TOPIC_ACCENTS[event.topic] ?? '#f0ede8' }}
     >
       <div className="timeline-card__rail" aria-hidden="true" />
       <div className="timeline-card__content">
-        <div className="timeline-card__meta">
-          <span>{event.date}</span>
-          <span>{event.topic}</span>
-          <span>{event.participants.length} participantes</span>
-        </div>
-        <h3>{event.title}</h3>
-        <p>{event.summary}</p>
-        <div className="timeline-card__participants">
-          {event.participants.map((participant) => (
-            <span key={`${event.id}-${participant}`}>{participant}</span>
+        <button
+          type="button"
+          className="timeline-card__header"
+          aria-expanded={expanded}
+          onClick={onToggle}
+        >
+          <div className="timeline-card__header-main">
+            <div className="timeline-card__meta">
+              <span>{event.date}</span>
+              <span>{event.topic}</span>
+              <span>{event.participants.length} participantes</span>
+            </div>
+            <h3>{event.title}</h3>
+            <p className="timeline-card__summary">{event.summary}</p>
+          </div>
+          <div className="timeline-card__header-side">
+            <span className="timeline-card__toggle-copy">{expanded ? 'Ocultar detalle' : 'Ver detalle'}</span>
+            <span className="timeline-card__toggle-icon" aria-hidden="true">
+              {expanded ? '−' : '+'}
+            </span>
+          </div>
+        </button>
+
+        <div className="timeline-card__highlights" aria-label={`Resumen rapido de ${event.title}`}>
+          {previewItems.map((item) => (
+            <div key={`${event.id}-${item.label}`} className="timeline-card__highlight">
+              <div className="timeline-card__highlight-label">{item.label}</div>
+              <div className="timeline-card__highlight-value">{item.value}</div>
+            </div>
           ))}
         </div>
 
-        <div className="timeline-panel">
-          <div className="timeline-tabs" role="tablist" aria-label={`Vistas del evento ${event.title}`}>
-            {[
-              { key: 'read', label: 'Lectura' },
-              { key: 'causality', label: 'Causalidad' },
-              { key: 'evidence', label: `Fragmentos (${event.evidence.length})` },
-            ].map((tab) => (
-              <button
-                key={tab.key}
-                type="button"
-                role="tab"
-                aria-selected={activePane === tab.key}
-                className={`timeline-tab${activePane === tab.key ? ' active' : ''}`}
-                onClick={() => setActivePane(tab.key)}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
+        {expanded ? (
+          <div className="timeline-card__details">
+            <div className="timeline-card__participants">
+              {event.participants.map((participant) => (
+                <span key={`${event.id}-${participant}`}>{participant}</span>
+              ))}
+            </div>
 
-          <div className="timeline-panel__body">
-            {activePane === 'read' ? (
-              <TimelineReadout read={event.read} />
-            ) : activePane === 'causality' ? (
-              <EventCausalityPanel event={event} />
-            ) : (
-              <ChatFragments
-                excerpts={eventFragments}
-                label={`Fragmentos reales de ${CHAT_SOURCE_NAME}`}
-                onSelectFragment={onSelectFragment}
-              />
-            )}
+            <div className="timeline-panel">
+              <div className="timeline-tabs" role="tablist" aria-label={`Vistas del evento ${event.title}`}>
+                {[
+                  { key: 'read', label: 'Lectura' },
+                  { key: 'causality', label: 'Causalidad' },
+                  { key: 'evidence', label: `Fragmentos (${event.evidence.length})` },
+                ].map((tab) => (
+                  <button
+                    key={tab.key}
+                    type="button"
+                    role="tab"
+                    aria-selected={activePane === tab.key}
+                    className={`timeline-tab${activePane === tab.key ? ' active' : ''}`}
+                    onClick={() => setActivePane(tab.key)}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+
+              <div className="timeline-panel__body">
+                {activePane === 'read' ? (
+                  <TimelineReadout read={event.read} />
+                ) : activePane === 'causality' ? (
+                  <EventCausalityPanel event={event} />
+                ) : (
+                  <ChatFragments
+                    excerpts={eventFragments}
+                    label={`Fragmentos reales de ${CHAT_SOURCE_NAME}`}
+                    onSelectFragment={onSelectFragment}
+                  />
+                )}
+              </div>
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
     </article>
   )
@@ -1538,6 +1587,10 @@ const TimelineView = ({ onSelectFragment }) => {
     return TIMELINE_EVENTS.filter((event) => event.topic === activeTopic)
   }, [activeTopic])
   const analytics = useMemo(() => deriveTimelineAnalytics(visibleEvents), [visibleEvents])
+  const [expandedEventId, setExpandedEventId] = useState(TIMELINE_EVENTS[0]?.id ?? null)
+  const visibleExpandedEventId = visibleEvents.some((event) => event.id === expandedEventId)
+    ? expandedEventId
+    : visibleEvents[0]?.id ?? null
 
   return (
     <section className="timeline-section" aria-label="Timeline de eventos">
@@ -1568,15 +1621,27 @@ const TimelineView = ({ onSelectFragment }) => {
       </div>
 
       <TimelineInsights analytics={analytics} onSelectFragment={onSelectFragment} />
-      <InfluenceBoard analytics={analytics} />
-      <RoleDriftSection analytics={analytics} />
-      <TopicDynamicsSection analytics={analytics} />
 
       <div className="timeline-list">
         {visibleEvents.map((event) => (
-          <TimelineEventCard key={event.id} event={event} onSelectFragment={onSelectFragment} />
+          <TimelineEventCard
+            key={event.id}
+            event={event}
+            onSelectFragment={onSelectFragment}
+            expanded={visibleExpandedEventId === event.id}
+            onToggle={() => setExpandedEventId((current) => (current === event.id ? null : event.id))}
+          />
         ))}
       </div>
+
+      <details className="timeline-analysis-drawer">
+        <summary>Capas analíticas del timeline</summary>
+        <div className="timeline-analysis-drawer__body">
+          <InfluenceBoard analytics={analytics} />
+          <RoleDriftSection analytics={analytics} />
+          <TopicDynamicsSection analytics={analytics} />
+        </div>
+      </details>
     </section>
   )
 }
