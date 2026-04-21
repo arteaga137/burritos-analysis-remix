@@ -47,7 +47,19 @@ const TOPIC_ACCENTS = {
   Dinámica: 'oklch(70% 0.16 145)',
   'Nuevos miembros': 'oklch(76% 0.16 310)',
   Rivalidad: 'oklch(74% 0.16 25)',
+  Mercado: 'oklch(72% 0.14 285)',
+  Chat: 'rgba(255,255,255,0.12)',
 }
+
+const LINK_TONE_ACCENTS = {
+  Pelea: 'oklch(62% 0.22 25)',
+  Burla: 'oklch(72% 0.18 60)',
+  Aprobacion: 'oklch(70% 0.16 145)',
+  Escepticismo: 'oklch(68% 0.18 200)',
+  Informativo: 'rgba(255,255,255,0.12)',
+}
+
+const EMPTY_LINKS = []
 
 const TIMELINE_READ_LABELS = [
   { key: 'active', label: 'Más activos' },
@@ -290,6 +302,29 @@ const buildEvidenceFragments = (member, item) => {
     ...excerpt,
     contextWindow: base,
   }))
+}
+
+const buildLinkFragment = (entry) => {
+  const participants = dedupeLabels([entry.author, ...entry.reactionAuthors])
+  const contextWindow = entry.contextWindow.map((item, index) => ({
+    ...item,
+    id: `${entry.id}-context-${index}`,
+    source: CHAT_SOURCE_NAME,
+  }))
+  const primaryContext = contextWindow.find((item) => item.kind === 'self') ?? contextWindow[0]
+
+  return {
+    ...primaryContext,
+    id: `fragment-${entry.id}`,
+    topic: entry.topic,
+    summary: entry.summary,
+    sourceId: entry.id,
+    sourceTitle: entry.label,
+    sourceType: 'link',
+    contextLabel: `${entry.at} · ${entry.domain}`,
+    participants,
+    contextWindow,
+  }
 }
 
 const parseEventDate = (value) => {
@@ -1649,6 +1684,329 @@ const TimelineView = ({ onSelectFragment }) => {
   )
 }
 
+const LinksView = ({ linksIndex, onSelectFragment }) => {
+  const [activeTone, setActiveTone] = useState('Todos')
+  const [activeAuthor, setActiveAuthor] = useState('Todos')
+  const [activeDomain, setActiveDomain] = useState('Todos')
+  const [search, setSearch] = useState('')
+  const data = linksIndex ?? EMPTY_LINKS
+
+  const toneOptions = useMemo(
+    () => ['Todos', ...new Set(data.map((entry) => entry.tone))],
+    [data],
+  )
+  const authorOptions = useMemo(
+    () => ['Todos', ...dedupeLabels(data.map((entry) => entry.author))],
+    [data],
+  )
+  const domainCounts = useMemo(() => {
+    const bucket = new Map()
+    data.forEach((entry) => {
+      bucket.set(entry.domain, (bucket.get(entry.domain) ?? 0) + 1)
+    })
+
+    return [...bucket.entries()]
+      .sort((left, right) => right[1] - left[1])
+      .map(([domain, count]) => ({ domain, count }))
+  }, [data])
+  const domainOptions = useMemo(
+    () => ['Todos', ...domainCounts.map((entry) => entry.domain)],
+    [domainCounts],
+  )
+
+  const visibleLinks = useMemo(() => {
+    const query = normalizeText(search)
+
+    return data.filter((entry) => {
+      if (activeTone !== 'Todos' && entry.tone !== activeTone) return false
+      if (activeAuthor !== 'Todos' && toDisplayName(entry.author) !== activeAuthor) return false
+      if (activeDomain !== 'Todos' && entry.domain !== activeDomain) return false
+      if (!query) return true
+
+      return normalizeText(
+        [entry.label, entry.messageText, entry.author, entry.domain, entry.canonicalUrl, entry.topic]
+          .filter(Boolean)
+          .join(' '),
+      ).includes(query)
+    })
+  }, [activeAuthor, activeDomain, activeTone, data, search])
+
+  const topSharer = useMemo(() => {
+    const bucket = new Map()
+    visibleLinks.forEach((entry) => {
+      const label = toDisplayName(entry.author)
+      bucket.set(label, (bucket.get(label) ?? 0) + 1)
+    })
+
+    return [...bucket.entries()].sort((left, right) => right[1] - left[1])[0] ?? null
+  }, [visibleLinks])
+
+  const dominantTone = useMemo(() => {
+    const bucket = new Map()
+    visibleLinks.forEach((entry) => {
+      bucket.set(entry.tone, (bucket.get(entry.tone) ?? 0) + 1)
+    })
+
+    return [...bucket.entries()].sort((left, right) => right[1] - left[1])[0] ?? null
+  }, [visibleLinks])
+
+  const visibleUniqueUrls = useMemo(
+    () => new Set(visibleLinks.map((entry) => entry.canonicalUrl)).size,
+    [visibleLinks],
+  )
+
+  const visibleTopDomain = useMemo(() => {
+    const bucket = new Map()
+    visibleLinks.forEach((entry) => {
+      bucket.set(entry.domain, (bucket.get(entry.domain) ?? 0) + 1)
+    })
+
+    return [...bucket.entries()].sort((left, right) => right[1] - left[1])[0] ?? null
+  }, [visibleLinks])
+
+  if (!linksIndex) {
+    return (
+      <section className="links-section" aria-label="Repositorio de links">
+        <div className="section-intro">
+          <div>
+            <h2>Links</h2>
+            <p>Cargando índice real de links desde el export completo del chat.</p>
+          </div>
+        </div>
+
+        <article className="link-card" style={{ '--link-accent': 'rgba(255,255,255,0.12)' }}>
+          <div className="link-card__header">
+            <div>
+              <div className="link-card__title">Preparando repositorio de links</div>
+              <div className="link-card__url">Se está cargando el dataset generado desde `_chat.txt`.</div>
+            </div>
+          </div>
+        </article>
+      </section>
+    )
+  }
+
+  return (
+    <section className="links-section" aria-label="Repositorio de links">
+      <div className="section-intro">
+        <div>
+          <h2>Links</h2>
+          <p>
+            Repositorio real de links compartidos en el chat, con autor, dominio, contexto y una
+            lectura heurística del clima que generaron.
+          </p>
+        </div>
+      </div>
+
+      <div className="timeline-summary">
+        {[
+          {
+            label: 'Shares visibles',
+            value: String(visibleLinks.length),
+            tone: 'rgba(255,255,255,0.12)',
+          },
+          {
+            label: 'URLs únicas',
+            value: String(visibleUniqueUrls),
+            tone: 'rgba(255,255,255,0.12)',
+          },
+          {
+            label: 'Dominio líder',
+            value: visibleTopDomain?.[0] ?? 'N/D',
+            tone: 'rgba(255,255,255,0.12)',
+          },
+          {
+            label: 'Más linkero',
+            value: topSharer?.[0] ?? 'N/D',
+            tone: 'rgba(255,255,255,0.12)',
+          },
+        ].map((item) => (
+          <div
+            key={item.label}
+            className="timeline-summary__item"
+            style={{ '--summary-accent': item.tone }}
+          >
+            <div className="timeline-summary__value">{item.value}</div>
+            <div className="timeline-summary__label">{item.label}</div>
+          </div>
+        ))}
+      </div>
+
+      <div className="timeline-insights">
+        <article
+          className="timeline-insight"
+          style={{ '--insight-accent': LINK_TONE_ACCENTS[dominantTone?.[0]] ?? 'rgba(255,255,255,0.12)' }}
+        >
+          <div className="timeline-insight__eyebrow">Tono dominante</div>
+          <div className="timeline-insight__value">{dominantTone?.[0] ?? 'Sin patrón'}</div>
+          <div className="timeline-insight__meta">
+            {dominantTone ? `${dominantTone[1]} shares visibles` : 'Sin datos'}
+          </div>
+        </article>
+        <article className="timeline-insight" style={{ '--insight-accent': 'rgba(255,255,255,0.12)' }}>
+          <div className="timeline-insight__eyebrow">Dominios pesados</div>
+          <div className="timeline-insight__value">{domainCounts[0]?.domain ?? 'N/D'}</div>
+          <div className="timeline-insight__meta">
+            {domainCounts[0] ? `${domainCounts[0].count} shares · ${domainCounts[1]?.domain ?? 'sin escolta'}` : 'Sin datos'}
+          </div>
+        </article>
+        <article className="timeline-insight" style={{ '--insight-accent': 'rgba(255,255,255,0.12)' }}>
+          <div className="timeline-insight__eyebrow">Dataset</div>
+          <div className="timeline-insight__value">Chat completo</div>
+          <div className="timeline-insight__meta">
+            {data.length} shares extraídos del export real de WhatsApp.
+          </div>
+        </article>
+      </div>
+
+      <div className="links-controls">
+        <label className="compare-control">
+          <span>Autor</span>
+          <select value={activeAuthor} onChange={(event) => setActiveAuthor(event.target.value)}>
+            {authorOptions.map((author) => (
+              <option key={author} value={author}>
+                {author}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label className="compare-control">
+          <span>Dominio</span>
+          <select value={activeDomain} onChange={(event) => setActiveDomain(event.target.value)}>
+            {domainOptions.map((domain) => (
+              <option key={domain} value={domain}>
+                {domain}
+              </option>
+            ))}
+          </select>
+        </label>
+
+        <label className="compare-control">
+          <span>Buscar</span>
+          <input
+            type="search"
+            value={search}
+            className="links-search"
+            placeholder="URL, dominio, autor o tema"
+            onChange={(event) => setSearch(event.target.value)}
+          />
+        </label>
+      </div>
+
+      <div className="filter-pills" aria-label="Filtros por tono">
+        {toneOptions.map((tone) => (
+          <button
+            key={tone}
+            type="button"
+            className={`filter-pill${activeTone === tone ? ' active' : ''}`}
+            style={{ '--pill-accent': LINK_TONE_ACCENTS[tone] ?? 'rgba(255,255,255,0.12)' }}
+            onClick={() => setActiveTone(tone)}
+          >
+            {tone}
+          </button>
+        ))}
+      </div>
+
+      <div className="links-list">
+        {visibleLinks.length === 0 ? (
+          <article className="link-card" style={{ '--link-accent': 'rgba(255,255,255,0.12)' }}>
+            <div className="link-card__header">
+              <div>
+                <div className="link-card__title">Sin resultados para este filtro</div>
+                <div className="link-card__url">Prueba quitando tono, dominio o búsqueda textual.</div>
+              </div>
+            </div>
+          </article>
+        ) : (
+          visibleLinks.map((entry) => {
+            const fragment = buildLinkFragment(entry)
+            const preview = entry.contextWindow.filter((item) => item.kind !== 'before').slice(0, 3)
+
+            return (
+              <article
+                key={entry.id}
+                className="link-card"
+                style={{ '--link-accent': LINK_TONE_ACCENTS[entry.tone] ?? 'rgba(255,255,255,0.12)' }}
+              >
+                <div className="link-card__meta">
+                  <span>{toDisplayName(entry.author)}</span>
+                  <span>{entry.at}</span>
+                  <span>{entry.domain}</span>
+                  <span>{entry.topic}</span>
+                </div>
+
+                <div className="link-card__header">
+                  <div>
+                    <a
+                      href={entry.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="link-card__title"
+                    >
+                      {entry.label}
+                    </a>
+                    <div className="link-card__url">{entry.canonicalUrl}</div>
+                  </div>
+
+                  <div className="link-card__badges">
+                    <span className="link-card__tone">{entry.tone}</span>
+                    <span className="link-card__heat">Calor {entry.heat}</span>
+                  </div>
+                </div>
+
+                {entry.messageText ? <p className="link-card__message">{entry.messageText}</p> : null}
+                <p className="link-card__summary">{entry.summary}</p>
+
+                {entry.reactionAuthors.length > 0 ? (
+                  <div className="link-card__reactions">
+                    <div className="link-card__section-label">Responden</div>
+                    <div className="timeline-readout__chips">
+                      {entry.reactionAuthors.map((author) => (
+                        <span key={`${entry.id}-${author}`} className="timeline-readout__chip">
+                          {toDisplayName(author)}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+
+                <div className="link-card__context">
+                  <div className="link-card__section-label">Contexto inmediato</div>
+                  <div className="link-card__context-list">
+                    {preview.map((item) => (
+                      <div key={`${entry.id}-${item.id}`} className="link-card__context-item">
+                        <div className="link-card__context-meta">
+                          <span>{toDisplayName(item.author)}</span>
+                          <span>{item.at}</span>
+                        </div>
+                        <div>{item.text}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="link-card__footer">
+                  <button
+                    type="button"
+                    className="turning-point-card__action"
+                    onClick={() => onSelectFragment(fragment)}
+                  >
+                    Abrir contexto
+                  </button>
+                  <a href={entry.url} target="_blank" rel="noreferrer" className="link-card__open">
+                    Abrir link
+                  </a>
+                </div>
+              </article>
+            )
+          })
+        )}
+      </div>
+    </section>
+  )
+}
+
 const CompareColumn = ({ member, onSelectFragment, analytics }) => {
   const evidenceItems = getEvidenceItems(member).slice(0, 2)
 
@@ -1903,7 +2261,7 @@ const TweakPanel = ({ tweaks, setTweaks, visible }) => {
 const readStoredTab = () => {
   try {
     const value = Number.parseInt(localStorage.getItem('dash-tab') || '0', 10)
-    return [0, 1, 2, 3, 4].includes(value) ? value : 0
+    return [0, 1, 2, 3, 4, 5].includes(value) ? value : 0
   } catch {
     return 0
   }
@@ -1913,6 +2271,7 @@ const App = () => {
   const [tab, setTab] = useState(readStoredTab)
   const [selected, setSelected] = useState(null)
   const [selectedFragment, setSelectedFragment] = useState(null)
+  const [linksIndex, setLinksIndex] = useState(null)
   const [tweaks, setTweaks] = useState(TWEAK_DEFAULTS)
   const [tweakVisible, setTweakVisible] = useState(false)
   const [compareLeftId, setCompareLeftId] = useState('francisco')
@@ -1948,6 +2307,18 @@ const App = () => {
     return () => window.removeEventListener('keydown', closeOnEscape)
   }, [selectedFragment])
 
+  useEffect(() => {
+    if (tab !== 3 || linksIndex) return
+
+    fetch(`${import.meta.env.BASE_URL}links-index.json`)
+      .then((response) => {
+        if (!response.ok) throw new Error(`links-index-http-${response.status}`)
+        return response.json()
+      })
+      .then((payload) => setLinksIndex(payload))
+      .catch((error) => console.error('links-index-load-error', error))
+  }, [linksIndex, tab])
+
   const handleSelect = useCallback((member) => {
     setSelected((previous) => (previous?.id === member.id ? null : member))
   }, [])
@@ -1963,15 +2334,16 @@ const App = () => {
   const allExplorerFragments = useMemo(
     () => [
       ...TIMELINE_EVENTS.flatMap((event) => buildEventFragments(event)),
+      ...(linksIndex ?? []).map((entry) => buildLinkFragment(entry)),
       ...MEMBERS.flatMap((member) =>
         getEvidenceItems(member).flatMap((item) => buildEvidenceFragments(member, item)),
       ),
     ],
-    [],
+    [linksIndex],
   )
   const globalAnalytics = useMemo(() => deriveTimelineAnalytics(TIMELINE_EVENTS), [])
 
-  const tabs = ['Perfiles', 'Relaciones', 'Timeline', 'Comparar', 'Premios']
+  const tabs = ['Perfiles', 'Relaciones', 'Timeline', 'Links', 'Comparar', 'Premios']
 
   return (
     <div className="dashboard-shell">
@@ -2035,6 +2407,8 @@ const App = () => {
         ) : tab === 2 ? (
           <TimelineView onSelectFragment={setSelectedFragment} />
         ) : tab === 3 ? (
+          <LinksView linksIndex={linksIndex} onSelectFragment={setSelectedFragment} />
+        ) : tab === 4 ? (
           <CompareView
             leftMember={compareLeftMember}
             rightMember={compareRightMember}

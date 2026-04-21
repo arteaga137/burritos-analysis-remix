@@ -700,7 +700,8 @@ button {
 }
 
 .timeline-section,
-.compare-section {
+.compare-section,
+.links-section {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -950,6 +951,182 @@ button {
 
 .analysis-section {
   margin-bottom: 18px;
+}
+
+.links-controls {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 220px));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.links-search,
+.compare-control input {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  color: #f0ede8;
+  padding: 10px 12px;
+}
+
+.links-search::placeholder {
+  color: rgba(255, 255, 255, 0.34);
+}
+
+.links-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.link-card {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--link-accent, rgba(255, 255, 255, 0.12)) 7%, rgba(255, 255, 255, 0.03));
+  padding: 15px 16px;
+}
+
+.link-card__meta,
+.link-card__context-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.link-card__meta {
+  margin-bottom: 10px;
+}
+
+.link-card__meta span,
+.link-card__context-meta span {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 10px;
+  line-height: 1.2;
+  padding: 4px 8px;
+}
+
+.link-card__meta span:first-child,
+.link-card__context-meta span:first-child {
+  color: #f0ede8;
+}
+
+.link-card__header,
+.link-card__footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.link-card__title {
+  color: #f0ede8;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.link-card__title:hover {
+  text-decoration: underline;
+}
+
+.link-card__url {
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.38);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.link-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+}
+
+.link-card__tone,
+.link-card__heat {
+  border: 1px solid color-mix(in srgb, var(--link-accent, rgba(255, 255, 255, 0.12)) 38%, rgba(255, 255, 255, 0.08));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--link-accent, rgba(255, 255, 255, 0.12)) 14%, rgba(255, 255, 255, 0.03));
+  color: #f0ede8;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  padding: 6px 9px;
+  text-transform: uppercase;
+}
+
+.link-card__message,
+.link-card__summary {
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.link-card__message {
+  margin: 12px 0 8px;
+}
+
+.link-card__summary {
+  margin: 0 0 12px;
+}
+
+.link-card__reactions,
+.link-card__context {
+  margin-top: 12px;
+}
+
+.link-card__section-label {
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.link-card__context-list {
+  display: grid;
+  gap: 8px;
+}
+
+.link-card__context-item {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.025);
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 12px;
+  line-height: 1.55;
+  padding: 10px 11px;
+}
+
+.link-card__context-meta {
+  margin-bottom: 6px;
+}
+
+.link-card__footer {
+  margin-top: 14px;
+  align-items: center;
+}
+
+.link-card__open {
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  text-decoration: none;
+}
+
+.link-card__open:hover {
+  color: #f0ede8;
 }
 
 .analysis-section__header {
@@ -2457,6 +2634,7 @@ button {
 
   .timeline-section,
   .compare-section,
+  .links-section,
   .awards-section {
     padding: 16px 18px 24px;
   }
@@ -2467,6 +2645,7 @@ button {
   }
 
   .compare-controls,
+  .links-controls,
   .compare-layout,
   .toxicity-podium,
   .awards-grid {
@@ -2555,6 +2734,16 @@ button {
 
   .timeline-card__header {
     grid-template-columns: 1fr;
+  }
+
+  .link-card__header,
+  .link-card__footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .link-card__badges {
+    justify-content: flex-start;
   }
 
   .timeline-card__header-side {
