@@ -519,8 +519,16 @@ const deriveTimelineAnalytics = (events) => {
   const ranking = [...memberStats.values()].map((item) => ({
     ...item,
     leverage: item.volume ? item.influence / item.volume : 0,
-    aggressionIndex: item.aggressive * 3 + item.provocative * 2 + item.disruption,
-    provocationIndex: item.provocative * 3 + item.triggers * 4 + item.disruption,
+    aggressionIndex:
+      item.aggressive * 3 +
+      item.provocative * 2 +
+      item.disruption +
+      (item.member.warning ? 48 : 0),
+    provocationIndex:
+      item.provocative * 3 +
+      item.triggers * 4 +
+      item.disruption +
+      (item.member.warning ? 48 : 0),
     role: deriveRoleLabel(item),
   }))
   const dominantTopicEntry = [...topicCounts.entries()].sort((left, right) => right[1] - left[1])[0]
