@@ -235,6 +235,48 @@ const createMemberAccumulator = (member) => ({
   volume: 0,
 })
 
+const dedupeLabels = (labels) => {
+  const seen = new Set()
+  const output = []
+
+  labels.forEach((label) => {
+    const normalized = normalizeText(label)
+    if (!normalized || seen.has(normalized)) return
+    seen.add(normalized)
+    output.push(toDisplayName(label))
+  })
+
+  return output
+}
+
+const buildPairKey = (left, right) => [toDisplayName(left), toDisplayName(right)].sort().join('::')
+
+const addPairCounts = (bucket, values) => {
+  const labels = dedupeLabels(values)
+  for (let index = 0; index < labels.length; index += 1) {
+    for (let nested = index + 1; nested < labels.length; nested += 1) {
+      const key = buildPairKey(labels[index], labels[nested])
+      bucket.set(key, (bucket.get(key) ?? 0) + 1)
+    }
+  }
+}
+
+const addAnchorPairCounts = (bucket, anchor, values) => {
+  const anchorLabel = toDisplayName(anchor)
+  dedupeLabels(values)
+    .filter((label) => label !== anchorLabel)
+    .forEach((label) => {
+      const key = buildPairKey(anchorLabel, label)
+      bucket.set(key, (bucket.get(key) ?? 0) + 1)
+    })
+}
+
+const bumpCounter = (bucket, labels) => {
+  dedupeLabels(labels).forEach((label) => {
+    bucket.set(label, (bucket.get(label) ?? 0) + 1)
+  })
+}
+
 const deriveRoleLabel = (snapshot) => {
   if (!snapshot || snapshot.volume === 0) return 'Latente'
 
@@ -244,6 +286,22 @@ const deriveRoleLabel = (snapshot) => {
   if (snapshot.sensible + snapshot.conservative >= 2) return 'Analítico'
   if (snapshot.fragmentsAuthored >= 2) return 'Articulador'
   return 'Observador'
+}
+
+const deriveEventCausality = (event) => {
+  const triggerExcerpt = event.evidence.find((excerpt) => normalizeText(excerpt.author) !== 'sistema')
+  const trigger = triggerExcerpt ? toDisplayName(triggerExcerpt.author) : dedupeLabels(event.read.aggressive)[0] || 'Grupo'
+  const aggressors = dedupeLabels(event.read.aggressive)
+  const actives = dedupeLabels(event.read.active)
+  const pacifiers = dedupeLabels(event.read.pacifying)
+  const stabilizers = dedupeLabels([...event.read.sensible, ...event.read.conservative])
+
+  return {
+    trigger,
+    amplifiers: dedupeLabels([...aggressors.filter((name) => name !== trigger), ...actives.filter((name) => name !== trigger)]).slice(0, 3),
+    pacifiers: pacifiers.slice(0, 3),
+    stabilizers: stabilizers.slice(0, 3),
+  }
 }
 
 const scoreEventImpact = (event) =>
@@ -257,6 +315,7 @@ const scoreEventImpact = (event) =>
 const deriveTimelineAnalytics = (events) => {
   const topicCounts = new Map()
   const memberStats = new Map(MEMBERS.map((member) => [member.id, createMemberAccumulator(member)]))
+  const topicStats = new Map()
   const phaseStats = new Map(
     ANALYSIS_PHASES.map((phase) => [
       phase.id,
@@ -272,9 +331,36 @@ const deriveTimelineAnalytics = (events) => {
   events.forEach((event) => {
     const phase = getEventPhase(event.date)
     const phaseBucket = phaseStats.get(phase.id)
+    const eventCausality = deriveEventCausality(event)
+    const topicBucket =
+      topicStats.get(event.topic) ??
+      {
+        topic: event.topic,
+        events: 0,
+        alliancePairs: new Map(),
+        frictionPairs: new Map(),
+        triggers: new Map(),
+        pacifiers: new Map(),
+      }
 
     totalFragments += event.evidence.length
     topicCounts.set(event.topic, (topicCounts.get(event.topic) ?? 0) + 1)
+    topicBucket.events += 1
+    bumpCounter(topicBucket.triggers, [eventCausality.trigger])
+    bumpCounter(topicBucket.pacifiers, eventCausality.pacifiers)
+
+    addPairCounts(
+      topicBucket.alliancePairs,
+      [...event.read.pacifying, ...event.read.sensible, ...event.read.conservative],
+    )
+    dedupeLabels(event.read.aggressive).forEach((aggressor) => {
+      addAnchorPairCounts(
+        topicBucket.frictionPairs,
+        aggressor,
+        dedupeLabels(event.participants),
+      )
+    })
+    topicStats.set(event.topic, topicBucket)
 
     event.participants.forEach((participant) => {
       const member = resolveMember(participant)
@@ -394,6 +480,28 @@ const deriveTimelineAnalytics = (events) => {
     ]),
   )
 
+  const topicDynamics = [...topicStats.values()]
+    .map((topic) => {
+      const topAlliance = [...topic.alliancePairs.entries()].sort((left, right) => right[1] - left[1])[0]
+      const topFriction = [...topic.frictionPairs.entries()].sort((left, right) => right[1] - left[1])[0]
+      const topTrigger = [...topic.triggers.entries()].sort((left, right) => right[1] - left[1])[0]
+      const topPacifier = [...topic.pacifiers.entries()].sort((left, right) => right[1] - left[1])[0]
+
+      return {
+        topic: topic.topic,
+        events: topic.events,
+        topAlliance: topAlliance
+          ? { pair: topAlliance[0].split('::'), count: topAlliance[1] }
+          : null,
+        topFriction: topFriction
+          ? { pair: topFriction[0].split('::'), count: topFriction[1] }
+          : null,
+        topTrigger: topTrigger ? { name: topTrigger[0], count: topTrigger[1] } : null,
+        topPacifier: topPacifier ? { name: topPacifier[0], count: topPacifier[1] } : null,
+      }
+    })
+    .sort((left, right) => right.events - left.events)
+
   return {
     totalEvents: events.length,
     totalFragments,
@@ -406,6 +514,7 @@ const deriveTimelineAnalytics = (events) => {
     influenceRows,
     roleDrift,
     memberRoleDrift,
+    topicDynamics,
   }
 }
 
@@ -450,6 +559,33 @@ const TimelineReadout = ({ read }) => (
   </div>
 )
 
+const EventCausalityPanel = ({ event }) => {
+  const causality = useMemo(() => deriveEventCausality(event), [event])
+  const rows = [
+    { label: 'Disparador', values: [causality.trigger], tone: 'oklch(72% 0.18 60)' },
+    { label: 'Amplificadores', values: causality.amplifiers, tone: 'oklch(62% 0.22 25)' },
+    { label: 'Pacificadores', values: causality.pacifiers, tone: 'oklch(70% 0.16 145)' },
+    { label: 'Cierre sensato', values: causality.stabilizers, tone: 'oklch(68% 0.18 200)' },
+  ]
+
+  return (
+    <div className="event-causality">
+      {rows.map((row) => (
+        <div key={row.label} className="event-causality__row">
+          <div className="event-causality__label">{row.label}</div>
+          <div className="event-causality__chips">
+            {(row.values.length > 0 ? row.values : ['Sin señal clara']).map((value) => (
+              <span key={`${row.label}-${value}`} className="event-causality__chip" style={{ '--causality-accent': row.tone }}>
+                {value}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 const TimelineEventCard = ({ event, onSelectFragment }) => {
   const [activePane, setActivePane] = useState('read')
   const eventFragments = useMemo(() => buildEventFragments(event), [event])
@@ -478,6 +614,7 @@ const TimelineEventCard = ({ event, onSelectFragment }) => {
           <div className="timeline-tabs" role="tablist" aria-label={`Vistas del evento ${event.title}`}>
             {[
               { key: 'read', label: 'Lectura' },
+              { key: 'causality', label: 'Causalidad' },
               { key: 'evidence', label: `Fragmentos (${event.evidence.length})` },
             ].map((tab) => (
               <button
@@ -496,6 +633,8 @@ const TimelineEventCard = ({ event, onSelectFragment }) => {
           <div className="timeline-panel__body">
             {activePane === 'read' ? (
               <TimelineReadout read={event.read} />
+            ) : activePane === 'causality' ? (
+              <EventCausalityPanel event={event} />
             ) : (
               <ChatFragments
                 excerpts={eventFragments}
@@ -509,6 +648,61 @@ const TimelineEventCard = ({ event, onSelectFragment }) => {
     </article>
   )
 }
+
+const TopicDynamicsSection = ({ analytics }) => (
+  <section className="analysis-section" aria-label="Alianzas y friccion por tema">
+    <div className="analysis-section__header">
+      <div>
+        <h3>Alianzas y fricción por tema</h3>
+        <p>Qué combinaciones se repiten cuando cambia el asunto: quién empuja, quién calma y dónde se forman bloques.</p>
+      </div>
+    </div>
+
+    <div className="topic-dynamics-grid">
+      {analytics.topicDynamics.map((item) => (
+        <article
+          key={item.topic}
+          className="topic-dynamics-card"
+          style={{ '--topic-accent': TOPIC_ACCENTS[item.topic] ?? 'rgba(255,255,255,0.12)' }}
+        >
+          <div className="topic-dynamics-card__header">
+            <div>
+              <div className="topic-dynamics-card__topic">{item.topic}</div>
+              <div className="topic-dynamics-card__meta">{item.events} eventos</div>
+            </div>
+          </div>
+
+          <div className="topic-dynamics-card__rows">
+            <div className="topic-dynamics-row">
+              <div className="topic-dynamics-row__label">Dispara</div>
+              <div className="topic-dynamics-row__value">
+                {item.topTrigger ? `${item.topTrigger.name} · ${item.topTrigger.count}` : 'Sin patrón'}
+              </div>
+            </div>
+            <div className="topic-dynamics-row">
+              <div className="topic-dynamics-row__label">Alianza dominante</div>
+              <div className="topic-dynamics-row__value">
+                {item.topAlliance ? `${item.topAlliance.pair.join(' + ')} · ${item.topAlliance.count}` : 'Sin patrón'}
+              </div>
+            </div>
+            <div className="topic-dynamics-row">
+              <div className="topic-dynamics-row__label">Fricción dominante</div>
+              <div className="topic-dynamics-row__value">
+                {item.topFriction ? `${item.topFriction.pair.join(' vs ')} · ${item.topFriction.count}` : 'Sin patrón'}
+              </div>
+            </div>
+            <div className="topic-dynamics-row">
+              <div className="topic-dynamics-row__label">Calma más</div>
+              <div className="topic-dynamics-row__value">
+                {item.topPacifier ? `${item.topPacifier.name} · ${item.topPacifier.count}` : 'Sin patrón'}
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+)
 
 const TimelineInsights = ({ analytics, onSelectFragment }) => {
   const summaryCards = [
@@ -1235,6 +1429,7 @@ const TimelineView = ({ onSelectFragment }) => {
       <TimelineInsights analytics={analytics} onSelectFragment={onSelectFragment} />
       <InfluenceBoard analytics={analytics} />
       <RoleDriftSection analytics={analytics} />
+      <TopicDynamicsSection analytics={analytics} />
 
       <div className="timeline-list">
         {visibleEvents.map((event) => (

@@ -1030,6 +1030,53 @@ button {
   gap: 12px;
 }
 
+.topic-dynamics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.topic-dynamics-card {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--topic-accent, rgba(255, 255, 255, 0.12)) 8%, rgba(255, 255, 255, 0.03));
+  padding: 14px 16px;
+}
+
+.topic-dynamics-card__topic {
+  color: #f0ede8;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.topic-dynamics-card__meta {
+  margin-top: 3px;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.topic-dynamics-card__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.topic-dynamics-row {
+  display: grid;
+  grid-template-columns: minmax(96px, 120px) minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.topic-dynamics-row__value {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
 .role-drift-card {
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 12px;
@@ -1258,6 +1305,45 @@ button {
 .timeline-readout {
   display: grid;
   gap: 10px;
+}
+
+.event-causality {
+  display: grid;
+  gap: 10px;
+}
+
+.event-causality__row {
+  display: grid;
+  grid-template-columns: minmax(120px, 156px) minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.event-causality__label,
+.topic-dynamics-row__label {
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  padding-top: 4px;
+}
+
+.event-causality__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.event-causality__chip {
+  border: 1px solid color-mix(in srgb, var(--causality-accent, rgba(255, 255, 255, 0.12)) 38%, rgba(255, 255, 255, 0.08));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--causality-accent, rgba(255, 255, 255, 0.12)) 14%, rgba(255, 255, 255, 0.04));
+  color: #f0ede8;
+  font-size: 11px;
+  line-height: 1.2;
+  padding: 6px 9px;
 }
 
 .timeline-readout__row {
@@ -1900,7 +1986,8 @@ button {
 
   .timeline-insights,
   .turning-points__list,
-  .role-drift-grid {
+  .role-drift-grid,
+  .topic-dynamics-grid {
     grid-template-columns: 1fr;
   }
 
@@ -1971,7 +2058,9 @@ button {
 
   .influence-row,
   .compare-role-phase,
-  .role-phase {
+  .role-phase,
+  .topic-dynamics-row,
+  .event-causality__row {
     grid-template-columns: 1fr;
   }
 
