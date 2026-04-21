@@ -193,7 +193,7 @@ const NetworkView = ({ onSelect, selectedId, tweaks }) => {
 
   return (
     <div className="network-view">
-      <svg viewBox="0 0 1000 680" className="network-svg" role="img" aria-label="Mapa de relaciones del grupo">
+      <svg viewBox="0 0 1200 800" className="network-svg" role="img" aria-label="Mapa de relaciones del grupo">
         <g aria-label="Relaciones">
           {EDGES.map((edge, index) => {
             const from = NODE_POS[edge.from]
@@ -275,7 +275,7 @@ const NetworkView = ({ onSelect, selectedId, tweaks }) => {
                   {member.initials}
                 </text>
                 <text textAnchor="middle" y={radius + 17} fill="rgba(255,255,255,0.75)" fontSize="12">
-                  {member.name.split(' ')[0]}
+                  {member.shortName || member.name.split(' ')[0]}
                 </text>
                 {isJavier && !tweaks.softMode && (
                   <text textAnchor="middle" y={radius + 31} fill="oklch(62% 0.22 25)" fontSize="10" fontWeight="700">
