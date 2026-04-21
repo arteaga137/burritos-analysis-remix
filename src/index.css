@@ -883,6 +883,48 @@ button {
   padding: 5px 8px;
 }
 
+.timeline-readout {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.timeline-readout__row {
+  display: grid;
+  grid-template-columns: minmax(120px, 156px) minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.timeline-readout__label {
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  padding-top: 4px;
+}
+
+.timeline-readout__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.timeline-readout__chip {
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--timeline-accent, rgba(255, 255, 255, 0.1)) 14%, rgba(255, 255, 255, 0.04));
+  color: #f0ede8;
+  font-size: 11px;
+  line-height: 1.2;
+  padding: 6px 9px;
+}
+
 .timeline-card__quote-block {
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 10px;
@@ -1373,6 +1415,15 @@ button {
   .timeline-card__content,
   .compare-card {
     padding: 14px;
+  }
+
+  .timeline-readout__row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .timeline-readout__label {
+    padding-top: 0;
   }
 
   .compare-card__header {

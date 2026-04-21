@@ -13,6 +13,14 @@ const fragment = (at, author, text) => ({
   source: CHAT_SOURCE_NAME,
 })
 
+const eventRead = (active, aggressive, pacifying, conservative, sensible) => ({
+  active,
+  aggressive,
+  pacifying,
+  conservative,
+  sensible,
+})
+
 export const MEMBERS = [
   {
     id: 'gabriel',
@@ -960,6 +968,13 @@ export const TIMELINE_EVENTS = [
     participants: ['Gabriel', 'Francisco', 'Jesús'],
     summary:
       'El primer día ya deja clara la textura del grupo: humor rápido, referencias futboleras cruzadas y una comodidad inmediata para pasar de un dato a una burla.',
+    read: eventRead(
+      ['Gabriel', 'Francisco'],
+      ['Gabriel'],
+      ['Jesús'],
+      ['Francisco'],
+      ['Francisco'],
+    ),
     evidence: [
       fragment(
         '20 abr 2025 · 5:16 PM',
@@ -987,6 +1002,13 @@ export const TIMELINE_EVENTS = [
     participants: ['Francisco', 'Gabriel', 'Gustavo', 'Javier'],
     summary:
       'La discusión sobre fuera de juego semiautomático y criterios arbitrales cristaliza el eje clásico del grupo: Francisco y Gabriel construyen sospecha, Gustavo la pincha, Javier la literaliza y Jesús reordena el debate.',
+    read: eventRead(
+      ['Francisco', 'Gabriel'],
+      ['Francisco', 'Javier'],
+      ['Jesús'],
+      ['Gustavo'],
+      ['Jesús', 'Gabriel'],
+    ),
     evidence: [
       fragment(
         '21 abr 2025 · 2:12 PM',
@@ -1023,6 +1045,13 @@ export const TIMELINE_EVENTS = [
     participants: ['Francisco', 'Gabriel', 'Jesús', 'Javier'],
     summary:
       'La rueda de prensa arbitral previa a la final dispara una lectura casi institucional: ya no se discute una jugada, sino si el partido llega viciado antes de empezar.',
+    read: eventRead(
+      ['Francisco', 'Gabriel'],
+      ['Francisco'],
+      ['Jesús'],
+      ['Javier'],
+      ['Gabriel', 'Jesús'],
+    ),
     evidence: [
       fragment(
         '25 abr 2025 · 2:53 PM',
@@ -1059,6 +1088,13 @@ export const TIMELINE_EVENTS = [
     participants: ['Contacto España (+34)', 'Francisco', 'Gabriel', 'Gustavo'],
     summary:
       'Antes de la final, el grupo deja de hablar solo de jugadas y pasa a discutir neutralidad institucional, comunicados oficiales y sesgo estructural.',
+    read: eventRead(
+      ['Francisco', 'Contacto España (+34)'],
+      ['Francisco'],
+      ['Gustavo'],
+      ['Gustavo'],
+      ['Contacto España (+34)', 'Gustavo'],
+    ),
     evidence: [
       fragment(
         '26 abr 2025 · 8:52 PM',
@@ -1090,6 +1126,13 @@ export const TIMELINE_EVENTS = [
     participants: ['Javier', 'Gabriel', 'Francisco'],
     summary:
       'La reentrada de Javier refuerza la figura del contrapunto más áspero del grupo y reabre la dinámica de provocación, reacción y escalada que luego define varios meses.',
+    read: eventRead(
+      ['Gabriel', 'Gustavo'],
+      ['Gabriel'],
+      ['Jesús'],
+      ['Francisco'],
+      ['Jesús', 'Gustavo'],
+    ),
     evidence: [
       fragment('27 abr 2025 · 12:03 AM', 'Sistema', 'Gabriel Gutiérrez removed Javier Gimenez'),
       fragment('27 abr 2025 · 12:05 AM', 'Sistema', 'Javier Gimenez was added'),
@@ -1110,6 +1153,13 @@ export const TIMELINE_EVENTS = [
     participants: ['Andrés', 'Gabriel', 'Francisco'],
     summary:
       'Cuando Andrés resume el ambiente como tóxico, aparece una verdad estructural: incluso los miembros más tranquilos reconocen el desgaste de la conversación.',
+    read: eventRead(
+      ['Andrés', 'Francisco'],
+      ['Francisco', 'Gustavo'],
+      ['Andrés', 'Gabriel'],
+      ['Andrés'],
+      ['Andrés', 'Gabriel'],
+    ),
     evidence: [
       fragment('16 may 2025 · 9:05 PM', 'Andres Eduardo Pinto', 'Que toxico este grupo'),
       fragment(
@@ -1134,6 +1184,13 @@ export const TIMELINE_EVENTS = [
     participants: ['Francisco', 'Gabriel', 'Andrés', 'Gerardo', 'Contacto España (+34)'],
     summary:
       'La semifinal Inter-Barça activa a perfiles que suelen hablar menos. El grupo entra en modo watch party: táctica, fichajes, épica italiana y alegría abierta porque gana el anti-Barça.',
+    read: eventRead(
+      ['Francisco', 'Andrés'],
+      ['Francisco'],
+      ['Gabriel', 'Gerardo'],
+      ['Gerardo'],
+      ['Gabriel', 'Andrés'],
+    ),
     evidence: [
       fragment('6 may 2025 · 10:37 PM', 'Francisco Arteaga', 'El paradon de Sommer'),
       fragment(
@@ -1167,6 +1224,13 @@ export const TIMELINE_EVENTS = [
     participants: ['Francisco', 'Grupo'],
     summary:
       'El grupo deja de ser solo un chat de fútbol y se vuelve objeto de análisis para sí mismo. Hay tensión sobre continuidad, pertenencia y comodidad de algunos miembros.',
+    read: eventRead(
+      ['Francisco'],
+      ['Francisco'],
+      ['Francisco'],
+      ['Grupo'],
+      ['Francisco'],
+    ),
     evidence: [
       fragment(
         '17 jul 2025 · previo a la encuesta',
@@ -1198,6 +1262,13 @@ export const TIMELINE_EVENTS = [
     participants: ['Jorge', 'Francisco', 'Gustavo', 'Jesús'],
     summary:
       'La entrada de Jorge refresca la dinámica con humor absurdo, meta-comentario y menos dogma. No mueve el eje ideológico, pero sí aligera la textura social.',
+    read: eventRead(
+      ['Francisco', 'Jorge'],
+      ['Francisco'],
+      ['Gustavo', 'Jorge'],
+      ['Francisco'],
+      ['Gustavo'],
+    ),
     evidence: [
       fragment('26 ago 2025 · 2:43 PM', 'Sistema', 'You added Jorge Anzola'),
       fragment(
@@ -1226,6 +1297,13 @@ export const TIMELINE_EVENTS = [
     participants: ['Francisco', 'Jesús', 'Javier', 'Gabriel', 'Gustavo'],
     summary:
       'La frase "para poder anular el gol" se convierte en munición simbólica. El grupo se reparte entre indignación, sarcasmo, incredulidad y trolling terapéutico.',
+    read: eventRead(
+      ['Francisco', 'Jesús'],
+      ['Francisco', 'Javier'],
+      ['Gustavo'],
+      ['Javier'],
+      ['Jesús', 'Gabriel'],
+    ),
     evidence: [
       fragment(
         '31 ago 2025 · 1:49 AM',
@@ -1262,6 +1340,13 @@ export const TIMELINE_EVENTS = [
     participants: ['Aaron', 'Francisco', 'Jesús', 'Jorge'],
     summary:
       'Su llegada funciona como onboarding perfecto al universo Burritos: bullying de bienvenida, advertencia sobre Messi y entrada acelerada al fantasy y al tono interno.',
+    read: eventRead(
+      ['Francisco', 'Aaron'],
+      ['Francisco'],
+      ['Aaron', 'Jorge'],
+      ['Aaron'],
+      ['Aaron', 'Jorge'],
+    ),
     evidence: [
       fragment('1 sep 2025 · 8:13 PM', 'Sistema', 'You added Aaron Rodrigues'),
       fragment(
@@ -1294,6 +1379,13 @@ export const TIMELINE_EVENTS = [
     participants: ['Francisco', 'Aaron', 'Jorge', 'Contacto España (+34)'],
     summary:
       'La liga fantasy añade una capa menos ideológica y más lúdica. Desde ahí entran nuevos chistes, jerarquías semanales y una forma distinta de participar.',
+    read: eventRead(
+      ['Francisco', 'Aaron', 'Jorge'],
+      ['Francisco'],
+      ['Contacto España (+34)'],
+      ['Contacto España (+34)'],
+      ['Francisco', 'Contacto España (+34)'],
+    ),
     evidence: [
       fragment('15 sep 2025 · 11:22 AM', 'Jorge Anzola', 'Ya estoy en eso maldita sea'),
       fragment('15 sep 2025 · 10:15 PM', 'Contacto España (+34)', 'Listo 🔥'),
@@ -1324,6 +1416,13 @@ export const TIMELINE_EVENTS = [
     participants: ['Gabriel', 'Francisco', 'Gustavo', 'Jesús', 'Andrés'],
     summary:
       'La salida de Gabriel hace visible cuánto pesa como ancla simbólica del grupo. En menos de 48 horas pasa de ruptura silenciosa a operación retorno con chalequeo incluido.',
+    read: eventRead(
+      ['Francisco', 'Gustavo'],
+      ['Gustavo', 'Javier'],
+      ['Andrés', 'Gustavo'],
+      ['Gabriel'],
+      ['Andrés', 'Francisco'],
+    ),
     evidence: [
       fragment('27 oct 2025 · 6:44 AM', 'Andres Eduardo Pinto', 'El Barry se volvió a salir?'),
       fragment(
@@ -1357,6 +1456,13 @@ export const TIMELINE_EVENTS = [
     participants: ['Contacto España (+34)', 'Francisco', 'Gerardo', 'Andrés', 'Aaron'],
     summary:
       'La conversacion deja de ser solo comentario y fantasy. Aparece una capa nueva: jugar juntos en Madrid, sumar gente y estirar la convivencia fuera del teléfono.',
+    read: eventRead(
+      ['Contacto España (+34)', 'Francisco'],
+      ['Francisco'],
+      ['Contacto España (+34)', 'Gerardo'],
+      ['Aaron', 'Andrés'],
+      ['Contacto España (+34)', 'Gerardo'],
+    ),
     evidence: [
       fragment(
         '9 dic 2025 · 2:48 PM',
@@ -1389,6 +1495,13 @@ export const TIMELINE_EVENTS = [
     participants: ['Francisco', 'Gabriel', 'Jesús'],
     summary:
       'Aparece una rareza estructural del ecosistema Burritos: el lider competitivo ni siquiera participa en la conversación. El fantasy y la sociabilidad ya son capas relacionadas, pero no idénticas.',
+    read: eventRead(
+      ['Francisco', 'Jesús'],
+      ['Francisco'],
+      ['Gabriel'],
+      ['Francisco'],
+      ['Jesús', 'Francisco'],
+    ),
     evidence: [
       fragment(
         '20 feb 2026 · 6:43 PM',
@@ -1415,6 +1528,13 @@ export const TIMELINE_EVENTS = [
     participants: ['Javier', 'Gabriel', 'Jesús', 'Francisco', 'Luís', 'Gerardo'],
     summary:
       'La discusión sobre racismo y provocación deja de ser solo fútbol. Aquí se hace visible quién relativiza, quién condena y quién intenta ordenar el caos.',
+    read: eventRead(
+      ['Francisco', 'Gabriel', 'Javier'],
+      ['Javier', 'Francisco'],
+      ['Jesús', 'Luís'],
+      ['Gerardo', 'Javier'],
+      ['Jesús', 'Gabriel'],
+    ),
     evidence: [
       fragment(
         '18 feb 2026 · 1:09 PM',
@@ -1461,6 +1581,13 @@ export const TIMELINE_EVENTS = [
     participants: ['Francisco', 'Gabriel', 'Gustavo', 'Andrés'],
     summary:
       'Después de meses de quinielas, fantasy y discusiones, el organizador central verbaliza agotamiento. El grupo reacciona tratándolo como amenaza real y también como performance conocida.',
+    read: eventRead(
+      ['Francisco', 'Gabriel'],
+      ['Francisco'],
+      ['Andrés', 'Gabriel'],
+      ['Francisco'],
+      ['Andrés'],
+    ),
     evidence: [
       fragment(
         '16 mar 2026 · 7:04 PM',

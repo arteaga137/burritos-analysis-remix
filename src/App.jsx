@@ -49,6 +49,14 @@ const TOPIC_ACCENTS = {
   Rivalidad: 'oklch(74% 0.16 25)',
 }
 
+const TIMELINE_READ_LABELS = [
+  { key: 'active', label: 'Más activos' },
+  { key: 'aggressive', label: 'Más agresivos' },
+  { key: 'pacifying', label: 'Más pacificadores' },
+  { key: 'conservative', label: 'Más conservadores' },
+  { key: 'sensible', label: 'Más sensatos' },
+]
+
 const ChatFragments = ({ excerpts, label = 'Fragmentos del chat' }) => (
   <div className="chat-fragments">
     <div className="chat-fragments__label">{label}</div>
@@ -67,6 +75,23 @@ const ChatFragments = ({ excerpts, label = 'Fragmentos del chat' }) => (
         </div>
       ))}
     </div>
+  </div>
+)
+
+const TimelineReadout = ({ read }) => (
+  <div className="timeline-readout">
+    {TIMELINE_READ_LABELS.map(({ key, label }) => (
+      <div key={key} className="timeline-readout__row">
+        <div className="timeline-readout__label">{label}</div>
+        <div className="timeline-readout__chips">
+          {read[key].map((name) => (
+            <span key={`${key}-${name}`} className="timeline-readout__chip">
+              {name}
+            </span>
+          ))}
+        </div>
+      </div>
+    ))}
   </div>
 )
 
@@ -510,6 +535,7 @@ const TimelineView = () => {
                   <span key={`${event.id}-${participant}`}>{participant}</span>
                 ))}
               </div>
+              <TimelineReadout read={event.read} />
               <div className="timeline-card__quote-block">
                 <ChatFragments
                   excerpts={event.evidence}
