@@ -775,8 +775,11 @@ const TimelineEventCard = ({ event, onSelectFragment, expanded, onToggle }) => {
           </div>
           <div className="timeline-card__header-side">
             <span className="timeline-card__toggle-copy">{expanded ? 'Ocultar detalle' : 'Ver detalle'}</span>
-            <span className="timeline-card__toggle-icon" aria-hidden="true">
-              {expanded ? '−' : '+'}
+            <span
+              className={`timeline-card__toggle-icon${expanded ? ' is-open' : ''}`}
+              aria-hidden="true"
+            >
+              ⌄
             </span>
           </div>
         </button>
@@ -790,8 +793,8 @@ const TimelineEventCard = ({ event, onSelectFragment, expanded, onToggle }) => {
           ))}
         </div>
 
-        {expanded ? (
-          <div className="timeline-card__details">
+        <div className={`timeline-card__details${expanded ? ' is-open' : ''}`} aria-hidden={!expanded}>
+          <div className="timeline-card__details-inner">
             <div className="timeline-card__participants">
               {event.participants.map((participant) => (
                 <span key={`${event.id}-${participant}`}>{participant}</span>
@@ -833,7 +836,7 @@ const TimelineEventCard = ({ event, onSelectFragment, expanded, onToggle }) => {
               </div>
             </div>
           </div>
-        ) : null}
+        </div>
       </div>
     </article>
   )
