@@ -4,11 +4,13 @@ export const TWEAK_DEFAULTS = {
   showTeams: true,
 }
 
+export const CHAT_SOURCE_NAME = 'Negreira Boys Fantasy Cup ⚽️🤡'
+
 const fragment = (at, author, text) => ({
   at,
   author,
   text,
-  source: '_chat.txt',
+  source: CHAT_SOURCE_NAME,
 })
 
 export const MEMBERS = [
@@ -951,6 +953,33 @@ export const MEMBER_EVIDENCE = {
 
 export const TIMELINE_EVENTS = [
   {
+    id: 'chat-kickoff',
+    date: '20 abr 2025',
+    topic: 'Dinámica',
+    title: 'El chat arranca entre vacile Premier, estadios y arbitras',
+    participants: ['Gabriel', 'Francisco', 'Jesús'],
+    summary:
+      'El primer día ya deja clara la textura del grupo: humor rápido, referencias futboleras cruzadas y una comodidad inmediata para pasar de un dato a una burla.',
+    evidence: [
+      fragment(
+        '20 abr 2025 · 5:16 PM',
+        'Gabriel Gutiérrez',
+        'El United volvió a perder jaja',
+      ),
+      fragment(
+        '20 abr 2025 · 5:29 PM',
+        'Gabriel Gutiérrez',
+        'Si, parece una carpa de circo',
+      ),
+      fragment(
+        '20 abr 2025 · 5:51 PM',
+        'Francisco Arteaga',
+        'En estos días entrevistaron a una árbitra española, y dice que los jugadores le escriben por instagram para invitarla a salir',
+      ),
+      fragment('20 abr 2025 · 6:35 PM', 'Jesús Burgos', 'Jajajajajajajajja'),
+    ],
+  },
+  {
     id: 'var-april-2025',
     date: '21 abr 2025',
     topic: 'VAR',
@@ -983,6 +1012,42 @@ export const TIMELINE_EVENTS = [
         '21 abr 2025 · 2:46 PM',
         'Jesús Burgos',
         'la tecnología se implementó para suplementar las reglas que ya existían, y eso está perfecto porque es evolución.',
+      ),
+    ],
+  },
+  {
+    id: 'copa-final-crisis',
+    date: '25 abr 2025',
+    topic: 'VAR',
+    title: 'La final de Copa convierte el chat en sala de crisis arbitral',
+    participants: ['Francisco', 'Gabriel', 'Jesús', 'Javier'],
+    summary:
+      'La rueda de prensa arbitral previa a la final dispara una lectura casi institucional: ya no se discute una jugada, sino si el partido llega viciado antes de empezar.',
+    evidence: [
+      fragment(
+        '25 abr 2025 · 2:53 PM',
+        'Francisco Arteaga',
+        'Se armó la grande con los árbitros en la final, jajajaja',
+      ),
+      fragment(
+        '25 abr 2025 · 2:54 PM',
+        'Francisco Arteaga',
+        'Salió De Burgos llorando porque Real Madrid TV lo puso en un vídeo',
+      ),
+      fragment(
+        '25 abr 2025 · 3:34 PM',
+        'Gabriel Gutiérrez',
+        'Que bolas, como se va a jugar esa final ahora con esos árbitros? Acaban de reconocer públicamente que se la tienen jurada',
+      ),
+      fragment(
+        '25 abr 2025 · 8:17 PM',
+        'Jesús Burgos',
+        'Pero esos bichos literalmente amenazaron a un equipo que al que le van a arbitrar mañana',
+      ),
+      fragment(
+        '25 abr 2025 · 10:11 PM',
+        'Gabriel Gutiérrez',
+        'No debería jugarse ese partido.',
       ),
     ],
   },
@@ -1059,6 +1124,39 @@ export const TIMELINE_EVENTS = [
         'Es un safe space para jodernos',
       ),
       fragment('16 may 2025 · 9:13 PM', 'Andres Eduardo Pinto', 'Un padre responsable'),
+    ],
+  },
+  {
+    id: 'inter-barca-night',
+    date: '6-7 may 2025',
+    topic: 'Rivalidad',
+    title: 'Inter-Barça se vuelve una noche coral de scouting, memes y catarsis',
+    participants: ['Francisco', 'Gabriel', 'Andrés', 'Gerardo', 'Contacto España (+34)'],
+    summary:
+      'La semifinal Inter-Barça activa a perfiles que suelen hablar menos. El grupo entra en modo watch party: táctica, fichajes, épica italiana y alegría abierta porque gana el anti-Barça.',
+    evidence: [
+      fragment('6 may 2025 · 10:37 PM', 'Francisco Arteaga', 'El paradon de Sommer'),
+      fragment(
+        '6 may 2025 · 10:54 PM',
+        'Andres Eduardo Pinto',
+        'Que serie esta',
+      ),
+      fragment(
+        '6 may 2025 · 10:55 PM',
+        'Gerardo Vitale Errico',
+        'Hoy barella hizo cagar',
+      ),
+      fragment(
+        '6 may 2025 · 11:40 PM',
+        'Francisco Arteaga',
+        'Que partidazo',
+      ),
+      fragment(
+        '6 may 2025 · 11:40 PM',
+        'Francisco Arteaga',
+        'Da alegría cuando gana el fútbol',
+      ),
+      fragment('7 may 2025 · 12:25 AM', 'Gabriel Gutiérrez', 'Forza Inter'),
     ],
   },
   {
@@ -1219,6 +1317,39 @@ export const TIMELINE_EVENTS = [
     ],
   },
   {
+    id: 'gabriel-exit-return',
+    date: '27-28 oct 2025',
+    topic: 'Dinámica',
+    title: 'Gabriel se sale, el grupo entra en pánico breve y Gustavo lo reingresa',
+    participants: ['Gabriel', 'Francisco', 'Gustavo', 'Jesús', 'Andrés'],
+    summary:
+      'La salida de Gabriel hace visible cuánto pesa como ancla simbólica del grupo. En menos de 48 horas pasa de ruptura silenciosa a operación retorno con chalequeo incluido.',
+    evidence: [
+      fragment('27 oct 2025 · 6:44 AM', 'Andres Eduardo Pinto', 'El Barry se volvió a salir?'),
+      fragment(
+        '27 oct 2025 · 7:17 AM',
+        'Francisco Arteaga',
+        'Hablé con el y dijo que no quiere ser parte de este grupo',
+      ),
+      fragment(
+        '27 oct 2025 · 1:22 PM',
+        'Francisco Arteaga',
+        'Ya Gabriel no está aquí para leernos',
+      ),
+      fragment(
+        '28 oct 2025 · 5:43 PM',
+        'Sistema',
+        'Gustavo Torres added Gabriel Gutiérrez',
+      ),
+      fragment(
+        '28 oct 2025 · 5:44 PM',
+        'Gustavo Torres',
+        'Gabo no te vayas, el grupo no es lo mismo sin ti',
+      ),
+      fragment('28 oct 2025 · 6:19 PM', 'Gabriel Gutiérrez', 'Holis'),
+    ],
+  },
+  {
     id: 'madrid-football-layer',
     date: '9 dic 2025',
     topic: 'Dinámica',
@@ -1248,6 +1379,32 @@ export const TIMELINE_EVENTS = [
         'Un día me anoto se los prometo',
       ),
       fragment('9 dic 2025 · 3:30 PM', 'Aaron Rodrigues', 'Yes sir'),
+    ],
+  },
+  {
+    id: 'memo-fantasy-ghost',
+    date: '20-21 feb 2026',
+    topic: 'Fantasy',
+    title: 'Memo domina la fantasy sin estar en el grupo',
+    participants: ['Francisco', 'Gabriel', 'Jesús'],
+    summary:
+      'Aparece una rareza estructural del ecosistema Burritos: el lider competitivo ni siquiera participa en la conversación. El fantasy y la sociabilidad ya son capas relacionadas, pero no idénticas.',
+    evidence: [
+      fragment(
+        '20 feb 2026 · 6:43 PM',
+        'Francisco Arteaga',
+        'El único que no está en este grupo es el que va de primero en la liga',
+      ),
+      fragment(
+        '20 feb 2026 · 10:07 PM',
+        'Jesús Burgos',
+        'Memo nos violo a todos. Yo la pegué con Guirassy pero no se me ocurrió Gordon',
+      ),
+      fragment(
+        '21 feb 2026 · 12:25 AM',
+        'Francisco Arteaga',
+        'Yo te is a Gordon pero, jamás lo hubiera puesto de Capitán',
+      ),
     ],
   },
   {
@@ -1294,6 +1451,38 @@ export const TIMELINE_EVENTS = [
         'Gabriel Gutiérrez',
         'En España le dieron a Vinicius que se fuera al sambodromo a hacer el mono. Seguro quisieron decir que él es muy alegre',
       ),
+    ],
+  },
+  {
+    id: 'francisco-burnout',
+    date: '16 mar 2026',
+    topic: 'Dinámica',
+    title: 'Francisco amenaza con dejar de organizar y cerrar el grupo',
+    participants: ['Francisco', 'Gabriel', 'Gustavo', 'Andrés'],
+    summary:
+      'Después de meses de quinielas, fantasy y discusiones, el organizador central verbaliza agotamiento. El grupo reacciona tratándolo como amenaza real y también como performance conocida.',
+    evidence: [
+      fragment(
+        '16 mar 2026 · 7:04 PM',
+        'Francisco Arteaga',
+        'Y este es el último que organizó',
+      ),
+      fragment(
+        '16 mar 2026 · 7:04 PM',
+        'Francisco Arteaga',
+        'Ustedes son muy tóxicos',
+      ),
+      fragment(
+        '16 mar 2026 · 7:43 PM',
+        'Andres Eduardo Pinto',
+        'Suelta Francisco que nadie te va a Juzgar, así los factos salpiquen a todos',
+      ),
+      fragment(
+        '16 mar 2026 · 9:19 PM',
+        'Francisco Arteaga',
+        'Solo quiero que se queden, con que este es el último que organizo. El año que viene no hay nada, y cierro este grupo de tóxicos',
+      ),
+      fragment('17 mar 2026 · 11:06 PM', 'Francisco Arteaga', 'Claro que sí'),
     ],
   },
 ]

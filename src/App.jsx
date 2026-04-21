@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
+  CHAT_SOURCE_NAME,
   EDGE_STYLE,
   EDGES,
   MEMBER_EVIDENCE,
@@ -34,7 +35,7 @@ const getEvidenceItems = (member) =>
         at: quote.ctx,
         author: member.name,
         text: quote.text.replace(/^"|"$/g, ''),
-        source: 'Contexto curado',
+        source: `Contexto curado · ${CHAT_SOURCE_NAME}`,
       },
     ],
   }))
@@ -45,6 +46,7 @@ const TOPIC_ACCENTS = {
   Convivencia: 'oklch(68% 0.18 200)',
   Dinámica: 'oklch(70% 0.16 145)',
   'Nuevos miembros': 'oklch(76% 0.16 310)',
+  Rivalidad: 'oklch(74% 0.16 25)',
 }
 
 const ChatFragments = ({ excerpts, label = 'Fragmentos del chat' }) => (
@@ -509,7 +511,10 @@ const TimelineView = () => {
                 ))}
               </div>
               <div className="timeline-card__quote-block">
-                <ChatFragments excerpts={event.evidence} label="Fragmentos reales de _chat.txt" />
+                <ChatFragments
+                  excerpts={event.evidence}
+                  label={`Fragmentos reales de ${CHAT_SOURCE_NAME}`}
+                />
               </div>
             </div>
           </article>
