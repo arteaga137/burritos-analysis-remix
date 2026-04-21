@@ -2126,10 +2126,10 @@ const CompareView = ({
   </section>
 )
 
-const AwardGraphic = ({ icon, accent, size = 'regular', animated = false }) => (
+const AwardGraphic = ({ icon, accent, size = 'regular', animated = false, delay = '0s' }) => (
   <div
     className={`award-graphic award-graphic--${size}${animated ? ' is-animated' : ''}`}
-    style={{ '--award-graphic-accent': accent }}
+    style={{ '--award-graphic-accent': accent, '--award-animation-delay': delay }}
     aria-hidden="true"
   >
     <div className="award-graphic__halo" />
@@ -2176,7 +2176,8 @@ const AwardsView = () => (
                   icon={entry.icon}
                   accent={member.color}
                   size="large"
-                  animated={index === 0}
+                  animated
+                  delay={`${index * 0.18}s`}
                 />
                 <div>
                   <h3>{member.name}</h3>
@@ -2197,7 +2198,7 @@ const AwardsView = () => (
       </div>
 
       <div className="awards-grid">
-        {MEMBERS.map((member) => {
+        {MEMBERS.map((member, index) => {
           const award = MEMBER_AWARDS[member.id]
           if (!award) return null
 
@@ -2211,7 +2212,8 @@ const AwardsView = () => (
                 <AwardGraphic
                   icon={award.icon}
                   accent={member.color}
-                  animated={member.id === 'javier' || member.id === 'gabriel'}
+                  animated
+                  delay={`${index * 0.12}s`}
                 />
                 <div>
                   <h3>{member.name}</h3>

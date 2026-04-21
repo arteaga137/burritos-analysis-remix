@@ -1987,10 +1987,17 @@ button {
 }
 
 .award-graphic__medal span {
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
   position: relative;
   z-index: 1;
   font-size: 24px;
   line-height: 1;
+  text-align: center;
+  transform: translateY(-1px);
   filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
 }
 
@@ -2052,10 +2059,12 @@ button {
 
 .award-graphic.is-animated .award-graphic__medal {
   animation: awardFloat 3s ease-in-out infinite;
+  animation-delay: var(--award-animation-delay, 0s);
 }
 
 .award-graphic.is-animated .award-graphic__halo {
   animation: awardHaloPulse 2.6s ease-in-out infinite;
+  animation-delay: var(--award-animation-delay, 0s);
 }
 
 .toxicity-card:hover .award-graphic__medal,
