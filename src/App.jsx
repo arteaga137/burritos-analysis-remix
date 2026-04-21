@@ -30,6 +30,14 @@ const getEvidenceItems = (member) =>
     excerpt: quote.text,
   }))
 
+const TOPIC_ACCENTS = {
+  VAR: 'oklch(62% 0.22 25)',
+  Fantasy: 'oklch(72% 0.18 60)',
+  Convivencia: 'oklch(68% 0.18 200)',
+  Dinámica: 'oklch(70% 0.16 145)',
+  'Nuevos miembros': 'oklch(76% 0.16 310)',
+}
+
 const ScoreBar = ({ label, val, color }) => (
   <div className="score-bar">
     <div className="score-bar__meta">
@@ -402,6 +410,8 @@ const TimelineView = () => {
     return TIMELINE_EVENTS.filter((event) => event.topic === activeTopic)
   }, [activeTopic])
 
+  const activeLabel = activeTopic === 'Todos' ? 'Todas las capas' : activeTopic
+
   return (
     <section className="timeline-section" aria-label="Timeline de eventos">
       <div className="section-intro">
@@ -418,6 +428,10 @@ const TimelineView = () => {
               key={topic}
               type="button"
               className={`filter-pill${activeTopic === topic ? ' active' : ''}`}
+              style={{
+                '--pill-accent':
+                  topic === 'Todos' ? 'rgba(255,255,255,0.12)' : TOPIC_ACCENTS[topic] ?? '#f0ede8',
+              }}
               onClick={() => setActiveTopic(topic)}
             >
               {topic}
@@ -426,14 +440,32 @@ const TimelineView = () => {
         </div>
       </div>
 
+      <div className="timeline-summary">
+        {[
+          { label: 'Eventos visibles', value: String(visibleEvents.length) },
+          { label: 'Marco temporal', value: 'abr 2025 → feb 2026' },
+          { label: 'Filtro activo', value: activeLabel },
+        ].map((item) => (
+          <div key={item.label} className="timeline-summary__item">
+            <div className="timeline-summary__value">{item.value}</div>
+            <div className="timeline-summary__label">{item.label}</div>
+          </div>
+        ))}
+      </div>
+
       <div className="timeline-list">
         {visibleEvents.map((event) => (
-          <article key={event.id} className="timeline-card">
+          <article
+            key={event.id}
+            className="timeline-card"
+            style={{ '--timeline-accent': TOPIC_ACCENTS[event.topic] ?? '#f0ede8' }}
+          >
             <div className="timeline-card__rail" aria-hidden="true" />
             <div className="timeline-card__content">
               <div className="timeline-card__meta">
                 <span>{event.date}</span>
                 <span>{event.topic}</span>
+                <span>{event.participants.length} participantes</span>
               </div>
               <h3>{event.title}</h3>
               <p>{event.summary}</p>
@@ -442,7 +474,10 @@ const TimelineView = () => {
                   <span key={`${event.id}-${participant}`}>{participant}</span>
                 ))}
               </div>
-              <div className="timeline-card__quote">“{event.quote}”</div>
+              <div className="timeline-card__quote-block">
+                <div className="timeline-card__quote-label">Pulso del momento</div>
+                <div className="timeline-card__quote">“{event.quote}”</div>
+              </div>
             </div>
           </article>
         ))}
