@@ -318,10 +318,10 @@ export const MEMBERS = [
   },
   {
     id: 'espana34',
-    name: 'Contacto España (+34)',
-    shortName: 'España',
-    initials: '+34',
-    nickname: '"El +34"',
+    name: 'Karin "Pie Roto"',
+    shortName: 'Karin',
+    initials: 'KP',
+    nickname: '"Pie Roto"',
     role: 'El Refuerzo Peninsular',
     roleShort: 'Refuerzo',
     color: 'oklch(72% 0.18 335)',
@@ -339,7 +339,7 @@ export const MEMBERS = [
       'Entra desde España con tono relajado, madridista y bastante integrado al humor local',
       'Aporta comentarios de fantasy, fichajes y vida futbolera en Madrid sin monopolizar la discusión',
       'Suele responder con emojis y frases cortas - participa más como refuerzo constante que como polemista principal',
-      'En el material fuente su contacto no está guardado con nombre, así que aquí queda anonimizado como "El +34"',
+      'Opera como alias interno del grupo: una presencia estable entre fantasy, arbitraje y fútbol presencial en Madrid',
     ],
     quotes: [
       { text: '"Con esa rueda de prensa claramente ya no hay neutralidad en los árbitros."', ctx: 'Abr 2025 - entra alineado con la desconfianza arbitral del núcleo madridista' },
@@ -835,12 +835,12 @@ export const MEMBER_EVIDENCE = {
       excerpts: [
         fragment(
           '26 abr 2025 · 8:52 PM',
-          'Contacto España (+34)',
+          'Karin "Pie Roto"',
           'Con esa rueda de prensa claramente ya no hay neutralidad en los árbitros, quedó demostrado.',
         ),
         fragment(
           '26 abr 2025 · 9:06 PM',
-          'Contacto España (+34)',
+          'Karin "Pie Roto"',
           'Esta temporada varios equipos han sacado comunicados oficiales por la manera irregular que están pitando los partidos',
         ),
       ],
@@ -855,12 +855,12 @@ export const MEMBER_EVIDENCE = {
       excerpts: [
         fragment(
           '9 dic 2025 · 2:48 PM',
-          'Contacto España (+34)',
+          'Karin "Pie Roto"',
           'Lo digo porque todas las semanas estamos jugando, tenemos un equipo de la orquesta, por si te quieres venir un día te digo',
         ),
         fragment(
           '9 dic 2025 · 2:51 PM',
-          'Contacto España (+34)',
+          'Karin "Pie Roto"',
           'Aquí la gente no da leñazos y no te lesionan, todo friendly',
         ),
       ],
@@ -1085,25 +1085,25 @@ export const TIMELINE_EVENTS = [
     date: '26 abr 2025',
     topic: 'VAR',
     title: 'La previa de la final convierte el arbitraje en conflicto politico',
-    participants: ['Contacto España (+34)', 'Francisco', 'Gabriel', 'Gustavo'],
+    participants: ['Karin "Pie Roto"', 'Francisco', 'Gabriel', 'Gustavo'],
     summary:
       'Antes de la final, el grupo deja de hablar solo de jugadas y pasa a discutir neutralidad institucional, comunicados oficiales y sesgo estructural.',
     read: eventRead(
-      ['Francisco', 'Contacto España (+34)'],
+      ['Francisco', 'Karin "Pie Roto"'],
       ['Francisco'],
       ['Gustavo'],
       ['Gustavo'],
-      ['Contacto España (+34)', 'Gustavo'],
+      ['Karin "Pie Roto"', 'Gustavo'],
     ),
     evidence: [
       fragment(
         '26 abr 2025 · 8:52 PM',
-        'Contacto España (+34)',
+        'Karin "Pie Roto"',
         'Con esa rueda de prensa claramente ya no hay neutralidad en los árbitros, quedó demostrado.',
       ),
       fragment(
         '26 abr 2025 · 9:06 PM',
-        'Contacto España (+34)',
+        'Karin "Pie Roto"',
         'Esta temporada varios equipos han sacado comunicados oficiales por la manera irregular que están pitando los partidos',
       ),
       fragment(
@@ -1181,7 +1181,7 @@ export const TIMELINE_EVENTS = [
     date: '6-7 may 2025',
     topic: 'Rivalidad',
     title: 'Inter-Barça se vuelve una noche coral de scouting, memes y catarsis',
-    participants: ['Francisco', 'Gabriel', 'Andrés', 'Gerardo', 'Contacto España (+34)'],
+    participants: ['Francisco', 'Gabriel', 'Andrés', 'Gerardo', 'Karin "Pie Roto"'],
     summary:
       'La semifinal Inter-Barça activa a perfiles que suelen hablar menos. El grupo entra en modo watch party: táctica, fichajes, épica italiana y alegría abierta porque gana el anti-Barça.',
     read: eventRead(
@@ -1376,19 +1376,19 @@ export const TIMELINE_EVENTS = [
     date: '15-16 sep 2025',
     topic: 'Fantasy',
     title: 'El fantasy crea un segundo tablero de estatus',
-    participants: ['Francisco', 'Aaron', 'Jorge', 'Contacto España (+34)'],
+    participants: ['Francisco', 'Aaron', 'Jorge', 'Karin "Pie Roto"'],
     summary:
       'La liga fantasy añade una capa menos ideológica y más lúdica. Desde ahí entran nuevos chistes, jerarquías semanales y una forma distinta de participar.',
     read: eventRead(
       ['Francisco', 'Aaron', 'Jorge'],
       ['Francisco'],
-      ['Contacto España (+34)'],
-      ['Contacto España (+34)'],
-      ['Francisco', 'Contacto España (+34)'],
+      ['Karin "Pie Roto"'],
+      ['Karin "Pie Roto"'],
+      ['Francisco', 'Karin "Pie Roto"'],
     ),
     evidence: [
       fragment('15 sep 2025 · 11:22 AM', 'Jorge Anzola', 'Ya estoy en eso maldita sea'),
-      fragment('15 sep 2025 · 10:15 PM', 'Contacto España (+34)', 'Listo 🔥'),
+      fragment('15 sep 2025 · 10:15 PM', 'Karin "Pie Roto"', 'Listo 🔥'),
       fragment(
         '16 sep 2025 · 2:38 PM',
         'Aaron Rodrigues',
@@ -1400,7 +1400,7 @@ export const TIMELINE_EVENTS = [
         'Lo hice pero no se me unió a la liga 👉🏻👈🏻 ya está',
       ),
       fragment('16 sep 2025 · 6:37 PM', 'Jorge Anzola', 'Tengo un lesionado'),
-      fragment('16 sep 2025 · 11:03 PM', 'Contacto España (+34)', 'Grande Kylian 20pts 😍'),
+      fragment('16 sep 2025 · 11:03 PM', 'Karin "Pie Roto"', 'Grande Kylian 20pts 😍'),
       fragment(
         '16 sep 2025 · 11:19 PM',
         'Francisco Arteaga',
@@ -1453,25 +1453,25 @@ export const TIMELINE_EVENTS = [
     date: '9 dic 2025',
     topic: 'Dinámica',
     title: 'El chat se derrama hacia el futbol presencial en Madrid',
-    participants: ['Contacto España (+34)', 'Francisco', 'Gerardo', 'Andrés', 'Aaron'],
+    participants: ['Karin "Pie Roto"', 'Francisco', 'Gerardo', 'Andrés', 'Aaron'],
     summary:
       'La conversacion deja de ser solo comentario y fantasy. Aparece una capa nueva: jugar juntos en Madrid, sumar gente y estirar la convivencia fuera del teléfono.',
     read: eventRead(
-      ['Contacto España (+34)', 'Francisco'],
+      ['Karin "Pie Roto"', 'Francisco'],
       ['Francisco'],
-      ['Contacto España (+34)', 'Gerardo'],
+      ['Karin "Pie Roto"', 'Gerardo'],
       ['Aaron', 'Andrés'],
-      ['Contacto España (+34)', 'Gerardo'],
+      ['Karin "Pie Roto"', 'Gerardo'],
     ),
     evidence: [
       fragment(
         '9 dic 2025 · 2:48 PM',
-        'Contacto España (+34)',
+        'Karin "Pie Roto"',
         'Lo digo porque todas las semanas estamos jugando, tenemos un equipo de la orquesta, por si te quieres venir un día te digo',
       ),
       fragment(
         '9 dic 2025 · 2:51 PM',
-        'Contacto España (+34)',
+        'Karin "Pie Roto"',
         'Aquí la gente no da leñazos y no te lesionan, todo friendly',
       ),
       fragment(
