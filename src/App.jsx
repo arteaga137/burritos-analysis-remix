@@ -115,6 +115,71 @@ const ANALYSIS_PHASES = [
   },
 ]
 
+const MEMBER_AWARDS = {
+  gabriel: {
+    title: 'Premio Ley Mordaza',
+    blurb: 'Cuando el chat se descompone, aparece como admin, juez y comite disciplinario en una sola persona.',
+  },
+  francisco: {
+    title: 'Premio Motor de Reaccion',
+    blurb: 'Nadie empuja tanto la conversacion ni convierte un tema cualquiera en debate de alto octanaje.',
+  },
+  gustavo: {
+    title: 'Premio Abogado del Diablo',
+    blurb: 'Tiene la rara habilidad de pinchar consensos, irritar al bloque madridista y luego reirse con ellos.',
+  },
+  jesus: {
+    title: 'Premio Factos de Emergencia',
+    blurb: 'Entra poco, pero cuando entra reordena el hilo y deja veredicto con autoridad fria.',
+  },
+  javier: {
+    title: 'Premio Elemento Disruptivo',
+    blurb: 'No estabiliza nada: escala, provoca y devuelve friccion incluso cuando el grupo ya estaba girando hacia otra cosa.',
+  },
+  luis: {
+    title: 'Premio Corresponsal con Criterio',
+    blurb: 'Aparece poco, pero casi siempre baja el debate al terreno concreto y evita la gimnasia retorica.',
+  },
+  andres: {
+    title: 'Premio Detector de Toxicidad',
+    blurb: 'Su superpoder es nombrar el clima del grupo sin necesidad de meterse de lleno en la pelea.',
+  },
+  gerardo: {
+    title: 'Premio Giro Filosofico',
+    blurb: 'Puede agarrar una disputa futbolera y convertirla en una conversacion sobre libertad, prueba y principios.',
+  },
+  espana34: {
+    title: 'Premio Refuerzo Peninsular',
+    blurb: 'Suma tono, contexto de Madrid y continuidad social sin necesitar dominar el centro del escenario.',
+  },
+  jorge: {
+    title: 'Premio Caos Carismatico',
+    blurb: 'Transforma onboarding, fantasy y parentescos imposibles en una mini-comedia propia.',
+  },
+  aaron: {
+    title: 'Premio Rookie Aplicado',
+    blurb: 'Entra nuevo, detecta rapido la cultura del grupo y en seguida compite como si llevara meses adentro.',
+  },
+}
+
+const TOXICITY_RANKING = [
+  {
+    id: 'javier',
+    title: 'El mas toxico',
+    note: 'Escala, provoca y se convierte en foco de ruptura con demasiada regularidad.',
+  },
+  {
+    id: 'gabriel',
+    title: 'Toxicidad institucional',
+    note: 'No rompe por volumen, pero cuando castiga o expulsa deja cicatriz de admin severo.',
+  },
+  {
+    id: 'francisco',
+    title: 'Combustion argumentativa',
+    note: 'Su intensidad sostiene el debate, pero tambien puede elevar la temperatura demasiado rapido.',
+  },
+]
+
 const normalizeText = (value) =>
   value
     .toLowerCase()
@@ -1602,6 +1667,87 @@ const CompareView = ({
   </section>
 )
 
+const AwardsView = () => (
+  <section className="awards-section" aria-label="Premios del grupo">
+    <div className="section-intro">
+      <div>
+        <h2>Premios</h2>
+        <p>
+          Una lectura mas ligera del grupo: reconocimientos por personalidad, estilo y rol dentro
+          del ecosistema del chat.
+        </p>
+      </div>
+    </div>
+
+    <section className="awards-block" aria-label="Ranking de toxicidad">
+      <div className="awards-block__header">
+        <h3>Ranking de "el mas toxico"</h3>
+        <p>Lectura editorial del dashboard: Javier primero, Gabriel segundo y Francisco tercero.</p>
+      </div>
+
+      <div className="toxicity-podium">
+        {TOXICITY_RANKING.map((entry, index) => {
+          const member = MEMBERS.find((item) => item.id === entry.id)
+          if (!member) return null
+
+          return (
+            <article
+              key={entry.id}
+              className={`toxicity-card toxicity-card--rank-${index + 1}`}
+              style={{ '--award-accent': member.color }}
+            >
+              <div className="toxicity-card__rank">#{index + 1}</div>
+              <div className="toxicity-card__header">
+                <div className="avatar avatar--large" style={{ background: member.color }}>
+                  {member.initials}
+                </div>
+                <div>
+                  <h3>{member.name}</h3>
+                  <div className="toxicity-card__title">{entry.title}</div>
+                </div>
+              </div>
+              <p>{entry.note}</p>
+            </article>
+          )
+        })}
+      </div>
+    </section>
+
+    <section className="awards-block" aria-label="Premios por personalidad">
+      <div className="awards-block__header">
+        <h3>Premios por personalidad</h3>
+        <p>Un premio por miembro, conectado con la funcion que cumple dentro de la dinamica del grupo.</p>
+      </div>
+
+      <div className="awards-grid">
+        {MEMBERS.map((member) => {
+          const award = MEMBER_AWARDS[member.id]
+          if (!award) return null
+
+          return (
+            <article
+              key={member.id}
+              className="award-card"
+              style={{ '--award-accent': member.color }}
+            >
+              <div className="award-card__header">
+                <div className="avatar" style={{ background: member.color }}>
+                  {member.initials}
+                </div>
+                <div>
+                  <h3>{member.name}</h3>
+                  <div className="award-card__title">{award.title}</div>
+                </div>
+              </div>
+              <p>{award.blurb}</p>
+            </article>
+          )
+        })}
+      </div>
+    </section>
+  </section>
+)
+
 const TweakPanel = ({ tweaks, setTweaks, visible }) => {
   const updateTweaks = (key) => {
     const next = { ...tweaks, [key]: !tweaks[key] }
@@ -1635,7 +1781,7 @@ const TweakPanel = ({ tweaks, setTweaks, visible }) => {
 const readStoredTab = () => {
   try {
     const value = Number.parseInt(localStorage.getItem('dash-tab') || '0', 10)
-    return [0, 1, 2, 3].includes(value) ? value : 0
+    return [0, 1, 2, 3, 4].includes(value) ? value : 0
   } catch {
     return 0
   }
@@ -1703,7 +1849,7 @@ const App = () => {
   )
   const globalAnalytics = useMemo(() => deriveTimelineAnalytics(TIMELINE_EVENTS), [])
 
-  const tabs = ['Perfiles', 'Relaciones', 'Timeline', 'Comparar']
+  const tabs = ['Perfiles', 'Relaciones', 'Timeline', 'Comparar', 'Premios']
 
   return (
     <div className="dashboard-shell">
@@ -1766,7 +1912,7 @@ const App = () => {
           </section>
         ) : tab === 2 ? (
           <TimelineView onSelectFragment={setSelectedFragment} />
-        ) : (
+        ) : tab === 3 ? (
           <CompareView
             leftMember={compareLeftMember}
             rightMember={compareRightMember}
@@ -1777,6 +1923,8 @@ const App = () => {
             onSelectFragment={setSelectedFragment}
             analytics={globalAnalytics}
           />
+        ) : (
+          <AwardsView />
         )}
       </main>
 
