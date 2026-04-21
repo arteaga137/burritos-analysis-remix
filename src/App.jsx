@@ -117,66 +117,91 @@ const ANALYSIS_PHASES = [
 
 const MEMBER_AWARDS = {
   gabriel: {
-    title: 'Premio Ley Mordaza',
-    blurb: 'Cuando el chat se descompone, aparece como admin, juez y comite disciplinario en una sola persona.',
+    title: 'Premio Barry Whitepaper de Convivencia',
+    blurb: 'Promete orden institucional y termina aplicando democracia iliberal con humor seco y expulsiones ejemplarizantes.',
+    icon: '🧾',
+    ribbon: 'Admin con licencia poetica',
   },
   francisco: {
-    title: 'Premio Motor de Reaccion',
-    blurb: 'Nadie empuja tanto la conversacion ni convierte un tema cualquiera en debate de alto octanaje.',
+    title: 'Premio Diesel Premium del Debate',
+    blurb: 'Convierte cualquier roce en una tesis de 800 palabras con temperatura de derby y conviccion de manifiesto.',
+    icon: '⛽',
+    ribbon: 'Revoluciona hasta en neutro',
   },
   gustavo: {
-    title: 'Premio Abogado del Diablo',
-    blurb: 'Tiene la rara habilidad de pinchar consensos, irritar al bloque madridista y luego reirse con ellos.',
+    title: 'Premio Fiscal del Anti-Consenso',
+    blurb: 'Llega, pica la narrativa, enciende a los madridistas y despues pregunta con cara inocente por que todos estan tensos.',
+    icon: '🎭',
+    ribbon: 'Trolear, pero con modales',
   },
   jesus: {
-    title: 'Premio Factos de Emergencia',
-    blurb: 'Entra poco, pero cuando entra reordena el hilo y deja veredicto con autoridad fria.',
+    title: 'Premio Factos Sin Ambulancia',
+    blurb: 'No aparece mucho, pero cuando cae en el hilo reparte criterio, sentencia y un remate que deja silencio administrativo.',
+    icon: '🧠',
+    ribbon: 'Intervencion de alta precision',
   },
   javier: {
-    title: 'Premio Elemento Disruptivo',
-    blurb: 'No estabiliza nada: escala, provoca y devuelve friccion incluso cuando el grupo ya estaba girando hacia otra cosa.',
+    title: 'Premio Gasolina Sobre Ascuas',
+    blurb: 'Si la conversacion estaba medio rota, la remata; si estaba estable, la rompe. Un clasico del caos innecesario.',
+    icon: '🧨',
+    ribbon: 'Disrupcion sin franquicia',
   },
   luis: {
-    title: 'Premio Corresponsal con Criterio',
-    blurb: 'Aparece poco, pero casi siempre baja el debate al terreno concreto y evita la gimnasia retorica.',
+    title: 'Premio Te Bajo Eso a Tierra',
+    blurb: 'Entra poco, pero casi siempre logra que el grupo abandone por un minuto el teatro y vuelva al futbol de verdad.',
+    icon: '🛰️',
+    ribbon: 'Cobertura con criterio',
   },
   andres: {
-    title: 'Premio Detector de Toxicidad',
-    blurb: 'Su superpoder es nombrar el clima del grupo sin necesidad de meterse de lleno en la pelea.',
+    title: 'Premio Sensor de Ambiente Hostil',
+    blurb: 'No necesita discutir para dejar un diagnostico demoledor: basta una linea suya para recordar que el chat esta infectado.',
+    icon: '🧪',
+    ribbon: 'Toxicidad detectada',
   },
   gerardo: {
-    title: 'Premio Giro Filosofico',
-    blurb: 'Puede agarrar una disputa futbolera y convertirla en una conversacion sobre libertad, prueba y principios.',
+    title: 'Premio Giro Filosofico Inesperado',
+    blurb: 'Llega tarde, pregunta de que hablan y cinco minutos despues ya estamos discutiendo civilizacion, derecho y epistemologia.',
+    icon: '🌀',
+    ribbon: 'Meta-debate certificado',
   },
   espana34: {
-    title: 'Premio Refuerzo Peninsular',
-    blurb: 'Suma tono, contexto de Madrid y continuidad social sin necesitar dominar el centro del escenario.',
+    title: 'Premio Refuerzo con Pasaporte',
+    blurb: 'Aporta Madrid, pachanga y contexto iberico sin entrar en modo protagonista. Utility player de libro.',
+    icon: '✈️',
+    ribbon: 'Importacion de vestuario',
   },
   jorge: {
-    title: 'Premio Caos Carismatico',
-    blurb: 'Transforma onboarding, fantasy y parentescos imposibles en una mini-comedia propia.',
+    title: 'Premio Caos con Sonrisa',
+    blurb: 'Convierte onboarding, fantasy y parentescos imposibles en un genero menor de comedia absurda.',
+    icon: '🎰',
+    ribbon: 'Desorden premium',
   },
   aaron: {
-    title: 'Premio Rookie Aplicado',
-    blurb: 'Entra nuevo, detecta rapido la cultura del grupo y en seguida compite como si llevara meses adentro.',
+    title: 'Premio Novato con Excel Abierto',
+    blurb: 'Llego nuevo, entendio la fauna del grupo y antes de la segunda semana ya estaba compitiendo con vocacion estadistica.',
+    icon: '📊',
+    ribbon: 'Adaptacion express',
   },
 }
 
 const TOXICITY_RANKING = [
   {
     id: 'javier',
-    title: 'El mas toxico',
-    note: 'Escala, provoca y se convierte en foco de ruptura con demasiada regularidad.',
+    title: 'Campeon absoluto del veneno',
+    note: 'Si habia una llama, la soplo. Si no la habia, trajo el mechero. Claramente juega otra competicion.',
+    icon: '☣️',
   },
   {
     id: 'gabriel',
-    title: 'Toxicidad institucional',
-    note: 'No rompe por volumen, pero cuando castiga o expulsa deja cicatriz de admin severo.',
+    title: 'Subcampeon de la toxicidad institucional',
+    note: 'No incendia por volumen, pero cuando decide disciplinar al grupo lo hace con solemnidad de decreto.',
+    icon: '🔨',
   },
   {
     id: 'francisco',
-    title: 'Combustion argumentativa',
-    note: 'Su intensidad sostiene el debate, pero tambien puede elevar la temperatura demasiado rapido.',
+    title: 'Bronce en combustion argumentativa',
+    note: 'Su energia sostiene la conversacion y, de paso, empuja la temperatura dos pisos mas arriba de lo razonable.',
+    icon: '🔥',
   },
 ]
 
@@ -1675,6 +1700,21 @@ const CompareView = ({
   </section>
 )
 
+const AwardGraphic = ({ icon, accent, size = 'regular', animated = false }) => (
+  <div
+    className={`award-graphic award-graphic--${size}${animated ? ' is-animated' : ''}`}
+    style={{ '--award-graphic-accent': accent }}
+    aria-hidden="true"
+  >
+    <div className="award-graphic__halo" />
+    <div className="award-graphic__medal">
+      <span>{icon}</span>
+    </div>
+    <div className="award-graphic__ribbon award-graphic__ribbon--left" />
+    <div className="award-graphic__ribbon award-graphic__ribbon--right" />
+  </div>
+)
+
 const AwardsView = () => (
   <section className="awards-section" aria-label="Premios del grupo">
     <div className="section-intro">
@@ -1706,9 +1746,12 @@ const AwardsView = () => (
             >
               <div className="toxicity-card__rank">#{index + 1}</div>
               <div className="toxicity-card__header">
-                <div className="avatar avatar--large" style={{ background: member.color }}>
-                  {member.initials}
-                </div>
+                <AwardGraphic
+                  icon={entry.icon}
+                  accent={member.color}
+                  size="large"
+                  animated={index === 0}
+                />
                 <div>
                   <h3>{member.name}</h3>
                   <div className="toxicity-card__title">{entry.title}</div>
@@ -1739,12 +1782,15 @@ const AwardsView = () => (
               style={{ '--award-accent': member.color }}
             >
               <div className="award-card__header">
-                <div className="avatar" style={{ background: member.color }}>
-                  {member.initials}
-                </div>
+                <AwardGraphic
+                  icon={award.icon}
+                  accent={member.color}
+                  animated={member.id === 'javier' || member.id === 'gabriel'}
+                />
                 <div>
                   <h3>{member.name}</h3>
                   <div className="award-card__title">{award.title}</div>
+                  <div className="award-card__ribbon">{award.ribbon}</div>
                 </div>
               </div>
               <p>{award.blurb}</p>

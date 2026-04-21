@@ -84,6 +84,30 @@ button {
   }
 }
 
+@keyframes awardFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-4px) scale(1.018);
+  }
+}
+
+@keyframes awardHaloPulse {
+  0%,
+  100% {
+    opacity: 0.42;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1.08);
+  }
+}
+
 .dashboard-shell {
   display: flex;
   min-height: 100vh;
@@ -1432,14 +1456,43 @@ button {
 
 .toxicity-card,
 .award-card {
+  position: relative;
+  overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 12px;
   background: color-mix(in srgb, var(--award-accent, rgba(255, 255, 255, 0.12)) 8%, rgba(255, 255, 255, 0.03));
   padding: 14px 16px;
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1), border-color 180ms ease,
+    background 180ms ease, box-shadow 180ms ease;
 }
 
 .toxicity-card {
   position: relative;
+}
+
+.toxicity-card::after,
+.award-card::after {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--award-accent, #ffffff) 72%, transparent) 48%,
+    transparent 100%
+  );
+  opacity: 0.4;
+  content: '';
+  pointer-events: none;
+}
+
+.toxicity-card:hover,
+.award-card:hover {
+  border-color: color-mix(in srgb, var(--award-accent, #ffffff) 30%, rgba(255, 255, 255, 0.08));
+  background: color-mix(in srgb, var(--award-accent, rgba(255, 255, 255, 0.12)) 11%, rgba(255, 255, 255, 0.04));
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.22);
+  transform: translateY(-2px);
 }
 
 .toxicity-card__rank {
@@ -1476,6 +1529,163 @@ button {
   letter-spacing: 0.08em;
   line-height: 1.2;
   text-transform: uppercase;
+}
+
+.award-card__ribbon {
+  display: inline-flex;
+  margin-top: 8px;
+  padding: 5px 8px;
+  border: 1px solid color-mix(in srgb, var(--award-accent, #ffffff) 24%, rgba(255, 255, 255, 0.06));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--award-accent, rgba(255, 255, 255, 0.16)) 14%, rgba(255, 255, 255, 0.02));
+  color: color-mix(in srgb, var(--award-accent, #ffffff) 56%, #ffffff);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.award-graphic {
+  --award-graphic-accent: rgba(255, 255, 255, 0.4);
+  position: relative;
+  width: 60px;
+  min-width: 60px;
+  height: 72px;
+  flex: 0 0 60px;
+}
+
+.award-graphic--large {
+  width: 72px;
+  min-width: 72px;
+  height: 88px;
+  flex-basis: 72px;
+}
+
+.award-graphic__halo {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--award-graphic-accent) 52%, rgba(255, 255, 255, 0.18)) 0%,
+    transparent 72%
+  );
+  opacity: 0.48;
+  transform: translate(-50%, -50%);
+  filter: blur(2px);
+}
+
+.award-graphic__medal {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--award-graphic-accent) 44%, rgba(255, 255, 255, 0.08));
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 38%),
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--award-graphic-accent) 48%, rgba(255, 255, 255, 0.12)) 0%,
+      rgba(255, 255, 255, 0.04) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 10px 20px rgba(0, 0, 0, 0.18);
+  transform: translateX(-50%);
+  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.award-graphic__medal::after {
+  position: absolute;
+  inset: 5px;
+  border: 1px solid color-mix(in srgb, var(--award-graphic-accent) 34%, rgba(255, 255, 255, 0.06));
+  border-radius: 999px;
+  content: '';
+}
+
+.award-graphic__medal span {
+  position: relative;
+  z-index: 1;
+  font-size: 24px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+}
+
+.award-graphic--large .award-graphic__medal {
+  width: 66px;
+  height: 66px;
+}
+
+.award-graphic--large .award-graphic__medal span {
+  font-size: 30px;
+}
+
+.award-graphic--large .award-graphic__halo {
+  top: 33px;
+  width: 52px;
+  height: 52px;
+}
+
+.award-graphic__ribbon {
+  position: absolute;
+  top: 40px;
+  width: 18px;
+  height: 28px;
+  border-radius: 0 0 6px 6px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--award-graphic-accent) 62%, rgba(255, 255, 255, 0.16)) 0%,
+    color-mix(in srgb, var(--award-graphic-accent) 34%, rgba(255, 255, 255, 0.04)) 100%
+  );
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.award-graphic__ribbon::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 10px;
+  background: #0c0c10;
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  content: '';
+}
+
+.award-graphic__ribbon--left {
+  left: 12px;
+  transform: rotate(8deg);
+}
+
+.award-graphic__ribbon--right {
+  right: 12px;
+  transform: rotate(-8deg);
+}
+
+.award-graphic--large .award-graphic__ribbon {
+  top: 48px;
+  width: 20px;
+  height: 32px;
+}
+
+.award-graphic.is-animated .award-graphic__medal {
+  animation: awardFloat 3s ease-in-out infinite;
+}
+
+.award-graphic.is-animated .award-graphic__halo {
+  animation: awardHaloPulse 2.6s ease-in-out infinite;
+}
+
+.toxicity-card:hover .award-graphic__medal,
+.award-card:hover .award-graphic__medal {
+  transform: translateX(-50%) translateY(-2px);
 }
 
 .awards-grid {
@@ -2176,6 +2386,60 @@ button {
     padding: 13px 14px;
   }
 
+  .toxicity-card__header,
+  .award-card__header {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .award-graphic {
+    width: 56px;
+    min-width: 56px;
+    height: 68px;
+    flex-basis: 56px;
+  }
+
+  .award-graphic__medal {
+    width: 52px;
+    height: 52px;
+  }
+
+  .award-graphic__medal span {
+    font-size: 22px;
+  }
+
+  .award-graphic__ribbon {
+    top: 36px;
+    width: 16px;
+    height: 26px;
+  }
+
+  .award-graphic__ribbon--left {
+    left: 12px;
+  }
+
+  .award-graphic__ribbon--right {
+    right: 12px;
+  }
+
+  .award-graphic--large {
+    width: 64px;
+    min-width: 64px;
+    height: 80px;
+    flex-basis: 64px;
+  }
+
+  .award-graphic--large .award-graphic__medal {
+    width: 60px;
+    height: 60px;
+  }
+
+  .award-graphic--large .award-graphic__halo {
+    top: 30px;
+    width: 48px;
+    height: 48px;
+  }
+
   .timeline-tabs {
     padding: 10px 10px 0;
   }
@@ -2224,5 +2488,15 @@ button {
   .network-legend {
     position: static;
     margin-top: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toxicity-card,
+  .award-card,
+  .award-graphic__medal,
+  .award-graphic__halo {
+    animation: none !important;
+    transition: none !important;
   }
 }
