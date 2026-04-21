@@ -231,6 +231,9 @@ const createMemberAccumulator = (member) => ({
   pacifying: 0,
   conservative: 0,
   sensible: 0,
+  triggers: 0,
+  provocative: 0,
+  disruption: 0,
   influence: 0,
   volume: 0,
 })
@@ -280,6 +283,10 @@ const bumpCounter = (bucket, labels) => {
 const deriveRoleLabel = (snapshot) => {
   if (!snapshot || snapshot.volume === 0) return 'Latente'
 
+  if (snapshot.member.warning && (snapshot.aggressive > 0 || snapshot.provocative > 0 || snapshot.triggers > 0)) {
+    return 'Elemento disruptivo'
+  }
+
   if (snapshot.aggressive >= 2 && snapshot.aggressive > snapshot.pacifying) return 'Escalador'
   if (snapshot.pacifying >= 2 && snapshot.pacifying >= snapshot.aggressive) return 'Pacificador'
   if (snapshot.active >= 2 && snapshot.active >= snapshot.sensible) return 'Motor'
@@ -289,8 +296,10 @@ const deriveRoleLabel = (snapshot) => {
 }
 
 const deriveEventCausality = (event) => {
+  const aggressiveLabels = dedupeLabels(event.read.aggressive)
+  const disruptiveAggressor = aggressiveLabels.find((label) => resolveMember(label)?.warning)
   const triggerExcerpt = event.evidence.find((excerpt) => normalizeText(excerpt.author) !== 'sistema')
-  const trigger = triggerExcerpt ? toDisplayName(triggerExcerpt.author) : dedupeLabels(event.read.aggressive)[0] || 'Grupo'
+  const trigger = disruptiveAggressor || (triggerExcerpt ? toDisplayName(triggerExcerpt.author) : aggressiveLabels[0] || 'Grupo')
   const aggressors = dedupeLabels(event.read.aggressive)
   const actives = dedupeLabels(event.read.active)
   const pacifiers = dedupeLabels(event.read.pacifying)
@@ -378,6 +387,21 @@ const deriveTimelineAnalytics = (events) => {
       }
     })
 
+    const triggerMember = resolveMember(eventCausality.trigger)
+    if (triggerMember && memberStats.has(triggerMember.id)) {
+      const stat = memberStats.get(triggerMember.id)
+      stat.triggers += 1
+      stat.provocative += 2
+      stat.disruption += 3
+
+      const phaseMember = phaseBucket?.members.get(triggerMember.id)
+      if (phaseMember) {
+        phaseMember.triggers += 1
+        phaseMember.provocative += 2
+        phaseMember.disruption += 3
+      }
+    }
+
     event.evidence.forEach((excerpt) => {
       const member = resolveMember(excerpt.author)
       if (!member || !memberStats.has(member.id)) return
@@ -385,12 +409,20 @@ const deriveTimelineAnalytics = (events) => {
       stat.fragmentsAuthored += 1
       stat.influence += 2
       stat.volume += 2
+      if (member.warning) {
+        stat.provocative += 1
+        stat.disruption += 1
+      }
 
       const phaseMember = phaseBucket?.members.get(member.id)
       if (phaseMember) {
         phaseMember.fragmentsAuthored += 1
         phaseMember.influence += 2
         phaseMember.volume += 2
+        if (member.warning) {
+          phaseMember.provocative += 1
+          phaseMember.disruption += 1
+        }
       }
     })
 
@@ -401,11 +433,19 @@ const deriveTimelineAnalytics = (events) => {
         const stat = memberStats.get(member.id)
         stat[key] += 1
         stat.influence += TIMELINE_READ_WEIGHTS[key] ?? 1
+        if (key === 'aggressive') {
+          stat.provocative += 1
+          stat.disruption += member.warning ? 4 : 2
+        }
 
         const phaseMember = phaseBucket?.members.get(member.id)
         if (phaseMember) {
           phaseMember[key] += 1
           phaseMember.influence += TIMELINE_READ_WEIGHTS[key] ?? 1
+          if (key === 'aggressive') {
+            phaseMember.provocative += 1
+            phaseMember.disruption += member.warning ? 4 : 2
+          }
         }
       })
     })
@@ -414,6 +454,8 @@ const deriveTimelineAnalytics = (events) => {
   const ranking = [...memberStats.values()].map((item) => ({
     ...item,
     leverage: item.volume ? item.influence / item.volume : 0,
+    aggressionIndex: item.aggressive * 3 + item.provocative * 2 + item.disruption,
+    provocationIndex: item.provocative * 3 + item.triggers * 4 + item.disruption,
     role: deriveRoleLabel(item),
   }))
   const dominantTopicEntry = [...topicCounts.entries()].sort((left, right) => right[1] - left[1])[0]
@@ -508,7 +550,8 @@ const deriveTimelineAnalytics = (events) => {
     dominantTopic: dominantTopicEntry?.[0] ?? 'Sin filtro',
     topInfluence: byMetric('influence'),
     topPacifier: byMetric('pacifying'),
-    topAggressive: byMetric('aggressive'),
+    topAggressive: byMetric('aggressionIndex'),
+    topProvocative: byMetric('provocationIndex'),
     tensionPeak: turningPoints[0] ?? null,
     turningPoints,
     influenceRows,
@@ -733,9 +776,17 @@ const TimelineInsights = ({ analytics, onSelectFragment }) => {
       title: 'Escalador recurrente',
       value: analytics.topAggressive?.member.shortName || analytics.topAggressive?.member.name || 'N/D',
       meta: analytics.topAggressive
-        ? `${analytics.topAggressive.aggressive} lecturas de agresividad`
+        ? `${analytics.topAggressive.aggressive} lecturas directas · ${analytics.topAggressive.disruption} marcas de ruptura`
         : 'Sin datos',
       tone: 'oklch(62% 0.22 25)',
+    },
+    {
+      title: 'Provocador estructural',
+      value: analytics.topProvocative?.member.shortName || analytics.topProvocative?.member.name || 'N/D',
+      meta: analytics.topProvocative
+        ? `${analytics.topProvocative.triggers} disparadores · ${analytics.topProvocative.provocative} señales de provocación`
+        : 'Sin datos',
+      tone: 'oklch(60% 0.25 15)',
     },
     {
       title: 'Pacificador dominante',
@@ -744,14 +795,6 @@ const TimelineInsights = ({ analytics, onSelectFragment }) => {
         ? `${analytics.topPacifier.pacifying} intervenciones calmantes`
         : 'Sin datos',
       tone: 'oklch(70% 0.16 145)',
-    },
-    {
-      title: 'Pico de tensión',
-      value: analytics.tensionPeak?.title || 'Sin picos registrados',
-      meta: analytics.tensionPeak
-        ? `${analytics.tensionPeak.impactScore} puntos de impacto`
-        : 'Sin datos',
-      tone: 'oklch(68% 0.18 200)',
     },
   ]
 
