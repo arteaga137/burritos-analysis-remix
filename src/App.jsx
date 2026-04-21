@@ -1,5 +1,34 @@
-import { useCallback, useEffect, useState } from 'react'
-import { EDGE_STYLE, EDGES, MEMBERS, NODE_POS, TWEAK_DEFAULTS } from './data.js'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import {
+  EDGE_STYLE,
+  EDGES,
+  MEMBERS,
+  NODE_POS,
+  TIMELINE_EVENTS,
+  TWEAK_DEFAULTS,
+} from './data.js'
+
+const deriveEvidenceTopic = (context) => {
+  const value = context.toLowerCase()
+  if (value.includes('fantasy')) return 'Fantasy'
+  if (value.includes('var') || value.includes('árbitr') || value.includes('arbitr')) return 'VAR'
+  if (value.includes('racis') || value.includes('vinicius') || value.includes('prestiani')) return 'Convivencia'
+  if (value.includes('messi') || value.includes('barça') || value.includes('barca')) return 'Rivalidad'
+  if (value.includes('grupo')) return 'Dinámica'
+  return 'Chat'
+}
+
+const getEvidenceItems = (member) =>
+  member.quotes.map((quote, index) => ({
+    id: `${member.id}-evidence-${index}`,
+    title: member.patterns[index] || `Evidencia ${index + 1}`,
+    topic: deriveEvidenceTopic(quote.ctx),
+    context: quote.ctx,
+    summary:
+      member.patterns[index] ||
+      'La cita ilustra un comportamiento consistente dentro del período analizado.',
+    excerpt: quote.text,
+  }))
 
 const ScoreBar = ({ label, val, color }) => (
   <div className="score-bar">
@@ -73,6 +102,36 @@ const MemberCard = ({ member, selected, tweaks, onSelect, delay }) => {
 
       {tweaks.showTeams && <span className="member-card__team">{member.team}</span>}
     </button>
+  )
+}
+
+const EvidenceSection = ({ member }) => {
+  const evidenceItems = getEvidenceItems(member)
+
+  return (
+    <section className="profile-section">
+      <h3>Evidencia</h3>
+      <div className="evidence-list">
+        {evidenceItems.map((item) => (
+          <details key={item.id} className="evidence-card">
+            <summary className="evidence-card__summary">
+              <div>
+                <div className="evidence-card__title">{item.title}</div>
+                <div className="evidence-card__meta">
+                  <span>{item.topic}</span>
+                  <span>{item.context}</span>
+                </div>
+              </div>
+              <span className="evidence-card__toggle">Ver</span>
+            </summary>
+            <div className="evidence-card__body">
+              <p>{item.summary}</p>
+              <blockquote>{item.excerpt}</blockquote>
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
   )
 }
 
@@ -152,6 +211,8 @@ const ProfilePanel = ({ member, tweaks, onClose }) => {
             </figure>
           ))}
         </section>
+
+        <EvidenceSection member={member} />
 
         <section className="profile-section">
           <h3>Relaciones</h3>
@@ -329,6 +390,167 @@ const NetworkView = ({ onSelect, selectedId, tweaks }) => {
   )
 }
 
+const TimelineView = () => {
+  const topics = useMemo(
+    () => ['Todos', ...new Set(TIMELINE_EVENTS.map((event) => event.topic))],
+    [],
+  )
+  const [activeTopic, setActiveTopic] = useState('Todos')
+
+  const visibleEvents = useMemo(() => {
+    if (activeTopic === 'Todos') return TIMELINE_EVENTS
+    return TIMELINE_EVENTS.filter((event) => event.topic === activeTopic)
+  }, [activeTopic])
+
+  return (
+    <section className="timeline-section" aria-label="Timeline de eventos">
+      <div className="section-intro">
+        <div>
+          <h2>Timeline</h2>
+          <p>
+            Los hitos que más alteraron la dinámica del grupo, desde arbitraje y expulsiones hasta
+            fantasy y nuevas incorporaciones.
+          </p>
+        </div>
+        <div className="filter-pills" aria-label="Filtros por tema">
+          {topics.map((topic) => (
+            <button
+              key={topic}
+              type="button"
+              className={`filter-pill${activeTopic === topic ? ' active' : ''}`}
+              onClick={() => setActiveTopic(topic)}
+            >
+              {topic}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="timeline-list">
+        {visibleEvents.map((event) => (
+          <article key={event.id} className="timeline-card">
+            <div className="timeline-card__rail" aria-hidden="true" />
+            <div className="timeline-card__content">
+              <div className="timeline-card__meta">
+                <span>{event.date}</span>
+                <span>{event.topic}</span>
+              </div>
+              <h3>{event.title}</h3>
+              <p>{event.summary}</p>
+              <div className="timeline-card__participants">
+                {event.participants.map((participant) => (
+                  <span key={`${event.id}-${participant}`}>{participant}</span>
+                ))}
+              </div>
+              <div className="timeline-card__quote">“{event.quote}”</div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+const CompareColumn = ({ member }) => {
+  const evidenceItems = getEvidenceItems(member).slice(0, 2)
+
+  return (
+    <article className="compare-card">
+      <header className="compare-card__header">
+        <div className="avatar avatar--large" style={{ background: member.color }}>
+          {member.initials}
+        </div>
+        <div>
+          <h3>{member.name}</h3>
+          <div className="compare-card__role" style={{ color: member.color }}>
+            {member.role}
+          </div>
+          <div className="compare-card__subline">
+            {member.nickname} · {member.team}
+          </div>
+        </div>
+      </header>
+
+      <section className="compare-card__section">
+        <h4>Dimensiones</h4>
+        {member.scores.map((score) => (
+          <ScoreBar key={score.label} {...score} />
+        ))}
+      </section>
+
+      <section className="compare-card__section">
+        <h4>Patrones</h4>
+        {member.patterns.slice(0, 3).map((pattern) => (
+          <div key={pattern} className="pattern-row">
+            <span className="pattern-row__dot" style={{ background: member.color }} />
+            <span>{pattern}</span>
+          </div>
+        ))}
+      </section>
+
+      <section className="compare-card__section">
+        <h4>Evidencia</h4>
+        {evidenceItems.map((item) => (
+          <div key={item.id} className="compare-evidence">
+            <div className="compare-evidence__meta">
+              <span>{item.topic}</span>
+              <span>{item.context}</span>
+            </div>
+            <p>{item.summary}</p>
+            <blockquote>{item.excerpt}</blockquote>
+          </div>
+        ))}
+      </section>
+
+      <section className="compare-card__section">
+        <h4>Evolución</h4>
+        <p className="arc-text">{member.arc}</p>
+      </section>
+    </article>
+  )
+}
+
+const CompareView = ({ leftMember, rightMember, leftId, rightId, onChangeLeft, onChangeRight }) => (
+  <section className="compare-section" aria-label="Comparador de miembros">
+    <div className="section-intro">
+      <div>
+        <h2>Comparar miembros</h2>
+        <p>
+          Contrasta perfiles, dimensiones, evidencia y evolución sin salir del dashboard.
+        </p>
+      </div>
+    </div>
+
+    <div className="compare-controls">
+      <label className="compare-control">
+        <span>Miembro A</span>
+        <select value={leftId} onChange={(event) => onChangeLeft(event.target.value)}>
+          {MEMBERS.map((member) => (
+            <option key={member.id} value={member.id}>
+              {member.name}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label className="compare-control">
+        <span>Miembro B</span>
+        <select value={rightId} onChange={(event) => onChangeRight(event.target.value)}>
+          {MEMBERS.map((member) => (
+            <option key={member.id} value={member.id}>
+              {member.name}
+            </option>
+          ))}
+        </select>
+      </label>
+    </div>
+
+    <div className="compare-layout">
+      <CompareColumn member={leftMember} />
+      <CompareColumn member={rightMember} />
+    </div>
+  </section>
+)
+
 const TweakPanel = ({ tweaks, setTweaks, visible }) => {
   const updateTweaks = (key) => {
     const next = { ...tweaks, [key]: !tweaks[key] }
@@ -362,7 +584,7 @@ const TweakPanel = ({ tweaks, setTweaks, visible }) => {
 const readStoredTab = () => {
   try {
     const value = Number.parseInt(localStorage.getItem('dash-tab') || '0', 10)
-    return value === 1 ? 1 : 0
+    return [0, 1, 2, 3].includes(value) ? value : 0
   } catch {
     return 0
   }
@@ -373,6 +595,8 @@ const App = () => {
   const [selected, setSelected] = useState(null)
   const [tweaks, setTweaks] = useState(TWEAK_DEFAULTS)
   const [tweakVisible, setTweakVisible] = useState(false)
+  const [compareLeftId, setCompareLeftId] = useState('francisco')
+  const [compareRightId, setCompareRightId] = useState('javier')
 
   useEffect(() => {
     localStorage.setItem('dash-tab', String(tab))
@@ -403,7 +627,16 @@ const App = () => {
     setSelected((previous) => (previous?.id === member.id ? null : member))
   }, [])
 
-  const tabs = ['Perfiles', 'Relaciones']
+  const handleTabChange = (index) => {
+    if (index > 1) setSelected(null)
+    setTab(index)
+  }
+
+  const compareLeftMember = MEMBERS.find((member) => member.id === compareLeftId) ?? MEMBERS[0]
+  const compareRightMember =
+    MEMBERS.find((member) => member.id === compareRightId) ?? MEMBERS[1] ?? MEMBERS[0]
+
+  const tabs = ['Perfiles', 'Relaciones', 'Timeline', 'Comparar']
 
   return (
     <div className="dashboard-shell">
@@ -434,7 +667,7 @@ const App = () => {
               key={label}
               type="button"
               className={`tab-btn${tab === index ? ' active' : ''}`}
-              onClick={() => setTab(index)}
+              onClick={() => handleTabChange(index)}
             >
               {label}
             </button>
@@ -459,15 +692,28 @@ const App = () => {
               />
             ))}
           </section>
-        ) : (
+        ) : tab === 1 ? (
           <section className="network-section" aria-label="Relaciones del grupo">
             <p>Haz clic en un nodo para ver el perfil · Pasa el cursor sobre las líneas para ver el tipo de relación</p>
             <NetworkView onSelect={handleSelect} selectedId={selected?.id} tweaks={tweaks} />
           </section>
+        ) : tab === 2 ? (
+          <TimelineView />
+        ) : (
+          <CompareView
+            leftMember={compareLeftMember}
+            rightMember={compareRightMember}
+            leftId={compareLeftId}
+            rightId={compareRightId}
+            onChangeLeft={setCompareLeftId}
+            onChangeRight={setCompareRightId}
+          />
         )}
       </main>
 
-      {selected && <ProfilePanel member={selected} tweaks={tweaks} onClose={() => setSelected(null)} />}
+      {selected && tab < 2 && (
+        <ProfilePanel member={selected} tweaks={tweaks} onClose={() => setSelected(null)} />
+      )}
       <TweakPanel tweaks={tweaks} setTweaks={setTweaks} visible={tweakVisible} />
     </div>
   )

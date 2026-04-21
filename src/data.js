@@ -462,3 +462,107 @@ export const EDGE_STYLE = {
   ambiguous: { stroke: 'oklch(68% 0.18 200)', w: 2, dash: '5,3', op: 0.6 },
   cold: { stroke: 'rgba(255,255,255,0.12)', w: 1, dash: '3,3', op: 0.4 },
 }
+
+export const TIMELINE_EVENTS = [
+  {
+    id: 'var-april-2025',
+    date: '21 abr 2025',
+    topic: 'VAR',
+    title: 'El grupo entra en modo litigio por el VAR',
+    participants: ['Francisco', 'Gabriel', 'Gustavo', 'Javier'],
+    summary:
+      'La discusión sobre fuera de juego semiautomático y criterios arbitrales cristaliza el eje clásico del grupo: Francisco y Gabriel construyen sospecha, Gustavo la pincha, Javier la literaliza.',
+    quote:
+      'Pero cada vez que Jesús Burgos interviene en este grupo, lo que hace es tirar factos y explicar lo que pasa realmente.',
+  },
+  {
+    id: 'javier-reentry',
+    date: '27 abr 2025',
+    topic: 'Dinámica',
+    title: 'Javier vuelve a entrar y reaparece el foco de fricción',
+    participants: ['Javier', 'Gabriel', 'Francisco'],
+    summary:
+      'La reentrada de Javier refuerza la figura del contrapunto más áspero del grupo y reabre la dinámica de provocación, reacción y escalada que luego define varios meses.',
+    quote: 'Javier Gimenez was added',
+  },
+  {
+    id: 'andres-toxicidad',
+    date: '16 may 2025',
+    topic: 'Convivencia',
+    title: 'Andrés verbaliza la fatiga moral del grupo',
+    participants: ['Andrés', 'Gabriel', 'Francisco'],
+    summary:
+      'Cuando Andrés resume el ambiente como tóxico, aparece una verdad estructural: incluso los miembros más tranquilos reconocen el desgaste de la conversación.',
+    quote: 'Que tóxico este grupo',
+  },
+  {
+    id: 'group-vote-july',
+    date: '17 jul 2025',
+    topic: 'Dinámica',
+    title: 'Se vota si el grupo debe seguir existiendo',
+    participants: ['Francisco', 'Grupo'],
+    summary:
+      'El grupo deja de ser solo un chat de fútbol y se vuelve objeto de análisis para sí mismo. Hay tensión sobre continuidad, pertenencia y comodidad de algunos miembros.',
+    quote: 'Oficialmente hay 5 de 9 votos para mantener el grupo abierto otro año más.',
+  },
+  {
+    id: 'jorge-joins',
+    date: '26 ago 2025',
+    topic: 'Nuevos miembros',
+    title: 'Jorge entra y el grupo gana un agente de caos lateral',
+    participants: ['Jorge', 'Francisco', 'Gustavo', 'Jesús'],
+    summary:
+      'La entrada de Jorge refresca la dinámica con humor absurdo, meta-comentario y menos dogma. No mueve el eje ideológico, pero sí aligera la textura social.',
+    quote: 'Nunca hablaría mal de Messi. No quiero tener peos con Infantino…',
+  },
+  {
+    id: 'aaron-joins',
+    date: '1 sep 2025',
+    topic: 'Nuevos miembros',
+    title: 'Aaron entra, aprende las reglas no escritas y se integra rápido',
+    participants: ['Aaron', 'Francisco', 'Jesús', 'Jorge'],
+    summary:
+      'Su llegada funciona como onboarding perfecto al universo Burritos: bullying de bienvenida, advertencia sobre Messi y entrada acelerada al fantasy y al tono interno.',
+    quote: 'A mi me invitaron para hacerme bullying por lo que veo',
+  },
+  {
+    id: 'audio-var-august',
+    date: '31 ago 2025',
+    topic: 'VAR',
+    title: 'El audio del VAR reaviva el gran caso arbitral del grupo',
+    participants: ['Francisco', 'Jesús', 'Javier', 'Gabriel', 'Gustavo'],
+    summary:
+      'La frase "para poder anular el gol" se convierte en munición simbólica. El grupo se reparte entre indignación, sarcasmo, incredulidad y trolling terapéutico.',
+    quote: 'La decisión estaba tomada, solo buscaron la excusa.',
+  },
+  {
+    id: 'fantasy-september',
+    date: '16 sep 2025',
+    topic: 'Fantasy',
+    title: 'El fantasy crea un segundo tablero de estatus',
+    participants: ['Francisco', 'Aaron', 'Jorge', 'Contacto España (+34)'],
+    summary:
+      'La liga fantasy añade una capa menos ideológica y más lúdica. Desde ahí entran nuevos chistes, jerarquías semanales y una forma distinta de participar.',
+    quote: 'Grande Kylian 20pts 😍',
+  },
+  {
+    id: 'memo-absence',
+    date: '20 feb 2026',
+    topic: 'Fantasy',
+    title: 'El ausente que va primero se vuelve un fantasma importante',
+    participants: ['Francisco', 'Jesús', 'Grupo'],
+    summary:
+      'Aparece el recordatorio de que uno de los mejores jugadores del fantasy ni siquiera está en el grupo. Eso expone que el ecosistema social y el competitivo no son exactamente el mismo.',
+    quote: 'El único que no está en este grupo es el que va de primero en la liga',
+  },
+  {
+    id: 'prestiani-vinicius',
+    date: 'feb 2026',
+    topic: 'Convivencia',
+    title: 'El caso Prestiani/Vinicius marca el punto moral más duro',
+    participants: ['Javier', 'Gabriel', 'Jesús', 'Francisco', 'Luís', 'Gerardo'],
+    summary:
+      'La discusión sobre racismo y provocación deja de ser solo fútbol. Aquí se hace visible quién relativiza, quién condena y quién intenta ordenar el caos.',
+    quote: '¿Es en serio que estamos teniendo esta discusión?',
+  },
+]
