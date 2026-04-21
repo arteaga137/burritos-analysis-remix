@@ -4,6 +4,13 @@ export const TWEAK_DEFAULTS = {
   showTeams: true,
 }
 
+const fragment = (at, author, text) => ({
+  at,
+  author,
+  text,
+  source: '_chat.txt',
+})
+
 export const MEMBERS = [
   {
     id: 'gabriel',
@@ -463,6 +470,485 @@ export const EDGE_STYLE = {
   cold: { stroke: 'rgba(255,255,255,0.12)', w: 1, dash: '3,3', op: 0.4 },
 }
 
+export const MEMBER_EVIDENCE = {
+  gabriel: [
+    {
+      id: 'gabriel-var-criteria',
+      title: 'Fija el marco de sospecha sobre el arbitraje',
+      topic: 'VAR',
+      context: '21 abr 2025 · Debate por fuera de juego y calibracion',
+      summary:
+        'Gabriel no discute tanto la existencia de la tecnologia como la opacidad del proceso. Su patron es desconfiar del arbitro y de la manipulacion humana sobre la herramienta.',
+      excerpts: [
+        fragment(
+          '21 abr 2025 · 2:12 PM',
+          'Gabriel Gutiérrez',
+          'Cuando la imagen sale de una vez, fue de la máquina. Ya cuando se demora mucho la están revisando y la retocan mirando las cámaras',
+        ),
+        fragment(
+          '21 abr 2025 · 2:52 PM',
+          'Gabriel Gutiérrez',
+          'la tecnología en si no es el problema',
+        ),
+        fragment(
+          '21 abr 2025 · 2:53 PM',
+          'Gabriel Gutiérrez',
+          'Siempre ha sido el árbitro',
+        ),
+      ],
+    },
+    {
+      id: 'gabriel-admin-humor',
+      title: 'Usa ironia breve para administrar tensiones',
+      topic: 'Dinámica',
+      context: '27 abr 2025 y 16 may 2025 · Post-expulsion y lectura del ambiente',
+      summary:
+        'Su autoridad entra y sale del chiste. Puede cerrar una escalada con una frase seca y luego pasar a diagnosticar el tono general del grupo.',
+      excerpts: [
+        fragment('27 abr 2025 · 12:10 AM', 'Gabriel Gutiérrez', 'Ley mordaza'),
+        fragment(
+          '16 may 2025 · 9:12 PM',
+          'Gabriel Gutiérrez',
+          'Si Andres Eduardo Pinto participará más activamente el mood fuera más ligero',
+        ),
+      ],
+    },
+  ],
+  francisco: [
+    {
+      id: 'francisco-var-method',
+      title: 'Empuja el debate del VAR hacia procedimiento y prueba',
+      topic: 'VAR',
+      context: '21 abr 2025 · Discusion tecnica del fuera de juego',
+      summary:
+        'Francisco discute con lenguaje de proceso: punto de fuga, calibracion, margen de error. No solo protesta; intenta construir un caso.',
+      excerpts: [
+        fragment(
+          '21 abr 2025 · 2:14 PM',
+          'Francisco Arteaga',
+          'Lo que pasa es que Gustavo simplifica todo para hacerlo ver ridículo.',
+        ),
+        fragment(
+          '21 abr 2025 · 2:17 PM',
+          'Francisco Arteaga',
+          'Para sacar la línea del fuera de juego, tienen que mostrar el punto de fuga, de otra forma la línea siempre es cuestionable.',
+        ),
+        fragment(
+          '21 abr 2025 · 3:04 PM',
+          'Francisco Arteaga',
+          'Pero eso implicaría que si la calibración sale mal, las líneas están mal, Gustavo',
+        ),
+      ],
+    },
+    {
+      id: 'francisco-onboarding',
+      title: 'También define las reglas culturales de entrada',
+      topic: 'Nuevos miembros',
+      context: '1 sep 2025 · Bienvenida a Aaron',
+      summary:
+        'Cuando entra gente nueva, Francisco convierte la bienvenida en ceremonia. Introduce parentescos, jerga interna y hasta los tabues del grupo.',
+      excerpts: [
+        fragment(
+          '1 sep 2025 · 8:15 PM',
+          'Francisco Arteaga',
+          'Denle la bienvenida a mi cuñado (por ahora). Aaron Rodrigues.',
+        ),
+        fragment(
+          '1 sep 2025 · 8:25 PM',
+          'Francisco Arteaga',
+          'Y tercero, nunca, nunca, PERO NUNCA, te metas con Messi.',
+        ),
+      ],
+    },
+  ],
+  gustavo: [
+    {
+      id: 'gustavo-contrapunto',
+      title: 'Pincha el consenso madridista con sarcasmo limpio',
+      topic: 'VAR',
+      context: '21 abr 2025 · Discusion sobre justicia arbitral',
+      summary:
+        'Su aporte tipico es llevar la tesis rival al extremo para obligar al grupo a explicar mejor su punto.',
+      excerpts: [
+        fragment(
+          '21 abr 2025 · 2:03 PM',
+          'Gustavo Torres',
+          'Vamos a darle el pito a Florentino de una vez por todas y ya',
+        ),
+        fragment(
+          '21 abr 2025 · 2:15 PM',
+          'Gustavo Torres',
+          'Lo que pasa es que ustedes no se escuchan, la gimnasia mental que hacen para buscar conspiración',
+        ),
+      ],
+    },
+    {
+      id: 'gustavo-deescalation',
+      title: 'Puede trolear y luego bajar la tension',
+      topic: 'Convivencia',
+      context: '27 abr 2025 y 31 ago 2025 · Reentrada y dia largo de VAR',
+      summary:
+        'Incluso cuando provoca, Gustavo tambien funciona como válvula de alivio. Su humor descomprime momentos que vienen cargados.',
+      excerpts: [
+        fragment(
+          '27 abr 2025 · 12:05 AM',
+          'Gustavo Torres',
+          'oh wow, yo pensaba que el VAR sólo eran robos',
+        ),
+        fragment(
+          '31 ago 2025 · 11:18 PM',
+          'Gustavo Torres',
+          'Muchachos mídanse la tensión...',
+        ),
+      ],
+    },
+  ],
+  jesus: [
+    {
+      id: 'jesus-interpretacion',
+      title: 'Desplaza la discusion desde la maquina hacia la interpretacion',
+      topic: 'VAR',
+      context: '21 abr 2025 y 31 ago 2025 · Dos grandes dias de arbitraje',
+      summary:
+        'Su patron mas consistente es separar tecnologia de uso. Cuando interviene, reordena la conversacion hacia criterios y no solo hacia indignacion.',
+      excerpts: [
+        fragment(
+          '21 abr 2025 · 2:46 PM',
+          'Jesús Burgos',
+          'la tecnología se implementó para suplementar las reglas que ya existían, y eso está perfecto porque es evolución.',
+        ),
+        fragment(
+          '31 ago 2025 · 6:38 PM',
+          'Jesús Burgos',
+          'El mismo peo de siempre. La tecnología no es el problema, es quien la interpreta',
+        ),
+      ],
+    },
+    {
+      id: 'jesus-veredicto',
+      title: 'Combina veredicto seco con humor lateral',
+      topic: 'Dinámica',
+      context: '27 abr 2025 y 31 ago 2025 · Descompresion y cierre',
+      summary:
+        'No necesita hablar mucho para fijar posicion. Un remate ironico suyo suele quedarse como etiqueta del episodio.',
+      excerpts: [
+        fragment('27 abr 2025 · 12:06 AM', 'Jesús Burgos', 'Gabriel J Trump'),
+        fragment(
+          '31 ago 2025 · 6:41 PM',
+          'Jesús Burgos',
+          'El saldo de goles anulados al RM es ridículo',
+        ),
+      ],
+    },
+  ],
+  javier: [
+    {
+      id: 'javier-rigid-literalism',
+      title: 'Reduce la discusion a literalidad reglamentaria',
+      topic: 'VAR',
+      context: '21 abr 2025 · Debate por fuera de juego',
+      summary:
+        'Su estilo aparece como contrapunto inflexible: menos contexto, menos matices, mas literalidad sobre la aplicacion de la regla.',
+      excerpts: [
+        fragment(
+          '21 abr 2025 · 2:15 PM',
+          'Javier Gimenez',
+          'Te quejas por que aplican bien la regla?.',
+        ),
+        fragment(
+          '21 abr 2025 · 2:28 PM',
+          'Javier Gimenez',
+          'De verdad es increíble, que quieras que validen un gol qué no es .',
+        ),
+      ],
+    },
+    {
+      id: 'javier-escalation',
+      title: 'Su presencia reabre la friccion incluso cuando no desarrolla mucho',
+      topic: 'Dinámica',
+      context: '27 abr 2025 y 31 ago 2025 · Expulsion, retorno y nueva polemica',
+      summary:
+        'El problema no es solo lo que dice, sino la energia que reactiva cada vez que entra en un hilo caliente.',
+      excerpts: [
+        fragment('27 abr 2025 · 12:03 AM', 'Sistema', 'Gabriel Gutiérrez removed Javier Gimenez'),
+        fragment('27 abr 2025 · 12:05 AM', 'Sistema', 'Javier Gimenez was added'),
+        fragment(
+          '31 ago 2025 · 11:14 AM',
+          'Javier Gimenez',
+          'Pero es mano de esta no se por que lloran...',
+        ),
+      ],
+    },
+  ],
+  luis: [
+    {
+      id: 'luis-grounded',
+      title: 'Aparece poco, pero con observaciones concretas',
+      topic: 'VAR',
+      context: '21 abr 2025 · Primer gran debate arbitral',
+      summary:
+        'Luis baja la discusion al efecto practico en el juego: tiempo, ritmo y criterio arbitral. Es menos doctrinario que otros.',
+      excerpts: [
+        fragment('21 abr 2025 · 2:00 PM', 'Luís Torrado', 'Polemico'),
+        fragment(
+          '21 abr 2025 · 2:01 PM',
+          'Luís Torrado',
+          'ayer por lo menos se tomaron como 5 min pa ver un fuera de juego...demasiado como enfrian el juego',
+        ),
+      ],
+    },
+    {
+      id: 'luis-racism-line',
+      title: 'En febrero intenta separar picardia de agresion',
+      topic: 'Convivencia',
+      context: '18 y 23 feb 2026 · Caso Prestiani / Vinicius',
+      summary:
+        'Su posicion no es juridica ni filosofica; intenta distinguir codigos de cancha de humillacion sostenida, aunque a veces patina en el borde.',
+      excerpts: [
+        fragment(
+          '18 feb 2026 · 2:16 PM',
+          'Luís Torrado',
+          'No marico confundes las cosas, ser canchero es diferente..es tirar un caño, hacer sombreritos...ya que te esten diciendo vainas todo el tiempo es diferente',
+        ),
+        fragment(
+          '23 feb 2026 · 5:58 PM',
+          'Luís Torrado',
+          'Claro pero de llevar eso a un insulto racista .. por lo menos probalo..capaz le dijo mariquito y ya jaja',
+        ),
+      ],
+    },
+  ],
+  andres: [
+    {
+      id: 'andres-toxicity',
+      title: 'Nombró la fatiga del grupo antes que casi nadie',
+      topic: 'Convivencia',
+      context: '16 may 2025 · Balance sobre la toxicidad del chat',
+      summary:
+        'Andres suele hablar poco, pero cuando entra a medir el clima social, su lectura pesa porque viene de alguien que evita el conflicto.',
+      excerpts: [
+        fragment('16 may 2025 · 9:05 PM', 'Andres Eduardo Pinto', 'Que toxico este grupo'),
+        fragment(
+          '16 may 2025 · 9:05 PM',
+          'Andres Eduardo Pinto',
+          'Me he querido salir 5567 veces',
+        ),
+        fragment('16 may 2025 · 9:13 PM', 'Andres Eduardo Pinto', 'Un padre responsable'),
+      ],
+    },
+    {
+      id: 'andres-detached-view',
+      title: 'Su distancia le permite romper el echo chamber',
+      topic: 'Dinámica',
+      context: '15 sep 2025 y 16 feb 2026 · Analisis frio y acercamiento al futbol presencial',
+      summary:
+        'Cuando opina desde fuera de la rivalidad local, expone que el grupo puede estar atrapado en su propia narrativa. Y cuando se acerca a jugar, lo hace desde el humor.',
+      excerpts: [
+        fragment(
+          '15 sep 2025 · 3:22 PM',
+          'Andres Eduardo Pinto',
+          'Responderé como Don Andrés, realmente me sabe a mierda toda la Liga española, hasta logo',
+        ),
+        fragment(
+          '15 sep 2025 · 3:25 PM',
+          'Andres Eduardo Pinto',
+          'siento que lloran mucho de ambos bandos',
+        ),
+        fragment(
+          '16 feb 2026 · 9:09 PM',
+          'Andres Eduardo Pinto',
+          'Coño que día van a jugar la semana que viene? A ver si me animo',
+        ),
+      ],
+    },
+  ],
+  gerardo: [
+    {
+      id: 'gerardo-philosophy',
+      title: 'Lleva el conflicto a libertad, privacidad y prueba',
+      topic: 'Convivencia',
+      context: '18 feb 2026 · Debate Prestiani / Vinicius',
+      summary:
+        'Gerardo entra como filosofico lateral: corre la discusion hacia los limites de grabar, auditar y sancionar, incluso cuando sabe que esta entrando tarde.',
+      excerpts: [
+        fragment(
+          '18 feb 2026 · 4:10 PM',
+          'Gerardo Vitale Errico',
+          'Aquí tirando un comentario sin saber de qué coño están hablando',
+        ),
+        fragment(
+          '18 feb 2026 · 4:27 PM',
+          'Gerardo Vitale Errico',
+          'Terreno muy pantanoso ese del hate speech, muy subjetivo y abstracto para mi gusto.',
+        ),
+        fragment(
+          '18 feb 2026 · 4:47 PM',
+          'Gerardo Vitale Errico',
+          'Hhahahahaaha siento la necesidad de enviar una nota de voz',
+        ),
+      ],
+    },
+    {
+      id: 'gerardo-football-social',
+      title: 'Su lado social entra por fantasy, padel y futbol en Madrid',
+      topic: 'Dinámica',
+      context: '9 dic 2025 y 16 feb 2026 · Integracion fuera del chat',
+      summary:
+        'No es solo voz filosofica. Tambien empuja encuentros presenciales, reta a sumarse y amplifica la capa social del grupo.',
+      excerpts: [
+        fragment(
+          '9 dic 2025 · 3:14 PM',
+          'Gerardo Vitale Errico',
+          'Únete Amigui @Andres Eduardo Pinto',
+        ),
+        fragment(
+          '9 dic 2025 · 3:14 PM',
+          'Gerardo Vitale Errico',
+          'Una de las mejores decisiones del 2025 ha sido volver al fútbol definitivamente',
+        ),
+        fragment(
+          '16 feb 2026 · 6:04 PM',
+          'Gerardo Vitale Errico',
+          'Cono si y si, partidazo y burda de arrecho.',
+        ),
+      ],
+    },
+  ],
+  espana34: [
+    {
+      id: 'espana34-refuerzo-arbitral',
+      title: 'Refuerza el bloque madridista desde España',
+      topic: 'VAR',
+      context: '26 abr 2025 · Previa de la final y cuestion arbitral',
+      summary:
+        'Su entrada al debate replica y valida la sospecha arbitral del nucleo duro, pero desde una voz menos central y mas de refuerzo.',
+      excerpts: [
+        fragment(
+          '26 abr 2025 · 8:52 PM',
+          'Contacto España (+34)',
+          'Con esa rueda de prensa claramente ya no hay neutralidad en los árbitros, quedó demostrado.',
+        ),
+        fragment(
+          '26 abr 2025 · 9:06 PM',
+          'Contacto España (+34)',
+          'Esta temporada varios equipos han sacado comunicados oficiales por la manera irregular que están pitando los partidos',
+        ),
+      ],
+    },
+    {
+      id: 'espana34-football-invite',
+      title: 'Convierte el grupo en puente hacia futbol presencial',
+      topic: 'Dinámica',
+      context: '9 dic 2025 · Invitacion a jugar en Madrid',
+      summary:
+        'Su rol crece cuando la conversacion sale del puro comentario y se vuelve plan concreto para jugar, conectar y sostener la relacion fuera del hilo.',
+      excerpts: [
+        fragment(
+          '9 dic 2025 · 2:48 PM',
+          'Contacto España (+34)',
+          'Lo digo porque todas las semanas estamos jugando, tenemos un equipo de la orquesta, por si te quieres venir un día te digo',
+        ),
+        fragment(
+          '9 dic 2025 · 2:51 PM',
+          'Contacto España (+34)',
+          'Aquí la gente no da leñazos y no te lesionan, todo friendly',
+        ),
+      ],
+    },
+  ],
+  jorge: [
+    {
+      id: 'jorge-onboarding',
+      title: 'Entiende el codigo del grupo desde el primer dia',
+      topic: 'Nuevos miembros',
+      context: '26 ago 2025 · Entrada de Jorge',
+      summary:
+        'Jorge entra tarde pero se adapta rapido al tono. Responde al lore interno con humor absurdo y enseguida se integra.',
+      excerpts: [
+        fragment(
+          '26 ago 2025 · 2:47 PM',
+          'Jorge Anzola',
+          'Marico yo no había visto este artículos. Esos malditos, quitándome views del tuit original',
+        ),
+        fragment(
+          '26 ago 2025 · 2:52 PM',
+          'Jorge Anzola',
+          'Nunca hablaría mal de Messi. No quiero tener peos con Infantino…',
+        ),
+        fragment('26 ago 2025 · 3:00 PM', 'Jorge Anzola', 'JAJAJA maldita sea'),
+      ],
+    },
+    {
+      id: 'jorge-fantasy-chaos',
+      title: 'Su energia caotica encuentra hogar en el fantasy',
+      topic: 'Fantasy',
+      context: '1 y 16 sep 2025 · Onboarding y primer golpe del juego',
+      summary:
+        'Donde otros ven manual, Jorge ve escena comica. El fantasy le da un espacio natural para exagerar errores y dramatizar.',
+      excerpts: [
+        fragment(
+          '1 sep 2025 · 8:54 PM',
+          'Jorge Anzola',
+          'I’m already overwhelmed, no puedo poner a 11 CR',
+        ),
+        fragment('16 sep 2025 · 6:37 PM', 'Jorge Anzola', 'Tengo un lesionado'),
+        fragment(
+          '16 sep 2025 · 7:07 PM',
+          'Jorge Anzola',
+          'Marico me había dado chance de cambiarlo… y no le di confirmar',
+        ),
+      ],
+    },
+  ],
+  aaron: [
+    {
+      id: 'aaron-entry',
+      title: 'Llega leyendo bien el ritual de bienvenida',
+      topic: 'Nuevos miembros',
+      context: '1 sep 2025 · Primeras intervenciones',
+      summary:
+        'Aaron no entra defensivo. Se deja iniciar por el grupo, marca su identidad futbolera y en minutos ya esta jugando el juego social.',
+      excerpts: [
+        fragment(
+          '1 sep 2025 · 8:21 PM',
+          'Aaron Rodrigues',
+          'A mi me invitaron para hacerme bullying por lo que veo',
+        ),
+        fragment(
+          '1 sep 2025 · 8:30 PM',
+          'Aaron Rodrigues',
+          'En realidad es el club deportivo Tenerife, si los confundes aquí te metes en un problema',
+        ),
+      ],
+    },
+    {
+      id: 'aaron-fantasy-ramp',
+      title: 'Aprende el fantasy en publico y rapido',
+      topic: 'Fantasy',
+      context: '1 y 16 sep 2025 · Puesta al dia acelerada',
+      summary:
+        'Su curva de adaptacion es visible: pregunta, usa stats, entra a la liga y enseguida empieza a exigir feedback y resultados.',
+      excerpts: [
+        fragment(
+          '1 sep 2025 · 8:52 PM',
+          'Aaron Rodrigues',
+          'Ya estoy buscando stats en chat gpt',
+        ),
+        fragment(
+          '16 sep 2025 · 6:36 PM',
+          'Aaron Rodrigues',
+          'Lo hice pero no se me unió a la liga 👉🏻👈🏻 ya está',
+        ),
+        fragment(
+          '16 sep 2025 · 11:32 PM',
+          'Aaron Rodrigues',
+          'Y por qué a mí no me diste un comentario de cómo iba ☹️',
+        ),
+      ],
+    },
+  ],
+}
+
 export const TIMELINE_EVENTS = [
   {
     id: 'var-april-2025',
@@ -471,9 +957,65 @@ export const TIMELINE_EVENTS = [
     title: 'El grupo entra en modo litigio por el VAR',
     participants: ['Francisco', 'Gabriel', 'Gustavo', 'Javier'],
     summary:
-      'La discusión sobre fuera de juego semiautomático y criterios arbitrales cristaliza el eje clásico del grupo: Francisco y Gabriel construyen sospecha, Gustavo la pincha, Javier la literaliza.',
-    quote:
-      'Pero cada vez que Jesús Burgos interviene en este grupo, lo que hace es tirar factos y explicar lo que pasa realmente.',
+      'La discusión sobre fuera de juego semiautomático y criterios arbitrales cristaliza el eje clásico del grupo: Francisco y Gabriel construyen sospecha, Gustavo la pincha, Javier la literaliza y Jesús reordena el debate.',
+    evidence: [
+      fragment(
+        '21 abr 2025 · 2:12 PM',
+        'Gabriel Gutiérrez',
+        'Cuando la imagen sale de una vez, fue de la máquina. Ya cuando se demora mucho la están revisando y la retocan mirando las cámaras',
+      ),
+      fragment(
+        '21 abr 2025 · 2:14 PM',
+        'Francisco Arteaga',
+        'Pero cada vez que Jesús Burgos interviene en este grupo, lo que hace es tirar factos y explicar lo que pasa realmente.',
+      ),
+      fragment(
+        '21 abr 2025 · 2:15 PM',
+        'Gustavo Torres',
+        'Lo que pasa es que ustedes no se escuchan, la gimnasia mental que hacen para buscar conspiración',
+      ),
+      fragment(
+        '21 abr 2025 · 2:15 PM',
+        'Javier Gimenez',
+        'Te quejas por que aplican bien la regla?.',
+      ),
+      fragment(
+        '21 abr 2025 · 2:46 PM',
+        'Jesús Burgos',
+        'la tecnología se implementó para suplementar las reglas que ya existían, y eso está perfecto porque es evolución.',
+      ),
+    ],
+  },
+  {
+    id: 'copa-neutralidad',
+    date: '26 abr 2025',
+    topic: 'VAR',
+    title: 'La previa de la final convierte el arbitraje en conflicto politico',
+    participants: ['Contacto España (+34)', 'Francisco', 'Gabriel', 'Gustavo'],
+    summary:
+      'Antes de la final, el grupo deja de hablar solo de jugadas y pasa a discutir neutralidad institucional, comunicados oficiales y sesgo estructural.',
+    evidence: [
+      fragment(
+        '26 abr 2025 · 8:52 PM',
+        'Contacto España (+34)',
+        'Con esa rueda de prensa claramente ya no hay neutralidad en los árbitros, quedó demostrado.',
+      ),
+      fragment(
+        '26 abr 2025 · 9:06 PM',
+        'Contacto España (+34)',
+        'Esta temporada varios equipos han sacado comunicados oficiales por la manera irregular que están pitando los partidos',
+      ),
+      fragment(
+        '26 abr 2025 · 11:03 PM',
+        'Francisco Arteaga',
+        'Eres pura paja Javier',
+      ),
+      fragment(
+        '26 abr 2025 · 11:03 PM',
+        'Francisco Arteaga',
+        'Hablar por trollear',
+      ),
+    ],
   },
   {
     id: 'javier-reentry',
@@ -483,7 +1025,17 @@ export const TIMELINE_EVENTS = [
     participants: ['Javier', 'Gabriel', 'Francisco'],
     summary:
       'La reentrada de Javier refuerza la figura del contrapunto más áspero del grupo y reabre la dinámica de provocación, reacción y escalada que luego define varios meses.',
-    quote: 'Javier Gimenez was added',
+    evidence: [
+      fragment('27 abr 2025 · 12:03 AM', 'Sistema', 'Gabriel Gutiérrez removed Javier Gimenez'),
+      fragment('27 abr 2025 · 12:05 AM', 'Sistema', 'Javier Gimenez was added'),
+      fragment(
+        '27 abr 2025 · 12:05 AM',
+        'Gustavo Torres',
+        'oh wow, yo pensaba que el VAR sólo eran robos',
+      ),
+      fragment('27 abr 2025 · 12:06 AM', 'Jesús Burgos', 'Gabriel J Trump'),
+      fragment('27 abr 2025 · 12:10 AM', 'Gabriel Gutiérrez', 'Ley mordaza'),
+    ],
   },
   {
     id: 'andres-toxicidad',
@@ -493,17 +1045,52 @@ export const TIMELINE_EVENTS = [
     participants: ['Andrés', 'Gabriel', 'Francisco'],
     summary:
       'Cuando Andrés resume el ambiente como tóxico, aparece una verdad estructural: incluso los miembros más tranquilos reconocen el desgaste de la conversación.',
-    quote: 'Que tóxico este grupo',
+    evidence: [
+      fragment('16 may 2025 · 9:05 PM', 'Andres Eduardo Pinto', 'Que toxico este grupo'),
+      fragment(
+        '16 may 2025 · 9:05 PM',
+        'Andres Eduardo Pinto',
+        'Me he querido salir 5567 veces',
+      ),
+      fragment('16 may 2025 · 9:06 PM', 'Francisco Arteaga', 'Es culpa de Gustavo'),
+      fragment(
+        '16 may 2025 · 9:12 PM',
+        'Gustavo Torres',
+        'Es un safe space para jodernos',
+      ),
+      fragment('16 may 2025 · 9:13 PM', 'Andres Eduardo Pinto', 'Un padre responsable'),
+    ],
   },
   {
     id: 'group-vote-july',
-    date: '17 jul 2025',
+    date: '17-18 jul 2025',
     topic: 'Dinámica',
     title: 'Se vota si el grupo debe seguir existiendo',
     participants: ['Francisco', 'Grupo'],
     summary:
       'El grupo deja de ser solo un chat de fútbol y se vuelve objeto de análisis para sí mismo. Hay tensión sobre continuidad, pertenencia y comodidad de algunos miembros.',
-    quote: 'Oficialmente hay 5 de 9 votos para mantener el grupo abierto otro año más.',
+    evidence: [
+      fragment(
+        '17 jul 2025 · previo a la encuesta',
+        'Francisco Arteaga',
+        'Primero necesito saber si el grupo debe seguir existiendo. Esa es la prioridad.',
+      ),
+      fragment(
+        '17 jul 2025 · previo a la encuesta',
+        'Francisco Arteaga',
+        'Noté que una persona del grupo no se siente cómoda escribiendo aquí por otra persona del mismo grupo.',
+      ),
+      fragment(
+        '17 jul 2025 · 9:13 PM',
+        'Francisco Arteaga',
+        'Bueno, oficialmente hay 5 de 9 votos para mantener el grupo abierto otro año más.',
+      ),
+      fragment(
+        '18 jul 2025 · 1:53 PM',
+        'Francisco Arteaga',
+        'El grupo se mantiene abierto. La democracia ha ganado.',
+      ),
+    ],
   },
   {
     id: 'jorge-joins',
@@ -513,17 +1100,25 @@ export const TIMELINE_EVENTS = [
     participants: ['Jorge', 'Francisco', 'Gustavo', 'Jesús'],
     summary:
       'La entrada de Jorge refresca la dinámica con humor absurdo, meta-comentario y menos dogma. No mueve el eje ideológico, pero sí aligera la textura social.',
-    quote: 'Nunca hablaría mal de Messi. No quiero tener peos con Infantino…',
-  },
-  {
-    id: 'aaron-joins',
-    date: '1 sep 2025',
-    topic: 'Nuevos miembros',
-    title: 'Aaron entra, aprende las reglas no escritas y se integra rápido',
-    participants: ['Aaron', 'Francisco', 'Jesús', 'Jorge'],
-    summary:
-      'Su llegada funciona como onboarding perfecto al universo Burritos: bullying de bienvenida, advertencia sobre Messi y entrada acelerada al fantasy y al tono interno.',
-    quote: 'A mi me invitaron para hacerme bullying por lo que veo',
+    evidence: [
+      fragment('26 ago 2025 · 2:43 PM', 'Sistema', 'You added Jorge Anzola'),
+      fragment(
+        '26 ago 2025 · 2:44 PM',
+        'Francisco Arteaga',
+        'Denle la bienvenida a Jorge Anzola. El terror de los malandros en Amsterdam',
+      ),
+      fragment(
+        '26 ago 2025 · 2:52 PM',
+        'Jorge Anzola',
+        'Nunca hablaría mal de Messi. No quiero tener peos con Infantino…',
+      ),
+      fragment(
+        '26 ago 2025 · 3:00 PM',
+        'Gustavo Torres',
+        'Este es material previo que es bueno que estés familiarizado',
+      ),
+      fragment('26 ago 2025 · 3:00 PM', 'Jorge Anzola', 'JAJAJA maldita sea'),
+    ],
   },
   {
     id: 'audio-var-august',
@@ -533,36 +1128,172 @@ export const TIMELINE_EVENTS = [
     participants: ['Francisco', 'Jesús', 'Javier', 'Gabriel', 'Gustavo'],
     summary:
       'La frase "para poder anular el gol" se convierte en munición simbólica. El grupo se reparte entre indignación, sarcasmo, incredulidad y trolling terapéutico.',
-    quote: 'La decisión estaba tomada, solo buscaron la excusa.',
+    evidence: [
+      fragment(
+        '31 ago 2025 · 1:49 AM',
+        'Francisco Arteaga',
+        '7 minutos de tardo el “semiautomático” en dibujar esa línea...',
+      ),
+      fragment(
+        '31 ago 2025 · 9:13 AM',
+        'Francisco Arteaga',
+        '“para PODER anular el gol”',
+      ),
+      fragment(
+        '31 ago 2025 · 6:38 PM',
+        'Jesús Burgos',
+        'El mismo peo de siempre. La tecnología no es el problema, es quien la interpreta',
+      ),
+      fragment(
+        '31 ago 2025 · 7:28 PM',
+        'Gabriel Gutiérrez',
+        'Que me corrija Francisco, pero las leyes siempre se interpretan. Lo que hay que tener es sentido común.',
+      ),
+      fragment(
+        '31 ago 2025 · 11:18 PM',
+        'Gustavo Torres',
+        'Muchachos mídanse la tensión...',
+      ),
+    ],
+  },
+  {
+    id: 'aaron-joins',
+    date: '1 sep 2025',
+    topic: 'Nuevos miembros',
+    title: 'Aaron entra, aprende las reglas no escritas y se integra rápido',
+    participants: ['Aaron', 'Francisco', 'Jesús', 'Jorge'],
+    summary:
+      'Su llegada funciona como onboarding perfecto al universo Burritos: bullying de bienvenida, advertencia sobre Messi y entrada acelerada al fantasy y al tono interno.',
+    evidence: [
+      fragment('1 sep 2025 · 8:13 PM', 'Sistema', 'You added Aaron Rodrigues'),
+      fragment(
+        '1 sep 2025 · 8:15 PM',
+        'Francisco Arteaga',
+        'Denle la bienvenida a mi cuñado (por ahora). Aaron Rodrigues.',
+      ),
+      fragment(
+        '1 sep 2025 · 8:21 PM',
+        'Aaron Rodrigues',
+        'A mi me invitaron para hacerme bullying por lo que veo',
+      ),
+      fragment(
+        '1 sep 2025 · 8:25 PM',
+        'Francisco Arteaga',
+        'Y tercero, nunca, nunca, PERO NUNCA, te metas con Messi.',
+      ),
+      fragment(
+        '1 sep 2025 · 8:30 PM',
+        'Aaron Rodrigues',
+        'En realidad es el club deportivo Tenerife, si los confundes aquí te metes en un problema',
+      ),
+    ],
   },
   {
     id: 'fantasy-september',
-    date: '16 sep 2025',
+    date: '15-16 sep 2025',
     topic: 'Fantasy',
     title: 'El fantasy crea un segundo tablero de estatus',
     participants: ['Francisco', 'Aaron', 'Jorge', 'Contacto España (+34)'],
     summary:
       'La liga fantasy añade una capa menos ideológica y más lúdica. Desde ahí entran nuevos chistes, jerarquías semanales y una forma distinta de participar.',
-    quote: 'Grande Kylian 20pts 😍',
+    evidence: [
+      fragment('15 sep 2025 · 11:22 AM', 'Jorge Anzola', 'Ya estoy en eso maldita sea'),
+      fragment('15 sep 2025 · 10:15 PM', 'Contacto España (+34)', 'Listo 🔥'),
+      fragment(
+        '16 sep 2025 · 2:38 PM',
+        'Aaron Rodrigues',
+        'Lo estoy haciendo pero para que sirve el comodín?',
+      ),
+      fragment(
+        '16 sep 2025 · 6:36 PM',
+        'Aaron Rodrigues',
+        'Lo hice pero no se me unió a la liga 👉🏻👈🏻 ya está',
+      ),
+      fragment('16 sep 2025 · 6:37 PM', 'Jorge Anzola', 'Tengo un lesionado'),
+      fragment('16 sep 2025 · 11:03 PM', 'Contacto España (+34)', 'Grande Kylian 20pts 😍'),
+      fragment(
+        '16 sep 2025 · 11:19 PM',
+        'Francisco Arteaga',
+        'Revisando los equipos de esta fecha, los errores más comunes que vi:',
+      ),
+    ],
   },
   {
-    id: 'memo-absence',
-    date: '20 feb 2026',
-    topic: 'Fantasy',
-    title: 'El ausente que va primero se vuelve un fantasma importante',
-    participants: ['Francisco', 'Jesús', 'Grupo'],
+    id: 'madrid-football-layer',
+    date: '9 dic 2025',
+    topic: 'Dinámica',
+    title: 'El chat se derrama hacia el futbol presencial en Madrid',
+    participants: ['Contacto España (+34)', 'Francisco', 'Gerardo', 'Andrés', 'Aaron'],
     summary:
-      'Aparece el recordatorio de que uno de los mejores jugadores del fantasy ni siquiera está en el grupo. Eso expone que el ecosistema social y el competitivo no son exactamente el mismo.',
-    quote: 'El único que no está en este grupo es el que va de primero en la liga',
+      'La conversacion deja de ser solo comentario y fantasy. Aparece una capa nueva: jugar juntos en Madrid, sumar gente y estirar la convivencia fuera del teléfono.',
+    evidence: [
+      fragment(
+        '9 dic 2025 · 2:48 PM',
+        'Contacto España (+34)',
+        'Lo digo porque todas las semanas estamos jugando, tenemos un equipo de la orquesta, por si te quieres venir un día te digo',
+      ),
+      fragment(
+        '9 dic 2025 · 2:51 PM',
+        'Contacto España (+34)',
+        'Aquí la gente no da leñazos y no te lesionan, todo friendly',
+      ),
+      fragment(
+        '9 dic 2025 · 3:14 PM',
+        'Gerardo Vitale Errico',
+        'Una de las mejores decisiones del 2025 ha sido volver al fútbol definitivamente',
+      ),
+      fragment(
+        '9 dic 2025 · 3:09 PM',
+        'Andres Eduardo Pinto',
+        'Un día me anoto se los prometo',
+      ),
+      fragment('9 dic 2025 · 3:30 PM', 'Aaron Rodrigues', 'Yes sir'),
+    ],
   },
   {
     id: 'prestiani-vinicius',
-    date: 'feb 2026',
+    date: '18-23 feb 2026',
     topic: 'Convivencia',
     title: 'El caso Prestiani/Vinicius marca el punto moral más duro',
     participants: ['Javier', 'Gabriel', 'Jesús', 'Francisco', 'Luís', 'Gerardo'],
     summary:
       'La discusión sobre racismo y provocación deja de ser solo fútbol. Aquí se hace visible quién relativiza, quién condena y quién intenta ordenar el caos.',
-    quote: '¿Es en serio que estamos teniendo esta discusión?',
+    evidence: [
+      fragment(
+        '18 feb 2026 · 1:09 PM',
+        'Jesús Burgos',
+        'Lo de el hate a Vinicius es de estudio',
+      ),
+      fragment(
+        '18 feb 2026 · 4:27 PM',
+        'Gerardo Vitale Errico',
+        'Terreno muy pantanoso ese del hate speech, muy subjetivo y abstracto para mi gusto.',
+      ),
+      fragment(
+        '18 feb 2026 · 4:59 PM',
+        'Javier Gimenez',
+        'Creo que es menos grave discriminar por orientación sexual que por origen étnico/color de piel.',
+      ),
+      fragment(
+        '23 feb 2026 · 5:58 PM',
+        'Luís Torrado',
+        'Claro pero de llevar eso a un insulto racista .. por lo menos probalo..capaz le dijo mariquito y ya jaja',
+      ),
+      fragment(
+        '23 feb 2026 · 6:30 PM',
+        'Javier Gimenez',
+        'Capaz para prestianni y los argentinos decirle mono no tiene una connotación racistas. A lo mejor le dijo que dejar de comportarse como mono.',
+      ),
+      fragment(
+        '23 feb 2026 · 6:30 PM',
+        'Gabriel Gutiérrez',
+        'Es en serio que estamos teniendo esta discusión? JAJAJAJA',
+      ),
+      fragment(
+        '23 feb 2026 · 6:31 PM',
+        'Gabriel Gutiérrez',
+        'En España le dieron a Vinicius que se fuera al sambodromo a hacer el mono. Seguro quisieron decir que él es muy alegre',
+      ),
+    ],
   },
 ]

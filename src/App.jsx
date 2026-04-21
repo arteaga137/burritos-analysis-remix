@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
   EDGE_STYLE,
   EDGES,
+  MEMBER_EVIDENCE,
   MEMBERS,
   NODE_POS,
   TIMELINE_EVENTS,
@@ -19,6 +20,7 @@ const deriveEvidenceTopic = (context) => {
 }
 
 const getEvidenceItems = (member) =>
+  MEMBER_EVIDENCE[member.id] ||
   member.quotes.map((quote, index) => ({
     id: `${member.id}-evidence-${index}`,
     title: member.patterns[index] || `Evidencia ${index + 1}`,
@@ -27,7 +29,14 @@ const getEvidenceItems = (member) =>
     summary:
       member.patterns[index] ||
       'La cita ilustra un comportamiento consistente dentro del período analizado.',
-    excerpt: quote.text,
+    excerpts: [
+      {
+        at: quote.ctx,
+        author: member.name,
+        text: quote.text.replace(/^"|"$/g, ''),
+        source: 'Contexto curado',
+      },
+    ],
   }))
 
 const TOPIC_ACCENTS = {
@@ -37,6 +46,27 @@ const TOPIC_ACCENTS = {
   Dinámica: 'oklch(70% 0.16 145)',
   'Nuevos miembros': 'oklch(76% 0.16 310)',
 }
+
+const ChatFragments = ({ excerpts, label = 'Fragmentos del chat' }) => (
+  <div className="chat-fragments">
+    <div className="chat-fragments__label">{label}</div>
+    <div className="chat-fragments__list">
+      {excerpts.map((excerpt, index) => (
+        <div
+          key={`${excerpt.author}-${excerpt.at}-${index}`}
+          className="chat-fragment"
+        >
+          <div className="chat-fragment__meta">
+            <span className="chat-fragment__author">{excerpt.author}</span>
+            <span>{excerpt.at}</span>
+            {excerpt.source && <span>{excerpt.source}</span>}
+          </div>
+          <div className="chat-fragment__text">“{excerpt.text}”</div>
+        </div>
+      ))}
+    </div>
+  </div>
+)
 
 const ScoreBar = ({ label, val, color }) => (
   <div className="score-bar">
@@ -134,7 +164,7 @@ const EvidenceSection = ({ member }) => {
             </summary>
             <div className="evidence-card__body">
               <p>{item.summary}</p>
-              <blockquote>{item.excerpt}</blockquote>
+              <ChatFragments excerpts={item.excerpts} />
             </div>
           </details>
         ))}
@@ -409,6 +439,10 @@ const TimelineView = () => {
     if (activeTopic === 'Todos') return TIMELINE_EVENTS
     return TIMELINE_EVENTS.filter((event) => event.topic === activeTopic)
   }, [activeTopic])
+  const visibleFragments = useMemo(
+    () => visibleEvents.reduce((total, event) => total + event.evidence.length, 0),
+    [visibleEvents],
+  )
 
   const activeLabel = activeTopic === 'Todos' ? 'Todas las capas' : activeTopic
 
@@ -443,7 +477,7 @@ const TimelineView = () => {
       <div className="timeline-summary">
         {[
           { label: 'Eventos visibles', value: String(visibleEvents.length) },
-          { label: 'Marco temporal', value: 'abr 2025 → feb 2026' },
+          { label: 'Fragmentos citados', value: String(visibleFragments) },
           { label: 'Filtro activo', value: activeLabel },
         ].map((item) => (
           <div key={item.label} className="timeline-summary__item">
@@ -475,8 +509,7 @@ const TimelineView = () => {
                 ))}
               </div>
               <div className="timeline-card__quote-block">
-                <div className="timeline-card__quote-label">Pulso del momento</div>
-                <div className="timeline-card__quote">“{event.quote}”</div>
+                <ChatFragments excerpts={event.evidence} label="Fragmentos reales de _chat.txt" />
               </div>
             </div>
           </article>
@@ -532,7 +565,7 @@ const CompareColumn = ({ member }) => {
               <span>{item.context}</span>
             </div>
             <p>{item.summary}</p>
-            <blockquote>{item.excerpt}</blockquote>
+            <ChatFragments excerpts={item.excerpts} label="Fragmentos citados" />
           </div>
         ))}
       </section>

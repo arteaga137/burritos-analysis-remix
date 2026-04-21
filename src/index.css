@@ -672,14 +672,6 @@ button {
   line-height: 1.55;
 }
 
-.evidence-card__body blockquote {
-  margin: 0;
-  color: #ece9f0;
-  font-family: 'DM Mono', monospace;
-  font-size: 12px;
-  line-height: 1.6;
-}
-
 .timeline-section,
 .compare-section {
   display: flex;
@@ -898,23 +890,6 @@ button {
   padding: 11px 12px 12px;
 }
 
-.timeline-card__quote-label {
-  margin-bottom: 6px;
-  color: rgba(255, 255, 255, 0.36);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  line-height: 1.2;
-  text-transform: uppercase;
-}
-
-.timeline-card__quote {
-  color: #ece9f0;
-  font-family: 'DM Mono', monospace;
-  font-size: 12px;
-  line-height: 1.6;
-}
-
 .compare-controls {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 240px));
@@ -1012,12 +987,63 @@ button {
   line-height: 1.55;
 }
 
-.compare-evidence blockquote {
-  margin: 0;
+.chat-fragments__label {
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.36);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.chat-fragments__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-fragment {
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.chat-fragment:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.chat-fragment__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.chat-fragment__meta span {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 10px;
+  line-height: 1.2;
+  padding: 4px 8px;
+}
+
+.chat-fragment__meta .chat-fragment__author {
+  color: #f0ede8;
+}
+
+.chat-fragment__text {
   color: #ece9f0;
   font-family: 'DM Mono', monospace;
   font-size: 12px;
-  line-height: 1.6;
+  line-height: 1.65;
+}
+
+.timeline-card__quote-block .chat-fragment__meta span,
+.compare-evidence .chat-fragment__meta span,
+.evidence-card__body .chat-fragment__meta span {
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .network-section {
