@@ -228,6 +228,7 @@ button {
 
 .member-card:focus-visible,
 .tab-btn:focus-visible,
+.timeline-tab:focus-visible,
 .close-btn:focus-visible,
 .tweak-toggle:focus-visible,
 .network-node:focus-visible {
@@ -883,14 +884,62 @@ button {
   padding: 5px 8px;
 }
 
-.timeline-readout {
-  display: grid;
-  gap: 10px;
-  margin-bottom: 12px;
-  padding: 12px;
+.timeline-panel {
+  margin-top: 8px;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.025);
+  overflow: hidden;
+}
+
+.timeline-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 10px 10px 0;
+}
+
+.timeline-tab {
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  padding: 8px 10px;
+  text-transform: uppercase;
+  transition:
+    background 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 140ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.timeline-tab:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.timeline-tab:active {
+  transform: scale(0.97);
+}
+
+.timeline-tab.active {
+  border-color: color-mix(in srgb, var(--timeline-accent, rgba(255, 255, 255, 0.12)) 40%, rgba(255, 255, 255, 0.1));
+  background: color-mix(in srgb, var(--timeline-accent, rgba(255, 255, 255, 0.12)) 16%, rgba(255, 255, 255, 0.05));
+  color: #f0ede8;
+}
+
+.timeline-panel__body {
+  padding: 12px;
+}
+
+.timeline-readout {
+  display: grid;
+  gap: 10px;
 }
 
 .timeline-readout__row {
@@ -923,13 +972,6 @@ button {
   font-size: 11px;
   line-height: 1.2;
   padding: 6px 9px;
-}
-
-.timeline-card__quote-block {
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 11px 12px 12px;
 }
 
 .compare-controls {
@@ -1082,7 +1124,6 @@ button {
   line-height: 1.65;
 }
 
-.timeline-card__quote-block .chat-fragment__meta span,
 .compare-evidence .chat-fragment__meta span,
 .evidence-card__body .chat-fragment__meta span {
   background: rgba(255, 255, 255, 0.04);
@@ -1415,6 +1456,19 @@ button {
   .timeline-card__content,
   .compare-card {
     padding: 14px;
+  }
+
+  .timeline-tabs {
+    padding: 10px 10px 0;
+  }
+
+  .timeline-tab {
+    flex: 1 1 140px;
+    text-align: center;
+  }
+
+  .timeline-panel__body {
+    padding: 10px;
   }
 
   .timeline-readout__row {

@@ -95,6 +95,64 @@ const TimelineReadout = ({ read }) => (
   </div>
 )
 
+const TimelineEventCard = ({ event }) => {
+  const [activePane, setActivePane] = useState('read')
+
+  return (
+    <article
+      className="timeline-card"
+      style={{ '--timeline-accent': TOPIC_ACCENTS[event.topic] ?? '#f0ede8' }}
+    >
+      <div className="timeline-card__rail" aria-hidden="true" />
+      <div className="timeline-card__content">
+        <div className="timeline-card__meta">
+          <span>{event.date}</span>
+          <span>{event.topic}</span>
+          <span>{event.participants.length} participantes</span>
+        </div>
+        <h3>{event.title}</h3>
+        <p>{event.summary}</p>
+        <div className="timeline-card__participants">
+          {event.participants.map((participant) => (
+            <span key={`${event.id}-${participant}`}>{participant}</span>
+          ))}
+        </div>
+
+        <div className="timeline-panel">
+          <div className="timeline-tabs" role="tablist" aria-label={`Vistas del evento ${event.title}`}>
+            {[
+              { key: 'read', label: 'Lectura' },
+              { key: 'evidence', label: `Fragmentos (${event.evidence.length})` },
+            ].map((tab) => (
+              <button
+                key={tab.key}
+                type="button"
+                role="tab"
+                aria-selected={activePane === tab.key}
+                className={`timeline-tab${activePane === tab.key ? ' active' : ''}`}
+                onClick={() => setActivePane(tab.key)}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="timeline-panel__body">
+            {activePane === 'read' ? (
+              <TimelineReadout read={event.read} />
+            ) : (
+              <ChatFragments
+                excerpts={event.evidence}
+                label={`Fragmentos reales de ${CHAT_SOURCE_NAME}`}
+              />
+            )}
+          </div>
+        </div>
+      </div>
+    </article>
+  )
+}
+
 const ScoreBar = ({ label, val, color }) => (
   <div className="score-bar">
     <div className="score-bar__meta">
@@ -516,34 +574,7 @@ const TimelineView = () => {
 
       <div className="timeline-list">
         {visibleEvents.map((event) => (
-          <article
-            key={event.id}
-            className="timeline-card"
-            style={{ '--timeline-accent': TOPIC_ACCENTS[event.topic] ?? '#f0ede8' }}
-          >
-            <div className="timeline-card__rail" aria-hidden="true" />
-            <div className="timeline-card__content">
-              <div className="timeline-card__meta">
-                <span>{event.date}</span>
-                <span>{event.topic}</span>
-                <span>{event.participants.length} participantes</span>
-              </div>
-              <h3>{event.title}</h3>
-              <p>{event.summary}</p>
-              <div className="timeline-card__participants">
-                {event.participants.map((participant) => (
-                  <span key={`${event.id}-${participant}`}>{participant}</span>
-                ))}
-              </div>
-              <TimelineReadout read={event.read} />
-              <div className="timeline-card__quote-block">
-                <ChatFragments
-                  excerpts={event.evidence}
-                  label={`Fragmentos reales de ${CHAT_SOURCE_NAME}`}
-                />
-              </div>
-            </div>
-          </article>
+          <TimelineEventCard key={event.id} event={event} />
         ))}
       </div>
     </section>
