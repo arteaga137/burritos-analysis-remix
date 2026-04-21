@@ -57,14 +57,199 @@ const TIMELINE_READ_LABELS = [
   { key: 'sensible', label: 'Más sensatos' },
 ]
 
-const ChatFragments = ({ excerpts, label = 'Fragmentos del chat' }) => (
+const TIMELINE_READ_WEIGHTS = {
+  active: 3,
+  aggressive: 2,
+  pacifying: 3,
+  conservative: 2,
+  sensible: 3,
+}
+
+const normalizeText = (value) =>
+  value
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim()
+
+const buildMemberLookup = () => {
+  const lookup = new Map()
+
+  const register = (alias, member) => {
+    if (!alias) return
+    lookup.set(normalizeText(alias), member)
+  }
+
+  MEMBERS.forEach((member) => {
+    register(member.name, member)
+    register(member.shortName, member)
+    register(member.nickname?.replace(/"/g, ''), member)
+    register(member.name.split(' ')[0], member)
+  })
+
+  register('Andrés', MEMBERS.find((member) => member.id === 'andres'))
+  register('Andres', MEMBERS.find((member) => member.id === 'andres'))
+  register('Grupo', { id: 'group', name: 'Grupo', shortName: 'Grupo' })
+  register('Sistema', { id: 'system', name: 'Sistema', shortName: 'Sistema' })
+
+  return lookup
+}
+
+const MEMBER_LOOKUP = buildMemberLookup()
+
+const resolveMember = (label) => {
+  const normalized = normalizeText(label)
+  if (MEMBER_LOOKUP.has(normalized)) return MEMBER_LOOKUP.get(normalized)
+
+  return (
+    MEMBERS.find((member) => {
+      const fullName = normalizeText(member.name)
+      const firstName = normalizeText(member.name.split(' ')[0])
+      return fullName.includes(normalized) || normalized.includes(firstName)
+    }) ?? null
+  )
+}
+
+const toDisplayName = (label) => resolveMember(label)?.shortName || resolveMember(label)?.name || label
+
+const buildEventFragments = (event) => {
+  const base = event.evidence.map((excerpt, index) => ({
+    ...excerpt,
+    id: `${event.id}-${index}`,
+    topic: event.topic,
+    summary: event.summary,
+    sourceId: event.id,
+    sourceTitle: event.title,
+    sourceType: 'timeline',
+    contextLabel: event.date,
+    participants: event.participants,
+  }))
+
+  return base.map((excerpt) => ({
+    ...excerpt,
+    contextWindow: base,
+  }))
+}
+
+const buildEvidenceFragments = (member, item) => {
+  const participantName = member.shortName || member.name.split(' ')[0]
+  const base = item.excerpts.map((excerpt, index) => ({
+    ...excerpt,
+    id: `${item.id}-${index}`,
+    topic: item.topic,
+    summary: item.summary,
+    sourceId: item.id,
+    sourceTitle: item.title,
+    sourceType: 'evidencia',
+    contextLabel: item.context,
+    participants: [participantName],
+  }))
+
+  return base.map((excerpt) => ({
+    ...excerpt,
+    contextWindow: base,
+  }))
+}
+
+const scoreEventImpact = (event) =>
+  event.evidence.length * 2 +
+  event.participants.length +
+  event.read.active.length * 2 +
+  event.read.aggressive.length * 3 +
+  event.read.pacifying.length * 2 +
+  (event.topic === 'Convivencia' ? 2 : 0)
+
+const deriveTimelineAnalytics = (events) => {
+  const topicCounts = new Map()
+  const memberStats = new Map(
+    MEMBERS.map((member) => [
+      member.id,
+      {
+        member,
+        events: 0,
+        fragmentsAuthored: 0,
+        active: 0,
+        aggressive: 0,
+        pacifying: 0,
+        conservative: 0,
+        sensible: 0,
+        influence: 0,
+      },
+    ]),
+  )
+
+  let totalFragments = 0
+
+  events.forEach((event) => {
+    totalFragments += event.evidence.length
+    topicCounts.set(event.topic, (topicCounts.get(event.topic) ?? 0) + 1)
+
+    event.participants.forEach((participant) => {
+      const member = resolveMember(participant)
+      if (!member || !memberStats.has(member.id)) return
+      const stat = memberStats.get(member.id)
+      stat.events += 1
+      stat.influence += 1
+    })
+
+    event.evidence.forEach((excerpt) => {
+      const member = resolveMember(excerpt.author)
+      if (!member || !memberStats.has(member.id)) return
+      const stat = memberStats.get(member.id)
+      stat.fragmentsAuthored += 1
+      stat.influence += 2
+    })
+
+    TIMELINE_READ_LABELS.forEach(({ key }) => {
+      event.read[key].forEach((label) => {
+        const member = resolveMember(label)
+        if (!member || !memberStats.has(member.id)) return
+        const stat = memberStats.get(member.id)
+        stat[key] += 1
+        stat.influence += TIMELINE_READ_WEIGHTS[key] ?? 1
+      })
+    })
+  })
+
+  const ranking = [...memberStats.values()]
+  const dominantTopicEntry = [...topicCounts.entries()].sort((left, right) => right[1] - left[1])[0]
+  const turningPoints = events
+    .map((event) => ({
+      ...event,
+      impactScore: scoreEventImpact(event),
+      leadFragment: buildEventFragments(event)[0] ?? null,
+    }))
+    .sort((left, right) => right.impactScore - left.impactScore)
+    .slice(0, 3)
+
+  const byMetric = (key) =>
+    ranking
+      .filter((item) => item.member.id !== 'system' && item.member.id !== 'group')
+      .sort((left, right) => right[key] - left[key])[0]
+
+  return {
+    totalEvents: events.length,
+    totalFragments,
+    dominantTopic: dominantTopicEntry?.[0] ?? 'Sin filtro',
+    topInfluence: byMetric('influence'),
+    topPacifier: byMetric('pacifying'),
+    topAggressive: byMetric('aggressive'),
+    tensionPeak: turningPoints[0] ?? null,
+    turningPoints,
+  }
+}
+
+const ChatFragments = ({ excerpts, label = 'Fragmentos del chat', onSelectFragment }) => (
   <div className="chat-fragments">
     <div className="chat-fragments__label">{label}</div>
     <div className="chat-fragments__list">
       {excerpts.map((excerpt, index) => (
-        <div
-          key={`${excerpt.author}-${excerpt.at}-${index}`}
-          className="chat-fragment"
+        <button
+          key={excerpt.id || `${excerpt.author}-${excerpt.at}-${index}`}
+          type="button"
+          className={`chat-fragment${onSelectFragment ? ' is-interactive' : ''}`}
+          onClick={onSelectFragment ? () => onSelectFragment(excerpt) : undefined}
         >
           <div className="chat-fragment__meta">
             <span className="chat-fragment__author">{excerpt.author}</span>
@@ -72,7 +257,8 @@ const ChatFragments = ({ excerpts, label = 'Fragmentos del chat' }) => (
             {excerpt.source && <span>{excerpt.source}</span>}
           </div>
           <div className="chat-fragment__text">“{excerpt.text}”</div>
-        </div>
+          {onSelectFragment && <div className="chat-fragment__cta">Abrir evidencia</div>}
+        </button>
       ))}
     </div>
   </div>
@@ -95,8 +281,9 @@ const TimelineReadout = ({ read }) => (
   </div>
 )
 
-const TimelineEventCard = ({ event }) => {
+const TimelineEventCard = ({ event, onSelectFragment }) => {
   const [activePane, setActivePane] = useState('read')
+  const eventFragments = useMemo(() => buildEventFragments(event), [event])
 
   return (
     <article
@@ -142,14 +329,221 @@ const TimelineEventCard = ({ event }) => {
               <TimelineReadout read={event.read} />
             ) : (
               <ChatFragments
-                excerpts={event.evidence}
+                excerpts={eventFragments}
                 label={`Fragmentos reales de ${CHAT_SOURCE_NAME}`}
+                onSelectFragment={onSelectFragment}
               />
             )}
           </div>
         </div>
       </div>
     </article>
+  )
+}
+
+const TimelineInsights = ({ analytics, onSelectFragment }) => {
+  const summaryCards = [
+    {
+      label: 'Eventos visibles',
+      value: String(analytics.totalEvents),
+      tone: 'rgba(255,255,255,0.12)',
+    },
+    {
+      label: 'Fragmentos auditables',
+      value: String(analytics.totalFragments),
+      tone: 'rgba(255,255,255,0.12)',
+    },
+    {
+      label: 'Tema dominante',
+      value: analytics.dominantTopic,
+      tone: TOPIC_ACCENTS[analytics.dominantTopic] ?? 'rgba(255,255,255,0.12)',
+    },
+    {
+      label: 'Motor del período',
+      value: analytics.topInfluence?.member.shortName || analytics.topInfluence?.member.name || 'N/D',
+      tone: analytics.topInfluence?.member.color || 'rgba(255,255,255,0.12)',
+    },
+  ]
+
+  const insightCards = [
+    {
+      title: 'Escalador recurrente',
+      value: analytics.topAggressive?.member.shortName || analytics.topAggressive?.member.name || 'N/D',
+      meta: analytics.topAggressive
+        ? `${analytics.topAggressive.aggressive} lecturas de agresividad`
+        : 'Sin datos',
+      tone: 'oklch(62% 0.22 25)',
+    },
+    {
+      title: 'Pacificador dominante',
+      value: analytics.topPacifier?.member.shortName || analytics.topPacifier?.member.name || 'N/D',
+      meta: analytics.topPacifier
+        ? `${analytics.topPacifier.pacifying} intervenciones calmantes`
+        : 'Sin datos',
+      tone: 'oklch(70% 0.16 145)',
+    },
+    {
+      title: 'Pico de tensión',
+      value: analytics.tensionPeak?.title || 'Sin picos registrados',
+      meta: analytics.tensionPeak
+        ? `${analytics.tensionPeak.impactScore} puntos de impacto`
+        : 'Sin datos',
+      tone: 'oklch(68% 0.18 200)',
+    },
+  ]
+
+  return (
+    <>
+      <div className="timeline-summary">
+        {summaryCards.map((item) => (
+          <div
+            key={item.label}
+            className="timeline-summary__item"
+            style={{ '--summary-accent': item.tone }}
+          >
+            <div className="timeline-summary__value">{item.value}</div>
+            <div className="timeline-summary__label">{item.label}</div>
+          </div>
+        ))}
+      </div>
+
+      <div className="timeline-insights">
+        {insightCards.map((item) => (
+          <article
+            key={item.title}
+            className="timeline-insight"
+            style={{ '--insight-accent': item.tone }}
+          >
+            <div className="timeline-insight__eyebrow">{item.title}</div>
+            <div className="timeline-insight__value">{item.value}</div>
+            <div className="timeline-insight__meta">{item.meta}</div>
+          </article>
+        ))}
+      </div>
+
+      <section className="turning-points" aria-label="Momentos bisagra">
+        <div className="turning-points__header">
+          <div>
+            <h3>Momentos bisagra</h3>
+            <p>Los episodios que más reorganizaron el tono, la atención y la fricción del grupo.</p>
+          </div>
+        </div>
+        <div className="turning-points__list">
+          {analytics.turningPoints.map((event, index) => (
+            <article key={event.id} className="turning-point-card">
+              <div className="turning-point-card__rank">0{index + 1}</div>
+              <div className="turning-point-card__body">
+                <div className="turning-point-card__meta">
+                  <span>{event.date}</span>
+                  <span>{event.topic}</span>
+                  <span>{event.impactScore} puntos</span>
+                </div>
+                <h4>{event.title}</h4>
+                <p>{event.summary}</p>
+              </div>
+              {event.leadFragment && (
+                <button
+                  type="button"
+                  className="turning-point-card__action"
+                  onClick={() => onSelectFragment(event.leadFragment)}
+                >
+                  Abrir evidencia
+                </button>
+              )}
+            </article>
+          ))}
+        </div>
+      </section>
+    </>
+  )
+}
+
+const EvidenceExplorer = ({ fragment, allFragments, onClose }) => {
+  if (!fragment) return null
+
+  const relatedFragments = allFragments
+    .filter(
+      (candidate) =>
+        candidate.id !== fragment.id &&
+        (candidate.author === fragment.author ||
+          candidate.topic === fragment.topic ||
+          candidate.participants?.some((participant) => fragment.participants?.includes(participant))),
+    )
+    .slice(0, 4)
+
+  return (
+    <div className="evidence-explorer">
+      <button type="button" className="evidence-explorer__backdrop" onClick={onClose} aria-label="Cerrar evidencia" />
+      <section className="evidence-explorer__panel" aria-label="Evidence Explorer">
+        <div className="evidence-explorer__header">
+          <div>
+            <div className="evidence-explorer__eyebrow">Evidence Explorer</div>
+            <h3>{fragment.sourceTitle}</h3>
+          </div>
+          <button type="button" className="close-btn" onClick={onClose} aria-label="Cerrar evidence explorer">
+            ✕
+          </button>
+        </div>
+
+        <div className="evidence-explorer__meta">
+          <span>{fragment.topic}</span>
+          <span>{fragment.contextLabel}</span>
+          <span>{fragment.sourceType}</span>
+        </div>
+
+        <blockquote className="evidence-explorer__quote">“{fragment.text}”</blockquote>
+
+        <div className="evidence-explorer__summary">
+          <div className="evidence-explorer__section-title">Por qué importa</div>
+          <p>{fragment.summary}</p>
+        </div>
+
+        <div className="evidence-explorer__participants">
+          <div className="evidence-explorer__section-title">Participantes implicados</div>
+          <div className="evidence-explorer__chips">
+            {fragment.participants?.map((participant) => (
+              <span key={`${fragment.id}-${participant}`}>{toDisplayName(participant)}</span>
+            ))}
+          </div>
+        </div>
+
+        <div className="evidence-explorer__context">
+          <div className="evidence-explorer__section-title">Contexto del bloque</div>
+          <div className="evidence-explorer__context-list">
+            {fragment.contextWindow?.map((entry) => (
+              <div
+                key={entry.id}
+                className={`evidence-explorer__context-item${entry.id === fragment.id ? ' active' : ''}`}
+              >
+                <div className="evidence-explorer__context-meta">
+                  <span>{entry.author}</span>
+                  <span>{entry.at}</span>
+                </div>
+                <div>{entry.text}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {relatedFragments.length > 0 && (
+          <div className="evidence-explorer__related">
+            <div className="evidence-explorer__section-title">Conecta con</div>
+            <div className="evidence-explorer__related-list">
+              {relatedFragments.map((entry) => (
+                <article key={entry.id} className="evidence-link-card">
+                  <div className="evidence-link-card__meta">
+                    <span>{entry.author}</span>
+                    <span>{entry.topic}</span>
+                  </div>
+                  <div className="evidence-link-card__title">{entry.sourceTitle}</div>
+                  <p>“{entry.text}”</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+    </div>
   )
 }
 
@@ -228,14 +622,17 @@ const MemberCard = ({ member, selected, tweaks, onSelect, delay }) => {
   )
 }
 
-const EvidenceSection = ({ member }) => {
+const EvidenceSection = ({ member, onSelectFragment }) => {
   const evidenceItems = getEvidenceItems(member)
 
   return (
     <section className="profile-section">
       <h3>Evidencia</h3>
       <div className="evidence-list">
-        {evidenceItems.map((item) => (
+        {evidenceItems.map((item) => {
+          const evidenceFragments = buildEvidenceFragments(member, item)
+
+          return (
           <details key={item.id} className="evidence-card">
             <summary className="evidence-card__summary">
               <div>
@@ -249,16 +646,17 @@ const EvidenceSection = ({ member }) => {
             </summary>
             <div className="evidence-card__body">
               <p>{item.summary}</p>
-              <ChatFragments excerpts={item.excerpts} />
+              <ChatFragments excerpts={evidenceFragments} onSelectFragment={onSelectFragment} />
             </div>
           </details>
-        ))}
+          )
+        })}
       </div>
     </section>
   )
 }
 
-const ProfilePanel = ({ member, tweaks, onClose }) => {
+const ProfilePanel = ({ member, tweaks, onClose, onSelectFragment }) => {
   if (!member) return null
 
   const isJavier = member.warning
@@ -335,7 +733,7 @@ const ProfilePanel = ({ member, tweaks, onClose }) => {
           ))}
         </section>
 
-        <EvidenceSection member={member} />
+        <EvidenceSection member={member} onSelectFragment={onSelectFragment} />
 
         <section className="profile-section">
           <h3>Relaciones</h3>
@@ -513,7 +911,7 @@ const NetworkView = ({ onSelect, selectedId, tweaks }) => {
   )
 }
 
-const TimelineView = () => {
+const TimelineView = ({ onSelectFragment }) => {
   const topics = useMemo(
     () => ['Todos', ...new Set(TIMELINE_EVENTS.map((event) => event.topic))],
     [],
@@ -524,12 +922,7 @@ const TimelineView = () => {
     if (activeTopic === 'Todos') return TIMELINE_EVENTS
     return TIMELINE_EVENTS.filter((event) => event.topic === activeTopic)
   }, [activeTopic])
-  const visibleFragments = useMemo(
-    () => visibleEvents.reduce((total, event) => total + event.evidence.length, 0),
-    [visibleEvents],
-  )
-
-  const activeLabel = activeTopic === 'Todos' ? 'Todas las capas' : activeTopic
+  const analytics = useMemo(() => deriveTimelineAnalytics(visibleEvents), [visibleEvents])
 
   return (
     <section className="timeline-section" aria-label="Timeline de eventos">
@@ -559,29 +952,18 @@ const TimelineView = () => {
         </div>
       </div>
 
-      <div className="timeline-summary">
-        {[
-          { label: 'Eventos visibles', value: String(visibleEvents.length) },
-          { label: 'Fragmentos citados', value: String(visibleFragments) },
-          { label: 'Filtro activo', value: activeLabel },
-        ].map((item) => (
-          <div key={item.label} className="timeline-summary__item">
-            <div className="timeline-summary__value">{item.value}</div>
-            <div className="timeline-summary__label">{item.label}</div>
-          </div>
-        ))}
-      </div>
+      <TimelineInsights analytics={analytics} onSelectFragment={onSelectFragment} />
 
       <div className="timeline-list">
         {visibleEvents.map((event) => (
-          <TimelineEventCard key={event.id} event={event} />
+          <TimelineEventCard key={event.id} event={event} onSelectFragment={onSelectFragment} />
         ))}
       </div>
     </section>
   )
 }
 
-const CompareColumn = ({ member }) => {
+const CompareColumn = ({ member, onSelectFragment }) => {
   const evidenceItems = getEvidenceItems(member).slice(0, 2)
 
   return (
@@ -620,16 +1002,24 @@ const CompareColumn = ({ member }) => {
 
       <section className="compare-card__section">
         <h4>Evidencia</h4>
-        {evidenceItems.map((item) => (
-          <div key={item.id} className="compare-evidence">
-            <div className="compare-evidence__meta">
-              <span>{item.topic}</span>
-              <span>{item.context}</span>
+        {evidenceItems.map((item) => {
+          const evidenceFragments = buildEvidenceFragments(member, item)
+
+          return (
+            <div key={item.id} className="compare-evidence">
+              <div className="compare-evidence__meta">
+                <span>{item.topic}</span>
+                <span>{item.context}</span>
+              </div>
+              <p>{item.summary}</p>
+              <ChatFragments
+                excerpts={evidenceFragments}
+                label="Fragmentos citados"
+                onSelectFragment={onSelectFragment}
+              />
             </div>
-            <p>{item.summary}</p>
-            <ChatFragments excerpts={item.excerpts} label="Fragmentos citados" />
-          </div>
-        ))}
+          )
+        })}
       </section>
 
       <section className="compare-card__section">
@@ -640,7 +1030,15 @@ const CompareColumn = ({ member }) => {
   )
 }
 
-const CompareView = ({ leftMember, rightMember, leftId, rightId, onChangeLeft, onChangeRight }) => (
+const CompareView = ({
+  leftMember,
+  rightMember,
+  leftId,
+  rightId,
+  onChangeLeft,
+  onChangeRight,
+  onSelectFragment,
+}) => (
   <section className="compare-section" aria-label="Comparador de miembros">
     <div className="section-intro">
       <div>
@@ -675,8 +1073,8 @@ const CompareView = ({ leftMember, rightMember, leftId, rightId, onChangeLeft, o
     </div>
 
     <div className="compare-layout">
-      <CompareColumn member={leftMember} />
-      <CompareColumn member={rightMember} />
+      <CompareColumn member={leftMember} onSelectFragment={onSelectFragment} />
+      <CompareColumn member={rightMember} onSelectFragment={onSelectFragment} />
     </div>
   </section>
 )
@@ -723,6 +1121,7 @@ const readStoredTab = () => {
 const App = () => {
   const [tab, setTab] = useState(readStoredTab)
   const [selected, setSelected] = useState(null)
+  const [selectedFragment, setSelectedFragment] = useState(null)
   const [tweaks, setTweaks] = useState(TWEAK_DEFAULTS)
   const [tweakVisible, setTweakVisible] = useState(false)
   const [compareLeftId, setCompareLeftId] = useState('francisco')
@@ -746,12 +1145,17 @@ const App = () => {
 
   useEffect(() => {
     const closeOnEscape = (event) => {
-      if (event.key === 'Escape') setSelected(null)
+      if (event.key !== 'Escape') return
+      if (selectedFragment) {
+        setSelectedFragment(null)
+        return
+      }
+      setSelected(null)
     }
 
     window.addEventListener('keydown', closeOnEscape)
     return () => window.removeEventListener('keydown', closeOnEscape)
-  }, [])
+  }, [selectedFragment])
 
   const handleSelect = useCallback((member) => {
     setSelected((previous) => (previous?.id === member.id ? null : member))
@@ -765,6 +1169,15 @@ const App = () => {
   const compareLeftMember = MEMBERS.find((member) => member.id === compareLeftId) ?? MEMBERS[0]
   const compareRightMember =
     MEMBERS.find((member) => member.id === compareRightId) ?? MEMBERS[1] ?? MEMBERS[0]
+  const allExplorerFragments = useMemo(
+    () => [
+      ...TIMELINE_EVENTS.flatMap((event) => buildEventFragments(event)),
+      ...MEMBERS.flatMap((member) =>
+        getEvidenceItems(member).flatMap((item) => buildEvidenceFragments(member, item)),
+      ),
+    ],
+    [],
+  )
 
   const tabs = ['Perfiles', 'Relaciones', 'Timeline', 'Comparar']
 
@@ -828,7 +1241,7 @@ const App = () => {
             <NetworkView onSelect={handleSelect} selectedId={selected?.id} tweaks={tweaks} />
           </section>
         ) : tab === 2 ? (
-          <TimelineView />
+          <TimelineView onSelectFragment={setSelectedFragment} />
         ) : (
           <CompareView
             leftMember={compareLeftMember}
@@ -837,13 +1250,24 @@ const App = () => {
             rightId={compareRightId}
             onChangeLeft={setCompareLeftId}
             onChangeRight={setCompareRightId}
+            onSelectFragment={setSelectedFragment}
           />
         )}
       </main>
 
       {selected && tab < 2 && (
-        <ProfilePanel member={selected} tweaks={tweaks} onClose={() => setSelected(null)} />
+        <ProfilePanel
+          member={selected}
+          tweaks={tweaks}
+          onClose={() => setSelected(null)}
+          onSelectFragment={setSelectedFragment}
+        />
       )}
+      <EvidenceExplorer
+        fragment={selectedFragment}
+        allFragments={allExplorerFragments}
+        onClose={() => setSelectedFragment(null)}
+      />
       <TweakPanel tweaks={tweaks} setTweaks={setTweaks} visible={tweakVisible} />
     </div>
   )
