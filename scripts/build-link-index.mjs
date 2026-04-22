@@ -31,6 +31,7 @@ const PREVIEW_FETCH_HOSTS = [
   'substack.com',
   'blackandwhitepixels.substack.com',
 ]
+const SOCIAL_PREVIEW_PLATFORMS = new Set(['X', 'Instagram', 'TikTok'])
 
 const memberMap = new Map([
   ['gabriel gutierrez', 'gabriel'],
@@ -196,9 +197,49 @@ const buildLabel = (messageText, url) => {
   return url
 }
 
-const shouldFetchPlatformPreview = (hostname, previewType) =>
-  previewType === 'Articulo' &&
-  PREVIEW_FETCH_HOSTS.some((allowed) => hostname === allowed || hostname.endsWith(`.${allowed}`))
+const hostnameMatches = (hostname, allowed) => hostname === allowed || hostname.endsWith(`.${allowed}`)
+
+const shouldFetchPlatformPreview = (entry) =>
+  (SOCIAL_PREVIEW_PLATFORMS.has(entry.platform) && !entry.thumbnailUrl) ||
+  (entry.previewType === 'Articulo' && PREVIEW_FETCH_HOSTS.some((allowed) => hostnameMatches(entry.domain, allowed)))
+
+const pickFirstFilled = (...values) => values.find((value) => typeof value === 'string' && value.trim()) ?? null
+
+const toAbsoluteUrl = (value, pageUrl) => {
+  if (!value || typeof value !== 'string') return null
+
+  try {
+    return new URL(value, pageUrl).toString()
+  } catch {
+    return null
+  }
+}
+
+const resolveImageCandidate = (value, pageUrl) => {
+  if (!value) return null
+  if (typeof value === 'string') return toAbsoluteUrl(value, pageUrl)
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      const resolved = resolveImageCandidate(item, pageUrl)
+      if (resolved) return resolved
+    }
+    return null
+  }
+  if (typeof value === 'object') {
+    return resolveImageCandidate(
+      value.url ||
+        value.contentUrl ||
+        value.thumbnailUrl ||
+        value.image ||
+        value.src ||
+        value['@id'] ||
+        null,
+      pageUrl,
+    )
+  }
+
+  return null
+}
 
 const decodeHtmlEntities = (value) =>
   value
@@ -259,6 +300,80 @@ const extractHtmlPreview = (html, pageUrl) => {
   }
 }
 
+const extractJsonLdPreview = (html, pageUrl) => {
+  const scriptPattern = /<script\b[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi
+  const nodes = []
+  let match = scriptPattern.exec(html)
+
+  while (match) {
+    try {
+      const parsed = JSON.parse(match[1].trim())
+      nodes.push(parsed)
+    } catch {
+      // Ignore malformed JSON-LD blocks.
+    }
+    match = scriptPattern.exec(html)
+  }
+
+  const queue = [...nodes]
+  while (queue.length > 0) {
+    const current = queue.shift()
+    if (!current) continue
+
+    if (Array.isArray(current)) {
+      queue.push(...current)
+      continue
+    }
+
+    if (typeof current !== 'object') continue
+    if (Array.isArray(current['@graph'])) queue.push(...current['@graph'])
+
+    const previewTitle = pickFirstFilled(current.headline, current.name, current.caption)
+    const previewDescription = pickFirstFilled(current.description, current.alternativeHeadline)
+    const previewImageUrl = resolveImageCandidate(
+      current.thumbnailUrl ||
+        current.thumbnail ||
+        current.image ||
+        current.associatedMedia ||
+        current.primaryImageOfPage,
+      pageUrl,
+    )
+
+    if (previewTitle || previewDescription || previewImageUrl) {
+      return {
+        previewTitle,
+        previewDescription,
+        previewImageUrl,
+      }
+    }
+  }
+
+  return {
+    previewTitle: null,
+    previewDescription: null,
+    previewImageUrl: null,
+  }
+}
+
+const mergePreviewMetadata = (...items) => ({
+  previewTitle: pickFirstFilled(...items.map((item) => item?.previewTitle ?? null)),
+  previewDescription: pickFirstFilled(...items.map((item) => item?.previewDescription ?? null)),
+  previewImageUrl: pickFirstFilled(...items.map((item) => item?.previewImageUrl ?? null)),
+})
+
+const isLowSignalPreviewTitle = (value, entry) => {
+  const normalized = normaliseText(value)
+  if (!normalized) return true
+
+  const lowSignalTitles = new Set([
+    normaliseText(entry.platform),
+    normaliseText(entry.domain),
+    normaliseText(entry.domain.split('.').slice(0, -1).join('.') || entry.domain),
+  ])
+
+  return lowSignalTitles.has(normalized)
+}
+
 const readPreviewCache = async () => {
   try {
     const raw = await fs.readFile(previewCacheFile, 'utf8')
@@ -273,12 +388,13 @@ const writePreviewCache = async (cache) => {
   await fs.writeFile(previewCacheFile, JSON.stringify(cache, null, 2))
 }
 
-const fetchPreviewMetadata = async (url) => {
+const fetchHtmlDocument = async (url) => {
   const response = await fetch(url, {
     headers: {
       'user-agent':
-        'Mozilla/5.0 (compatible; burritos-analysis-remix/1.0; +https://github.com/arteaga137/burritos-analysis-remix)',
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36',
       accept: 'text/html,application/xhtml+xml',
+      'accept-language': 'es-ES,es;q=0.9,en;q=0.8',
     },
     signal: AbortSignal.timeout(PREVIEW_FETCH_TIMEOUT_MS),
   })
@@ -288,7 +404,55 @@ const fetchPreviewMetadata = async (url) => {
   }
 
   const html = await response.text()
-  return extractHtmlPreview(html, response.url || url)
+  return { html, pageUrl: response.url || url }
+}
+
+const fetchJsonDocument = async (url) => {
+  const response = await fetch(url, {
+    headers: {
+      'user-agent':
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36',
+      accept: 'application/json,text/plain;q=0.9,*/*;q=0.8',
+      'accept-language': 'es-ES,es;q=0.9,en;q=0.8',
+    },
+    signal: AbortSignal.timeout(PREVIEW_FETCH_TIMEOUT_MS),
+  })
+
+  if (!response.ok) {
+    throw new Error(`preview-fetch-http-${response.status}`)
+  }
+
+  return response.json()
+}
+
+const fetchTikTokOEmbedMetadata = async (url) => {
+  const endpoint = new URL('https://www.tiktok.com/oembed')
+  endpoint.searchParams.set('url', url)
+
+  const payload = await fetchJsonDocument(endpoint)
+  return {
+    previewTitle: pickFirstFilled(payload?.title, payload?.author_name ? `@${payload.author_name}` : null),
+    previewDescription: pickFirstFilled(payload?.author_name ? `Publicado por @${payload.author_name}` : null),
+    previewImageUrl: pickFirstFilled(payload?.thumbnail_url),
+  }
+}
+
+const fetchPreviewMetadata = async (url, preview) => {
+  const fragments = []
+
+  if (preview.platform === 'TikTok') {
+    try {
+      fragments.push(await fetchTikTokOEmbedMetadata(url))
+    } catch {
+      // Continue with HTML metadata fallback.
+    }
+  }
+
+  const { html, pageUrl } = await fetchHtmlDocument(url)
+  fragments.push(extractHtmlPreview(html, pageUrl))
+  fragments.push(extractJsonLdPreview(html, pageUrl))
+
+  return mergePreviewMetadata(...fragments)
 }
 
 const mapLimit = async (items, limit, iteratee) => {
@@ -323,6 +487,13 @@ const getYouTubeVideoId = (url) => {
   }
 
   return null
+}
+
+const buildInstagramThumbnailUrl = (url) => {
+  const pathname = url.pathname.endsWith('/') ? url.pathname : `${url.pathname}/`
+  if (!pathname.startsWith('/p/') && !pathname.startsWith('/reel/') && !pathname.startsWith('/reels/')) return null
+
+  return new URL(`${pathname}media/?size=l`, `${url.origin}/`).toString()
 }
 
 const detectLinkPreview = (canonicalUrl, messageText, label) => {
@@ -371,7 +542,7 @@ const detectLinkPreview = (canonicalUrl, messageText, label) => {
       platform: 'Instagram',
       previewType,
       monogram: 'IG',
-      thumbnailUrl: null,
+      thumbnailUrl: buildInstagramThumbnailUrl(url),
     }
   }
 
@@ -657,18 +828,19 @@ const main = async () => {
 
   const previewTargets = [...new Set(
     entries
-      .filter((entry) => shouldFetchPlatformPreview(entry.domain, entry.previewType))
-      .map((entry) => entry.canonicalUrl),
+      .filter((entry) => shouldFetchPlatformPreview(entry))
+      .map((entry) => JSON.stringify({ url: entry.canonicalUrl, platform: entry.platform })),
   )]
 
-  await mapLimit(previewTargets, PREVIEW_FETCH_CONCURRENCY, async (targetUrl) => {
-    const cached = previewCache[targetUrl]
+  await mapLimit(previewTargets, PREVIEW_FETCH_CONCURRENCY, async (serializedTarget) => {
+    const target = JSON.parse(serializedTarget)
+    const cached = previewCache[target.url]
 
     if (cached) return cached
 
     try {
-      const metadata = await fetchPreviewMetadata(targetUrl)
-      previewCache[targetUrl] = metadata
+      const metadata = await fetchPreviewMetadata(target.url, { platform: target.platform })
+      previewCache[target.url] = metadata
       return metadata
     } catch {
       return null
@@ -679,7 +851,9 @@ const main = async () => {
     const metadata = previewCache[entry.canonicalUrl]
     if (!metadata) return
     if (metadata.previewImageUrl && !entry.thumbnailUrl) entry.thumbnailUrl = metadata.previewImageUrl
-    if (metadata.previewTitle) entry.previewTitle = metadata.previewTitle
+    if (metadata.previewTitle && !isLowSignalPreviewTitle(metadata.previewTitle, entry)) {
+      entry.previewTitle = metadata.previewTitle
+    }
     if (metadata.previewDescription) entry.previewDescription = metadata.previewDescription
   })
 
