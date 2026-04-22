@@ -2684,11 +2684,25 @@ const DynamicsView = ({ linksIndex, analytics }) => {
 const CommentHighlightsView = ({ highlights, onSelectFragment }) => {
   const categories = highlights?.categories || EMPTY_CATEGORIES
   const [activeCategoryId, setActiveCategoryId] = useState('toxic')
+  const [activeMemberId, setActiveMemberId] = useState('all')
 
   const activeCategory = useMemo(
     () => categories.find((category) => category.id === activeCategoryId) ?? categories[0] ?? null,
     [activeCategoryId, categories],
   )
+  const memberOptions = useMemo(
+    () => [
+      { id: 'all', label: 'Todos' },
+      ...MEMBERS.map((member) => ({ id: member.id, label: member.shortName || member.name })),
+    ],
+    [],
+  )
+  const visibleEntries = useMemo(() => {
+    if (!activeCategory) return []
+    if (activeMemberId === 'all') return activeCategory.entries
+    return activeCategory.entries.filter((entry) => entry.memberId === activeMemberId)
+  }, [activeCategory, activeMemberId])
+  const visibleLeader = visibleEntries[0] ?? null
 
   if (!highlights) {
     return (
@@ -2753,6 +2767,19 @@ const CommentHighlightsView = ({ highlights, onSelectFragment }) => {
         ))}
       </div>
 
+      <div className="comments-filters">
+        <label className="compare-control">
+          <span>Miembro</span>
+          <select value={activeMemberId} onChange={(event) => setActiveMemberId(event.target.value)}>
+            {memberOptions.map((option) => (
+              <option key={option.id} value={option.id}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </label>
+      </div>
+
       <div className="timeline-summary">
         {[
           {
@@ -2762,18 +2789,21 @@ const CommentHighlightsView = ({ highlights, onSelectFragment }) => {
           },
           {
             label: 'Miembros con señal',
-            value: String(activeCategory.memberCount),
+            value: String(visibleEntries.length),
             tone: activeCategory.accent,
           },
           {
             label: 'Pico de score',
-            value: String(activeCategory.leader?.score ?? 0),
+            value: String(visibleLeader?.score ?? 0),
             tone: activeCategory.accent,
           },
           {
-            label: 'Fuente',
-            value: 'Chat real',
-            tone: 'rgba(255,255,255,0.12)',
+            label: activeMemberId === 'all' ? 'Filtro' : 'Miembro activo',
+            value:
+              activeMemberId === 'all'
+                ? 'Todos'
+                : MEMBERS.find((member) => member.id === activeMemberId)?.shortName || 'N/D',
+            tone: activeCategory.accent,
           },
         ].map((item) => (
           <div
@@ -2795,9 +2825,9 @@ const CommentHighlightsView = ({ highlights, onSelectFragment }) => {
           </div>
         </div>
 
-        {activeCategory.leader ? (() => {
-          const member = MEMBERS.find((item) => item.id === activeCategory.leader.memberId)
-          const fragment = buildCommentHighlightFragment(activeCategory, activeCategory.leader)
+        {visibleLeader ? (() => {
+          const member = MEMBERS.find((item) => item.id === visibleLeader.memberId)
+          const fragment = buildCommentHighlightFragment(activeCategory, visibleLeader)
 
           return (
             <article
@@ -2806,15 +2836,15 @@ const CommentHighlightsView = ({ highlights, onSelectFragment }) => {
             >
               <div className="comment-leader-card__meta">
                 <span>{activeCategory.icon} Caso líder</span>
-                <span>{member?.shortName || member?.name || activeCategory.leader.memberName}</span>
-                <span>{activeCategory.leader.intensity}</span>
-                <span>Score {activeCategory.leader.score}</span>
+                <span>{member?.shortName || member?.name || visibleLeader.memberName}</span>
+                <span>{visibleLeader.intensity}</span>
+                <span>Score {visibleLeader.score}</span>
               </div>
-              <h3>{member?.name || activeCategory.leader.memberName}</h3>
-              <blockquote className="comment-leader-card__quote">“{activeCategory.leader.text}”</blockquote>
-              <p>{activeCategory.leader.rationale}</p>
+              <h3>{member?.name || visibleLeader.memberName}</h3>
+              <blockquote className="comment-leader-card__quote">“{visibleLeader.text}”</blockquote>
+              <p>{visibleLeader.rationale}</p>
               <div className="comment-leader-card__footer">
-                <span>{activeCategory.leader.at}</span>
+                <span>{visibleLeader.at}</span>
                 <button
                   type="button"
                   className="turning-point-card__action"
@@ -2832,12 +2862,16 @@ const CommentHighlightsView = ({ highlights, onSelectFragment }) => {
         <div className="analysis-section__header">
           <div>
             <h3>Mejor muestra por miembro</h3>
-            <p>Se muestra la cita con mayor señal para esta categoría dentro del chat completo.</p>
+            <p>
+              {activeMemberId === 'all'
+                ? 'Se muestra la cita con mayor señal para esta categoría dentro del chat completo.'
+                : 'Vista filtrada para un solo miembro dentro de la categoría activa.'}
+            </p>
           </div>
         </div>
 
         <div className="comment-highlights-grid">
-          {activeCategory.entries.map((entry) => {
+          {visibleEntries.map((entry) => {
             const member = MEMBERS.find((item) => item.id === entry.memberId)
             const fragment = buildCommentHighlightFragment(activeCategory, entry)
 
@@ -2869,6 +2903,17 @@ const CommentHighlightsView = ({ highlights, onSelectFragment }) => {
             )
           })}
         </div>
+        {visibleEntries.length === 0 ? (
+          <article className="comment-highlight-card" style={{ '--comment-accent': activeCategory.accent }}>
+            <div className="comment-highlight-card__meta">
+              <span>Sin resultado</span>
+            </div>
+            <h3>No hay cita para este filtro</h3>
+            <p className="comment-highlight-card__rationale">
+              Este miembro no tiene una muestra clasificada dentro de la categoría activa.
+            </p>
+          </article>
+        ) : null}
       </section>
     </section>
   )

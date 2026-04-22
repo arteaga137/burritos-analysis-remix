@@ -1512,6 +1512,13 @@ button {
   color: #f0ede8;
 }
 
+.comments-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 240px);
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
 .comment-leader-card,
 .comment-highlight-card {
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -3405,6 +3412,10 @@ button {
 
   .comments-section {
     padding: 24px 18px 28px;
+  }
+
+  .comments-filters {
+    grid-template-columns: 1fr;
   }
 
   .comment-highlights-grid {

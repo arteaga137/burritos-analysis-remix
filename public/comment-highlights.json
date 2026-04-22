@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-22T16:49:35.926Z",
+  "generatedAt": "2026-04-22T16:56:12.037Z",
   "sourceName": "Negreira Boys Fantasy Cup ⚽️🤡",
   "categories": [
     {
@@ -9,6 +9,7 @@
       "icon": "☣️",
       "accent": "oklch(62% 0.22 25)",
       "description": "Roce directo, hostilidad y frases diseñadas para subir la temperatura del grupo.",
+      "editorialPriorityIds": [],
       "entries": [
         {
           "id": "toxic-jesus-6476",
@@ -891,6 +892,11 @@
       "icon": "🚫",
       "accent": "oklch(66% 0.18 18)",
       "description": "Lectura de frases con sesgo racial explícito o con minimización directa de insultos racistas.",
+      "editorialPriorityIds": [
+        "javier",
+        "francisco",
+        "gabriel"
+      ],
       "entries": [
         {
           "id": "racist-javier-10185",
@@ -1082,6 +1088,83 @@
           ]
         },
         {
+          "id": "racist-gabriel-10187",
+          "memberId": "gabriel",
+          "memberName": "Gabriel Gutiérrez",
+          "author": "Gabriel Gutiérrez",
+          "at": "2/23/26, 6:31:44 PM",
+          "timestamp": "2026-02-23T18:31:44.000Z",
+          "score": 5,
+          "intensity": "Baja",
+          "text": "En España le dieron a Vinicius que se fuera al sambodromo a hacer el mono. Seguro quisieron decir que él es muy alegre",
+          "matches": [
+            {
+              "label": "mono",
+              "count": 1,
+              "score": 5
+            }
+          ],
+          "rationale": "Activa la lectura por mono.",
+          "contextWindow": [
+            {
+              "id": "ctx-10187-0",
+              "at": "2/23/26, 6:30:02 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Cavanni dijo gracias negrito e igualmente lo multaron. Capaz para prestianni y los argentinos decirle mono no tiene una connotación racistas. A lo mejor le dijo que dejar de comportarse como mono.",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-10187-1",
+              "at": "2/23/26, 6:30:45 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Es en serio que estamos teniendo esta discusión? JAJAJAJA",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-10187-2",
+              "at": "2/23/26, 6:31:44 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "En España le dieron a Vinicius que se fuera al sambodromo a hacer el mono. Seguro quisieron decir que él es muy alegre",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-10187-3",
+              "at": "2/23/26, 6:32:05 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "‎sticker omitted",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10187-4",
+              "at": "2/23/26, 6:32:14 PM",
+              "author": "Luís Torrado",
+              "memberId": "luis",
+              "text": "claaaaro y mbappe no piensa q es puto por comerse un travesaño",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10187-5",
+              "at": "2/23/26, 6:33:38 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Eso no lo excusa de discriminar a una persona por su orientación sexual.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10187-6",
+              "at": "2/23/26, 6:34:40 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Mi abuela me dice que a su papá, (italiano), en Montevideo le decían “el negro” siendo blanco, solo porque tenía el pelo negro",
+              "kind": "after"
+            }
+          ]
+        },
+        {
           "id": "racist-aaron-5755",
           "memberId": "aaron",
           "memberName": "Aaron Rodrigues",
@@ -1159,83 +1242,6 @@
               "author": "Jesús Burgos",
               "memberId": "jesus",
               "text": "Hoy descansan las colchoneras, hoy no les caerán a coñazos",
-              "kind": "after"
-            }
-          ]
-        },
-        {
-          "id": "racist-gabriel-10187",
-          "memberId": "gabriel",
-          "memberName": "Gabriel Gutiérrez",
-          "author": "Gabriel Gutiérrez",
-          "at": "2/23/26, 6:31:44 PM",
-          "timestamp": "2026-02-23T18:31:44.000Z",
-          "score": 5,
-          "intensity": "Baja",
-          "text": "En España le dieron a Vinicius que se fuera al sambodromo a hacer el mono. Seguro quisieron decir que él es muy alegre",
-          "matches": [
-            {
-              "label": "mono",
-              "count": 1,
-              "score": 5
-            }
-          ],
-          "rationale": "Activa la lectura por mono.",
-          "contextWindow": [
-            {
-              "id": "ctx-10187-0",
-              "at": "2/23/26, 6:30:02 PM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "Cavanni dijo gracias negrito e igualmente lo multaron. Capaz para prestianni y los argentinos decirle mono no tiene una connotación racistas. A lo mejor le dijo que dejar de comportarse como mono.",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-10187-1",
-              "at": "2/23/26, 6:30:45 PM",
-              "author": "Gabriel Gutiérrez",
-              "memberId": "gabriel",
-              "text": "Es en serio que estamos teniendo esta discusión? JAJAJAJA",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-10187-2",
-              "at": "2/23/26, 6:31:44 PM",
-              "author": "Gabriel Gutiérrez",
-              "memberId": "gabriel",
-              "text": "En España le dieron a Vinicius que se fuera al sambodromo a hacer el mono. Seguro quisieron decir que él es muy alegre",
-              "kind": "self"
-            },
-            {
-              "id": "ctx-10187-3",
-              "at": "2/23/26, 6:32:05 PM",
-              "author": "Gabriel Gutiérrez",
-              "memberId": "gabriel",
-              "text": "‎sticker omitted",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-10187-4",
-              "at": "2/23/26, 6:32:14 PM",
-              "author": "Luís Torrado",
-              "memberId": "luis",
-              "text": "claaaaro y mbappe no piensa q es puto por comerse un travesaño",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-10187-5",
-              "at": "2/23/26, 6:33:38 PM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "Eso no lo excusa de discriminar a una persona por su orientación sexual.",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-10187-6",
-              "at": "2/23/26, 6:34:40 PM",
-              "author": "Gabriel Gutiérrez",
-              "memberId": "gabriel",
-              "text": "Mi abuela me dice que a su papá, (italiano), en Montevideo le decían “el negro” siendo blanco, solo porque tenía el pelo negro",
               "kind": "after"
             }
           ]
@@ -1503,6 +1509,7 @@
       "icon": "🫶",
       "accent": "oklch(70% 0.16 145)",
       "description": "Mensajes que corrigen, enfrían o hacen retroceder la escalada dentro del chat.",
+      "editorialPriorityIds": [],
       "entries": [
         {
           "id": "calming-javier-7317",
@@ -2194,7 +2201,90 @@
       "icon": "🎭",
       "accent": "oklch(72% 0.18 60)",
       "description": "Sarcasmo, carnada y frases hechas para pinchar al otro sin declararlo frontalmente.",
+      "editorialPriorityIds": [
+        "gustavo",
+        "javier",
+        "gabriel",
+        "francisco"
+      ],
       "entries": [
+        {
+          "id": "troll-gustavo-1049",
+          "memberId": "gustavo",
+          "memberName": "Gustavo Torres",
+          "author": "Gustavo Torres",
+          "at": "4/26/25, 11:43:53 PM",
+          "timestamp": "2025-04-26T23:43:53.000Z",
+          "score": 11,
+          "intensity": "Media",
+          "text": "ah no, está ganando el Madrid? Que bien que todo está siendo muy justo! Todo bajo norma! ‎<This message was edited>",
+          "matches": [
+            {
+              "label": "muy justo",
+              "count": 1,
+              "score": 11
+            }
+          ],
+          "rationale": "Activa la lectura por muy justo.",
+          "contextWindow": [
+            {
+              "id": "ctx-1049-0",
+              "at": "4/26/25, 11:41:18 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Van a ganar la copa pero no celebren todo es culpa del arbitro",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-1049-1",
+              "at": "4/26/25, 11:43:40 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "Sí, que chimbo que este juego estaba manchado desde el principio",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-1049-2",
+              "at": "4/26/25, 11:43:53 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "ah no, está ganando el Madrid? Que bien que todo está siendo muy justo! Todo bajo norma! ‎<This message was edited>",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-1049-3",
+              "at": "4/26/25, 11:49:53 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "perdón, ya están robando de nuevo! 😡",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-1049-4",
+              "at": "4/27/25, 12:03:47 AM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "‎Gabriel Gutiérrez removed Javier Gimenez",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-1049-5",
+              "at": "4/27/25, 12:05:18 AM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "‎Javier Gimenez was added",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-1049-6",
+              "at": "4/27/25, 12:00:27 AM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "La anterior de ferrando fue penalazo",
+              "kind": "after"
+            }
+          ]
+        },
         {
           "id": "troll-javier-6869",
           "memberId": "javier",
@@ -2265,6 +2355,80 @@
               "author": "Javier Gimenez",
               "memberId": "javier",
               "text": "En un 11 por rendimiento actual. Creo que sacaría a vinicius por Valverde y carrera por balde y el resto posiblemente igual. ‎image omitted",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "troll-gabriel-10606",
+          "memberId": "gabriel",
+          "memberName": "Gabriel Gutiérrez",
+          "author": "Gabriel Gutiérrez",
+          "at": "3/10/26, 7:44:11 PM",
+          "timestamp": "2026-03-10T19:44:11.000Z",
+          "score": 8,
+          "intensity": "Media",
+          "text": "El pana le dio repost a un meme por dos minutos y lo borró enseguida. Capaz hasta metió el dedo y ni se dio cuenta hasta que le avisaron jajaja",
+          "matches": [
+            {
+              "label": "meme",
+              "count": 1,
+              "score": 7
+            },
+            {
+              "label": "jajaja",
+              "count": 1,
+              "score": 1
+            }
+          ],
+          "rationale": "Activa la lectura por meme, jajaja.",
+          "contextWindow": [
+            {
+              "id": "ctx-10606-0",
+              "at": "3/10/26, 7:22:17 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Madriditis, le llaman a eso.",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-10606-1",
+              "at": "3/10/26, 7:28:05 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Si no quieres creer ya es tu problema. No voy a buscar más fuentes.",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-10606-2",
+              "at": "3/10/26, 7:44:11 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "El pana le dio repost a un meme por dos minutos y lo borró enseguida. Capaz hasta metió el dedo y ni se dio cuenta hasta que le avisaron jajaja",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-10606-3",
+              "at": "3/10/26, 7:44:32 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Ya la época woke pasó señoritas, avancemos",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10606-4",
+              "at": "3/10/26, 8:14:16 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Si quieres creer que no vio lo que hizo👍. El benéfica decide creer que no dijo nada prestianni ‎<This message was edited>",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10606-5",
+              "at": "3/10/26, 8:16:26 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "los que se la pasan diciendo por qué tanto ataques personales. Los que no aguanta que los jodan. Jajajajaja🤣.",
               "kind": "after"
             }
           ]
@@ -2347,157 +2511,6 @@
               "author": "Javier Gimenez",
               "memberId": "javier",
               "text": "Para mí ambas serían rojas",
-              "kind": "after"
-            }
-          ]
-        },
-        {
-          "id": "troll-gustavo-1049",
-          "memberId": "gustavo",
-          "memberName": "Gustavo Torres",
-          "author": "Gustavo Torres",
-          "at": "4/26/25, 11:43:53 PM",
-          "timestamp": "2025-04-26T23:43:53.000Z",
-          "score": 11,
-          "intensity": "Media",
-          "text": "ah no, está ganando el Madrid? Que bien que todo está siendo muy justo! Todo bajo norma! ‎<This message was edited>",
-          "matches": [
-            {
-              "label": "muy justo",
-              "count": 1,
-              "score": 11
-            }
-          ],
-          "rationale": "Activa la lectura por muy justo.",
-          "contextWindow": [
-            {
-              "id": "ctx-1049-0",
-              "at": "4/26/25, 11:41:18 PM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "Van a ganar la copa pero no celebren todo es culpa del arbitro",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-1049-1",
-              "at": "4/26/25, 11:43:40 PM",
-              "author": "Gustavo Torres",
-              "memberId": "gustavo",
-              "text": "Sí, que chimbo que este juego estaba manchado desde el principio",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-1049-2",
-              "at": "4/26/25, 11:43:53 PM",
-              "author": "Gustavo Torres",
-              "memberId": "gustavo",
-              "text": "ah no, está ganando el Madrid? Que bien que todo está siendo muy justo! Todo bajo norma! ‎<This message was edited>",
-              "kind": "self"
-            },
-            {
-              "id": "ctx-1049-3",
-              "at": "4/26/25, 11:49:53 PM",
-              "author": "Gustavo Torres",
-              "memberId": "gustavo",
-              "text": "perdón, ya están robando de nuevo! 😡",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-1049-4",
-              "at": "4/27/25, 12:03:47 AM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "‎Gabriel Gutiérrez removed Javier Gimenez",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-1049-5",
-              "at": "4/27/25, 12:05:18 AM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "‎Javier Gimenez was added",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-1049-6",
-              "at": "4/27/25, 12:00:27 AM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "La anterior de ferrando fue penalazo",
-              "kind": "after"
-            }
-          ]
-        },
-        {
-          "id": "troll-gabriel-10606",
-          "memberId": "gabriel",
-          "memberName": "Gabriel Gutiérrez",
-          "author": "Gabriel Gutiérrez",
-          "at": "3/10/26, 7:44:11 PM",
-          "timestamp": "2026-03-10T19:44:11.000Z",
-          "score": 8,
-          "intensity": "Media",
-          "text": "El pana le dio repost a un meme por dos minutos y lo borró enseguida. Capaz hasta metió el dedo y ni se dio cuenta hasta que le avisaron jajaja",
-          "matches": [
-            {
-              "label": "meme",
-              "count": 1,
-              "score": 7
-            },
-            {
-              "label": "jajaja",
-              "count": 1,
-              "score": 1
-            }
-          ],
-          "rationale": "Activa la lectura por meme, jajaja.",
-          "contextWindow": [
-            {
-              "id": "ctx-10606-0",
-              "at": "3/10/26, 7:22:17 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Madriditis, le llaman a eso.",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-10606-1",
-              "at": "3/10/26, 7:28:05 PM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "Si no quieres creer ya es tu problema. No voy a buscar más fuentes.",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-10606-2",
-              "at": "3/10/26, 7:44:11 PM",
-              "author": "Gabriel Gutiérrez",
-              "memberId": "gabriel",
-              "text": "El pana le dio repost a un meme por dos minutos y lo borró enseguida. Capaz hasta metió el dedo y ni se dio cuenta hasta que le avisaron jajaja",
-              "kind": "self"
-            },
-            {
-              "id": "ctx-10606-3",
-              "at": "3/10/26, 7:44:32 PM",
-              "author": "Gabriel Gutiérrez",
-              "memberId": "gabriel",
-              "text": "Ya la época woke pasó señoritas, avancemos",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-10606-4",
-              "at": "3/10/26, 8:14:16 PM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "Si quieres creer que no vio lo que hizo👍. El benéfica decide creer que no dijo nada prestianni ‎<This message was edited>",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-10606-5",
-              "at": "3/10/26, 8:16:26 PM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "los que se la pasan diciendo por qué tanto ataques personales. Los que no aguanta que los jodan. Jajajajaja🤣.",
               "kind": "after"
             }
           ]
@@ -2915,75 +2928,78 @@
         }
       ],
       "leader": {
-        "id": "troll-javier-6869",
-        "memberId": "javier",
-        "memberName": "Javier Gimenez",
-        "author": "Javier Gimenez",
-        "at": "10/26/25, 1:45:25 AM",
-        "timestamp": "2025-10-26T01:45:25.000Z",
-        "score": 17,
-        "intensity": "Alta",
-        "text": "Igual no vi el vídeo solo fragmentos rápidos. Fue más por joder. Más tarde lo veo con calma",
+        "id": "troll-gustavo-1049",
+        "memberId": "gustavo",
+        "memberName": "Gustavo Torres",
+        "author": "Gustavo Torres",
+        "at": "4/26/25, 11:43:53 PM",
+        "timestamp": "2025-04-26T23:43:53.000Z",
+        "score": 11,
+        "intensity": "Media",
+        "text": "ah no, está ganando el Madrid? Que bien que todo está siendo muy justo! Todo bajo norma! ‎<This message was edited>",
         "matches": [
           {
-            "label": "fue más por joder",
+            "label": "muy justo",
             "count": 1,
-            "score": 9
-          },
-          {
-            "label": "por joder",
-            "count": 1,
-            "score": 8
+            "score": 11
           }
         ],
-        "rationale": "Activa la lectura por fue más por joder, por joder.",
+        "rationale": "Activa la lectura por muy justo.",
         "contextWindow": [
           {
-            "id": "ctx-6869-0",
-            "at": "10/26/25, 1:44:03 AM",
-            "author": "Gabriel Gutiérrez",
-            "memberId": "gabriel",
-            "text": "Jajaja vaina tan chistosa",
-            "kind": "before"
-          },
-          {
-            "id": "ctx-6869-1",
-            "at": "10/26/25, 1:44:28 AM",
-            "author": "Gabriel Gutiérrez",
-            "memberId": "gabriel",
-            "text": "Mañana gana el Barcelona, duerman tranquilos",
-            "kind": "before"
-          },
-          {
-            "id": "ctx-6869-2",
-            "at": "10/26/25, 1:45:25 AM",
+            "id": "ctx-1049-0",
+            "at": "4/26/25, 11:41:18 PM",
             "author": "Javier Gimenez",
             "memberId": "javier",
-            "text": "Igual no vi el vídeo solo fragmentos rápidos. Fue más por joder. Más tarde lo veo con calma",
+            "text": "Van a ganar la copa pero no celebren todo es culpa del arbitro",
+            "kind": "before"
+          },
+          {
+            "id": "ctx-1049-1",
+            "at": "4/26/25, 11:43:40 PM",
+            "author": "Gustavo Torres",
+            "memberId": "gustavo",
+            "text": "Sí, que chimbo que este juego estaba manchado desde el principio",
+            "kind": "before"
+          },
+          {
+            "id": "ctx-1049-2",
+            "at": "4/26/25, 11:43:53 PM",
+            "author": "Gustavo Torres",
+            "memberId": "gustavo",
+            "text": "ah no, está ganando el Madrid? Que bien que todo está siendo muy justo! Todo bajo norma! ‎<This message was edited>",
             "kind": "self"
           },
           {
-            "id": "ctx-6869-3",
-            "at": "10/26/25, 1:46:13 AM",
-            "author": "Jesús Burgos",
-            "memberId": "jesus",
-            "text": "Quiero que sepan que asi se ven los cuales ciegos ‎video omitted",
+            "id": "ctx-1049-3",
+            "at": "4/26/25, 11:49:53 PM",
+            "author": "Gustavo Torres",
+            "memberId": "gustavo",
+            "text": "perdón, ya están robando de nuevo! 😡",
             "kind": "after"
           },
           {
-            "id": "ctx-6869-4",
-            "at": "10/26/25, 1:46:48 AM",
+            "id": "ctx-1049-4",
+            "at": "4/27/25, 12:03:47 AM",
             "author": "Javier Gimenez",
             "memberId": "javier",
-            "text": "El Barça no está bien. Creo que el Madrid tiene más posibilidades. Igual ninguno de los dos está en un buen momento.",
+            "text": "‎Gabriel Gutiérrez removed Javier Gimenez",
             "kind": "after"
           },
           {
-            "id": "ctx-6869-5",
-            "at": "10/26/25, 2:14:26 AM",
+            "id": "ctx-1049-5",
+            "at": "4/27/25, 12:05:18 AM",
             "author": "Javier Gimenez",
             "memberId": "javier",
-            "text": "En un 11 por rendimiento actual. Creo que sacaría a vinicius por Valverde y carrera por balde y el resto posiblemente igual. ‎image omitted",
+            "text": "‎Javier Gimenez was added",
+            "kind": "after"
+          },
+          {
+            "id": "ctx-1049-6",
+            "at": "4/27/25, 12:00:27 AM",
+            "author": "Javier Gimenez",
+            "memberId": "javier",
+            "text": "La anterior de ferrando fue penalazo",
             "kind": "after"
           }
         ]
@@ -2997,7 +3013,89 @@
       "icon": "🧠",
       "accent": "oklch(68% 0.18 200)",
       "description": "Mensajes con matiz, criterio y una lectura que ordena mejor el debate que la media del grupo.",
+      "editorialPriorityIds": [
+        "francisco",
+        "luis",
+        "jesus",
+        "gerardo"
+      ],
       "entries": [
+        {
+          "id": "sensible-francisco-10209",
+          "memberId": "francisco",
+          "memberName": "Francisco Arteaga",
+          "author": "Francisco Arteaga",
+          "at": "2/23/26, 8:59:14 PM",
+          "timestamp": "2026-02-23T20:59:14.000Z",
+          "score": 22,
+          "intensity": "Alta",
+          "text": "Porque es una expresión con una acepción diferente en la región. De la misma forma que ustedes defienden a capa y espada que a Bellingham lo sancionen por decir “Fuck-off” porque entienden que es una grosería; en España “eres un puto…” es diferente a la acepción “eres puto”. Si un árbitro que estudió menos inglés que el que nos enseñaron a nosotros en el colegio puede sancionar a un jugador por algo que no entiende, entonces por algo que si puede entender no tiene porque sancionarlo si no ve injuria.",
+          "matches": [
+            {
+              "label": "es diferente",
+              "count": 1,
+              "score": 7
+            },
+            {
+              "label": "entiendo",
+              "count": 2,
+              "score": 6
+            },
+            {
+              "label": "matiz argumental",
+              "count": 1,
+              "score": 5
+            },
+            {
+              "label": "criterio sin insulto",
+              "count": 1,
+              "score": 4
+            }
+          ],
+          "rationale": "Activa la lectura por es diferente, entiendo, matiz argumental.",
+          "contextWindow": [
+            {
+              "id": "ctx-10209-0",
+              "at": "2/23/26, 8:55:05 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "‎GIF omitted",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-10209-1",
+              "at": "2/23/26, 8:56:54 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Por qué si pudieron multar a cavanni cuando esa palabra no existe en inglés y parece una frase más amistosa. ‎<This message was edited>",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-10209-2",
+              "at": "2/23/26, 8:59:14 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Porque es una expresión con una acepción diferente en la región. De la misma forma que ustedes defienden a capa y espada que a Bellingham lo sancionen por decir “Fuck-off” porque entienden que es una grosería; en España “eres un puto…” es diferente a la acepción “eres puto”. Si un árbitro que estudió menos inglés que el que nos enseñaron a nosotros en el colegio puede sancionar a un jugador por algo que no entiende, entonces por algo que si puede entender no tiene porque sancionarlo si no ve injuria.",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-10209-3",
+              "at": "2/23/26, 8:59:21 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Eso en el sentido estricto",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10209-4",
+              "at": "2/23/26, 8:59:57 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "En la realidad, la conducta de Mbappé es justificable por proporcionalidad.",
+              "kind": "after"
+            }
+          ]
+        },
         {
           "id": "sensible-luis-9967",
           "memberId": "luis",
@@ -3086,26 +3184,16 @@
           ]
         },
         {
-          "id": "sensible-francisco-10209",
-          "memberId": "francisco",
-          "memberName": "Francisco Arteaga",
-          "author": "Francisco Arteaga",
-          "at": "2/23/26, 8:59:14 PM",
-          "timestamp": "2026-02-23T20:59:14.000Z",
-          "score": 22,
-          "intensity": "Alta",
-          "text": "Porque es una expresión con una acepción diferente en la región. De la misma forma que ustedes defienden a capa y espada que a Bellingham lo sancionen por decir “Fuck-off” porque entienden que es una grosería; en España “eres un puto…” es diferente a la acepción “eres puto”. Si un árbitro que estudió menos inglés que el que nos enseñaron a nosotros en el colegio puede sancionar a un jugador por algo que no entiende, entonces por algo que si puede entender no tiene porque sancionarlo si no ve injuria.",
+          "id": "sensible-jesus-896",
+          "memberId": "jesus",
+          "memberName": "Jesús Burgos",
+          "author": "Jesús Burgos",
+          "at": "4/26/25, 6:29:21 PM",
+          "timestamp": "2025-04-26T18:29:21.000Z",
+          "score": 12,
+          "intensity": "Media",
+          "text": "Los árbitros son personas que tienen familia y eso lo entiendo totalmente. Pero ellos son contratados para ser imparciales",
           "matches": [
-            {
-              "label": "es diferente",
-              "count": 1,
-              "score": 7
-            },
-            {
-              "label": "entiendo",
-              "count": 2,
-              "score": 6
-            },
             {
               "label": "matiz argumental",
               "count": 1,
@@ -3115,48 +3203,69 @@
               "label": "criterio sin insulto",
               "count": 1,
               "score": 4
+            },
+            {
+              "label": "entiendo",
+              "count": 1,
+              "score": 3
             }
           ],
-          "rationale": "Activa la lectura por es diferente, entiendo, matiz argumental.",
+          "rationale": "Activa la lectura por matiz argumental, criterio sin insulto, entiendo.",
           "contextWindow": [
             {
-              "id": "ctx-10209-0",
-              "at": "2/23/26, 8:55:05 PM",
-              "author": "Gabriel Gutiérrez",
-              "memberId": "gabriel",
-              "text": "‎GIF omitted",
+              "id": "ctx-896-0",
+              "at": "4/26/25, 6:28:56 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "Aunque yo de pana (sin trollear) pienso lo mismo que el Madrid realmente sabe que no lo están perjudicando, es todo para una novela. Si de verdad pensaran que los están robando sus acciones fueran distintas",
               "kind": "before"
             },
             {
-              "id": "ctx-10209-1",
-              "at": "2/23/26, 8:56:54 PM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "Por qué si pudieron multar a cavanni cuando esa palabra no existe en inglés y parece una frase más amistosa. ‎<This message was edited>",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-10209-2",
-              "at": "2/23/26, 8:59:14 PM",
+              "id": "ctx-896-1",
+              "at": "4/26/25, 6:29:08 PM",
               "author": "Francisco Arteaga",
               "memberId": "francisco",
-              "text": "Porque es una expresión con una acepción diferente en la región. De la misma forma que ustedes defienden a capa y espada que a Bellingham lo sancionen por decir “Fuck-off” porque entienden que es una grosería; en España “eres un puto…” es diferente a la acepción “eres puto”. Si un árbitro que estudió menos inglés que el que nos enseñaron a nosotros en el colegio puede sancionar a un jugador por algo que no entiende, entonces por algo que si puede entender no tiene porque sancionarlo si no ve injuria.",
+              "text": "Noup, o al menos no es lo que yo entendí. Leyendo el mensaje, lo que entiendo de su mensaje es que la situación es una lucha de poder, disfrazada de un circo.",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-896-2",
+              "at": "4/26/25, 6:29:21 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Los árbitros son personas que tienen familia y eso lo entiendo totalmente. Pero ellos son contratados para ser imparciales",
               "kind": "self"
             },
             {
-              "id": "ctx-10209-3",
-              "at": "2/23/26, 8:59:21 PM",
+              "id": "ctx-896-3",
+              "at": "4/26/25, 6:29:27 PM",
               "author": "Francisco Arteaga",
               "memberId": "francisco",
-              "text": "Eso en el sentido estricto",
+              "text": "Lo que pasa es que hay que ver los juegos para entender a lo que se refieren.",
               "kind": "after"
             },
             {
-              "id": "ctx-10209-4",
-              "at": "2/23/26, 8:59:57 PM",
+              "id": "ctx-896-4",
+              "at": "4/26/25, 6:29:38 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Y el del var ayer literalmente amenazo públicamente al Real Madrid",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-896-5",
+              "at": "4/26/25, 6:29:55 PM",
               "author": "Francisco Arteaga",
               "memberId": "francisco",
-              "text": "En la realidad, la conducta de Mbappé es justificable por proporcionalidad.",
+              "text": "Hay decisiones claras en las que el juego se ha balanceado en contra del Madrid.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-896-6",
+              "at": "4/26/25, 6:29:58 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Y no dijo que iba a ser el, nombró hasta las que limpian literalmente",
               "kind": "after"
             }
           ]
@@ -3478,93 +3587,6 @@
           ]
         },
         {
-          "id": "sensible-jesus-896",
-          "memberId": "jesus",
-          "memberName": "Jesús Burgos",
-          "author": "Jesús Burgos",
-          "at": "4/26/25, 6:29:21 PM",
-          "timestamp": "2025-04-26T18:29:21.000Z",
-          "score": 12,
-          "intensity": "Media",
-          "text": "Los árbitros son personas que tienen familia y eso lo entiendo totalmente. Pero ellos son contratados para ser imparciales",
-          "matches": [
-            {
-              "label": "matiz argumental",
-              "count": 1,
-              "score": 5
-            },
-            {
-              "label": "criterio sin insulto",
-              "count": 1,
-              "score": 4
-            },
-            {
-              "label": "entiendo",
-              "count": 1,
-              "score": 3
-            }
-          ],
-          "rationale": "Activa la lectura por matiz argumental, criterio sin insulto, entiendo.",
-          "contextWindow": [
-            {
-              "id": "ctx-896-0",
-              "at": "4/26/25, 6:28:56 PM",
-              "author": "Gustavo Torres",
-              "memberId": "gustavo",
-              "text": "Aunque yo de pana (sin trollear) pienso lo mismo que el Madrid realmente sabe que no lo están perjudicando, es todo para una novela. Si de verdad pensaran que los están robando sus acciones fueran distintas",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-896-1",
-              "at": "4/26/25, 6:29:08 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Noup, o al menos no es lo que yo entendí. Leyendo el mensaje, lo que entiendo de su mensaje es que la situación es una lucha de poder, disfrazada de un circo.",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-896-2",
-              "at": "4/26/25, 6:29:21 PM",
-              "author": "Jesús Burgos",
-              "memberId": "jesus",
-              "text": "Los árbitros son personas que tienen familia y eso lo entiendo totalmente. Pero ellos son contratados para ser imparciales",
-              "kind": "self"
-            },
-            {
-              "id": "ctx-896-3",
-              "at": "4/26/25, 6:29:27 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Lo que pasa es que hay que ver los juegos para entender a lo que se refieren.",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-896-4",
-              "at": "4/26/25, 6:29:38 PM",
-              "author": "Jesús Burgos",
-              "memberId": "jesus",
-              "text": "Y el del var ayer literalmente amenazo públicamente al Real Madrid",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-896-5",
-              "at": "4/26/25, 6:29:55 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Hay decisiones claras en las que el juego se ha balanceado en contra del Madrid.",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-896-6",
-              "at": "4/26/25, 6:29:58 PM",
-              "author": "Jesús Burgos",
-              "memberId": "jesus",
-              "text": "Y no dijo que iba a ser el, nombró hasta las que limpian literalmente",
-              "kind": "after"
-            }
-          ]
-        },
-        {
           "id": "sensible-aaron-5741",
           "memberId": "aaron",
           "memberName": "Aaron Rodrigues",
@@ -3802,25 +3824,30 @@
         }
       ],
       "leader": {
-        "id": "sensible-luis-9967",
-        "memberId": "luis",
-        "memberName": "Luís Torrado",
-        "author": "Luís Torrado",
-        "at": "2/18/26, 2:16:59 PM",
-        "timestamp": "2026-02-18T14:16:59.000Z",
-        "score": 30,
+        "id": "sensible-francisco-10209",
+        "memberId": "francisco",
+        "memberName": "Francisco Arteaga",
+        "author": "Francisco Arteaga",
+        "at": "2/23/26, 8:59:14 PM",
+        "timestamp": "2026-02-23T20:59:14.000Z",
+        "score": 22,
         "intensity": "Alta",
-        "text": "No marico confundes las cosas, ser canchero es diferente..es tirar un caño, hacer sombreritos...ya que te esten diciendo vainas todo el tiempo es diferente",
+        "text": "Porque es una expresión con una acepción diferente en la región. De la misma forma que ustedes defienden a capa y espada que a Bellingham lo sancionen por decir “Fuck-off” porque entienden que es una grosería; en España “eres un puto…” es diferente a la acepción “eres puto”. Si un árbitro que estudió menos inglés que el que nos enseñaron a nosotros en el colegio puede sancionar a un jugador por algo que no entiende, entonces por algo que si puede entender no tiene porque sancionarlo si no ve injuria.",
         "matches": [
           {
             "label": "es diferente",
-            "count": 2,
-            "score": 14
+            "count": 1,
+            "score": 7
           },
           {
-            "label": "confundes las cosas",
+            "label": "entiendo",
+            "count": 2,
+            "score": 6
+          },
+          {
+            "label": "matiz argumental",
             "count": 1,
-            "score": 12
+            "score": 5
           },
           {
             "label": "criterio sin insulto",
@@ -3828,62 +3855,46 @@
             "score": 4
           }
         ],
-        "rationale": "Activa la lectura por es diferente, confundes las cosas, criterio sin insulto.",
+        "rationale": "Activa la lectura por es diferente, entiendo, matiz argumental.",
         "contextWindow": [
           {
-            "id": "ctx-9967-0",
-            "at": "2/18/26, 2:14:58 PM",
-            "author": "Jesús Burgos",
-            "memberId": "jesus",
-            "text": "Lo de ser canchero está bien pero con códigos. El tema del racismo es burda de complejo, y ninguno de nosotros creo que haya podido sufrir esa vaina. Quizás lo más cercano es la xenofobia que recibimos como venezolanos y a mí me hierve la sangre cada vez que veo esa vaina así no sea conmigo",
+            "id": "ctx-10209-0",
+            "at": "2/23/26, 8:55:05 PM",
+            "author": "Gabriel Gutiérrez",
+            "memberId": "gabriel",
+            "text": "‎GIF omitted",
             "kind": "before"
           },
           {
-            "id": "ctx-9967-1",
-            "at": "2/18/26, 2:15:17 PM",
-            "author": "Jesús Burgos",
-            "memberId": "jesus",
-            "text": "Aquí tú le dices negro a un negro y te tumban los dientes",
+            "id": "ctx-10209-1",
+            "at": "2/23/26, 8:56:54 PM",
+            "author": "Javier Gimenez",
+            "memberId": "javier",
+            "text": "Por qué si pudieron multar a cavanni cuando esa palabra no existe en inglés y parece una frase más amistosa. ‎<This message was edited>",
             "kind": "before"
           },
           {
-            "id": "ctx-9967-2",
-            "at": "2/18/26, 2:16:59 PM",
-            "author": "Luís Torrado",
-            "memberId": "luis",
-            "text": "No marico confundes las cosas, ser canchero es diferente..es tirar un caño, hacer sombreritos...ya que te esten diciendo vainas todo el tiempo es diferente",
+            "id": "ctx-10209-2",
+            "at": "2/23/26, 8:59:14 PM",
+            "author": "Francisco Arteaga",
+            "memberId": "francisco",
+            "text": "Porque es una expresión con una acepción diferente en la región. De la misma forma que ustedes defienden a capa y espada que a Bellingham lo sancionen por decir “Fuck-off” porque entienden que es una grosería; en España “eres un puto…” es diferente a la acepción “eres puto”. Si un árbitro que estudió menos inglés que el que nos enseñaron a nosotros en el colegio puede sancionar a un jugador por algo que no entiende, entonces por algo que si puede entender no tiene porque sancionarlo si no ve injuria.",
             "kind": "self"
           },
           {
-            "id": "ctx-9967-3",
-            "at": "2/18/26, 2:18:09 PM",
-            "author": "Javier Gimenez",
-            "memberId": "javier",
-            "text": "Si igual a vinicius pero si entras en ese juego te la aguantas. Si quieres discriminar y humillar te la aguantas",
+            "id": "ctx-10209-3",
+            "at": "2/23/26, 8:59:21 PM",
+            "author": "Francisco Arteaga",
+            "memberId": "francisco",
+            "text": "Eso en el sentido estricto",
             "kind": "after"
           },
           {
-            "id": "ctx-9967-4",
-            "at": "2/18/26, 2:19:14 PM",
-            "author": "Luís Torrado",
-            "memberId": "luis",
-            "text": "si claro, asi le dijo cesc a morata, que se dedique a otra cosa...pero igual lo que digo q eso esta mal ...para mi es como jugar sucio",
-            "kind": "after"
-          },
-          {
-            "id": "ctx-9967-5",
-            "at": "2/18/26, 2:19:57 PM",
-            "author": "Luís Torrado",
-            "memberId": "luis",
-            "text": "o como zidane con materazzi...se hace desde hace mucho tiempo y es muy arrecho erradicarlo",
-            "kind": "after"
-          },
-          {
-            "id": "ctx-9967-6",
-            "at": "2/18/26, 2:20:28 PM",
-            "author": "Luís Torrado",
-            "memberId": "luis",
-            "text": "solo digo q no estoy de acuerdo con eso q por lo general lo hacen los argentinos",
+            "id": "ctx-10209-4",
+            "at": "2/23/26, 8:59:57 PM",
+            "author": "Francisco Arteaga",
+            "memberId": "francisco",
+            "text": "En la realidad, la conducta de Mbappé es justificable por proporcionalidad.",
             "kind": "after"
           }
         ]
@@ -3897,7 +3908,95 @@
       "icon": "🔥",
       "accent": "oklch(62% 0.22 25)",
       "description": "Ataque frontal, sin demasiada mediación ni humor protector.",
+      "editorialPriorityIds": [
+        "javier",
+        "jesus",
+        "francisco",
+        "gabriel"
+      ],
       "entries": [
+        {
+          "id": "aggressive-javier-1035",
+          "memberId": "javier",
+          "memberName": "Javier Gimenez",
+          "author": "Javier Gimenez",
+          "at": "4/26/25, 11:07:52 PM",
+          "timestamp": "2025-04-26T23:07:52.000Z",
+          "score": 16,
+          "intensity": "Alta",
+          "text": "Pura paja por que?. Si te dije yo no apuesto 🤷.",
+          "matches": [
+            {
+              "label": "pura paja",
+              "count": 1,
+              "score": 10
+            },
+            {
+              "label": "segunda persona + golpe",
+              "count": 1,
+              "score": 6
+            }
+          ],
+          "rationale": "Activa la lectura por pura paja, segunda persona + golpe.",
+          "contextWindow": [
+            {
+              "id": "ctx-1035-0",
+              "at": "4/26/25, 11:06:52 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "🤷‍♂️",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-1035-1",
+              "at": "4/26/25, 11:06:56 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Pura paja",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-1035-2",
+              "at": "4/26/25, 11:07:52 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Pura paja por que?. Si te dije yo no apuesto 🤷.",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-1035-3",
+              "at": "4/26/25, 11:08:40 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Si el VAR es justo, no se cambia.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-1035-4",
+              "at": "4/26/25, 11:08:41 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "No me gusta.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-1035-5",
+              "at": "4/26/25, 11:08:49 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Ni por espectáculo ni por nada",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-1035-6",
+              "at": "4/26/25, 11:09:03 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Era 10K fáciles",
+              "kind": "after"
+            }
+          ]
+        },
         {
           "id": "aggressive-jesus-6476",
           "memberId": "jesus",
@@ -3991,88 +4090,6 @@
               "author": "Gabriel Gutiérrez",
               "memberId": "gabriel",
               "text": "Yo no vi la roja en directo, pero cuando vi la notificación, honestamente me dio sincera ladilla por las tonterías que venían luego, más cuando el gol vino justo después. Pero es que viéndolo, no cabe interpretación, no hay balón! Na webona ‎<This message was edited>",
-              "kind": "after"
-            }
-          ]
-        },
-        {
-          "id": "aggressive-javier-1035",
-          "memberId": "javier",
-          "memberName": "Javier Gimenez",
-          "author": "Javier Gimenez",
-          "at": "4/26/25, 11:07:52 PM",
-          "timestamp": "2025-04-26T23:07:52.000Z",
-          "score": 16,
-          "intensity": "Alta",
-          "text": "Pura paja por que?. Si te dije yo no apuesto 🤷.",
-          "matches": [
-            {
-              "label": "pura paja",
-              "count": 1,
-              "score": 10
-            },
-            {
-              "label": "segunda persona + golpe",
-              "count": 1,
-              "score": 6
-            }
-          ],
-          "rationale": "Activa la lectura por pura paja, segunda persona + golpe.",
-          "contextWindow": [
-            {
-              "id": "ctx-1035-0",
-              "at": "4/26/25, 11:06:52 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "🤷‍♂️",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-1035-1",
-              "at": "4/26/25, 11:06:56 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Pura paja",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-1035-2",
-              "at": "4/26/25, 11:07:52 PM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "Pura paja por que?. Si te dije yo no apuesto 🤷.",
-              "kind": "self"
-            },
-            {
-              "id": "ctx-1035-3",
-              "at": "4/26/25, 11:08:40 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Si el VAR es justo, no se cambia.",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-1035-4",
-              "at": "4/26/25, 11:08:41 PM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "No me gusta.",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-1035-5",
-              "at": "4/26/25, 11:08:49 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Ni por espectáculo ni por nada",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-1035-6",
-              "at": "4/26/25, 11:09:03 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Era 10K fáciles",
               "kind": "after"
             }
           ]
@@ -4702,35 +4719,20 @@
         }
       ],
       "leader": {
-        "id": "aggressive-jesus-6476",
-        "memberId": "jesus",
-        "memberName": "Jesús Burgos",
-        "author": "Jesús Burgos",
-        "at": "10/20/25, 2:58:37 PM",
-        "timestamp": "2025-10-20T14:58:37.000Z",
-        "score": 38,
+        "id": "aggressive-javier-1035",
+        "memberId": "javier",
+        "memberName": "Javier Gimenez",
+        "author": "Javier Gimenez",
+        "at": "4/26/25, 11:07:52 PM",
+        "timestamp": "2025-04-26T23:07:52.000Z",
+        "score": 16,
         "intensity": "Alta",
-        "text": "El Mayor bocón es el 10 de tu equipo, que no ha ganado una mierda y se cree Dios. Chillaron tanto por Vinicius y les salió uno peor, y que con 18 años es un personaje inmamable que se cree la gran mierda y ni llega ni a peo…",
+        "text": "Pura paja por que?. Si te dije yo no apuesto 🤷.",
         "matches": [
           {
-            "label": "mierda",
-            "count": 2,
+            "label": "pura paja",
+            "count": 1,
             "score": 10
-          },
-          {
-            "label": "inmamable",
-            "count": 1,
-            "score": 8
-          },
-          {
-            "label": "se cree dios",
-            "count": 1,
-            "score": 7
-          },
-          {
-            "label": "gran mierda",
-            "count": 1,
-            "score": 7
           },
           {
             "label": "segunda persona + golpe",
@@ -4738,62 +4740,62 @@
             "score": 6
           }
         ],
-        "rationale": "Activa la lectura por mierda, inmamable, se cree dios.",
+        "rationale": "Activa la lectura por pura paja, segunda persona + golpe.",
         "contextWindow": [
           {
-            "id": "ctx-6476-0",
-            "at": "10/20/25, 2:58:00 PM",
-            "author": "Gabriel Gutiérrez",
-            "memberId": "gabriel",
-            "text": "El tema es que están acostumbrados en general a darle mordiscos y coñazos a Vinicius y no les sacan ni amarilla",
+            "id": "ctx-1035-0",
+            "at": "4/26/25, 11:06:52 PM",
+            "author": "Francisco Arteaga",
+            "memberId": "francisco",
+            "text": "🤷‍♂️",
             "kind": "before"
           },
           {
-            "id": "ctx-6476-1",
-            "at": "10/20/25, 2:58:27 PM",
-            "author": "Gabriel Gutiérrez",
-            "memberId": "gabriel",
-            "text": "Bravo por el árbitro que se atrevió a arbitrar correcto",
+            "id": "ctx-1035-1",
+            "at": "4/26/25, 11:06:56 PM",
+            "author": "Francisco Arteaga",
+            "memberId": "francisco",
+            "text": "Pura paja",
             "kind": "before"
           },
           {
-            "id": "ctx-6476-2",
-            "at": "10/20/25, 2:58:37 PM",
-            "author": "Jesús Burgos",
-            "memberId": "jesus",
-            "text": "El Mayor bocón es el 10 de tu equipo, que no ha ganado una mierda y se cree Dios. Chillaron tanto por Vinicius y les salió uno peor, y que con 18 años es un personaje inmamable que se cree la gran mierda y ni llega ni a peo…",
+            "id": "ctx-1035-2",
+            "at": "4/26/25, 11:07:52 PM",
+            "author": "Javier Gimenez",
+            "memberId": "javier",
+            "text": "Pura paja por que?. Si te dije yo no apuesto 🤷.",
             "kind": "self"
           },
           {
-            "id": "ctx-6476-3",
-            "at": "10/20/25, 3:00:56 PM",
-            "author": "Javier Gimenez",
-            "memberId": "javier",
-            "text": "Es un bocon y me provoca pegarle cuando dice algunas cosas y más aún al papá que deberia callarse la boca por que no aporta nada. Pero más bocon que vinicius es imposible.",
-            "kind": "after"
-          },
-          {
-            "id": "ctx-6476-4",
-            "at": "10/20/25, 3:01:46 PM",
+            "id": "ctx-1035-3",
+            "at": "4/26/25, 11:08:40 PM",
             "author": "Francisco Arteaga",
             "memberId": "francisco",
-            "text": "Lograron que el burrito se molestara",
+            "text": "Si el VAR es justo, no se cambia.",
             "kind": "after"
           },
           {
-            "id": "ctx-6476-5",
-            "at": "10/20/25, 3:04:27 PM",
+            "id": "ctx-1035-4",
+            "at": "4/26/25, 11:08:41 PM",
             "author": "Javier Gimenez",
             "memberId": "javier",
-            "text": "Quien discute la roja?. Dije que era roja. Para mi criterio es una jugada que el árbitro puede interpretar(por la posición del codo)",
+            "text": "No me gusta.",
             "kind": "after"
           },
           {
-            "id": "ctx-6476-6",
-            "at": "10/20/25, 3:07:47 PM",
-            "author": "Gabriel Gutiérrez",
-            "memberId": "gabriel",
-            "text": "Yo no vi la roja en directo, pero cuando vi la notificación, honestamente me dio sincera ladilla por las tonterías que venían luego, más cuando el gol vino justo después. Pero es que viéndolo, no cabe interpretación, no hay balón! Na webona ‎<This message was edited>",
+            "id": "ctx-1035-5",
+            "at": "4/26/25, 11:08:49 PM",
+            "author": "Francisco Arteaga",
+            "memberId": "francisco",
+            "text": "Ni por espectáculo ni por nada",
+            "kind": "after"
+          },
+          {
+            "id": "ctx-1035-6",
+            "at": "4/26/25, 11:09:03 PM",
+            "author": "Francisco Arteaga",
+            "memberId": "francisco",
+            "text": "Era 10K fáciles",
             "kind": "after"
           }
         ]
@@ -4807,6 +4809,11 @@
       "icon": "🧨",
       "accent": "oklch(60% 0.25 15)",
       "description": "Mensajes que parecen escritos para producir reacción o abrir otra pelea.",
+      "editorialPriorityIds": [
+        "javier",
+        "gustavo",
+        "francisco"
+      ],
       "entries": [
         {
           "id": "provocative-javier-1414",
@@ -4896,64 +4903,6 @@
           ]
         },
         {
-          "id": "provocative-francisco-3944",
-          "memberId": "francisco",
-          "memberName": "Francisco Arteaga",
-          "author": "Francisco Arteaga",
-          "at": "7/17/25, 6:43:07 PM",
-          "timestamp": "2025-07-17T18:43:07.000Z",
-          "score": 12,
-          "intensity": "Media",
-          "text": "No debí haber puesto la opción de botellita, porque @⁨Andres Eduardo Pinto⁩ la va a elegir a esa sola, solo por joder.",
-          "matches": [
-            {
-              "label": "por joder",
-              "count": 1,
-              "score": 7
-            },
-            {
-              "label": "autoadmisión",
-              "count": 1,
-              "score": 5
-            }
-          ],
-          "rationale": "Activa la lectura por por joder, autoadmisión.",
-          "contextWindow": [
-            {
-              "id": "ctx-3944-0",
-              "at": "7/17/25, 6:34:19 PM",
-              "author": "Negreira Boys Fantasy Cup ⚽️🤡",
-              "memberId": null,
-              "text": "‎You pinned a message",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-3944-1",
-              "at": "7/17/25, 6:34:59 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Listo, hay 3 mensajes pineados. Pueden saltar entre ellos tocando el pin de arriba.",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-3944-2",
-              "at": "7/17/25, 6:43:07 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "No debí haber puesto la opción de botellita, porque @⁨Andres Eduardo Pinto⁩ la va a elegir a esa sola, solo por joder.",
-              "kind": "self"
-            },
-            {
-              "id": "ctx-3944-3",
-              "at": "7/17/25, 6:44:31 PM",
-              "author": "Gustavo Torres",
-              "memberId": "gustavo",
-              "text": "La gente quiere lo que la gente quiere",
-              "kind": "after"
-            }
-          ]
-        },
-        {
           "id": "provocative-gustavo-4976",
           "memberId": "gustavo",
           "memberName": "Gustavo Torres",
@@ -5031,6 +4980,64 @@
               "author": "Gustavo Torres",
               "memberId": "gustavo",
               "text": "Creo que basado en todas los puntos de vistas es claro que los fans del Madrid tienen un síndrome de hijo único, que el mundo gira alrededor de ellos y si las cosas salen mal es una conspiración",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "provocative-francisco-3944",
+          "memberId": "francisco",
+          "memberName": "Francisco Arteaga",
+          "author": "Francisco Arteaga",
+          "at": "7/17/25, 6:43:07 PM",
+          "timestamp": "2025-07-17T18:43:07.000Z",
+          "score": 12,
+          "intensity": "Media",
+          "text": "No debí haber puesto la opción de botellita, porque @⁨Andres Eduardo Pinto⁩ la va a elegir a esa sola, solo por joder.",
+          "matches": [
+            {
+              "label": "por joder",
+              "count": 1,
+              "score": 7
+            },
+            {
+              "label": "autoadmisión",
+              "count": 1,
+              "score": 5
+            }
+          ],
+          "rationale": "Activa la lectura por por joder, autoadmisión.",
+          "contextWindow": [
+            {
+              "id": "ctx-3944-0",
+              "at": "7/17/25, 6:34:19 PM",
+              "author": "Negreira Boys Fantasy Cup ⚽️🤡",
+              "memberId": null,
+              "text": "‎You pinned a message",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-3944-1",
+              "at": "7/17/25, 6:34:59 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Listo, hay 3 mensajes pineados. Pueden saltar entre ellos tocando el pin de arriba.",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-3944-2",
+              "at": "7/17/25, 6:43:07 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "No debí haber puesto la opción de botellita, porque @⁨Andres Eduardo Pinto⁩ la va a elegir a esa sola, solo por joder.",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-3944-3",
+              "at": "7/17/25, 6:44:31 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "La gente quiere lo que la gente quiere",
               "kind": "after"
             }
           ]
@@ -5663,6 +5670,11 @@
       "icon": "🧾",
       "accent": "oklch(72% 0.18 60)",
       "description": "Mensajes que fijan reglas, cierran temas o hablan desde una lógica de orden y disciplina.",
+      "editorialPriorityIds": [
+        "gabriel",
+        "francisco",
+        "javier"
+      ],
       "entries": [
         {
           "id": "authoritarian-gabriel-10129",
@@ -5839,93 +5851,6 @@
           ]
         },
         {
-          "id": "authoritarian-gerardo-9991",
-          "memberId": "gerardo",
-          "memberName": "Gerardo Vitale Errico",
-          "author": "Gerardo Vitale Errico",
-          "at": "2/18/26, 4:17:24 PM",
-          "timestamp": "2026-02-18T16:17:24.000Z",
-          "score": 15,
-          "intensity": "Alta",
-          "text": "No discuto el código de conducta y el fair play, simplemente parece que queremos ir a un futbol ideal perfecto sin toques, sin roces, sin hablarse. Y que estamos dispuesto a ver cada rincón del campo y alrededores, y grabar todo porque se tiene que auditar todo post partido y ver que coño se estaban diciendo entre ellos.",
-          "matches": [
-            {
-              "label": "se tiene que",
-              "count": 1,
-              "score": 6
-            },
-            {
-              "label": "tienes que",
-              "count": 1,
-              "score": 5
-            },
-            {
-              "label": "modo norma",
-              "count": 1,
-              "score": 4
-            }
-          ],
-          "rationale": "Activa la lectura por se tiene que, tienes que, modo norma.",
-          "contextWindow": [
-            {
-              "id": "ctx-9991-0",
-              "at": "2/18/26, 4:12:03 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Es como que tú mañana llegues a tu trabajo y agarres al chino y le digas “chino cochino”",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-9991-1",
-              "at": "2/18/26, 4:12:32 PM",
-              "author": "Gerardo Vitale Errico",
-              "memberId": "gerardo",
-              "text": "Vini tiene que ir a lavarse esas nalgas",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-9991-2",
-              "at": "2/18/26, 4:17:24 PM",
-              "author": "Gerardo Vitale Errico",
-              "memberId": "gerardo",
-              "text": "No discuto el código de conducta y el fair play, simplemente parece que queremos ir a un futbol ideal perfecto sin toques, sin roces, sin hablarse. Y que estamos dispuesto a ver cada rincón del campo y alrededores, y grabar todo porque se tiene que auditar todo post partido y ver que coño se estaban diciendo entre ellos.",
-              "kind": "self"
-            },
-            {
-              "id": "ctx-9991-3",
-              "at": "2/18/26, 4:19:35 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Es el mundo en que vivimos. Hace 10 años, teniamos SportCenter y ya. Hoy en día, para darte los highlights tienes 20-30 cámaras en el estadio grabando todo. Sin contar que todo mundo está grabando desde su celular.",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-9991-4",
-              "at": "2/18/26, 4:20:21 PM",
-              "author": "Gerardo Vitale Errico",
-              "memberId": "gerardo",
-              "text": "Entonces taparte la boca es cobarde? Es lógico y viene haciéndose desde hacer años luz",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-9991-5",
-              "at": "2/18/26, 4:20:53 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Aún así, legalmente, el free speech solo protegería decir “no me gustan los negros, no creo que sean personas”",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-9991-6",
-              "at": "2/18/26, 4:21:02 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Decirle mono a alguien,sería hate speech.",
-              "kind": "after"
-            }
-          ]
-        },
-        {
           "id": "authoritarian-javier-372",
           "memberId": "javier",
           "memberName": "Javier Gimenez",
@@ -6008,6 +5933,93 @@
               "author": "Francisco Arteaga",
               "memberId": "francisco",
               "text": "Lo que se dice es que la forma en que se está usando es cuestionable",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "authoritarian-gerardo-9991",
+          "memberId": "gerardo",
+          "memberName": "Gerardo Vitale Errico",
+          "author": "Gerardo Vitale Errico",
+          "at": "2/18/26, 4:17:24 PM",
+          "timestamp": "2026-02-18T16:17:24.000Z",
+          "score": 15,
+          "intensity": "Alta",
+          "text": "No discuto el código de conducta y el fair play, simplemente parece que queremos ir a un futbol ideal perfecto sin toques, sin roces, sin hablarse. Y que estamos dispuesto a ver cada rincón del campo y alrededores, y grabar todo porque se tiene que auditar todo post partido y ver que coño se estaban diciendo entre ellos.",
+          "matches": [
+            {
+              "label": "se tiene que",
+              "count": 1,
+              "score": 6
+            },
+            {
+              "label": "tienes que",
+              "count": 1,
+              "score": 5
+            },
+            {
+              "label": "modo norma",
+              "count": 1,
+              "score": 4
+            }
+          ],
+          "rationale": "Activa la lectura por se tiene que, tienes que, modo norma.",
+          "contextWindow": [
+            {
+              "id": "ctx-9991-0",
+              "at": "2/18/26, 4:12:03 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Es como que tú mañana llegues a tu trabajo y agarres al chino y le digas “chino cochino”",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-9991-1",
+              "at": "2/18/26, 4:12:32 PM",
+              "author": "Gerardo Vitale Errico",
+              "memberId": "gerardo",
+              "text": "Vini tiene que ir a lavarse esas nalgas",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-9991-2",
+              "at": "2/18/26, 4:17:24 PM",
+              "author": "Gerardo Vitale Errico",
+              "memberId": "gerardo",
+              "text": "No discuto el código de conducta y el fair play, simplemente parece que queremos ir a un futbol ideal perfecto sin toques, sin roces, sin hablarse. Y que estamos dispuesto a ver cada rincón del campo y alrededores, y grabar todo porque se tiene que auditar todo post partido y ver que coño se estaban diciendo entre ellos.",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-9991-3",
+              "at": "2/18/26, 4:19:35 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Es el mundo en que vivimos. Hace 10 años, teniamos SportCenter y ya. Hoy en día, para darte los highlights tienes 20-30 cámaras en el estadio grabando todo. Sin contar que todo mundo está grabando desde su celular.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-9991-4",
+              "at": "2/18/26, 4:20:21 PM",
+              "author": "Gerardo Vitale Errico",
+              "memberId": "gerardo",
+              "text": "Entonces taparte la boca es cobarde? Es lógico y viene haciéndose desde hacer años luz",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-9991-5",
+              "at": "2/18/26, 4:20:53 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Aún así, legalmente, el free speech solo protegería decir “no me gustan los negros, no creo que sean personas”",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-9991-6",
+              "at": "2/18/26, 4:21:02 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Decirle mono a alguien,sería hate speech.",
               "kind": "after"
             }
           ]
@@ -6585,7 +6597,94 @@
       "icon": "🧐",
       "accent": "oklch(74% 0.16 25)",
       "description": "Mensajes que rebajan al otro, explican desde arriba o presuponen superioridad.",
+      "editorialPriorityIds": [
+        "javier",
+        "gabriel",
+        "francisco"
+      ],
       "entries": [
+        {
+          "id": "condescending-javier-1432",
+          "memberId": "javier",
+          "memberName": "Javier Gimenez",
+          "author": "Javier Gimenez",
+          "at": "5/7/25, 11:41:09 PM",
+          "timestamp": "2025-05-07T23:41:09.000Z",
+          "score": 18,
+          "intensity": "Alta",
+          "text": "Marico creo que veo fútbol y entiendo un poquito más que varios acá. Y seguramente jugando tambien",
+          "matches": [
+            {
+              "label": "entiendo más",
+              "count": 1,
+              "score": 13
+            },
+            {
+              "label": "superioridad declarada",
+              "count": 1,
+              "score": 5
+            }
+          ],
+          "rationale": "Activa la lectura por entiendo más, superioridad declarada.",
+          "contextWindow": [
+            {
+              "id": "ctx-1432-0",
+              "at": "5/7/25, 11:40:02 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Cuando veas fútbol de nuevo, y creas en lo que dices, te leo con detenimiento",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-1432-1",
+              "at": "5/7/25, 11:40:10 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Te picas y te pones así pero bueno.",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-1432-2",
+              "at": "5/7/25, 11:41:09 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Marico creo que veo fútbol y entiendo un poquito más que varios acá. Y seguramente jugando tambien",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-1432-3",
+              "at": "5/7/25, 11:41:09 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Es difícil hablar con alguien que no entiende de fútbol o de la vida real",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-1432-4",
+              "at": "5/7/25, 11:41:56 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "‎GIF omitted",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-1432-5",
+              "at": "5/7/25, 11:44:46 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Si quieres decir del mundo del fútbol te lo compro. Pero de como se juega no",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-1432-6",
+              "at": "5/7/25, 11:48:17 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Algunos no se sabe la regla del offside y saben más. 🤷. Y si digo esto es troleo.",
+              "kind": "after"
+            }
+          ]
+        },
         {
           "id": "condescending-gabriel-8584",
           "memberId": "gabriel",
@@ -6679,88 +6778,6 @@
               "author": "Francisco Arteaga",
               "memberId": "francisco",
               "text": "Tengo que tener algún tipo de retraso, de verdad",
-              "kind": "after"
-            }
-          ]
-        },
-        {
-          "id": "condescending-javier-1432",
-          "memberId": "javier",
-          "memberName": "Javier Gimenez",
-          "author": "Javier Gimenez",
-          "at": "5/7/25, 11:41:09 PM",
-          "timestamp": "2025-05-07T23:41:09.000Z",
-          "score": 18,
-          "intensity": "Alta",
-          "text": "Marico creo que veo fútbol y entiendo un poquito más que varios acá. Y seguramente jugando tambien",
-          "matches": [
-            {
-              "label": "entiendo más",
-              "count": 1,
-              "score": 13
-            },
-            {
-              "label": "superioridad declarada",
-              "count": 1,
-              "score": 5
-            }
-          ],
-          "rationale": "Activa la lectura por entiendo más, superioridad declarada.",
-          "contextWindow": [
-            {
-              "id": "ctx-1432-0",
-              "at": "5/7/25, 11:40:02 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Cuando veas fútbol de nuevo, y creas en lo que dices, te leo con detenimiento",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-1432-1",
-              "at": "5/7/25, 11:40:10 PM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "Te picas y te pones así pero bueno.",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-1432-2",
-              "at": "5/7/25, 11:41:09 PM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "Marico creo que veo fútbol y entiendo un poquito más que varios acá. Y seguramente jugando tambien",
-              "kind": "self"
-            },
-            {
-              "id": "ctx-1432-3",
-              "at": "5/7/25, 11:41:09 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Es difícil hablar con alguien que no entiende de fútbol o de la vida real",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-1432-4",
-              "at": "5/7/25, 11:41:56 PM",
-              "author": "Jesús Burgos",
-              "memberId": "jesus",
-              "text": "‎GIF omitted",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-1432-5",
-              "at": "5/7/25, 11:44:46 PM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "Si quieres decir del mundo del fútbol te lo compro. Pero de como se juega no",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-1432-6",
-              "at": "5/7/25, 11:48:17 PM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "Algunos no se sabe la regla del offside y saben más. 🤷. Y si digo esto es troleo.",
               "kind": "after"
             }
           ]
@@ -7157,98 +7174,83 @@
         }
       ],
       "leader": {
-        "id": "condescending-gabriel-8584",
-        "memberId": "gabriel",
-        "memberName": "Gabriel Gutiérrez",
-        "author": "Gabriel Gutiérrez",
-        "at": "12/11/25, 2:05:12 PM",
-        "timestamp": "2025-12-11T14:05:12.000Z",
-        "score": 34,
+        "id": "condescending-javier-1432",
+        "memberId": "javier",
+        "memberName": "Javier Gimenez",
+        "author": "Javier Gimenez",
+        "at": "5/7/25, 11:41:09 PM",
+        "timestamp": "2025-05-07T23:41:09.000Z",
+        "score": 18,
         "intensity": "Alta",
-        "text": "@⁨Francisco Arteaga⁩ se que no entiendes el uso de stickers, pero tranquilo, te cuento: esto significa que Pinto está leyendo la conversación sin participar activamente, haciendo un símil con un vecino chismoso viendo una discusión en la calle.",
+        "text": "Marico creo que veo fútbol y entiendo un poquito más que varios acá. Y seguramente jugando tambien",
         "matches": [
           {
-            "label": "no entiendes el uso",
+            "label": "entiendo más",
             "count": 1,
-            "score": 11
-          },
-          {
-            "label": "no entiendes",
-            "count": 1,
-            "score": 9
-          },
-          {
-            "label": "te cuento",
-            "count": 1,
-            "score": 5
+            "score": 13
           },
           {
             "label": "superioridad declarada",
             "count": 1,
             "score": 5
-          },
-          {
-            "label": "segunda persona tutorial",
-            "count": 1,
-            "score": 4
           }
         ],
-        "rationale": "Activa la lectura por no entiendes el uso, no entiendes, te cuento.",
+        "rationale": "Activa la lectura por entiendo más, superioridad declarada.",
         "contextWindow": [
           {
-            "id": "ctx-8584-0",
-            "at": "12/11/25, 1:52:53 PM",
-            "author": "Gabriel Gutiérrez",
-            "memberId": "gabriel",
-            "text": "Tienes razón",
+            "id": "ctx-1432-0",
+            "at": "5/7/25, 11:40:02 PM",
+            "author": "Francisco Arteaga",
+            "memberId": "francisco",
+            "text": "Cuando veas fútbol de nuevo, y creas en lo que dices, te leo con detenimiento",
             "kind": "before"
           },
           {
-            "id": "ctx-8584-1",
-            "at": "12/11/25, 2:00:35 PM",
-            "author": "Andrés Eduardo Pinto",
-            "memberId": "andres",
-            "text": "‎sticker omitted",
+            "id": "ctx-1432-1",
+            "at": "5/7/25, 11:40:10 PM",
+            "author": "Javier Gimenez",
+            "memberId": "javier",
+            "text": "Te picas y te pones así pero bueno.",
             "kind": "before"
           },
           {
-            "id": "ctx-8584-2",
-            "at": "12/11/25, 2:05:12 PM",
-            "author": "Gabriel Gutiérrez",
-            "memberId": "gabriel",
-            "text": "@⁨Francisco Arteaga⁩ se que no entiendes el uso de stickers, pero tranquilo, te cuento: esto significa que Pinto está leyendo la conversación sin participar activamente, haciendo un símil con un vecino chismoso viendo una discusión en la calle.",
+            "id": "ctx-1432-2",
+            "at": "5/7/25, 11:41:09 PM",
+            "author": "Javier Gimenez",
+            "memberId": "javier",
+            "text": "Marico creo que veo fútbol y entiendo un poquito más que varios acá. Y seguramente jugando tambien",
             "kind": "self"
           },
           {
-            "id": "ctx-8584-3",
-            "at": "12/11/25, 2:05:52 PM",
+            "id": "ctx-1432-3",
+            "at": "5/7/25, 11:41:09 PM",
             "author": "Francisco Arteaga",
             "memberId": "francisco",
-            "text": "Gracias Gabriel. Necesito más gente que me trate como retrasado en mi vida.",
+            "text": "Es difícil hablar con alguien que no entiende de fútbol o de la vida real",
             "kind": "after"
           },
           {
-            "id": "ctx-8584-4",
-            "at": "12/11/25, 2:10:33 PM",
-            "author": "Andrés Eduardo Pinto",
-            "memberId": "andres",
-            "text": "Este Gabriel si es marico jajajaja",
+            "id": "ctx-1432-4",
+            "at": "5/7/25, 11:41:56 PM",
+            "author": "Jesús Burgos",
+            "memberId": "jesus",
+            "text": "‎GIF omitted",
             "kind": "after"
           },
           {
-            "id": "ctx-8584-5",
-            "at": "12/11/25, 2:11:21 PM",
-            "author": "Francisco Arteaga",
-            "memberId": "francisco",
-            "text": "En realidad si lo agradezco, yo nunca entiendo los stickers y emoji",
+            "id": "ctx-1432-5",
+            "at": "5/7/25, 11:44:46 PM",
+            "author": "Javier Gimenez",
+            "memberId": "javier",
+            "text": "Si quieres decir del mundo del fútbol te lo compro. Pero de como se juega no",
             "kind": "after"
           },
           {
-            "id": "ctx-8584-6",
-            "at": "12/11/25, 2:11:34 PM",
-            "author": "Francisco Arteaga",
-            "memberId": "francisco",
-            "text": "Tengo que tener algún tipo de retraso, de verdad",
+            "id": "ctx-1432-6",
+            "at": "5/7/25, 11:48:17 PM",
+            "author": "Javier Gimenez",
+            "memberId": "javier",
+            "text": "Algunos no se sabe la regla del offside y saben más. 🤷. Y si digo esto es troleo.",
             "kind": "after"
           }
         ]
@@ -7262,7 +7264,115 @@
       "icon": "📐",
       "accent": "oklch(65% 0.16 260)",
       "description": "Mensajes largos, estructurados y con intención de explicar más que de reaccionar.",
+      "editorialPriorityIds": [
+        "francisco",
+        "gerardo",
+        "gabriel",
+        "gustavo"
+      ],
       "entries": [
+        {
+          "id": "analytic-francisco-4576",
+          "memberId": "francisco",
+          "memberName": "Francisco Arteaga",
+          "author": "Francisco Arteaga",
+          "at": "9/3/25, 8:25:55 AM",
+          "timestamp": "2025-09-03T08:25:55.000Z",
+          "score": 38,
+          "intensity": "Alta",
+          "text": "Con respecto al segundo, y en este cae mucho @⁨Gustavo Torres⁩, sobretodo porque se deja llevar por lo que dice @⁨Javier Gimenez⁩. Podemos decir que sí, que es la forma de jugar del equipo, o que es culpa del jugador porque se adelanta y ahora la “nueva” tecnología anula la jugada. Pero de verdad puedes creer que es así? Mira el gol que le anularon a Mbappé la jornada pasada. El frame lo adelanta por el peinado, o un milímetro de cachete. Ese tipo de jugadas, son constantemente anuladas al Madrid y cuando le toca al Barça literalmente no hay VAR. Si decisiones así pasaran para todos, entonces yo les compraría ese punto, pero los mismos datos reflejan la inconsistencia. Al Madrid le han anulado 39 goles desde que hay VAR, la suma de los dos equipos que le siguen son 37 goles. Son 39 goles anulados, en una época del Madrid donde jugábamos con Benzema, Isco, Asensio, Modric, Kroos, Casemiro. Ninguno son jugadores que jueguen al desmarque como para decir que es porque hay mucho fuera de juego, ninguno es especialmente duro como para decir que es porque hay faltas; era un juego de creación de espacios, no de jugar al límite del reglamento.",
+          "matches": [
+            {
+              "label": "texto largo",
+              "count": 1,
+              "score": 10
+            },
+            {
+              "label": "porque",
+              "count": 4,
+              "score": 8
+            },
+            {
+              "label": "texto muy largo",
+              "count": 1,
+              "score": 8
+            },
+            {
+              "label": "estructura causal",
+              "count": 1,
+              "score": 6
+            },
+            {
+              "label": "entonces",
+              "count": 1,
+              "score": 4
+            },
+            {
+              "label": "si ",
+              "count": 2,
+              "score": 2
+            }
+          ],
+          "rationale": "Activa la lectura por texto largo, porque, texto muy largo.",
+          "contextWindow": [
+            {
+              "id": "ctx-4576-0",
+              "at": "9/3/25, 8:05:32 AM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Creo que el problema de ustedes, es que asumen que hay igualdad de condiciones e ignoran la verdadera dimensión del Madrid y del Barça. Vamos a ponerlo así: 1. El Madrid y el Barça históricamente, son los dos gigantes del fútbol español. 2. ⁠Se refugian en los datos, cuando esos datos hay que interpretarlos dentro del contexto en el que son generados. 3. ⁠Dejarse llevar por la propaganda y algoritmos de las redes.",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-4576-1",
+              "at": "9/3/25, 8:12:23 AM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Con respecto al primero, el Madridny Barça son los más grandes. Es verdad que en los últimos años el Atleti ha ocupado el tercer puesto, y el 4to suele moverse entre algún club que esté recibiendo financiación; no hablo de mérito deportivo, sino de dimensión en general: economía, fama, plan deportivo, plan de negocio, resultados, y base de fanáticos. Eso hace que La Liga sea vista solamente porque es donde juegan Madrid y Barça. Los ingresos del Oviedo, Villarreal, Athletic de Bilbao, Valencia, Getafe, y cualquier otro equipo español, dependen del Madrid y del Barça. Cuando el Madrid dice “no acepto vender mis derechos audiovisuales a este fondo de inversión, porque significa bajar mis ingresos” pero ese mismo acuerdo significa aumentar ingresos para el 99% de los equipos españoles, no vas a ser el club más amado de la organización. Es lógica; y más importante aún: es parte del contexto en el que se generan los abusos.",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-4576-2",
+              "at": "9/3/25, 8:25:55 AM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Con respecto al segundo, y en este cae mucho @⁨Gustavo Torres⁩, sobretodo porque se deja llevar por lo que dice @⁨Javier Gimenez⁩. Podemos decir que sí, que es la forma de jugar del equipo, o que es culpa del jugador porque se adelanta y ahora la “nueva” tecnología anula la jugada. Pero de verdad puedes creer que es así? Mira el gol que le anularon a Mbappé la jornada pasada. El frame lo adelanta por el peinado, o un milímetro de cachete. Ese tipo de jugadas, son constantemente anuladas al Madrid y cuando le toca al Barça literalmente no hay VAR. Si decisiones así pasaran para todos, entonces yo les compraría ese punto, pero los mismos datos reflejan la inconsistencia. Al Madrid le han anulado 39 goles desde que hay VAR, la suma de los dos equipos que le siguen son 37 goles. Son 39 goles anulados, en una época del Madrid donde jugábamos con Benzema, Isco, Asensio, Modric, Kroos, Casemiro. Ninguno son jugadores que jueguen al desmarque como para decir que es porque hay mucho fuera de juego, ninguno es especialmente duro como para decir que es porque hay faltas; era un juego de creación de espacios, no de jugar al límite del reglamento.",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-4576-3",
+              "at": "9/3/25, 8:34:39 AM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Y con respecto al último, ya es obvio para mí. El algoritmo aprovecha para meterlos en una cámara de ecos donde sus creencias se validan una y otra vez. Sobretodo cuando @⁨Javier Gimenez⁩ pone vainas de los peores periodistas que hay actualmente y @⁨Gustavo Torres⁩ ve esa vaina. Realmente cuando una vaina se está exagerando, yo intento ser crítico. Por ejemplo, el Gol de Ferran en la primera jornada, para mí es entendible y una jugada en la que no puede entrar el VAR. Pero de ahí, al penal en Vallecas, o el gol de Giuliano la fecha pasada, son errores que el mismo @⁨Javier Gimenez⁩ dice que ya no pasan más y ahí están. @⁨Gustavo Torres⁩ hace unos meses investigó y vino mostrando que según MEDIAPRO había fuera de juego automático, que la tecnología era de punta, y demás vainas. Todo para que en una misma fecha, el semiautomático no se active en el juego del Atleti, sea imposible usarlo en el juego del Barça, pero al Madrid le anulen un gol por un pelo y después llamen al árbitro para decirle textualmente “evalúa esta mano, para poder anular el gol”.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-4576-4",
+              "at": "9/3/25, 8:36:11 AM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Pudiera hablar del criterio usado y de la interpretación de esa jugada, pero ya eso sí creo que sería “moot” en esta discusión.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-4576-5",
+              "at": "9/3/25, 8:54:35 AM",
+              "author": "Jorge Anzola",
+              "memberId": "jorge",
+              "text": "‎sticker omitted",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-4576-6",
+              "at": "9/3/25, 8:56:48 AM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Estamos calentando motores, muchachos. Lo bueno llega al final de temporada.",
+              "kind": "after"
+            }
+          ]
+        },
         {
           "id": "analytic-gerardo-10043",
           "memberId": "gerardo",
@@ -7488,200 +7598,6 @@
           ]
         },
         {
-          "id": "analytic-francisco-4576",
-          "memberId": "francisco",
-          "memberName": "Francisco Arteaga",
-          "author": "Francisco Arteaga",
-          "at": "9/3/25, 8:25:55 AM",
-          "timestamp": "2025-09-03T08:25:55.000Z",
-          "score": 38,
-          "intensity": "Alta",
-          "text": "Con respecto al segundo, y en este cae mucho @⁨Gustavo Torres⁩, sobretodo porque se deja llevar por lo que dice @⁨Javier Gimenez⁩. Podemos decir que sí, que es la forma de jugar del equipo, o que es culpa del jugador porque se adelanta y ahora la “nueva” tecnología anula la jugada. Pero de verdad puedes creer que es así? Mira el gol que le anularon a Mbappé la jornada pasada. El frame lo adelanta por el peinado, o un milímetro de cachete. Ese tipo de jugadas, son constantemente anuladas al Madrid y cuando le toca al Barça literalmente no hay VAR. Si decisiones así pasaran para todos, entonces yo les compraría ese punto, pero los mismos datos reflejan la inconsistencia. Al Madrid le han anulado 39 goles desde que hay VAR, la suma de los dos equipos que le siguen son 37 goles. Son 39 goles anulados, en una época del Madrid donde jugábamos con Benzema, Isco, Asensio, Modric, Kroos, Casemiro. Ninguno son jugadores que jueguen al desmarque como para decir que es porque hay mucho fuera de juego, ninguno es especialmente duro como para decir que es porque hay faltas; era un juego de creación de espacios, no de jugar al límite del reglamento.",
-          "matches": [
-            {
-              "label": "texto largo",
-              "count": 1,
-              "score": 10
-            },
-            {
-              "label": "porque",
-              "count": 4,
-              "score": 8
-            },
-            {
-              "label": "texto muy largo",
-              "count": 1,
-              "score": 8
-            },
-            {
-              "label": "estructura causal",
-              "count": 1,
-              "score": 6
-            },
-            {
-              "label": "entonces",
-              "count": 1,
-              "score": 4
-            },
-            {
-              "label": "si ",
-              "count": 2,
-              "score": 2
-            }
-          ],
-          "rationale": "Activa la lectura por texto largo, porque, texto muy largo.",
-          "contextWindow": [
-            {
-              "id": "ctx-4576-0",
-              "at": "9/3/25, 8:05:32 AM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Creo que el problema de ustedes, es que asumen que hay igualdad de condiciones e ignoran la verdadera dimensión del Madrid y del Barça. Vamos a ponerlo así: 1. El Madrid y el Barça históricamente, son los dos gigantes del fútbol español. 2. ⁠Se refugian en los datos, cuando esos datos hay que interpretarlos dentro del contexto en el que son generados. 3. ⁠Dejarse llevar por la propaganda y algoritmos de las redes.",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-4576-1",
-              "at": "9/3/25, 8:12:23 AM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Con respecto al primero, el Madridny Barça son los más grandes. Es verdad que en los últimos años el Atleti ha ocupado el tercer puesto, y el 4to suele moverse entre algún club que esté recibiendo financiación; no hablo de mérito deportivo, sino de dimensión en general: economía, fama, plan deportivo, plan de negocio, resultados, y base de fanáticos. Eso hace que La Liga sea vista solamente porque es donde juegan Madrid y Barça. Los ingresos del Oviedo, Villarreal, Athletic de Bilbao, Valencia, Getafe, y cualquier otro equipo español, dependen del Madrid y del Barça. Cuando el Madrid dice “no acepto vender mis derechos audiovisuales a este fondo de inversión, porque significa bajar mis ingresos” pero ese mismo acuerdo significa aumentar ingresos para el 99% de los equipos españoles, no vas a ser el club más amado de la organización. Es lógica; y más importante aún: es parte del contexto en el que se generan los abusos.",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-4576-2",
-              "at": "9/3/25, 8:25:55 AM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Con respecto al segundo, y en este cae mucho @⁨Gustavo Torres⁩, sobretodo porque se deja llevar por lo que dice @⁨Javier Gimenez⁩. Podemos decir que sí, que es la forma de jugar del equipo, o que es culpa del jugador porque se adelanta y ahora la “nueva” tecnología anula la jugada. Pero de verdad puedes creer que es así? Mira el gol que le anularon a Mbappé la jornada pasada. El frame lo adelanta por el peinado, o un milímetro de cachete. Ese tipo de jugadas, son constantemente anuladas al Madrid y cuando le toca al Barça literalmente no hay VAR. Si decisiones así pasaran para todos, entonces yo les compraría ese punto, pero los mismos datos reflejan la inconsistencia. Al Madrid le han anulado 39 goles desde que hay VAR, la suma de los dos equipos que le siguen son 37 goles. Son 39 goles anulados, en una época del Madrid donde jugábamos con Benzema, Isco, Asensio, Modric, Kroos, Casemiro. Ninguno son jugadores que jueguen al desmarque como para decir que es porque hay mucho fuera de juego, ninguno es especialmente duro como para decir que es porque hay faltas; era un juego de creación de espacios, no de jugar al límite del reglamento.",
-              "kind": "self"
-            },
-            {
-              "id": "ctx-4576-3",
-              "at": "9/3/25, 8:34:39 AM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Y con respecto al último, ya es obvio para mí. El algoritmo aprovecha para meterlos en una cámara de ecos donde sus creencias se validan una y otra vez. Sobretodo cuando @⁨Javier Gimenez⁩ pone vainas de los peores periodistas que hay actualmente y @⁨Gustavo Torres⁩ ve esa vaina. Realmente cuando una vaina se está exagerando, yo intento ser crítico. Por ejemplo, el Gol de Ferran en la primera jornada, para mí es entendible y una jugada en la que no puede entrar el VAR. Pero de ahí, al penal en Vallecas, o el gol de Giuliano la fecha pasada, son errores que el mismo @⁨Javier Gimenez⁩ dice que ya no pasan más y ahí están. @⁨Gustavo Torres⁩ hace unos meses investigó y vino mostrando que según MEDIAPRO había fuera de juego automático, que la tecnología era de punta, y demás vainas. Todo para que en una misma fecha, el semiautomático no se active en el juego del Atleti, sea imposible usarlo en el juego del Barça, pero al Madrid le anulen un gol por un pelo y después llamen al árbitro para decirle textualmente “evalúa esta mano, para poder anular el gol”.",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-4576-4",
-              "at": "9/3/25, 8:36:11 AM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Pudiera hablar del criterio usado y de la interpretación de esa jugada, pero ya eso sí creo que sería “moot” en esta discusión.",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-4576-5",
-              "at": "9/3/25, 8:54:35 AM",
-              "author": "Jorge Anzola",
-              "memberId": "jorge",
-              "text": "‎sticker omitted",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-4576-6",
-              "at": "9/3/25, 8:56:48 AM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Estamos calentando motores, muchachos. Lo bueno llega al final de temporada.",
-              "kind": "after"
-            }
-          ]
-        },
-        {
-          "id": "analytic-javier-10092",
-          "memberId": "javier",
-          "memberName": "Javier Gimenez",
-          "author": "Javier Gimenez",
-          "at": "2/18/26, 10:02:58 PM",
-          "timestamp": "2026-02-18T22:02:58.000Z",
-          "score": 28,
-          "intensity": "Alta",
-          "text": "Dani Alves Durante su carrera en la Liga española el lateral brasileño fue objeto de agresiones racistas en varias ocasiones y alzó la voz contra ello. “En España hay mucho racismo. Es una guerra perdida”, llegó a decir en su día Dani Alves. Uno de los escenarios en el que se le dedicaron cánticos racistas fue el Santiago Bernabéu. En enero de 2013, durante la ida de las semifinales de la Copa del Rey entre Barcelona y Real Madrid. “Es una lástima la cantidad de racistas que hay en algunos lugares”, escribió en su cuenta personal de Twitter tras un partido en cuyo acta no se recogieron los insultos. No era la primera vez ni fue la última. Ya en 2011 Alves contaba en una entrevista en Brasil que se había acostumbrado a que le llamaran “mono” en los campos españoles. Y en abril de 2014, en el entonces Madrigal, le arrojaron un plátano cuando se disponía a sacar un córner. Alves lo peló y le dio un mordisco. Un gesto viral que sirvió para lanzar una campaña contra el racismo bajo el hashtag #somostodosmacacos.",
-          "matches": [
-            {
-              "label": "texto largo",
-              "count": 1,
-              "score": 10
-            },
-            {
-              "label": "texto muy largo",
-              "count": 1,
-              "score": 8
-            },
-            {
-              "label": "estructura causal",
-              "count": 1,
-              "score": 6
-            },
-            {
-              "label": "entonces",
-              "count": 1,
-              "score": 4
-            }
-          ],
-          "rationale": "Activa la lectura por texto largo, texto muy largo, estructura causal.",
-          "contextWindow": [
-            {
-              "id": "ctx-10092-0",
-              "at": "2/18/26, 9:57:11 PM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-10092-1",
-              "at": "2/18/26, 10:02:15 PM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "",
-              "kind": "before"
-            },
-            {
-              "id": "ctx-10092-2",
-              "at": "2/18/26, 10:02:58 PM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "Dani Alves Durante su carrera en la Liga española el lateral brasileño fue objeto de agresiones racistas en varias ocasiones y alzó la voz contra ello. “En España hay mucho racismo. Es una guerra perdida”, llegó a decir en su día Dani Alves. Uno de los escenarios en el que se le dedicaron cánticos racistas fue el Santiago Bernabéu. En enero de 2013, durante la ida de las semifinales de la Copa del Rey entre Barcelona y Real Madrid. “Es una lástima la cantidad de racistas que hay en algunos lugares”, escribió en su cuenta personal de Twitter tras un partido en cuyo acta no se recogieron los insultos. No era la primera vez ni fue la última. Ya en 2011 Alves contaba en una entrevista en Brasil que se había acostumbrado a que le llamaran “mono” en los campos españoles. Y en abril de 2014, en el entonces Madrigal, le arrojaron un plátano cuando se disponía a sacar un córner. Alves lo peló y le dio un mordisco. Un gesto viral que sirvió para lanzar una campaña contra el racismo bajo el hashtag #somostodosmacacos.",
-              "kind": "self"
-            },
-            {
-              "id": "ctx-10092-3",
-              "at": "2/18/26, 10:07:17 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "En que viene acá sabe lo racista que son los españoles",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-10092-4",
-              "at": "2/18/26, 10:07:53 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "Eso no es secreto para nadie",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-10092-5",
-              "at": "2/18/26, 10:08:34 PM",
-              "author": "Francisco Arteaga",
-              "memberId": "francisco",
-              "text": "No le quita razón a Vinicius, más bien lo que muestra es que cuando habla tiene razón",
-              "kind": "after"
-            },
-            {
-              "id": "ctx-10092-6",
-              "at": "2/18/26, 10:10:04 PM",
-              "author": "Javier Gimenez",
-              "memberId": "javier",
-              "text": "Perdon no termine mi comentario. Es que los insultos racistas y todo lo que le pasa a vinicius es por la prensa. El es un santo que no es provocador. Es solo por qué juega en el Madrid",
-              "kind": "after"
-            }
-          ]
-        },
-        {
           "id": "analytic-gustavo-70",
           "memberId": "gustavo",
           "memberName": "Gustavo Torres",
@@ -7774,6 +7690,98 @@
               "author": "Gustavo Torres",
               "memberId": "gustavo",
               "text": "Estoy viendo el YouTube pero escucho es a un bicho quejarse sin mostrar nada",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "analytic-javier-10092",
+          "memberId": "javier",
+          "memberName": "Javier Gimenez",
+          "author": "Javier Gimenez",
+          "at": "2/18/26, 10:02:58 PM",
+          "timestamp": "2026-02-18T22:02:58.000Z",
+          "score": 28,
+          "intensity": "Alta",
+          "text": "Dani Alves Durante su carrera en la Liga española el lateral brasileño fue objeto de agresiones racistas en varias ocasiones y alzó la voz contra ello. “En España hay mucho racismo. Es una guerra perdida”, llegó a decir en su día Dani Alves. Uno de los escenarios en el que se le dedicaron cánticos racistas fue el Santiago Bernabéu. En enero de 2013, durante la ida de las semifinales de la Copa del Rey entre Barcelona y Real Madrid. “Es una lástima la cantidad de racistas que hay en algunos lugares”, escribió en su cuenta personal de Twitter tras un partido en cuyo acta no se recogieron los insultos. No era la primera vez ni fue la última. Ya en 2011 Alves contaba en una entrevista en Brasil que se había acostumbrado a que le llamaran “mono” en los campos españoles. Y en abril de 2014, en el entonces Madrigal, le arrojaron un plátano cuando se disponía a sacar un córner. Alves lo peló y le dio un mordisco. Un gesto viral que sirvió para lanzar una campaña contra el racismo bajo el hashtag #somostodosmacacos.",
+          "matches": [
+            {
+              "label": "texto largo",
+              "count": 1,
+              "score": 10
+            },
+            {
+              "label": "texto muy largo",
+              "count": 1,
+              "score": 8
+            },
+            {
+              "label": "estructura causal",
+              "count": 1,
+              "score": 6
+            },
+            {
+              "label": "entonces",
+              "count": 1,
+              "score": 4
+            }
+          ],
+          "rationale": "Activa la lectura por texto largo, texto muy largo, estructura causal.",
+          "contextWindow": [
+            {
+              "id": "ctx-10092-0",
+              "at": "2/18/26, 9:57:11 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-10092-1",
+              "at": "2/18/26, 10:02:15 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-10092-2",
+              "at": "2/18/26, 10:02:58 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Dani Alves Durante su carrera en la Liga española el lateral brasileño fue objeto de agresiones racistas en varias ocasiones y alzó la voz contra ello. “En España hay mucho racismo. Es una guerra perdida”, llegó a decir en su día Dani Alves. Uno de los escenarios en el que se le dedicaron cánticos racistas fue el Santiago Bernabéu. En enero de 2013, durante la ida de las semifinales de la Copa del Rey entre Barcelona y Real Madrid. “Es una lástima la cantidad de racistas que hay en algunos lugares”, escribió en su cuenta personal de Twitter tras un partido en cuyo acta no se recogieron los insultos. No era la primera vez ni fue la última. Ya en 2011 Alves contaba en una entrevista en Brasil que se había acostumbrado a que le llamaran “mono” en los campos españoles. Y en abril de 2014, en el entonces Madrigal, le arrojaron un plátano cuando se disponía a sacar un córner. Alves lo peló y le dio un mordisco. Un gesto viral que sirvió para lanzar una campaña contra el racismo bajo el hashtag #somostodosmacacos.",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-10092-3",
+              "at": "2/18/26, 10:07:17 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "En que viene acá sabe lo racista que son los españoles",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10092-4",
+              "at": "2/18/26, 10:07:53 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Eso no es secreto para nadie",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10092-5",
+              "at": "2/18/26, 10:08:34 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "No le quita razón a Vinicius, más bien lo que muestra es que cuando habla tiene razón",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10092-6",
+              "at": "2/18/26, 10:10:04 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Perdon no termine mi comentario. Es que los insultos racistas y todo lo que le pasa a vinicius es por la prensa. El es un santo que no es provocador. Es solo por qué juega en el Madrid",
               "kind": "after"
             }
           ]
@@ -8261,26 +8269,16 @@
         }
       ],
       "leader": {
-        "id": "analytic-gerardo-10043",
-        "memberId": "gerardo",
-        "memberName": "Gerardo Vitale Errico",
-        "author": "Gerardo Vitale Errico",
-        "at": "2/18/26, 5:49:58 PM",
-        "timestamp": "2026-02-18T17:49:58.000Z",
-        "score": 84,
+        "id": "analytic-francisco-4576",
+        "memberId": "francisco",
+        "memberName": "Francisco Arteaga",
+        "author": "Francisco Arteaga",
+        "at": "9/3/25, 8:25:55 AM",
+        "timestamp": "2025-09-03T08:25:55.000Z",
+        "score": 38,
         "intensity": "Alta",
-        "text": "Solo para dejarlo claro, mi punto es el siguiente: Me parece peligroso que una acusación verbal pueda parar partidos y comenzar investigaciones cuando interacciones entre jugadores muchas veces queda en “tu palabra vs la mía” y se puede diluir fácilmente en el aire y quedar fuera contexto, con audio inexistente o ambiguo. Muy muy subjetivo, mas que un penal. Convertir ese vacío en “hay que auditarlo todo” es peligroso y ver que cono están diciendo a ver si es racista o hay hate speech me parece abusivo. Me preocupa que para “encontrar pruebas” se normalice grabar, guardar y auditar todo lo que se dice. Todo porque políticamente estamos haciendo la guerra al racismo. Narrativas como la de “taparse la boca es de cobardes” me parece muy injusto sobretodo porque es una respuesta lógica al exceso de cámaras y grabaciones, todo porque queremos auditar y generar contenido, polémicas e historias para consumir el deporte de otras formas. Eso nos lleva a que el incentivo es convertir cada polémica en contenido y por ende empuja a leer lo peor de cualquier interacción. Falta poco para parar partidos cada ves mas por estas mariqueras, pero bueno. Todo es justificado porque políticamente tenemos que acabar con el racismo y hacer ver que estamos luchando contra ello, un imite tiene que haber también, algo de privacidad y de libertad individual.",
+        "text": "Con respecto al segundo, y en este cae mucho @⁨Gustavo Torres⁩, sobretodo porque se deja llevar por lo que dice @⁨Javier Gimenez⁩. Podemos decir que sí, que es la forma de jugar del equipo, o que es culpa del jugador porque se adelanta y ahora la “nueva” tecnología anula la jugada. Pero de verdad puedes creer que es así? Mira el gol que le anularon a Mbappé la jornada pasada. El frame lo adelanta por el peinado, o un milímetro de cachete. Ese tipo de jugadas, son constantemente anuladas al Madrid y cuando le toca al Barça literalmente no hay VAR. Si decisiones así pasaran para todos, entonces yo les compraría ese punto, pero los mismos datos reflejan la inconsistencia. Al Madrid le han anulado 39 goles desde que hay VAR, la suma de los dos equipos que le siguen son 37 goles. Son 39 goles anulados, en una época del Madrid donde jugábamos con Benzema, Isco, Asensio, Modric, Kroos, Casemiro. Ninguno son jugadores que jueguen al desmarque como para decir que es porque hay mucho fuera de juego, ninguno es especialmente duro como para decir que es porque hay faltas; era un juego de creación de espacios, no de jugar al límite del reglamento.",
         "matches": [
-          {
-            "label": "auditar",
-            "count": 3,
-            "score": 18
-          },
-          {
-            "label": "me parece",
-            "count": 3,
-            "score": 12
-          },
           {
             "label": "texto largo",
             "count": 1,
@@ -8297,92 +8295,77 @@
             "score": 8
           },
           {
-            "label": "narrativa",
-            "count": 1,
-            "score": 6
-          },
-          {
-            "label": "subjetivo",
-            "count": 1,
-            "score": 6
-          },
-          {
             "label": "estructura causal",
             "count": 1,
             "score": 6
           },
           {
-            "label": "investigacion",
-            "count": 1,
-            "score": 5
-          },
-          {
-            "label": "contexto",
+            "label": "entonces",
             "count": 1,
             "score": 4
           },
           {
             "label": "si ",
-            "count": 1,
-            "score": 1
+            "count": 2,
+            "score": 2
           }
         ],
-        "rationale": "Activa la lectura por auditar, me parece, texto largo.",
+        "rationale": "Activa la lectura por texto largo, porque, texto muy largo.",
         "contextWindow": [
           {
-            "id": "ctx-10043-0",
-            "at": "2/18/26, 5:48:29 PM",
+            "id": "ctx-4576-0",
+            "at": "9/3/25, 8:05:32 AM",
             "author": "Francisco Arteaga",
             "memberId": "francisco",
-            "text": "Lo que pasa es que no se sentía irrespetuoso. El Baile de Vinicius ayer fue burla completa, no hay necesidad de bailar así al banderín.",
+            "text": "Creo que el problema de ustedes, es que asumen que hay igualdad de condiciones e ignoran la verdadera dimensión del Madrid y del Barça. Vamos a ponerlo así: 1. El Madrid y el Barça históricamente, son los dos gigantes del fútbol español. 2. ⁠Se refugian en los datos, cuando esos datos hay que interpretarlos dentro del contexto en el que son generados. 3. ⁠Dejarse llevar por la propaganda y algoritmos de las redes.",
             "kind": "before"
           },
           {
-            "id": "ctx-10043-1",
-            "at": "2/18/26, 5:49:57 PM",
+            "id": "ctx-4576-1",
+            "at": "9/3/25, 8:12:23 AM",
             "author": "Francisco Arteaga",
             "memberId": "francisco",
-            "text": "Los de Ronaldinho eran Samba",
+            "text": "Con respecto al primero, el Madridny Barça son los más grandes. Es verdad que en los últimos años el Atleti ha ocupado el tercer puesto, y el 4to suele moverse entre algún club que esté recibiendo financiación; no hablo de mérito deportivo, sino de dimensión en general: economía, fama, plan deportivo, plan de negocio, resultados, y base de fanáticos. Eso hace que La Liga sea vista solamente porque es donde juegan Madrid y Barça. Los ingresos del Oviedo, Villarreal, Athletic de Bilbao, Valencia, Getafe, y cualquier otro equipo español, dependen del Madrid y del Barça. Cuando el Madrid dice “no acepto vender mis derechos audiovisuales a este fondo de inversión, porque significa bajar mis ingresos” pero ese mismo acuerdo significa aumentar ingresos para el 99% de los equipos españoles, no vas a ser el club más amado de la organización. Es lógica; y más importante aún: es parte del contexto en el que se generan los abusos.",
             "kind": "before"
           },
           {
-            "id": "ctx-10043-2",
-            "at": "2/18/26, 5:49:58 PM",
-            "author": "Gerardo Vitale Errico",
-            "memberId": "gerardo",
-            "text": "Solo para dejarlo claro, mi punto es el siguiente: Me parece peligroso que una acusación verbal pueda parar partidos y comenzar investigaciones cuando interacciones entre jugadores muchas veces queda en “tu palabra vs la mía” y se puede diluir fácilmente en el aire y quedar fuera contexto, con audio inexistente o ambiguo. Muy muy subjetivo, mas que un penal. Convertir ese vacío en “hay que auditarlo todo” es peligroso y ver que cono están diciendo a ver si es racista o hay hate speech me parece abusivo. Me preocupa que para “encontrar pruebas” se normalice grabar, guardar y auditar todo lo que se dice. Todo porque políticamente estamos haciendo la guerra al racismo. Narrativas como la de “taparse la boca es de cobardes” me parece muy injusto sobretodo porque es una respuesta lógica al exceso de cámaras y grabaciones, todo porque queremos auditar y generar contenido, polémicas e historias para consumir el deporte de otras formas. Eso nos lleva a que el incentivo es convertir cada polémica en contenido y por ende empuja a leer lo peor de cualquier interacción. Falta poco para parar partidos cada ves mas por estas mariqueras, pero bueno. Todo es justificado porque políticamente tenemos que acabar con el racismo y hacer ver que estamos luchando contra ello, un imite tiene que haber también, algo de privacidad y de libertad individual.",
+            "id": "ctx-4576-2",
+            "at": "9/3/25, 8:25:55 AM",
+            "author": "Francisco Arteaga",
+            "memberId": "francisco",
+            "text": "Con respecto al segundo, y en este cae mucho @⁨Gustavo Torres⁩, sobretodo porque se deja llevar por lo que dice @⁨Javier Gimenez⁩. Podemos decir que sí, que es la forma de jugar del equipo, o que es culpa del jugador porque se adelanta y ahora la “nueva” tecnología anula la jugada. Pero de verdad puedes creer que es así? Mira el gol que le anularon a Mbappé la jornada pasada. El frame lo adelanta por el peinado, o un milímetro de cachete. Ese tipo de jugadas, son constantemente anuladas al Madrid y cuando le toca al Barça literalmente no hay VAR. Si decisiones así pasaran para todos, entonces yo les compraría ese punto, pero los mismos datos reflejan la inconsistencia. Al Madrid le han anulado 39 goles desde que hay VAR, la suma de los dos equipos que le siguen son 37 goles. Son 39 goles anulados, en una época del Madrid donde jugábamos con Benzema, Isco, Asensio, Modric, Kroos, Casemiro. Ninguno son jugadores que jueguen al desmarque como para decir que es porque hay mucho fuera de juego, ninguno es especialmente duro como para decir que es porque hay faltas; era un juego de creación de espacios, no de jugar al límite del reglamento.",
             "kind": "self"
           },
           {
-            "id": "ctx-10043-3",
-            "at": "2/18/26, 5:50:37 PM",
+            "id": "ctx-4576-3",
+            "at": "9/3/25, 8:34:39 AM",
             "author": "Francisco Arteaga",
             "memberId": "francisco",
-            "text": "Pero siempre hubo peo cuando las celebraciones eran muy raras. A Ronaldo, Robinho y R. Carlos los regalaron por celebrar como cucarachas muertas",
+            "text": "Y con respecto al último, ya es obvio para mí. El algoritmo aprovecha para meterlos en una cámara de ecos donde sus creencias se validan una y otra vez. Sobretodo cuando @⁨Javier Gimenez⁩ pone vainas de los peores periodistas que hay actualmente y @⁨Gustavo Torres⁩ ve esa vaina. Realmente cuando una vaina se está exagerando, yo intento ser crítico. Por ejemplo, el Gol de Ferran en la primera jornada, para mí es entendible y una jugada en la que no puede entrar el VAR. Pero de ahí, al penal en Vallecas, o el gol de Giuliano la fecha pasada, son errores que el mismo @⁨Javier Gimenez⁩ dice que ya no pasan más y ahí están. @⁨Gustavo Torres⁩ hace unos meses investigó y vino mostrando que según MEDIAPRO había fuera de juego automático, que la tecnología era de punta, y demás vainas. Todo para que en una misma fecha, el semiautomático no se active en el juego del Atleti, sea imposible usarlo en el juego del Barça, pero al Madrid le anulen un gol por un pelo y después llamen al árbitro para decirle textualmente “evalúa esta mano, para poder anular el gol”.",
             "kind": "after"
           },
           {
-            "id": "ctx-10043-4",
-            "at": "2/18/26, 5:55:03 PM",
+            "id": "ctx-4576-4",
+            "at": "9/3/25, 8:36:11 AM",
             "author": "Francisco Arteaga",
             "memberId": "francisco",
-            "text": "Lo que pasa, es que al tú trabajar para un club, y ser parte de la UEFA, tú aceptas ciertas condiciones. Estás en tu pleno ejercicio de tus derechos, no aceptarlas y ya. No se va en contra de la privacidad, porque igual que puedes grabar en la calle, tú al jugar un partido de fútbol televisado no tienes expectativa de privacidad. También vas a tener, que que posible expresión puedes realizar en ese contexto, refiriéndote a un jugador rival, lejos del área técnica, y después de estar caliente por una celebración.",
+            "text": "Pudiera hablar del criterio usado y de la interpretación de esa jugada, pero ya eso sí creo que sería “moot” en esta discusión.",
             "kind": "after"
           },
           {
-            "id": "ctx-10043-5",
-            "at": "2/18/26, 5:55:42 PM",
-            "author": "Francisco Arteaga",
-            "memberId": "francisco",
-            "text": "La libertad individual la ejerces no firmando o no aceptando las condiciones que te pone la UEFA, lo que seguramente haga que no puedas jugar la competición.",
+            "id": "ctx-4576-5",
+            "at": "9/3/25, 8:54:35 AM",
+            "author": "Jorge Anzola",
+            "memberId": "jorge",
+            "text": "‎sticker omitted",
             "kind": "after"
           },
           {
-            "id": "ctx-10043-6",
-            "at": "2/18/26, 5:59:12 PM",
-            "author": "Gabriel Gutiérrez",
-            "memberId": "gabriel",
-            "text": "Marico no te acuerdas una vez que se tiraron al piso como cucarachas patas arriba??",
+            "id": "ctx-4576-6",
+            "at": "9/3/25, 8:56:48 AM",
+            "author": "Francisco Arteaga",
+            "memberId": "francisco",
+            "text": "Estamos calentando motores, muchachos. Lo bueno llega al final de temporada.",
             "kind": "after"
           }
         ]

@@ -89,6 +89,7 @@ const CATEGORY_DEFS = [
     icon: '🚫',
     accent: 'oklch(66% 0.18 18)',
     description: 'Lectura de frases con sesgo racial explícito o con minimización directa de insultos racistas.',
+    editorialPriorityIds: ['javier', 'francisco', 'gabriel'],
     patterns: [
       { label: 'decirle mono', regex: /decirl[eé]\s+mono/g, weight: 11 },
       { label: 'comportarse como mono', regex: /comportarse como mono/g, weight: 12 },
@@ -157,6 +158,7 @@ const CATEGORY_DEFS = [
     icon: '🎭',
     accent: 'oklch(72% 0.18 60)',
     description: 'Sarcasmo, carnada y frases hechas para pinchar al otro sin declararlo frontalmente.',
+    editorialPriorityIds: ['gustavo', 'javier', 'gabriel', 'francisco'],
     patterns: [
       { label: 'ah ok', regex: /\bah ok\b/g, weight: 8 },
       { label: 'por joder', regex: /por joder/g, weight: 8 },
@@ -187,6 +189,7 @@ const CATEGORY_DEFS = [
     icon: '🧠',
     accent: 'oklch(68% 0.18 200)',
     description: 'Mensajes con matiz, criterio y una lectura que ordena mejor el debate que la media del grupo.',
+    editorialPriorityIds: ['francisco', 'luis', 'jesus', 'gerardo'],
     patterns: [
       { label: 'confundes las cosas', regex: /confundes las cosas/g, weight: 12 },
       { label: 'es diferente', regex: /\bes diferente\b/g, weight: 7 },
@@ -228,6 +231,7 @@ const CATEGORY_DEFS = [
     icon: '🔥',
     accent: 'oklch(62% 0.22 25)',
     description: 'Ataque frontal, sin demasiada mediación ni humor protector.',
+    editorialPriorityIds: ['javier', 'jesus', 'francisco', 'gabriel'],
     patterns: [
       { label: 'pura paja', regex: /\bpura paja\b/g, weight: 10 },
       { label: 'no puedes defender esa mierda', regex: /no puedes defender esa mierda/g, weight: 10 },
@@ -263,6 +267,7 @@ const CATEGORY_DEFS = [
     icon: '🧨',
     accent: 'oklch(60% 0.25 15)',
     description: 'Mensajes que parecen escritos para producir reacción o abrir otra pelea.',
+    editorialPriorityIds: ['javier', 'gustavo', 'francisco'],
     patterns: [
       { label: 'por fastidiar', regex: /por fastidiar/g, weight: 10 },
       { label: 'para joder', regex: /para joder/g, weight: 8 },
@@ -299,6 +304,7 @@ const CATEGORY_DEFS = [
     icon: '🧾',
     accent: 'oklch(72% 0.18 60)',
     description: 'Mensajes que fijan reglas, cierran temas o hablan desde una lógica de orden y disciplina.',
+    editorialPriorityIds: ['gabriel', 'francisco', 'javier'],
     patterns: [
       { label: 'tema cerrado', regex: /tema cerrado/g, weight: 12 },
       { label: 'quedamos claros', regex: /quedamos claros/g, weight: 12 },
@@ -335,6 +341,7 @@ const CATEGORY_DEFS = [
     icon: '🧐',
     accent: 'oklch(74% 0.16 25)',
     description: 'Mensajes que rebajan al otro, explican desde arriba o presuponen superioridad.',
+    editorialPriorityIds: ['javier', 'gabriel', 'francisco'],
     patterns: [
       { label: 'entiendo más', regex: /entiendo un poquito m[aá]s/g, weight: 13 },
       { label: 'lee con calma', regex: /lee con calma/g, weight: 12 },
@@ -371,6 +378,7 @@ const CATEGORY_DEFS = [
     icon: '📐',
     accent: 'oklch(65% 0.16 260)',
     description: 'Mensajes largos, estructurados y con intención de explicar más que de reaccionar.',
+    editorialPriorityIds: ['francisco', 'gerardo', 'gabriel', 'gustavo'],
     patterns: [
       { label: 'por ejemplo', regex: /por ejemplo/g, weight: 7 },
       { label: 'me parece', regex: /me parece/g, weight: 4 },
@@ -412,6 +420,12 @@ const CATEGORY_DEFS = [
     ],
   },
 ]
+
+const getEditorialPriority = (category, entry) => {
+  const priority = category.editorialPriorityIds ?? []
+  const index = priority.indexOf(entry.memberId)
+  return index === -1 ? Number.POSITIVE_INFINITY : index
+}
 
 const normalizeText = (value) =>
   value
@@ -607,6 +621,14 @@ const main = async () => {
   const categories = CATEGORY_DEFS.map((category) => {
     const bestPerMember = [...(byCategory.get(category.id) ?? [])]
       .sort((left, right) => {
+        const leftPriority = getEditorialPriority(category, left)
+        const rightPriority = getEditorialPriority(category, right)
+        const hasEditorialPriority =
+          Number.isFinite(leftPriority) || Number.isFinite(rightPriority)
+
+        if (hasEditorialPriority && leftPriority !== rightPriority) {
+          return leftPriority - rightPriority
+        }
         if (right.score !== left.score) return right.score - left.score
         return (right.text?.length ?? 0) - (left.text?.length ?? 0)
       })
@@ -622,6 +644,7 @@ const main = async () => {
       icon: category.icon,
       accent: category.accent,
       description: category.description,
+      editorialPriorityIds: category.editorialPriorityIds ?? [],
       entries: bestPerMember,
       leader: bestPerMember[0] ?? null,
       memberCount: bestPerMember.length,
