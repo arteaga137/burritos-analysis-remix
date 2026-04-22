@@ -77,6 +77,32 @@ const WEEKDAY_ORDER = [
   { key: 6, label: 'Sáb' },
   { key: 0, label: 'Dom' },
 ]
+const EDITORIAL_FRICTION_SCORES = {
+  javier: 100,
+  gabriel: 72,
+  francisco: 68,
+  gustavo: 52,
+  jesus: 18,
+  luis: 16,
+  andres: 14,
+  gerardo: 12,
+  espana34: 10,
+  jorge: 22,
+  aaron: 9,
+}
+const EDITORIAL_TROLL_SCORES = {
+  gustavo: 100,
+  javier: 78,
+  gabriel: 66,
+  jorge: 60,
+  francisco: 48,
+  jesus: 42,
+  gerardo: 36,
+  luis: 28,
+  andres: 25,
+  espana34: 18,
+  aaron: 16,
+}
 
 const EMPTY_LINKS = []
 
@@ -929,20 +955,34 @@ const deriveDynamicsAnalytics = (linksIndex, analytics) => {
     .sort((left, right) => right.influence - left.influence)
     .slice(0, 8)
   const maxVolume = Math.max(1, ...rankedMembers.map((item) => item.volume))
-  const maxAggression = Math.max(1, ...rankedMembers.map((item) => item.aggressionIndex))
   const maxInfluence = Math.max(1, ...rankedMembers.map((item) => item.influence))
+  const frictionBaseline = rankedMembers.map((item) => EDITORIAL_FRICTION_SCORES[item.member.id] ?? Math.round(item.aggressionIndex))
+  const maxFriction = Math.max(1, ...frictionBaseline)
 
-  const archetypeDots = rankedMembers.map((item) => ({
-    member: item.member,
-    role: item.role,
-    x: (item.volume / maxVolume) * 100,
-    y: (item.aggressionIndex / maxAggression) * 100,
-    size: 14 + (item.influence / maxInfluence) * 14,
-    leverage: item.leverage,
-    influence: item.influence,
-    volume: item.volume,
-    aggressionIndex: item.aggressionIndex,
-  }))
+  const archetypeDots = rankedMembers.map((item) => {
+    const friction = EDITORIAL_FRICTION_SCORES[item.member.id] ?? Math.round(item.aggressionIndex)
+
+    return {
+      member: item.member,
+      role: item.role,
+      x: (item.volume / maxVolume) * 100,
+      y: (friction / maxFriction) * 100,
+      size: 14 + (item.influence / maxInfluence) * 14,
+      leverage: item.leverage,
+      influence: item.influence,
+      volume: item.volume,
+      aggressionIndex: item.aggressionIndex,
+      friction,
+    }
+  })
+
+  const trollRows = MEMBERS
+    .map((member) => ({
+      member,
+      score: EDITORIAL_TROLL_SCORES[member.id] ?? Math.max(member.scores.find((item) => item.label === 'Humor')?.val ?? 0, 1) * 10,
+    }))
+    .sort((left, right) => right.score - left.score)
+    .slice(0, 6)
 
   return {
     totalShares: links.length,
@@ -959,6 +999,7 @@ const deriveDynamicsAnalytics = (linksIndex, analytics) => {
     phaseLeader,
     domainRows,
     archetypeDots,
+    trollRows,
     topDomain: domainRows[0] ?? null,
   }
 }
@@ -2393,7 +2434,7 @@ const ArchetypeScatterSection = ({ dynamics }) => (
     <div className="analysis-section__header">
       <div>
         <h3>Mapa de arquetipos</h3>
-        <p>Volumen en X, agresividad en Y e influencia como tamaño del punto.</p>
+        <p>Volumen en X, fricción editorial en Y e influencia como tamaño del punto.</p>
       </div>
     </div>
 
@@ -2402,7 +2443,7 @@ const ArchetypeScatterSection = ({ dynamics }) => (
         <div className="archetype-scatter__quadrant archetype-scatter__quadrant--soft">Mucho volumen, poca fricción</div>
         <div className="archetype-scatter__quadrant archetype-scatter__quadrant--sharp">Mucho volumen, alta fricción</div>
         <div className="archetype-scatter__axis archetype-scatter__axis--horizontal">Volumen</div>
-        <div className="archetype-scatter__axis archetype-scatter__axis--vertical">Agresividad</div>
+        <div className="archetype-scatter__axis archetype-scatter__axis--vertical">Fricción</div>
         <div className="archetype-scatter__guide archetype-scatter__guide--x" />
         <div className="archetype-scatter__guide archetype-scatter__guide--y" />
 
@@ -2417,7 +2458,7 @@ const ArchetypeScatterSection = ({ dynamics }) => (
               height: `${item.size}px`,
               '--dot-color': item.member.color,
             }}
-            title={`${item.member.name}: volumen ${item.volume}, agresividad ${item.aggressionIndex}, influencia ${item.influence}`}
+            title={`${item.member.name}: volumen ${item.volume}, fricción ${item.friction}, influencia ${item.influence}`}
           >
             <span>{item.member.shortName || item.member.name.split(' ')[0]}</span>
           </div>
@@ -2436,6 +2477,49 @@ const ArchetypeScatterSection = ({ dynamics }) => (
     </article>
   </section>
 )
+
+const TrollBoardSection = ({ dynamics }) => {
+  const topScore = dynamics.trollRows[0]?.score ?? 1
+
+  return (
+    <section className="analysis-section" aria-label="Ranking de trolleos">
+      <div className="analysis-section__header">
+        <div>
+          <h3>Ranking de trolleos</h3>
+          <p>Lectura editorial del dashboard: quién más mete pulla, ironía o gasolina lúdica en el grupo.</p>
+        </div>
+      </div>
+
+      <div className="troll-board">
+        {dynamics.trollRows.map((entry, index) => (
+          <article key={entry.member.id} className="troll-row">
+            <div className="troll-row__rank">0{index + 1}</div>
+            <div className="troll-row__identity">
+              <div className="troll-row__name">{entry.member.name}</div>
+              <div className="troll-row__role" style={{ color: entry.member.color }}>
+                {index === 0
+                  ? 'Trolleo dominante'
+                  : index === 1
+                    ? 'Segunda fuente de pulla'
+                    : 'Presencia irónica'}
+              </div>
+            </div>
+            <div className="troll-row__bar">
+              <div
+                className="troll-row__fill"
+                style={{
+                  width: `${Math.max((entry.score / topScore) * 100, 12)}%`,
+                  background: entry.member.color,
+                }}
+              />
+            </div>
+            <div className="troll-row__score">{entry.score}</div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
 
 const DomainToneSection = ({ dynamics }) => (
   <section className="analysis-section" aria-label="Dominios por tono">
@@ -2547,6 +2631,7 @@ const DynamicsView = ({ linksIndex, analytics }) => {
       {linksIndex ? <TonePhasesSection dynamics={dynamics} /> : null}
       {linksIndex ? <ActivityHeatmapSection dynamics={dynamics} /> : null}
       <ArchetypeScatterSection dynamics={dynamics} />
+      <TrollBoardSection dynamics={dynamics} />
       {linksIndex ? <DomainToneSection dynamics={dynamics} /> : null}
     </section>
   )

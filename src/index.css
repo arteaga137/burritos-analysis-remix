@@ -1693,6 +1693,60 @@ button {
   gap: 12px;
 }
 
+.troll-board {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.troll-row {
+  display: grid;
+  grid-template-columns: 44px minmax(180px, 0.9fr) minmax(160px, 1fr) 56px;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 12px 14px;
+}
+
+.troll-row__rank,
+.troll-row__score {
+  color: rgba(255, 255, 255, 0.32);
+  font-family: 'DM Mono', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.troll-row__name {
+  color: #f0ede8;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.troll-row__role {
+  margin-top: 3px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.troll-row__bar {
+  overflow: hidden;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.troll-row__fill {
+  height: 100%;
+  border-radius: 999px;
+}
+
 .compare-role-phase {
   grid-template-columns: minmax(0, 0.9fr) auto minmax(0, 1fr);
 }
@@ -3189,7 +3243,8 @@ button {
   .compare-role-phase,
   .role-phase,
   .topic-dynamics-row,
-  .event-causality__row {
+  .event-causality__row,
+  .troll-row {
     grid-template-columns: 1fr;
   }
 
