@@ -443,6 +443,7 @@ const truncateCopy = (value, limit) => {
 }
 
 const getLinkPreviewKind = (entry) => {
+  if (entry.previewType) return entry.previewType
   const domain = entry.domain ?? ''
 
   if (domain === 'youtu.be' || domain.includes('youtube.com')) return 'Video'
@@ -453,8 +454,9 @@ const getLinkPreviewKind = (entry) => {
   return 'Articulo'
 }
 
-const getLinkMonogram = (domain) => {
-  const value = (domain ?? '').replace(/^www\./, '').split('.').filter(Boolean)[0] ?? 'ln'
+const getLinkMonogram = (entry) => {
+  if (entry.previewMonogram) return entry.previewMonogram
+  const value = (entry.domain ?? '').replace(/^www\./, '').split('.').filter(Boolean)[0] ?? 'ln'
   return value.slice(0, 2).toUpperCase()
 }
 
@@ -477,8 +479,10 @@ const getLinkReactionLine = (entry) => {
 }
 
 const buildLinkPreviewData = (entry) => ({
+  platform: entry.platform ?? entry.domain,
   kind: getLinkPreviewKind(entry),
-  monogram: getLinkMonogram(entry.domain),
+  monogram: getLinkMonogram(entry),
+  thumbnailUrl: entry.thumbnailUrl ?? null,
   snippet: truncateCopy(entry.messageText || entry.summary || entry.label, 116),
   reactionLine: getLinkReactionLine(entry),
 })
@@ -2235,9 +2239,24 @@ const LinksView = ({ linksIndex, onSelectFragment }) => {
                 </div>
 
                 <div className="link-preview" aria-label={`Preview rapido de ${entry.label}`}>
-                  <div className="link-preview__media">
-                    <div className="link-preview__media-type">{previewData.kind}</div>
-                    <div className="link-preview__media-mark">{previewData.monogram}</div>
+                  <div className={`link-preview__media${previewData.thumbnailUrl ? ' has-image' : ''}`}>
+                    {previewData.thumbnailUrl ? (
+                      <img
+                        src={previewData.thumbnailUrl}
+                        alt={`${previewData.platform} · ${previewData.kind}`}
+                        className="link-preview__image"
+                        loading="lazy"
+                        referrerPolicy="no-referrer"
+                      />
+                    ) : null}
+                    <div className="link-preview__media-overlay" />
+                    <div className="link-preview__media-topline">
+                      <div className="link-preview__media-type">{previewData.platform}</div>
+                      <div className="link-preview__media-badge">{previewData.kind}</div>
+                    </div>
+                    {!previewData.thumbnailUrl ? (
+                      <div className="link-preview__media-mark">{previewData.monogram}</div>
+                    ) : null}
                     <div className="link-preview__media-topic">{entry.topic}</div>
                   </div>
 

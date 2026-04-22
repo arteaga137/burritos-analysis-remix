@@ -172,6 +172,100 @@ const buildLabel = (messageText, url) => {
   return url
 }
 
+const getYouTubeVideoId = (url) => {
+  const hostname = formatDomain(url.hostname)
+  const pathname = url.pathname.replace(/\/$/, '')
+
+  if ((hostname === 'youtube.com' || hostname === 'm.youtube.com') && pathname === '/watch') {
+    return url.searchParams.get('v')
+  }
+  if (hostname === 'youtu.be') return pathname.split('/').filter(Boolean)[0] ?? null
+  if (hostname === 'youtube.com' || hostname === 'm.youtube.com') {
+    const segments = pathname.split('/').filter(Boolean)
+    if (segments[0] === 'shorts' || segments[0] === 'live' || segments[0] === 'embed') {
+      return segments[1] ?? null
+    }
+  }
+
+  return null
+}
+
+const detectLinkPreview = (canonicalUrl, messageText, label) => {
+  const url = new URL(canonicalUrl)
+  const hostname = formatDomain(url.hostname)
+  const pathname = url.pathname.toLowerCase()
+  const normalizedCopy = normaliseText([messageText, label].filter(Boolean).join(' '))
+
+  if (hostname === 'youtube.com' || hostname === 'm.youtube.com' || hostname === 'youtu.be') {
+    const videoId = getYouTubeVideoId(url)
+    const previewType =
+      pathname.startsWith('/shorts/') ? 'Short' : pathname.startsWith('/live/') ? 'Live' : 'Video'
+
+    return {
+      platform: 'YouTube',
+      previewType,
+      monogram: 'YT',
+      thumbnailUrl: videoId ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg` : null,
+    }
+  }
+
+  if (hostname === 'x.com' || hostname === 'twitter.com') {
+    return {
+      platform: 'X',
+      previewType:
+        normalizedCopy.includes('retweet') ||
+        normalizedCopy.includes('repost') ||
+        normalizedCopy.includes('reposteo') ||
+        normalizedCopy.includes('reposteo') ||
+        normalizedCopy.startsWith('rt ')
+          ? 'Repost'
+          : 'Tweet',
+      monogram: 'X',
+      thumbnailUrl: null,
+    }
+  }
+
+  if (hostname.endsWith('instagram.com')) {
+    const previewType = pathname.startsWith('/reel/') || pathname.startsWith('/reels/')
+      ? 'Reel'
+      : pathname.startsWith('/p/')
+        ? 'Post'
+        : 'Perfil'
+
+    return {
+      platform: 'Instagram',
+      previewType,
+      monogram: 'IG',
+      thumbnailUrl: null,
+    }
+  }
+
+  if (hostname === 'tiktok.com' || hostname.endsWith('.tiktok.com')) {
+    return {
+      platform: 'TikTok',
+      previewType: pathname.includes('/video/') ? 'Video' : 'Clip',
+      monogram: 'TT',
+      thumbnailUrl: null,
+    }
+  }
+
+  if (hostname === 'chatgpt.com') {
+    return {
+      platform: 'ChatGPT',
+      previewType: 'Share',
+      monogram: 'AI',
+      thumbnailUrl: null,
+    }
+  }
+
+  return {
+    platform: hostname.split('.').slice(0, -1).join('.') || hostname,
+    previewType: 'Articulo',
+    monogram: (hostname.split('.')[0] ?? 'LN').slice(0, 2).toUpperCase(),
+    thumbnailUrl: null,
+  }
+}
+
 const extractUrls = (text) => [...(text.match(urlPattern) ?? [])].map(trimUrl)
 
 const stripUrls = (text) => text.replace(urlPattern, ' ').replace(/\s+/g, ' ').trim()
@@ -371,6 +465,8 @@ const main = async () => {
       const canonicalUrl = canonicaliseUrl(rawUrl)
       const parsed = new URL(canonicalUrl)
       const domain = formatDomain(parsed.hostname)
+      const label = buildLabel(messageText, canonicalUrl)
+      const preview = detectLinkPreview(canonicalUrl, messageText, label)
       const topic = detectTopic({ messageText, domain }, contextText)
       const toneData = scoreTone(contextText, reactionMessages.length)
       const heat = Math.min(
@@ -394,10 +490,14 @@ const main = async () => {
         at: message.rawAt,
         timestamp: message.timestamp?.toISOString() ?? null,
         messageText,
-        label: buildLabel(messageText, canonicalUrl),
+        label,
         topic,
         tone: toneData.tone,
         toneConfidence: Number(toneData.confidence.toFixed(2)),
+        platform: preview.platform,
+        previewType: preview.previewType,
+        previewMonogram: preview.monogram,
+        thumbnailUrl: preview.thumbnailUrl,
         heat,
         reactionCount: reactionMessages.length,
         reactionAuthors,
