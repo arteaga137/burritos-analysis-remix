@@ -180,6 +180,237 @@ const CATEGORY_DEFS = [
       },
     ],
   },
+  {
+    id: 'sensible',
+    title: 'El comentario más sensato',
+    shortLabel: 'Sensato',
+    icon: '🧠',
+    accent: 'oklch(68% 0.18 200)',
+    description: 'Mensajes con matiz, criterio y una lectura que ordena mejor el debate que la media del grupo.',
+    patterns: [
+      { label: 'confundes las cosas', regex: /confundes las cosas/g, weight: 12 },
+      { label: 'es diferente', regex: /\bes diferente\b/g, weight: 7 },
+      { label: 'si se demuestran', regex: /si se demuestran/g, weight: 10 },
+      { label: 'por lo menos', regex: /por lo menos/g, weight: 4 },
+      { label: 'me parece', regex: /me parece/g, weight: 4 },
+      { label: 'lo que pasa es', regex: /lo que pasa es/g, weight: 5 },
+      { label: 'hablemos de', regex: /hablemos de/g, weight: 6 },
+      { label: 'es justo el punto', regex: /es justo el punto/g, weight: 7 },
+      { label: 'no estan equivocados', regex: /no est[aá]n equivocados/g, weight: 6 },
+      { label: 'capaz', regex: /\bcapaz\b/g, weight: 2 },
+      { label: 'entiendo', regex: /\bentiend[a-z]*\b/g, weight: 3 },
+    ],
+    bonuses: [
+      {
+        label: 'matiz argumental',
+        test: (normalized) =>
+          /(pero|aunque|porque|si |entonces|de hecho|por lo menos)/.test(normalized) &&
+          normalized.split(' ').length >= 18,
+        weight: 5,
+      },
+      {
+        label: 'criterio sin insulto',
+        test: (normalized) =>
+          /(diferente|confundes|se demuestran|punto|entiendo)/.test(normalized) &&
+          !/(mierda|paja|joder|llor|maldit|mamaweb|hijo de puta)/.test(normalized),
+        weight: 4,
+      },
+    ],
+    penalties: [
+      { regex: /\b(jaj|🤣|😂)\b/g, weight: 1 },
+      { regex: /\bmierda\b|\bpaja\b|\bjod[a-z]*\b/g, weight: 3 },
+    ],
+  },
+  {
+    id: 'aggressive',
+    title: 'El comentario más agresivo',
+    shortLabel: 'Agresivo',
+    icon: '🔥',
+    accent: 'oklch(62% 0.22 25)',
+    description: 'Ataque frontal, sin demasiada mediación ni humor protector.',
+    patterns: [
+      { label: 'pura paja', regex: /\bpura paja\b/g, weight: 10 },
+      { label: 'no puedes defender esa mierda', regex: /no puedes defender esa mierda/g, weight: 10 },
+      { label: 'llorón', regex: /\bllor[oó]n\b|\blloran\b|\blloras\b/g, weight: 6 },
+      { label: 'mierda', regex: /\bmierda\b/g, weight: 5 },
+      { label: 'maldito', regex: /\bmaldit[ao]\b/g, weight: 6 },
+      { label: 'mamawebos', regex: /\bmamaweb[a-z]*\b/g, weight: 10 },
+      { label: 'hijo de puta', regex: /hijo de puta/g, weight: 9 },
+      { label: 'ridículo', regex: /\bridicul/g, weight: 6 },
+      { label: 'inmamable', regex: /\binmamable\b/g, weight: 8 },
+      { label: 'se cree dios', regex: /se cree dios/g, weight: 7 },
+      { label: 'gran mierda', regex: /gran mierda/g, weight: 7 },
+      { label: 'llore de nuevo', regex: /llore de nuevo/g, weight: 8 },
+      { label: 'suelta el papo', regex: /suelta el papo/g, weight: 8 },
+    ],
+    bonuses: [
+      {
+        label: 'segunda persona + golpe',
+        test: (normalized) =>
+          /\b(tu|tú|eres|te|ustedes)\b/.test(normalized) &&
+          /(paja|mierda|llor|ridicul|inmamable|fastidiar|se cree dios)/.test(normalized),
+        weight: 6,
+      },
+    ],
+    penalties: [
+      { regex: /jaja[a-z]*|🤣|😂/g, weight: 1 },
+    ],
+  },
+  {
+    id: 'provocative',
+    title: 'El comentario más provocador',
+    shortLabel: 'Provocador',
+    icon: '🧨',
+    accent: 'oklch(60% 0.25 15)',
+    description: 'Mensajes que parecen escritos para producir reacción o abrir otra pelea.',
+    patterns: [
+      { label: 'por fastidiar', regex: /por fastidiar/g, weight: 10 },
+      { label: 'para joder', regex: /para joder/g, weight: 8 },
+      { label: 'solo estaba jodiendo', regex: /solo estaba jodiendo/g, weight: 9 },
+      { label: 'fue más por joder', regex: /fue m[aá]s por joder/g, weight: 10 },
+      { label: 'debería salirme', regex: /deber[ií]a salirme/g, weight: 11 },
+      { label: 'llore de nuevo', regex: /llore de nuevo/g, weight: 9 },
+      { label: 'lloras mejor me callo', regex: /lloras mejor me callo/g, weight: 10 },
+      { label: 'vinicius llorón', regex: /vinicius.*llor[oó]n|llor[oó]n.*vinicius/g, weight: 7 },
+      { label: 'trolear', regex: /\btrolear|troll\b/g, weight: 7 },
+      { label: 'por joder', regex: /por joder/g, weight: 7 },
+      { label: 'jugar con el ego', regex: /ego/g, weight: 3 },
+    ],
+    bonuses: [
+      {
+        label: 'autoadmisión',
+        test: (normalized) => /(por joder|solo estaba jodiendo|fue mas por joder)/.test(normalized),
+        weight: 5,
+      },
+      {
+        label: 'anzuelo directo',
+        test: (normalized) => /\b(tu|tú|te|gabriel|francisco)\b/.test(normalized) && /(llor|salirme|joder)/.test(normalized),
+        weight: 4,
+      },
+    ],
+    penalties: [
+      { regex: /perd[oó]n|tranquil|no pasa nada/g, weight: 3 },
+    ],
+  },
+  {
+    id: 'authoritarian',
+    title: 'El comentario más autoritario',
+    shortLabel: 'Autoritario',
+    icon: '🧾',
+    accent: 'oklch(72% 0.18 60)',
+    description: 'Mensajes que fijan reglas, cierran temas o hablan desde una lógica de orden y disciplina.',
+    patterns: [
+      { label: 'tema cerrado', regex: /tema cerrado/g, weight: 12 },
+      { label: 'quedamos claros', regex: /quedamos claros/g, weight: 12 },
+      { label: 'avísame que no puedo decir', regex: /av[ií]same que no puedo decir/g, weight: 11 },
+      { label: 'no puedes', regex: /no puedes/g, weight: 6 },
+      { label: 'tienes que', regex: /tienes? que/g, weight: 5 },
+      { label: 'debería', regex: /deber[ií]a/g, weight: 3 },
+      { label: 'promuevo', regex: /promuevo/g, weight: 7 },
+      { label: 'hay que', regex: /hay que/g, weight: 4 },
+      { label: 'se tiene que', regex: /se tiene que/g, weight: 6 },
+      { label: 'lo acepto', regex: /te lo acepto/g, weight: 4 },
+      { label: 'tema', regex: /\btema\b/g, weight: 2 },
+    ],
+    bonuses: [
+      {
+        label: 'cierre de expediente',
+        test: (normalized) => /(tema cerrado|ya cerre el tema|quedamos claros|te lo acepto)/.test(normalized),
+        weight: 6,
+      },
+      {
+        label: 'modo norma',
+        test: (normalized) => /(no puedes|tienes que|hay que|se tiene que)/.test(normalized) && normalized.split(' ').length >= 10,
+        weight: 4,
+      },
+    ],
+    penalties: [
+      { regex: /jaja[a-z]*|🤣|😂/g, weight: 1 },
+    ],
+  },
+  {
+    id: 'condescending',
+    title: 'El comentario más condescendiente',
+    shortLabel: 'Condescendiente',
+    icon: '🧐',
+    accent: 'oklch(74% 0.16 25)',
+    description: 'Mensajes que rebajan al otro, explican desde arriba o presuponen superioridad.',
+    patterns: [
+      { label: 'entiendo más', regex: /entiendo un poquito m[aá]s/g, weight: 13 },
+      { label: 'lee con calma', regex: /lee con calma/g, weight: 12 },
+      { label: 'si quieres decir', regex: /si quieres decir/g, weight: 8 },
+      { label: 'no entiendes', regex: /no entiendes/g, weight: 9 },
+      { label: 'te cuento', regex: /te cuento/g, weight: 5 },
+      { label: 'te explico', regex: /te explico/g, weight: 7 },
+      { label: 'no sé si entiendes', regex: /no s[eé] si entiendes/g, weight: 10 },
+      { label: 'yo creo que', regex: /yo creo que/g, weight: 2 },
+      { label: 'eres el que', regex: /eres el que/g, weight: 4 },
+      { label: 'no entiendes el uso', regex: /no entiendes el uso/g, weight: 11 },
+      { label: 'si pregunto es por qué no entiendo', regex: /si pregunto es por qu[eé] no entiendo/g, weight: 5 },
+    ],
+    bonuses: [
+      {
+        label: 'superioridad declarada',
+        test: (normalized) => /(entiendo un poquito mas|te explico|te cuento|lee con calma)/.test(normalized),
+        weight: 5,
+      },
+      {
+        label: 'segunda persona tutorial',
+        test: (normalized) => /\b(tu|tú|te|ustedes)\b/.test(normalized) && /(entiendes|explico|cuento|lee)/.test(normalized),
+        weight: 4,
+      },
+    ],
+    penalties: [
+      { regex: /perd[oó]n|disculp/g, weight: 2 },
+    ],
+  },
+  {
+    id: 'analytic',
+    title: 'El comentario más analítico',
+    shortLabel: 'Analítico',
+    icon: '📐',
+    accent: 'oklch(65% 0.16 260)',
+    description: 'Mensajes largos, estructurados y con intención de explicar más que de reaccionar.',
+    patterns: [
+      { label: 'por ejemplo', regex: /por ejemplo/g, weight: 7 },
+      { label: 'me parece', regex: /me parece/g, weight: 4 },
+      { label: 'es justo el punto', regex: /es justo el punto/g, weight: 8 },
+      { label: 'de hecho', regex: /de hecho/g, weight: 6 },
+      { label: 'entonces', regex: /\bentonces\b/g, weight: 4 },
+      { label: 'porque', regex: /\bporque\b/g, weight: 2 },
+      { label: 'aunque', regex: /\baunque\b/g, weight: 4 },
+      { label: 'si ', regex: /\bsi\b/g, weight: 1 },
+      { label: 'narrativa', regex: /narrativ/g, weight: 6 },
+      { label: 'subjetivo', regex: /subjetiv/g, weight: 6 },
+      { label: 'argumento', regex: /argument/g, weight: 5 },
+      { label: 'contexto', regex: /contexto/g, weight: 4 },
+      { label: 'auditar', regex: /auditar|auditarlo/g, weight: 6 },
+      { label: 'investigacion', regex: /investigacion/g, weight: 5 },
+    ],
+    bonuses: [
+      {
+        label: 'texto largo',
+        test: (normalized) => normalized.split(' ').length >= 45,
+        weight: 10,
+      },
+      {
+        label: 'texto muy largo',
+        test: (normalized) => normalized.split(' ').length >= 80,
+        weight: 8,
+      },
+      {
+        label: 'estructura causal',
+        test: (normalized) =>
+          /(porque|aunque|entonces|por ejemplo|de hecho)/.test(normalized) &&
+          normalized.split(' ').length >= 24,
+        weight: 6,
+      },
+    ],
+    penalties: [
+      { regex: /jaja[a-z]*|🤣|😂/g, weight: 1 },
+      { regex: /\bmierda\b|\bpura paja\b/g, weight: 2 },
+    ],
+  },
 ]
 
 const normalizeText = (value) =>
