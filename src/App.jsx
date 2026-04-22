@@ -483,7 +483,8 @@ const buildLinkPreviewData = (entry) => ({
   kind: getLinkPreviewKind(entry),
   monogram: getLinkMonogram(entry),
   thumbnailUrl: entry.thumbnailUrl ?? null,
-  snippet: truncateCopy(entry.messageText || entry.summary || entry.label, 116),
+  title: entry.previewTitle || entry.label,
+  snippet: truncateCopy(entry.messageText || entry.previewDescription || entry.summary || entry.label, 116),
   reactionLine: getLinkReactionLine(entry),
 })
 
@@ -2273,7 +2274,7 @@ const LinksView = ({ linksIndex, onSelectFragment }) => {
                       rel="noreferrer"
                       className="link-preview__title"
                     >
-                      {entry.label}
+                      {previewData.title}
                     </a>
 
                     <p className="link-preview__snippet">{previewData.snippet}</p>

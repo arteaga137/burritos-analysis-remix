@@ -7,6 +7,30 @@ const __dirname = path.dirname(__filename)
 const repoRoot = path.resolve(__dirname, '..')
 const defaultInput = '/Users/Francisco/Downloads/_chat.txt'
 const outputFile = path.join(repoRoot, 'public', 'links-index.json')
+const cacheDir = path.join(repoRoot, 'tmp')
+const previewCacheFile = path.join(cacheDir, 'link-preview-cache.json')
+const PREVIEW_FETCH_TIMEOUT_MS = 4500
+const PREVIEW_FETCH_CONCURRENCY = 6
+const PREVIEW_FETCH_HOSTS = [
+  'marca.com',
+  'as.com',
+  'sport.es',
+  'mundodeportivo.com',
+  'nytimes.com',
+  'si.com',
+  'espn.com',
+  'espn.com.ar',
+  'infobae.com',
+  'realmadrid.com',
+  'larazon.es',
+  'theobjective.com',
+  'okdiario.com',
+  'cope.es',
+  'tntsports.com.ar',
+  'theathletic.com',
+  'substack.com',
+  'blackandwhitepixels.substack.com',
+]
 
 const memberMap = new Map([
   ['gabriel gutierrez', 'gabriel'],
@@ -170,6 +194,117 @@ const buildLabel = (messageText, url) => {
   }
 
   return url
+}
+
+const shouldFetchPlatformPreview = (hostname, previewType) =>
+  previewType === 'Articulo' &&
+  PREVIEW_FETCH_HOSTS.some((allowed) => hostname === allowed || hostname.endsWith(`.${allowed}`))
+
+const decodeHtmlEntities = (value) =>
+  value
+    .replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCodePoint(Number.parseInt(code, 16)))
+
+const parseTagAttributes = (tag) => {
+  const attributes = {}
+  const pattern = /([a-zA-Z:-]+)\s*=\s*("([^"]*)"|'([^']*)'|([^\s"'=<>`]+))/g
+  let match = pattern.exec(tag)
+
+  while (match) {
+    const [, name, , doubleQuoted, singleQuoted, bare] = match
+    attributes[name.toLowerCase()] = decodeHtmlEntities(doubleQuoted ?? singleQuoted ?? bare ?? '')
+    match = pattern.exec(tag)
+  }
+
+  return attributes
+}
+
+const extractHtmlPreview = (html, pageUrl) => {
+  const head = html.match(/<head[\s\S]*?<\/head>/i)?.[0] ?? html
+  const metaMap = new Map()
+  const metaPattern = /<meta\b[^>]*>/gi
+  let tagMatch = metaPattern.exec(head)
+
+  while (tagMatch) {
+    const attributes = parseTagAttributes(tagMatch[0])
+    const key = (attributes.property || attributes.name || '').toLowerCase()
+    const content = attributes.content?.trim()
+    if (key && content && !metaMap.has(key)) metaMap.set(key, content)
+    tagMatch = metaPattern.exec(head)
+  }
+
+  const titleTag = head.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1]
+  const title = metaMap.get('og:title') || metaMap.get('twitter:title') || (titleTag ? decodeHtmlEntities(titleTag).trim() : '')
+  const description =
+    metaMap.get('og:description') ||
+    metaMap.get('twitter:description') ||
+    metaMap.get('description') ||
+    ''
+  const image =
+    metaMap.get('og:image:secure_url') ||
+    metaMap.get('og:image') ||
+    metaMap.get('twitter:image') ||
+    ''
+
+  return {
+    previewTitle: title || null,
+    previewDescription: description || null,
+    previewImageUrl: image ? new URL(image, pageUrl).toString() : null,
+  }
+}
+
+const readPreviewCache = async () => {
+  try {
+    const raw = await fs.readFile(previewCacheFile, 'utf8')
+    return JSON.parse(raw)
+  } catch {
+    return {}
+  }
+}
+
+const writePreviewCache = async (cache) => {
+  await fs.mkdir(cacheDir, { recursive: true })
+  await fs.writeFile(previewCacheFile, JSON.stringify(cache, null, 2))
+}
+
+const fetchPreviewMetadata = async (url) => {
+  const response = await fetch(url, {
+    headers: {
+      'user-agent':
+        'Mozilla/5.0 (compatible; burritos-analysis-remix/1.0; +https://github.com/arteaga137/burritos-analysis-remix)',
+      accept: 'text/html,application/xhtml+xml',
+    },
+    signal: AbortSignal.timeout(PREVIEW_FETCH_TIMEOUT_MS),
+  })
+
+  if (!response.ok) {
+    throw new Error(`preview-fetch-http-${response.status}`)
+  }
+
+  const html = await response.text()
+  return extractHtmlPreview(html, response.url || url)
+}
+
+const mapLimit = async (items, limit, iteratee) => {
+  const results = new Array(items.length)
+  let cursor = 0
+
+  const worker = async () => {
+    while (cursor < items.length) {
+      const index = cursor
+      cursor += 1
+      results[index] = await iteratee(items[index], index)
+    }
+  }
+
+  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, () => worker()))
+  return results
 }
 
 const getYouTubeVideoId = (url) => {
@@ -450,6 +585,7 @@ const main = async () => {
   const source = await fs.readFile(inputFile, 'utf8')
   const messages = parseMessages(source)
   const entries = []
+  const previewCache = await readPreviewCache()
 
   messages.forEach((message, index) => {
     const urls = extractUrls(message.text)
@@ -498,6 +634,8 @@ const main = async () => {
         previewType: preview.previewType,
         previewMonogram: preview.monogram,
         thumbnailUrl: preview.thumbnailUrl,
+        previewTitle: null,
+        previewDescription: null,
         heat,
         reactionCount: reactionMessages.length,
         reactionAuthors,
@@ -517,8 +655,37 @@ const main = async () => {
     return right.timestamp.localeCompare(left.timestamp)
   })
 
+  const previewTargets = [...new Set(
+    entries
+      .filter((entry) => shouldFetchPlatformPreview(entry.domain, entry.previewType))
+      .map((entry) => entry.canonicalUrl),
+  )]
+
+  await mapLimit(previewTargets, PREVIEW_FETCH_CONCURRENCY, async (targetUrl) => {
+    const cached = previewCache[targetUrl]
+
+    if (cached) return cached
+
+    try {
+      const metadata = await fetchPreviewMetadata(targetUrl)
+      previewCache[targetUrl] = metadata
+      return metadata
+    } catch {
+      return null
+    }
+  })
+
+  entries.forEach((entry) => {
+    const metadata = previewCache[entry.canonicalUrl]
+    if (!metadata) return
+    if (metadata.previewImageUrl && !entry.thumbnailUrl) entry.thumbnailUrl = metadata.previewImageUrl
+    if (metadata.previewTitle) entry.previewTitle = metadata.previewTitle
+    if (metadata.previewDescription) entry.previewDescription = metadata.previewDescription
+  })
+
   await fs.mkdir(path.dirname(outputFile), { recursive: true })
   await fs.writeFile(outputFile, JSON.stringify(entries, null, 2))
+  await writePreviewCache(previewCache)
 
   console.log(`links-index: ${entries.length} shares written to ${outputFile}`)
 }
