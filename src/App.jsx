@@ -377,6 +377,54 @@ const dedupeLabels = (labels) => {
   return output
 }
 
+const truncateCopy = (value, limit) => {
+  const cleaned = (value ?? '').replace(/\s+/g, ' ').trim()
+  if (!cleaned) return ''
+  if (cleaned.length <= limit) return cleaned
+  return `${cleaned.slice(0, limit).trimEnd()}...`
+}
+
+const getLinkPreviewKind = (entry) => {
+  const domain = entry.domain ?? ''
+
+  if (domain === 'youtu.be' || domain.includes('youtube.com')) return 'Video'
+  if (domain.includes('instagram.com')) return 'Reel'
+  if (domain === 'x.com' || domain === 'twitter.com' || domain.includes('facebook.com')) return 'Post'
+  if (domain.includes('tiktok.com')) return 'Clip'
+  if (domain.includes('chatgpt.com')) return 'Share'
+  return 'Articulo'
+}
+
+const getLinkMonogram = (domain) => {
+  const value = (domain ?? '').replace(/^www\./, '').split('.').filter(Boolean)[0] ?? 'ln'
+  return value.slice(0, 2).toUpperCase()
+}
+
+const getLinkReactionLine = (entry) => {
+  const reaction = entry.contextWindow.find((item) => {
+    if (item.kind !== 'after') return false
+    const cleaned = normalizeText(item.text ?? '')
+    return cleaned && !cleaned.includes('omitted')
+  })
+
+  if (reaction) {
+    return `${toDisplayName(reaction.author)}: ${truncateCopy(reaction.text, 72)}`
+  }
+
+  if (entry.reactionCount > 0) {
+    return `${entry.reactionCount} respuestas alrededor del link`
+  }
+
+  return truncateCopy(entry.summary, 72)
+}
+
+const buildLinkPreviewData = (entry) => ({
+  kind: getLinkPreviewKind(entry),
+  monogram: getLinkMonogram(entry.domain),
+  snippet: truncateCopy(entry.messageText || entry.summary || entry.label, 116),
+  reactionLine: getLinkReactionLine(entry),
+})
+
 const buildPairKey = (left, right) => [toDisplayName(left), toDisplayName(right)].sort().join('::')
 
 const addPairCounts = (bucket, values) => {
@@ -1922,6 +1970,7 @@ const LinksView = ({ linksIndex, onSelectFragment }) => {
           visibleLinks.map((entry) => {
             const fragment = buildLinkFragment(entry)
             const preview = entry.contextWindow.filter((item) => item.kind !== 'before').slice(0, 3)
+            const previewData = buildLinkPreviewData(entry)
 
             return (
               <article
@@ -1936,6 +1985,38 @@ const LinksView = ({ linksIndex, onSelectFragment }) => {
                   <span>{entry.topic}</span>
                 </div>
 
+                <div className="link-preview" aria-label={`Preview rapido de ${entry.label}`}>
+                  <div className="link-preview__media">
+                    <div className="link-preview__media-type">{previewData.kind}</div>
+                    <div className="link-preview__media-mark">{previewData.monogram}</div>
+                    <div className="link-preview__media-topic">{entry.topic}</div>
+                  </div>
+
+                  <div className="link-preview__body">
+                    <div className="link-preview__eyebrow">
+                      <span>{entry.domain}</span>
+                      <span>{entry.tone}</span>
+                      <span>Calor {entry.heat}</span>
+                    </div>
+
+                    <a
+                      href={entry.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="link-preview__title"
+                    >
+                      {entry.label}
+                    </a>
+
+                    <p className="link-preview__snippet">{previewData.snippet}</p>
+
+                    <div className="link-preview__footer">
+                      <span>{previewData.reactionLine}</span>
+                      <span>{entry.reactionAuthors.length} responden</span>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="link-card__header">
                   <div>
                     <a
@@ -1944,7 +2025,7 @@ const LinksView = ({ linksIndex, onSelectFragment }) => {
                       rel="noreferrer"
                       className="link-card__title"
                     >
-                      {entry.label}
+                      Ver fuente original
                     </a>
                     <div className="link-card__url">{entry.canonicalUrl}</div>
                   </div>
