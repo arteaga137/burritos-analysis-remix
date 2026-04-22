@@ -178,6 +178,13 @@ button {
   display: flex;
   gap: 6px;
   margin-left: auto;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .tab-btn {
@@ -1453,6 +1460,144 @@ button {
   color: rgba(255, 255, 255, 0.62);
   font-size: 13px;
   line-height: 1.5;
+}
+
+.comments-section {
+  padding: 28px 36px 36px;
+}
+
+.comment-category-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+}
+
+.comment-category-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.comment-category-tab {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  color: rgba(255, 255, 255, 0.56);
+  padding: 10px 12px;
+  white-space: nowrap;
+  transition:
+    border-color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    background 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    color 180ms cubic-bezier(0.23, 1, 0.32, 1),
+    transform 140ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.comment-category-tab:hover {
+  border-color: color-mix(in srgb, var(--comment-accent, rgba(255, 255, 255, 0.12)) 40%, rgba(255, 255, 255, 0.08));
+  color: #f0ede8;
+}
+
+.comment-category-tab:active {
+  transform: scale(0.98);
+}
+
+.comment-category-tab.active {
+  border-color: color-mix(in srgb, var(--comment-accent, rgba(255, 255, 255, 0.12)) 52%, rgba(255, 255, 255, 0.1));
+  background: color-mix(in srgb, var(--comment-accent, rgba(255, 255, 255, 0.12)) 14%, rgba(255, 255, 255, 0.04));
+  color: #f0ede8;
+}
+
+.comment-leader-card,
+.comment-highlight-card {
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--comment-accent, rgba(255, 255, 255, 0.12)) 7%, rgba(255, 255, 255, 0.03));
+}
+
+.comment-leader-card {
+  padding: 18px;
+}
+
+.comment-leader-card__meta,
+.comment-highlight-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.comment-leader-card__meta span,
+.comment-highlight-card__meta span {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  padding: 5px 8px;
+  text-transform: uppercase;
+}
+
+.comment-leader-card h3,
+.comment-highlight-card h3 {
+  margin: 0;
+  color: #f0ede8;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.comment-leader-card p,
+.comment-highlight-card__rationale {
+  margin: 10px 0 0;
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.comment-leader-card__quote,
+.comment-highlight-card__quote {
+  margin: 14px 0 0;
+  border-left: 2px solid color-mix(in srgb, var(--comment-accent, rgba(255, 255, 255, 0.12)) 70%, rgba(255, 255, 255, 0.08));
+  padding-left: 12px;
+  color: #f0ede8;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.comment-leader-card__footer,
+.comment-highlight-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+  flex-wrap: wrap;
+}
+
+.comment-leader-card__footer span,
+.comment-highlight-card__footer span {
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.comment-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.comment-highlight-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 16px;
 }
 
 .role-drift-card {
@@ -3254,6 +3399,34 @@ button {
 
   .link-card__footer .turning-point-card__action,
   .link-card__open {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .comments-section {
+    padding: 24px 18px 28px;
+  }
+
+  .comment-highlights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .comment-category-tab {
+    padding: 9px 11px;
+  }
+
+  .comment-leader-card,
+  .comment-highlight-card {
+    padding: 14px;
+  }
+
+  .comment-leader-card__footer,
+  .comment-highlight-card__footer {
+    align-items: stretch;
+  }
+
+  .comment-leader-card__footer .turning-point-card__action,
+  .comment-highlight-card__footer .turning-point-card__action {
     width: 100%;
     justify-content: center;
   }

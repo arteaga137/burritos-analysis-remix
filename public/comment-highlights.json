@@ -1,0 +1,2994 @@
+{
+  "generatedAt": "2026-04-22T16:35:45.633Z",
+  "sourceName": "Negreira Boys Fantasy Cup ⚽️🤡",
+  "categories": [
+    {
+      "id": "toxic",
+      "title": "El comentario más tóxico",
+      "shortLabel": "Tóxico",
+      "icon": "☣️",
+      "accent": "oklch(62% 0.22 25)",
+      "description": "Roce directo, hostilidad y frases diseñadas para subir la temperatura del grupo.",
+      "entries": [
+        {
+          "id": "toxic-jesus-6476",
+          "memberId": "jesus",
+          "memberName": "Jesús Burgos",
+          "author": "Jesús Burgos",
+          "at": "10/20/25, 2:58:37 PM",
+          "timestamp": "2025-10-20T14:58:37.000Z",
+          "score": 12,
+          "intensity": "Media",
+          "text": "El Mayor bocón es el 10 de tu equipo, que no ha ganado una mierda y se cree Dios. Chillaron tanto por Vinicius y les salió uno peor, y que con 18 años es un personaje inmamable que se cree la gran mierda y ni llega ni a peo…",
+          "matches": [
+            {
+              "label": "mierda",
+              "count": 2,
+              "score": 6
+            },
+            {
+              "label": "ataque directo",
+              "count": 1,
+              "score": 4
+            },
+            {
+              "label": "peo",
+              "count": 1,
+              "score": 2
+            }
+          ],
+          "rationale": "Activa la lectura por mierda, ataque directo, peo.",
+          "contextWindow": [
+            {
+              "id": "ctx-6476-0",
+              "at": "10/20/25, 2:58:00 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "El tema es que están acostumbrados en general a darle mordiscos y coñazos a Vinicius y no les sacan ni amarilla",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-6476-1",
+              "at": "10/20/25, 2:58:27 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Bravo por el árbitro que se atrevió a arbitrar correcto",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-6476-2",
+              "at": "10/20/25, 2:58:37 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "El Mayor bocón es el 10 de tu equipo, que no ha ganado una mierda y se cree Dios. Chillaron tanto por Vinicius y les salió uno peor, y que con 18 años es un personaje inmamable que se cree la gran mierda y ni llega ni a peo…",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-6476-3",
+              "at": "10/20/25, 3:00:56 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Es un bocon y me provoca pegarle cuando dice algunas cosas y más aún al papá que deberia callarse la boca por que no aporta nada. Pero más bocon que vinicius es imposible.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-6476-4",
+              "at": "10/20/25, 3:01:46 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Lograron que el burrito se molestara",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-6476-5",
+              "at": "10/20/25, 3:04:27 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Quien discute la roja?. Dije que era roja. Para mi criterio es una jugada que el árbitro puede interpretar(por la posición del codo)",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-6476-6",
+              "at": "10/20/25, 3:07:47 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Yo no vi la roja en directo, pero cuando vi la notificación, honestamente me dio sincera ladilla por las tonterías que venían luego, más cuando el gol vino justo después. Pero es que viéndolo, no cabe interpretación, no hay balón! Na webona ‎<This message was edited>",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "toxic-francisco-1027",
+          "memberId": "francisco",
+          "memberName": "Francisco Arteaga",
+          "author": "Francisco Arteaga",
+          "at": "4/26/25, 11:03:42 PM",
+          "timestamp": "2025-04-26T23:03:42.000Z",
+          "score": 12,
+          "intensity": "Media",
+          "text": "Eres pura paja Javier",
+          "matches": [
+            {
+              "label": "pura paja",
+              "count": 1,
+              "score": 8
+            },
+            {
+              "label": "ataque directo",
+              "count": 1,
+              "score": 4
+            }
+          ],
+          "rationale": "Activa la lectura por pura paja, ataque directo.",
+          "contextWindow": [
+            {
+              "id": "ctx-1027-0",
+              "at": "4/26/25, 11:03:17 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "No seguramente lo hacen pero más por espectaculo",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-1027-1",
+              "at": "4/26/25, 11:03:33 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "No, es que si la idea es que sea justo, sis está perfecto",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-1027-2",
+              "at": "4/26/25, 11:03:42 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Eres pura paja Javier",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-1027-3",
+              "at": "4/26/25, 11:03:46 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Hablar por trollear",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-1027-4",
+              "at": "4/26/25, 11:03:58 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Yo los pongo ya",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-1027-5",
+              "at": "4/26/25, 11:04:00 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "10.000",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-1027-6",
+              "at": "4/26/25, 11:04:05 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Aquí todo mundo como testigo",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "toxic-andres-4962",
+          "memberId": "andres",
+          "memberName": "Andrés Eduardo Pinto",
+          "author": "Andrés Eduardo Pinto",
+          "at": "9/15/25, 3:25:31 PM",
+          "timestamp": "2025-09-15T15:25:31.000Z",
+          "score": 8,
+          "intensity": "Media",
+          "text": "Jajaja verga nunca Leo nada ni veo los post de Instagram ni nada, pero siento que lloran mucho de ambos bandos, el Sábado al terminar el juego del Madrid estaba en el carro y escuchaba la radio Marca y decían a los aficionados del Madrid que no se tomen todo a pecho como si son a los únicos que joden, que eso es lo malo del fanático del Madrid, (siendo el comentador madridista). Que siempre piensan que todo es contra ellos y resulta que todos los equipos los joden de una u otra manera. Recomendó que se lo tomarán chill.",
+          "matches": [
+            {
+              "label": "llorón",
+              "count": 1,
+              "score": 4
+            },
+            {
+              "label": "joder",
+              "count": 2,
+              "score": 4
+            }
+          ],
+          "rationale": "Activa la lectura por llorón, joder.",
+          "contextWindow": [
+            {
+              "id": "ctx-4962-0",
+              "at": "9/15/25, 3:22:03 PM",
+              "author": "Andrés Eduardo Pinto",
+              "memberId": "andres",
+              "text": "Responderé como Don Andrés, realmente me sabe a mierda toda la Liga española, hasta logo",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-4962-1",
+              "at": "9/15/25, 3:22:28 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Jajajajaj",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-4962-2",
+              "at": "9/15/25, 3:25:31 PM",
+              "author": "Andrés Eduardo Pinto",
+              "memberId": "andres",
+              "text": "Jajaja verga nunca Leo nada ni veo los post de Instagram ni nada, pero siento que lloran mucho de ambos bandos, el Sábado al terminar el juego del Madrid estaba en el carro y escuchaba la radio Marca y decían a los aficionados del Madrid que no se tomen todo a pecho como si son a los únicos que joden, que eso es lo malo del fanático del Madrid, (siendo el comentador madridista). Que siempre piensan que todo es contra ellos y resulta que todos los equipos los joden de una u otra manera. Recomendó que se lo tomarán chill.",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-4962-3",
+              "at": "9/15/25, 3:26:47 PM",
+              "author": "Andrés Eduardo Pinto",
+              "memberId": "andres",
+              "text": "Epa y me gusta ver los juegos del Madrid tmb así que no soy anti madridista por si acaso",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-4962-4",
+              "at": "9/15/25, 3:27:51 PM",
+              "author": "Andrés Eduardo Pinto",
+              "memberId": "andres",
+              "text": "Pero yo soy es de Vallekas del barrio, del pueblo, del malandreo, así que por ahora no simpatizó a ninguno solo un poco al Rayo.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-4962-5",
+              "at": "9/15/25, 4:24:42 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "Listo ✅",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-4962-6",
+              "at": "9/15/25, 4:25:22 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "Menos mal que ya estás claro en lo que piensan",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "toxic-javier-10109",
+          "memberId": "javier",
+          "memberName": "Javier Gimenez",
+          "author": "Javier Gimenez",
+          "at": "2/18/26, 10:33:14 PM",
+          "timestamp": "2026-02-18T22:33:14.000Z",
+          "score": 8,
+          "intensity": "Media",
+          "text": "Llorón es diferente que provocador. Para mí es llorón, provocador y bocón. Como lamine que también es muy bocón o Neymar que era lloro u otamendi y el dibu que son provocadores ‎<This message was edited>",
+          "matches": [
+            {
+              "label": "llorón",
+              "count": 2,
+              "score": 8
+            }
+          ],
+          "rationale": "Activa la lectura por llorón.",
+          "contextWindow": [
+            {
+              "id": "ctx-10109-0",
+              "at": "2/18/26, 10:21:09 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Creo que no voy a comentar más nada…",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-10109-1",
+              "at": "2/18/26, 10:22:43 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "De pana esto es una vaina que no voy a cambiar yo",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-10109-2",
+              "at": "2/18/26, 10:33:14 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Llorón es diferente que provocador. Para mí es llorón, provocador y bocón. Como lamine que también es muy bocón o Neymar que era lloro u otamendi y el dibu que son provocadores ‎<This message was edited>",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-10109-3",
+              "at": "2/18/26, 10:34:53 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Ok",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10109-4",
+              "at": "2/18/26, 11:28:21 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Que ganan Vinicius y Mbappé inventando esto??",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10109-5",
+              "at": "2/18/26, 11:28:48 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Las declaraciones de Mbappé son muy claras",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10109-6",
+              "at": "2/18/26, 11:29:05 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Pero ya está, esto no va s acabar en nada",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "toxic-gabriel-1815",
+          "memberId": "gabriel",
+          "memberName": "Gabriel Gutiérrez",
+          "author": "Gabriel Gutiérrez",
+          "at": "5/15/25, 1:52:37 AM",
+          "timestamp": "2025-05-15T01:52:37.000Z",
+          "score": 7,
+          "intensity": "Baja",
+          "text": "Todo va aderezado de que es jugador del Madrid. Hay aficiones de equipos a donde fue a jugar el Madrid de visitante y lo pitaban y le decían hijo de puta etc. creo que uno está en el girona y otro en Mallorca. Y lo chistoso del caso es que sus equipos repescaron a los jugadores que botó el Madrid porque si se cogieron a las menores",
+          "matches": [
+            {
+              "label": "hijo de puta",
+              "count": 1,
+              "score": 7
+            }
+          ],
+          "rationale": "Activa la lectura por hijo de puta.",
+          "contextWindow": [
+            {
+              "id": "ctx-1815-0",
+              "at": "5/15/25, 1:41:38 AM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "Así si la cosa me parece un pelo menos serio, igual un crimen pero no tan terrible",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-1815-1",
+              "at": "5/15/25, 1:49:16 AM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Lo están investigando porque no queda claro en la declaración de la victima que dice pero no dice que Asencio le mostró el video a no sé quién para avisar que lo estaban pasando. La defensa de Asencio dice que el nunca tuvo el video, le revisaron el teléfono y supuestamente estaba limpio.",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-1815-2",
+              "at": "5/15/25, 1:52:37 AM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Todo va aderezado de que es jugador del Madrid. Hay aficiones de equipos a donde fue a jugar el Madrid de visitante y lo pitaban y le decían hijo de puta etc. creo que uno está en el girona y otro en Mallorca. Y lo chistoso del caso es que sus equipos repescaron a los jugadores que botó el Madrid porque si se cogieron a las menores",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-1815-3",
+              "at": "5/15/25, 2:14:30 AM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Marico han dicho tantas vainas que no sabría cuál es la versión real",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "toxic-gustavo-6311",
+          "memberId": "gustavo",
+          "memberName": "Gustavo Torres",
+          "author": "Gustavo Torres",
+          "at": "10/18/25, 10:16:59 PM",
+          "timestamp": "2025-10-18T22:16:59.000Z",
+          "score": 7,
+          "intensity": "Baja",
+          "text": "Claro claro, por eso digo que el hijo de puta es tan o más fuerte que el fuck off",
+          "matches": [
+            {
+              "label": "hijo de puta",
+              "count": 1,
+              "score": 7
+            }
+          ],
+          "rationale": "Activa la lectura por hijo de puta.",
+          "contextWindow": [
+            {
+              "id": "ctx-6311-0",
+              "at": "10/18/25, 10:16:24 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Bueno, y estoy diciendo que el árbitro nos sabe hablar inglés, jajajaja. Habla español.",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-6311-1",
+              "at": "10/18/25, 10:16:36 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "El bicho seguía que si a Open English en Instagram",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-6311-2",
+              "at": "10/18/25, 10:16:59 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "Claro claro, por eso digo que el hijo de puta es tan o más fuerte que el fuck off",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-6311-3",
+              "at": "10/18/25, 10:17:10 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "En fin",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-6311-4",
+              "at": "10/18/25, 10:17:15 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Por eso es que se queja el Madrid",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-6311-5",
+              "at": "10/18/25, 10:17:27 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "O sea pero lo sacaron o no lo sacaron?",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-6311-6",
+              "at": "10/18/25, 10:17:30 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "No puede ser que perdamos al mejor jugador que teníamos esa temporada 4 partidos",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "toxic-gerardo-9813",
+          "memberId": "gerardo",
+          "memberName": "Gerardo Vitale Errico",
+          "author": "Gerardo Vitale Errico",
+          "at": "2/16/26, 6:04:47 PM",
+          "timestamp": "2026-02-16T18:04:47.000Z",
+          "score": 6,
+          "intensity": "Baja",
+          "text": "Cono si y si, partidazo y burda de arrecho. @⁨Gabriel Gutiérrez⁩ @⁨Francisco Arteaga⁩ El árbitro hijo de perra se inventó dos amarillas a Kalulu y jodio todo. Tenía tiempo sin estar orgulloso de la Juventus, jugaron kuy bien a pesar de que los jodieron feo con esa expulsión",
+          "matches": [
+            {
+              "label": "joder",
+              "count": 2,
+              "score": 4
+            },
+            {
+              "label": "coño",
+              "count": 1,
+              "score": 2
+            }
+          ],
+          "rationale": "Activa la lectura por joder, coño.",
+          "contextWindow": [
+            {
+              "id": "ctx-9813-0",
+              "at": "2/16/26, 5:54:36 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Este es el maldito que corrió a un entrenador porque se quería ir a otro equipo si no juega todo. ‎video omitted",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-9813-1",
+              "at": "2/16/26, 6:04:47 PM",
+              "author": "Gerardo Vitale Errico",
+              "memberId": "gerardo",
+              "text": "Cono si y si, partidazo y burda de arrecho. @⁨Gabriel Gutiérrez⁩ @⁨Francisco Arteaga⁩ El árbitro hijo de perra se inventó dos amarillas a Kalulu y jodio todo. Tenía tiempo sin estar orgulloso de la Juventus, jugaron kuy bien a pesar de que los jodieron feo con esa expulsión",
+              "kind": "self"
+            }
+          ]
+        },
+        {
+          "id": "toxic-aaron-5935",
+          "memberId": "aaron",
+          "memberName": "Aaron Rodrigues",
+          "author": "Aaron Rodrigues",
+          "at": "9/30/25, 8:18:59 PM",
+          "timestamp": "2025-09-30T20:18:59.000Z",
+          "score": 4,
+          "intensity": "Baja",
+          "text": "Cuando entra Carreras maldita sea 😭",
+          "matches": [
+            {
+              "label": "maldito",
+              "count": 1,
+              "score": 4
+            }
+          ],
+          "rationale": "Activa la lectura por maldito.",
+          "contextWindow": [
+            {
+              "id": "ctx-5935-0",
+              "at": "9/30/25, 8:09:48 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Maldita sea, y yo lo saqué del equipo",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-5935-1",
+              "at": "9/30/25, 8:09:55 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Por Carnesechi, de paso",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-5935-2",
+              "at": "9/30/25, 8:18:59 PM",
+              "author": "Aaron Rodrigues",
+              "memberId": "aaron",
+              "text": "Cuando entra Carreras maldita sea 😭",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-5935-3",
+              "at": "9/30/25, 8:20:11 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "No joda, meto a Vini y los sacaron",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-5935-4",
+              "at": "9/30/25, 8:20:21 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Ojalá lo vendan en el mercado invernal",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-5935-5",
+              "at": "9/30/25, 8:20:42 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Maldito negro sirve es para recoger algodón",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-5935-6",
+              "at": "9/30/25, 8:22:57 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Los dos me salen con el mismo color de nombre y por un momento pensé que todo el mensaje era de Aarón ‎image omitted",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "toxic-jorge-4932",
+          "memberId": "jorge",
+          "memberName": "Jorge Anzola",
+          "author": "Jorge Anzola",
+          "at": "9/15/25, 11:22:36 AM",
+          "timestamp": "2025-09-15T11:22:36.000Z",
+          "score": 4,
+          "intensity": "Baja",
+          "text": "Ya estoy en eso maldita sea",
+          "matches": [
+            {
+              "label": "maldito",
+              "count": 1,
+              "score": 4
+            }
+          ],
+          "rationale": "Activa la lectura por maldito.",
+          "contextWindow": [
+            {
+              "id": "ctx-4932-0",
+              "at": "9/15/25, 11:13:26 AM",
+              "author": "Karin \"Pie Roto\"",
+              "memberId": "espana34",
+              "text": "Voy activo",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-4932-1",
+              "at": "9/15/25, 11:22:18 AM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "@⁨Gustavo Torres⁩ y @⁨Jorge Anzola 🔪🔪🔪⁩ puras excusas para no gastar 15 minutos en hacer un equipo",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-4932-2",
+              "at": "9/15/25, 11:22:36 AM",
+              "author": "Jorge Anzola",
+              "memberId": "jorge",
+              "text": "Ya estoy en eso maldita sea",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-4932-3",
+              "at": "9/15/25, 11:22:53 AM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "@⁨Javier Gimenez⁩ no quiere ni aparecer, porque se le cae la cara de la vergüenza después de todo lo que ha pasado en La Liga. Se quedó sin argumentos.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-4932-4",
+              "at": "9/15/25, 11:23:02 AM",
+              "author": "Jorge Anzola",
+              "memberId": "jorge",
+              "text": "Armando al Rayo VayaCono ‎image omitted",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-4932-5",
+              "at": "9/15/25, 12:47:57 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Definitivamente: “Mes que un club” ‎video omitted",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "toxic-luis-7989",
+          "memberId": "luis",
+          "memberName": "Luís Torrado",
+          "author": "Luís Torrado",
+          "at": "11/26/25, 3:37:37 PM",
+          "timestamp": "2025-11-26T15:37:37.000Z",
+          "score": 3,
+          "intensity": "Baja",
+          "text": "marico como mierda te das cuenta de eso con un texto jajaja...igual vivo aqui y la patrona es de aqui asi q buee",
+          "matches": [
+            {
+              "label": "mierda",
+              "count": 1,
+              "score": 3
+            }
+          ],
+          "rationale": "Activa la lectura por mierda.",
+          "contextWindow": [
+            {
+              "id": "ctx-7989-0",
+              "at": "11/26/25, 3:35:50 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Me cuesta entender otras vainas…",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-7989-1",
+              "at": "11/26/25, 3:36:06 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Estos justamente fueron los únicos que me dieron puntos a mí.",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-7989-2",
+              "at": "11/26/25, 3:37:37 PM",
+              "author": "Luís Torrado",
+              "memberId": "luis",
+              "text": "marico como mierda te das cuenta de eso con un texto jajaja...igual vivo aqui y la patrona es de aqui asi q buee",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-7989-3",
+              "at": "11/26/25, 3:48:50 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "“Si había metido”, “momento”, “no me tomo”",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-7989-4",
+              "at": "11/26/25, 3:49:42 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "En venezolano sería: Lo peor es que si los había metido, pero como la conexión estaba vuelta mierda no me agarró.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-7989-5",
+              "at": "11/26/25, 3:51:12 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Es como cuando @⁨Gabriel Gutiérrez⁩ y @⁨Gustavo Torres⁩ me dicen “como tú haces?” ‎<This message was edited>",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-7989-6",
+              "at": "11/26/25, 3:51:38 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "O @⁨Andres Eduardo Pinto⁩ me dice “chaval”",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "toxic-espana34-10293",
+          "memberId": "espana34",
+          "memberName": "Karin \"Pie Roto\"",
+          "author": "Karin \"Pie Roto\"",
+          "at": "2/26/26, 2:05:00 PM",
+          "timestamp": "2026-02-26T14:05:00.000Z",
+          "score": 2,
+          "intensity": "Baja",
+          "text": "Ahora ando jodido del tobillo, cuando me recupere te aviso para jugar",
+          "matches": [
+            {
+              "label": "joder",
+              "count": 1,
+              "score": 2
+            }
+          ],
+          "rationale": "Activa la lectura por joder.",
+          "contextWindow": [
+            {
+              "id": "ctx-10293-0",
+              "at": "2/26/26, 2:05:00 PM",
+              "author": "Karin \"Pie Roto\"",
+              "memberId": "espana34",
+              "text": "Ahora ando jodido del tobillo, cuando me recupere te aviso para jugar",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-10293-1",
+              "at": "2/26/26, 2:08:59 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Suena a excusa que me daría @⁨Gabriel Gutiérrez⁩",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10293-2",
+              "at": "2/26/26, 2:09:19 PM",
+              "author": "Karin \"Pie Roto\"",
+              "memberId": "espana34",
+              "text": "Jajaja",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10293-3",
+              "at": "2/26/26, 2:09:25 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Otro partido que nos deja sin defensas, no?",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10293-4",
+              "at": "2/26/26, 2:09:47 PM",
+              "author": "Karin \"Pie Roto\"",
+              "memberId": "espana34",
+              "text": "Me jodi el otro día jugando, ya nos es lo mismo",
+              "kind": "after"
+            }
+          ]
+        }
+      ],
+      "leader": {
+        "id": "toxic-jesus-6476",
+        "memberId": "jesus",
+        "memberName": "Jesús Burgos",
+        "author": "Jesús Burgos",
+        "at": "10/20/25, 2:58:37 PM",
+        "timestamp": "2025-10-20T14:58:37.000Z",
+        "score": 12,
+        "intensity": "Media",
+        "text": "El Mayor bocón es el 10 de tu equipo, que no ha ganado una mierda y se cree Dios. Chillaron tanto por Vinicius y les salió uno peor, y que con 18 años es un personaje inmamable que se cree la gran mierda y ni llega ni a peo…",
+        "matches": [
+          {
+            "label": "mierda",
+            "count": 2,
+            "score": 6
+          },
+          {
+            "label": "ataque directo",
+            "count": 1,
+            "score": 4
+          },
+          {
+            "label": "peo",
+            "count": 1,
+            "score": 2
+          }
+        ],
+        "rationale": "Activa la lectura por mierda, ataque directo, peo.",
+        "contextWindow": [
+          {
+            "id": "ctx-6476-0",
+            "at": "10/20/25, 2:58:00 PM",
+            "author": "Gabriel Gutiérrez",
+            "memberId": "gabriel",
+            "text": "El tema es que están acostumbrados en general a darle mordiscos y coñazos a Vinicius y no les sacan ni amarilla",
+            "kind": "before"
+          },
+          {
+            "id": "ctx-6476-1",
+            "at": "10/20/25, 2:58:27 PM",
+            "author": "Gabriel Gutiérrez",
+            "memberId": "gabriel",
+            "text": "Bravo por el árbitro que se atrevió a arbitrar correcto",
+            "kind": "before"
+          },
+          {
+            "id": "ctx-6476-2",
+            "at": "10/20/25, 2:58:37 PM",
+            "author": "Jesús Burgos",
+            "memberId": "jesus",
+            "text": "El Mayor bocón es el 10 de tu equipo, que no ha ganado una mierda y se cree Dios. Chillaron tanto por Vinicius y les salió uno peor, y que con 18 años es un personaje inmamable que se cree la gran mierda y ni llega ni a peo…",
+            "kind": "self"
+          },
+          {
+            "id": "ctx-6476-3",
+            "at": "10/20/25, 3:00:56 PM",
+            "author": "Javier Gimenez",
+            "memberId": "javier",
+            "text": "Es un bocon y me provoca pegarle cuando dice algunas cosas y más aún al papá que deberia callarse la boca por que no aporta nada. Pero más bocon que vinicius es imposible.",
+            "kind": "after"
+          },
+          {
+            "id": "ctx-6476-4",
+            "at": "10/20/25, 3:01:46 PM",
+            "author": "Francisco Arteaga",
+            "memberId": "francisco",
+            "text": "Lograron que el burrito se molestara",
+            "kind": "after"
+          },
+          {
+            "id": "ctx-6476-5",
+            "at": "10/20/25, 3:04:27 PM",
+            "author": "Javier Gimenez",
+            "memberId": "javier",
+            "text": "Quien discute la roja?. Dije que era roja. Para mi criterio es una jugada que el árbitro puede interpretar(por la posición del codo)",
+            "kind": "after"
+          },
+          {
+            "id": "ctx-6476-6",
+            "at": "10/20/25, 3:07:47 PM",
+            "author": "Gabriel Gutiérrez",
+            "memberId": "gabriel",
+            "text": "Yo no vi la roja en directo, pero cuando vi la notificación, honestamente me dio sincera ladilla por las tonterías que venían luego, más cuando el gol vino justo después. Pero es que viéndolo, no cabe interpretación, no hay balón! Na webona ‎<This message was edited>",
+            "kind": "after"
+          }
+        ]
+      },
+      "memberCount": 11
+    },
+    {
+      "id": "racist",
+      "title": "El comentario más racista",
+      "shortLabel": "Racista",
+      "icon": "🚫",
+      "accent": "oklch(66% 0.18 18)",
+      "description": "Lectura de frases con sesgo racial explícito o con minimización directa de insultos racistas.",
+      "entries": [
+        {
+          "id": "racist-javier-10185",
+          "memberId": "javier",
+          "memberName": "Javier Gimenez",
+          "author": "Javier Gimenez",
+          "at": "2/23/26, 6:30:02 PM",
+          "timestamp": "2026-02-23T18:30:02.000Z",
+          "score": 62,
+          "intensity": "Alta",
+          "text": "Cavanni dijo gracias negrito e igualmente lo multaron. Capaz para prestianni y los argentinos decirle mono no tiene una connotación racistas. A lo mejor le dijo que dejar de comportarse como mono.",
+          "matches": [
+            {
+              "label": "comportarse como mono",
+              "count": 1,
+              "score": 12
+            },
+            {
+              "label": "decirle mono",
+              "count": 1,
+              "score": 11
+            },
+            {
+              "label": "connotación racista",
+              "count": 1,
+              "score": 11
+            },
+            {
+              "label": "mono",
+              "count": 2,
+              "score": 10
+            },
+            {
+              "label": "negrito",
+              "count": 1,
+              "score": 7
+            },
+            {
+              "label": "negritos",
+              "count": 1,
+              "score": 6
+            },
+            {
+              "label": "minimización",
+              "count": 1,
+              "score": 5
+            }
+          ],
+          "rationale": "Activa la lectura por comportarse como mono, decirle mono, connotación racista.",
+          "contextWindow": [
+            {
+              "id": "ctx-10185-0",
+              "at": "2/23/26, 6:24:38 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-10185-1",
+              "at": "2/23/26, 6:25:07 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "El Benfica va a tener que decir que Prestiani tiene Tourette",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-10185-2",
+              "at": "2/23/26, 6:30:02 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Cavanni dijo gracias negrito e igualmente lo multaron. Capaz para prestianni y los argentinos decirle mono no tiene una connotación racistas. A lo mejor le dijo que dejar de comportarse como mono.",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-10185-3",
+              "at": "2/23/26, 6:30:45 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Es en serio que estamos teniendo esta discusión? JAJAJAJA",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10185-4",
+              "at": "2/23/26, 6:31:44 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "En España le dieron a Vinicius que se fuera al sambodromo a hacer el mono. Seguro quisieron decir que él es muy alegre",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10185-5",
+              "at": "2/23/26, 6:32:05 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "‎sticker omitted",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10185-6",
+              "at": "2/23/26, 6:32:14 PM",
+              "author": "Luís Torrado",
+              "memberId": "luis",
+              "text": "claaaaro y mbappe no piensa q es puto por comerse un travesaño",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "racist-francisco-3115",
+          "memberId": "francisco",
+          "memberName": "Francisco Arteaga",
+          "author": "Francisco Arteaga",
+          "at": "6/11/25, 7:10:30 PM",
+          "timestamp": "2025-06-11T19:10:30.000Z",
+          "score": 13,
+          "intensity": "Media",
+          "text": "El Mamelodi Sundowns va a poner a 5 negritos que entreno poniendo a correr delante de leones, en esa banda.",
+          "matches": [
+            {
+              "label": "negrito",
+              "count": 1,
+              "score": 7
+            },
+            {
+              "label": "negritos",
+              "count": 1,
+              "score": 6
+            }
+          ],
+          "rationale": "Activa la lectura por negrito, negritos.",
+          "contextWindow": [
+            {
+              "id": "ctx-3115-0",
+              "at": "6/11/25, 7:09:54 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Tienes puros bichos duros delante de él",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-3115-1",
+              "at": "6/11/25, 7:10:11 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Y Mastantuono tiene pinta de titular",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-3115-2",
+              "at": "6/11/25, 7:10:30 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "El Mamelodi Sundowns va a poner a 5 negritos que entreno poniendo a correr delante de leones, en esa banda.",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-3115-3",
+              "at": "6/11/25, 7:10:49 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Pero Mastantuono no juega más tirado a la banda?",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-3115-4",
+              "at": "6/11/25, 7:11:24 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Por derecha",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-3115-5",
+              "at": "6/11/25, 7:11:28 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Que es donde cojeamos",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-3115-6",
+              "at": "6/11/25, 7:12:03 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "El Madrid también anunció la lista:",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "racist-aaron-5755",
+          "memberId": "aaron",
+          "memberName": "Aaron Rodrigues",
+          "author": "Aaron Rodrigues",
+          "at": "9/27/25, 6:11:44 PM",
+          "timestamp": "2025-09-27T18:11:44.000Z",
+          "score": 13,
+          "intensity": "Media",
+          "text": "Pobre negrito",
+          "matches": [
+            {
+              "label": "negrito",
+              "count": 1,
+              "score": 7
+            },
+            {
+              "label": "negritos",
+              "count": 1,
+              "score": 6
+            }
+          ],
+          "rationale": "Activa la lectura por negrito, negritos.",
+          "contextWindow": [
+            {
+              "id": "ctx-5755-0",
+              "at": "9/27/25, 6:03:26 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Estos no tienen el ADN R.Madrid",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-5755-1",
+              "at": "9/27/25, 6:04:17 PM",
+              "author": "Aaron Rodrigues",
+              "memberId": "aaron",
+              "text": "Eso murió con kroos",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-5755-2",
+              "at": "9/27/25, 6:11:44 PM",
+              "author": "Aaron Rodrigues",
+              "memberId": "aaron",
+              "text": "Pobre negrito",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-5755-3",
+              "at": "9/27/25, 6:14:52 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Van a meter a Baena, para que se caiga a coñazo con Valverde",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-5755-4",
+              "at": "9/27/25, 6:15:16 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Quieren asegurarse de cagarse en todo el Madrid",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-5755-5",
+              "at": "9/27/25, 6:15:31 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "‎sticker omitted",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-5755-6",
+              "at": "9/27/25, 6:16:41 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Hoy descansan las colchoneras, hoy no les caerán a coñazos",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "racist-gabriel-10187",
+          "memberId": "gabriel",
+          "memberName": "Gabriel Gutiérrez",
+          "author": "Gabriel Gutiérrez",
+          "at": "2/23/26, 6:31:44 PM",
+          "timestamp": "2026-02-23T18:31:44.000Z",
+          "score": 5,
+          "intensity": "Baja",
+          "text": "En España le dieron a Vinicius que se fuera al sambodromo a hacer el mono. Seguro quisieron decir que él es muy alegre",
+          "matches": [
+            {
+              "label": "mono",
+              "count": 1,
+              "score": 5
+            }
+          ],
+          "rationale": "Activa la lectura por mono.",
+          "contextWindow": [
+            {
+              "id": "ctx-10187-0",
+              "at": "2/23/26, 6:30:02 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Cavanni dijo gracias negrito e igualmente lo multaron. Capaz para prestianni y los argentinos decirle mono no tiene una connotación racistas. A lo mejor le dijo que dejar de comportarse como mono.",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-10187-1",
+              "at": "2/23/26, 6:30:45 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Es en serio que estamos teniendo esta discusión? JAJAJAJA",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-10187-2",
+              "at": "2/23/26, 6:31:44 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "En España le dieron a Vinicius que se fuera al sambodromo a hacer el mono. Seguro quisieron decir que él es muy alegre",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-10187-3",
+              "at": "2/23/26, 6:32:05 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "‎sticker omitted",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10187-4",
+              "at": "2/23/26, 6:32:14 PM",
+              "author": "Luís Torrado",
+              "memberId": "luis",
+              "text": "claaaaro y mbappe no piensa q es puto por comerse un travesaño",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10187-5",
+              "at": "2/23/26, 6:33:38 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Eso no lo excusa de discriminar a una persona por su orientación sexual.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10187-6",
+              "at": "2/23/26, 6:34:40 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Mi abuela me dice que a su papá, (italiano), en Montevideo le decían “el negro” siendo blanco, solo porque tenía el pelo negro",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "racist-jesus-6740",
+          "memberId": "jesus",
+          "memberName": "Jesús Burgos",
+          "author": "Jesús Burgos",
+          "at": "10/23/25, 2:44:13 AM",
+          "timestamp": "2025-10-23T02:44:13.000Z",
+          "score": 5,
+          "intensity": "Baja",
+          "text": "Ya le dijeron racista y genocida",
+          "matches": [
+            {
+              "label": "minimización",
+              "count": 1,
+              "score": 5
+            }
+          ],
+          "rationale": "Activa la lectura por minimización.",
+          "contextWindow": [
+            {
+              "id": "ctx-6740-0",
+              "at": "10/23/25, 2:42:57 AM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Jajjajaja",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-6740-1",
+              "at": "10/23/25, 2:43:39 AM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "A esta hora Francisco no puede venir a lanzar comentarios políticamente incorrectos",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-6740-2",
+              "at": "10/23/25, 2:44:13 AM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Ya le dijeron racista y genocida",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-6740-3",
+              "at": "10/23/25, 2:44:23 AM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "‎sticker omitted",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-6740-4",
+              "at": "10/23/25, 2:44:38 AM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Visítanos, perro",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-6740-5",
+              "at": "10/23/25, 2:53:28 AM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "Netanyahu que y que le dijeron 😂",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-6740-6",
+              "at": "10/23/25, 2:53:50 AM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "Estoy cuadrando para navidad, si sabes de alguien que esté alquilando su apartamento en miami avísame",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "racist-luis-10555",
+          "memberId": "luis",
+          "memberName": "Luís Torrado",
+          "author": "Luís Torrado",
+          "at": "3/9/26, 2:29:11 PM",
+          "timestamp": "2026-03-09T14:29:11.000Z",
+          "score": 5,
+          "intensity": "Baja",
+          "text": "Uu lo q le faltaba al mono ese",
+          "matches": [
+            {
+              "label": "mono",
+              "count": 1,
+              "score": 5
+            }
+          ],
+          "rationale": "Activa la lectura por mono.",
+          "contextWindow": [
+            {
+              "id": "ctx-10555-0",
+              "at": "3/9/26, 2:18:55 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Esta semana hay Champions! Arreglen sus equipos (hay transfer ilimitados) y prepárense para que le echen la culpa de la Guerra de Irán a Vinicius por “provocador”. @⁨Aaron Rodrigues⁩ @⁨Andres Eduardo Pinto⁩ @⁨Gabriel Gutiérrez⁩ @⁨Gerardo Vitale Errico⁩ @⁨Gustavo Torres⁩ @⁨Javier Gimenez⁩ @⁨Jesús Burgos⁩ @⁨Jorge Anzola 🔪🔪🔪⁩ @⁨Luís Torrado⁩ @⁨‪+34 698 68 36 15‬⁩",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-10555-1",
+              "at": "3/9/26, 2:29:11 PM",
+              "author": "Luís Torrado",
+              "memberId": "luis",
+              "text": "Uu lo q le faltaba al mono ese",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-10555-2",
+              "at": "3/9/26, 2:29:40 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Cómo va la tabla?",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10555-3",
+              "at": "3/9/26, 2:37:52 PM",
+              "author": "Aaron Rodrigues",
+              "memberId": "aaron",
+              "text": "‎image omitted",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10555-4",
+              "at": "3/9/26, 2:41:03 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Vas segundo",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10555-5",
+              "at": "3/9/26, 2:41:35 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "No me extrañaría después de lo que acaba de revelar Xavi.",
+              "kind": "after"
+            }
+          ]
+        }
+      ],
+      "leader": {
+        "id": "racist-javier-10185",
+        "memberId": "javier",
+        "memberName": "Javier Gimenez",
+        "author": "Javier Gimenez",
+        "at": "2/23/26, 6:30:02 PM",
+        "timestamp": "2026-02-23T18:30:02.000Z",
+        "score": 62,
+        "intensity": "Alta",
+        "text": "Cavanni dijo gracias negrito e igualmente lo multaron. Capaz para prestianni y los argentinos decirle mono no tiene una connotación racistas. A lo mejor le dijo que dejar de comportarse como mono.",
+        "matches": [
+          {
+            "label": "comportarse como mono",
+            "count": 1,
+            "score": 12
+          },
+          {
+            "label": "decirle mono",
+            "count": 1,
+            "score": 11
+          },
+          {
+            "label": "connotación racista",
+            "count": 1,
+            "score": 11
+          },
+          {
+            "label": "mono",
+            "count": 2,
+            "score": 10
+          },
+          {
+            "label": "negrito",
+            "count": 1,
+            "score": 7
+          },
+          {
+            "label": "negritos",
+            "count": 1,
+            "score": 6
+          },
+          {
+            "label": "minimización",
+            "count": 1,
+            "score": 5
+          }
+        ],
+        "rationale": "Activa la lectura por comportarse como mono, decirle mono, connotación racista.",
+        "contextWindow": [
+          {
+            "id": "ctx-10185-0",
+            "at": "2/23/26, 6:24:38 PM",
+            "author": "Francisco Arteaga",
+            "memberId": "francisco",
+            "text": "",
+            "kind": "before"
+          },
+          {
+            "id": "ctx-10185-1",
+            "at": "2/23/26, 6:25:07 PM",
+            "author": "Francisco Arteaga",
+            "memberId": "francisco",
+            "text": "El Benfica va a tener que decir que Prestiani tiene Tourette",
+            "kind": "before"
+          },
+          {
+            "id": "ctx-10185-2",
+            "at": "2/23/26, 6:30:02 PM",
+            "author": "Javier Gimenez",
+            "memberId": "javier",
+            "text": "Cavanni dijo gracias negrito e igualmente lo multaron. Capaz para prestianni y los argentinos decirle mono no tiene una connotación racistas. A lo mejor le dijo que dejar de comportarse como mono.",
+            "kind": "self"
+          },
+          {
+            "id": "ctx-10185-3",
+            "at": "2/23/26, 6:30:45 PM",
+            "author": "Gabriel Gutiérrez",
+            "memberId": "gabriel",
+            "text": "Es en serio que estamos teniendo esta discusión? JAJAJAJA",
+            "kind": "after"
+          },
+          {
+            "id": "ctx-10185-4",
+            "at": "2/23/26, 6:31:44 PM",
+            "author": "Gabriel Gutiérrez",
+            "memberId": "gabriel",
+            "text": "En España le dieron a Vinicius que se fuera al sambodromo a hacer el mono. Seguro quisieron decir que él es muy alegre",
+            "kind": "after"
+          },
+          {
+            "id": "ctx-10185-5",
+            "at": "2/23/26, 6:32:05 PM",
+            "author": "Gabriel Gutiérrez",
+            "memberId": "gabriel",
+            "text": "‎sticker omitted",
+            "kind": "after"
+          },
+          {
+            "id": "ctx-10185-6",
+            "at": "2/23/26, 6:32:14 PM",
+            "author": "Luís Torrado",
+            "memberId": "luis",
+            "text": "claaaaro y mbappe no piensa q es puto por comerse un travesaño",
+            "kind": "after"
+          }
+        ]
+      },
+      "memberCount": 6
+    },
+    {
+      "id": "calming",
+      "title": "El comentario más tranquilizador",
+      "shortLabel": "Tranquilizador",
+      "icon": "🫶",
+      "accent": "oklch(70% 0.16 145)",
+      "description": "Mensajes que corrigen, enfrían o hacen retroceder la escalada dentro del chat.",
+      "entries": [
+        {
+          "id": "calming-javier-7317",
+          "memberId": "javier",
+          "memberName": "Javier Gimenez",
+          "author": "Javier Gimenez",
+          "at": "10/31/25, 3:31:20 PM",
+          "timestamp": "2025-10-31T15:31:20.000Z",
+          "score": 20,
+          "intensity": "Alta",
+          "text": "Dale listo Ya cerré el tema tranquilo no pasa nada, no comparto pero te lo acepto.",
+          "matches": [
+            {
+              "label": "no pasa nada",
+              "count": 1,
+              "score": 9
+            },
+            {
+              "label": "lo acepto",
+              "count": 1,
+              "score": 6
+            },
+            {
+              "label": "tranquilo",
+              "count": 1,
+              "score": 5
+            }
+          ],
+          "rationale": "Activa la lectura por no pasa nada, lo acepto, tranquilo.",
+          "contextWindow": [
+            {
+              "id": "ctx-7317-0",
+              "at": "10/31/25, 2:47:51 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Fuera de paja el vídeo no habla de política más que un mínimo",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-7317-1",
+              "at": "10/31/25, 2:48:16 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "No hay necesidad de pelar todo el tiempo…",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-7317-2",
+              "at": "10/31/25, 3:31:20 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Dale listo Ya cerré el tema tranquilo no pasa nada, no comparto pero te lo acepto.",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-7317-3",
+              "at": "10/31/25, 3:32:02 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "‎audio omitted",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-7317-4",
+              "at": "10/31/25, 3:33:01 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Casi parece Milei jajajajaja",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-7317-5",
+              "at": "10/31/25, 3:33:25 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Jajajajaj",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-7317-6",
+              "at": "10/31/25, 3:33:30 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Fue lo que intenté",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "calming-luis-9967",
+          "memberId": "luis",
+          "memberName": "Luís Torrado",
+          "author": "Luís Torrado",
+          "at": "2/18/26, 2:16:59 PM",
+          "timestamp": "2026-02-18T14:16:59.000Z",
+          "score": 19,
+          "intensity": "Alta",
+          "text": "No marico confundes las cosas, ser canchero es diferente..es tirar un caño, hacer sombreritos...ya que te esten diciendo vainas todo el tiempo es diferente",
+          "matches": [
+            {
+              "label": "confundes las cosas",
+              "count": 1,
+              "score": 11
+            },
+            {
+              "label": "es diferente",
+              "count": 2,
+              "score": 8
+            }
+          ],
+          "rationale": "Activa la lectura por confundes las cosas, es diferente.",
+          "contextWindow": [
+            {
+              "id": "ctx-9967-0",
+              "at": "2/18/26, 2:14:58 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Lo de ser canchero está bien pero con códigos. El tema del racismo es burda de complejo, y ninguno de nosotros creo que haya podido sufrir esa vaina. Quizás lo más cercano es la xenofobia que recibimos como venezolanos y a mí me hierve la sangre cada vez que veo esa vaina así no sea conmigo",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-9967-1",
+              "at": "2/18/26, 2:15:17 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Aquí tú le dices negro a un negro y te tumban los dientes",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-9967-2",
+              "at": "2/18/26, 2:16:59 PM",
+              "author": "Luís Torrado",
+              "memberId": "luis",
+              "text": "No marico confundes las cosas, ser canchero es diferente..es tirar un caño, hacer sombreritos...ya que te esten diciendo vainas todo el tiempo es diferente",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-9967-3",
+              "at": "2/18/26, 2:18:09 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Si igual a vinicius pero si entras en ese juego te la aguantas. Si quieres discriminar y humillar te la aguantas",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-9967-4",
+              "at": "2/18/26, 2:19:14 PM",
+              "author": "Luís Torrado",
+              "memberId": "luis",
+              "text": "si claro, asi le dijo cesc a morata, que se dedique a otra cosa...pero igual lo que digo q eso esta mal ...para mi es como jugar sucio",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-9967-5",
+              "at": "2/18/26, 2:19:57 PM",
+              "author": "Luís Torrado",
+              "memberId": "luis",
+              "text": "o como zidane con materazzi...se hace desde hace mucho tiempo y es muy arrecho erradicarlo",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-9967-6",
+              "at": "2/18/26, 2:20:28 PM",
+              "author": "Luís Torrado",
+              "memberId": "luis",
+              "text": "solo digo q no estoy de acuerdo con eso q por lo general lo hacen los argentinos",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "calming-gustavo-2491",
+          "memberId": "gustavo",
+          "memberName": "Gustavo Torres",
+          "author": "Gustavo Torres",
+          "at": "5/30/25, 9:38:08 PM",
+          "timestamp": "2025-05-30T21:38:08.000Z",
+          "score": 15,
+          "intensity": "Alta",
+          "text": "Tranquilos chicos! Aquí puro amor 🥰",
+          "matches": [
+            {
+              "label": "puro amor",
+              "count": 1,
+              "score": 10
+            },
+            {
+              "label": "tranquilo",
+              "count": 1,
+              "score": 5
+            }
+          ],
+          "rationale": "Activa la lectura por puro amor, tranquilo.",
+          "contextWindow": [
+            {
+              "id": "ctx-2491-0",
+              "at": "5/30/25, 9:37:04 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "En la escribanía quiero la disculpa jajjajaaj",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-2491-1",
+              "at": "5/30/25, 9:37:53 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Jajajajaja yo no me pico por eso.",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-2491-2",
+              "at": "5/30/25, 9:38:08 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "Tranquilos chicos! Aquí puro amor 🥰",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-2491-3",
+              "at": "5/30/25, 9:38:34 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "A quien le va la gente en la final de mañana?",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-2491-4",
+              "at": "5/30/25, 9:38:52 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "Del PSG contra el Inter (cc @⁨Gabriel Gutiérrez⁩ )",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-2491-5",
+              "at": "5/30/25, 9:39:01 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Mi segundo equipo siempre ha sido el Inter",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-2491-6",
+              "at": "5/30/25, 9:39:16 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Así que Forza Neriazzurri.",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "calming-francisco-9146",
+          "memberId": "francisco",
+          "memberName": "Francisco Arteaga",
+          "author": "Francisco Arteaga",
+          "at": "1/12/26, 6:35:26 PM",
+          "timestamp": "2026-01-12T18:35:26.000Z",
+          "score": 13,
+          "intensity": "Media",
+          "text": "Relájense, lo de Xabi se veía de lejos. Que ustedes querían aferrarse a una fantasía en la que Xabi ganaba todo siendo madridista y tuviéramos a un segundo Zidane, es diferente.",
+          "matches": [
+            {
+              "label": "relájense",
+              "count": 1,
+              "score": 9
+            },
+            {
+              "label": "es diferente",
+              "count": 1,
+              "score": 4
+            }
+          ],
+          "rationale": "Activa la lectura por relájense, es diferente.",
+          "contextWindow": [
+            {
+              "id": "ctx-9146-0",
+              "at": "1/12/26, 6:34:10 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Mencionó que el más probable es Solari -que de paso no es quien va a reemplazar- y se ponen como Didi cuando mencionó a Messi, jajajajaja",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-9146-1",
+              "at": "1/12/26, 6:34:45 PM",
+              "author": "Luís Torrado",
+              "memberId": "luis",
+              "text": "jajajaja",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-9146-2",
+              "at": "1/12/26, 6:35:26 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Relájense, lo de Xabi se veía de lejos. Que ustedes querían aferrarse a una fantasía en la que Xabi ganaba todo siendo madridista y tuviéramos a un segundo Zidane, es diferente.",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-9146-3",
+              "at": "1/12/26, 6:35:51 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "La plantilla es la que está tirando la burra para el monte",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-9146-4",
+              "at": "1/12/26, 6:35:57 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Xabi perdió el vestuario por no poner mano dura.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-9146-5",
+              "at": "1/12/26, 6:36:00 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "A parte de que no quieren invertir",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-9146-6",
+              "at": "1/12/26, 6:36:21 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Ahora, la pelea la ganó Vinicius, quizás es a él al que tienen que preguntarle a quien quiere de entrenador.",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "calming-gabriel-3466",
+          "memberId": "gabriel",
+          "memberName": "Gabriel Gutiérrez",
+          "author": "Gabriel Gutiérrez",
+          "at": "6/29/25, 9:21:26 PM",
+          "timestamp": "2025-06-29T21:21:26.000Z",
+          "score": 10,
+          "intensity": "Media",
+          "text": "Un tipo en unos de sus prime, jugando en un tremendo equipo puede darse el lujo de ser bocón. Otro que anda arrastrándose por las canchas de Miami, hablando del campeón de Europa.. no creo que es lo mismo pero bueno, se respetan las opiniones diferentes ‎<This message was edited>",
+          "matches": [
+            {
+              "label": "se respetan las opiniones diferentes",
+              "count": 1,
+              "score": 10
+            }
+          ],
+          "rationale": "Activa la lectura por se respetan las opiniones diferentes.",
+          "contextWindow": [
+            {
+              "id": "ctx-3466-0",
+              "at": "6/29/25, 8:59:13 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "15 años y seguimos con esto jajaja",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-3466-1",
+              "at": "6/29/25, 9:06:03 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Si hablan de boconear, es imposible no acordarse del mayor bocon de todos los tiempos del fútbol, jajajaja. Dejo frases míticas ‎<This message was edited>",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-3466-2",
+              "at": "6/29/25, 9:21:26 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Un tipo en unos de sus prime, jugando en un tremendo equipo puede darse el lujo de ser bocón. Otro que anda arrastrándose por las canchas de Miami, hablando del campeón de Europa.. no creo que es lo mismo pero bueno, se respetan las opiniones diferentes ‎<This message was edited>",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-3466-3",
+              "at": "6/29/25, 9:31:44 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Messi no está hablando de este equipo campeón de Europa, por eso pregunte . Está hablando del que equipo de hace 4 año en el que jugaba el y jugo mal. Es estúpido pensar que es el mismo equipo, es el mismo club, son dos cosas diferente. No era ni el mismo entrenador",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "calming-jesus-8606",
+          "memberId": "jesus",
+          "memberName": "Jesús Burgos",
+          "author": "Jesús Burgos",
+          "at": "12/14/25, 10:47:55 PM",
+          "timestamp": "2025-12-14T22:47:55.000Z",
+          "score": 6,
+          "intensity": "Baja",
+          "text": "Trato de no opinar ya de los árbitros",
+          "matches": [
+            {
+              "label": "trato de no opinar",
+              "count": 1,
+              "score": 6
+            }
+          ],
+          "rationale": "Activa la lectura por trato de no opinar.",
+          "contextWindow": [
+            {
+              "id": "ctx-8606-0",
+              "at": "12/14/25, 10:47:32 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "No es Penal, pero tampoco amarilla por simulación",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-8606-1",
+              "at": "12/14/25, 10:47:48 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "No hay explicación lo que pasó…",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-8606-2",
+              "at": "12/14/25, 10:47:55 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Trato de no opinar ya de los árbitros",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-8606-3",
+              "at": "12/14/25, 10:47:59 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Pero es descarado",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-8606-4",
+              "at": "12/14/25, 10:48:01 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "😂",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-8606-5",
+              "at": "12/14/25, 10:48:50 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Marico, pero es que sin vergüenza alguna: “hay que robar al Madrid”",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-8606-6",
+              "at": "12/14/25, 10:49:14 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Justo el fin de semana luego que los abogados del Madrid interrogaron a Laporta",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "calming-espana34-8328",
+          "memberId": "espana34",
+          "memberName": "Karin \"Pie Roto\"",
+          "author": "Karin \"Pie Roto\"",
+          "at": "12/9/25, 2:50:42 PM",
+          "timestamp": "2025-12-09T14:50:42.000Z",
+          "score": 5,
+          "intensity": "Baja",
+          "text": "Jajajaja tranquilo que el nivel es como en Talavera de la reina",
+          "matches": [
+            {
+              "label": "tranquilo",
+              "count": 1,
+              "score": 5
+            }
+          ],
+          "rationale": "Activa la lectura por tranquilo.",
+          "contextWindow": [
+            {
+              "id": "ctx-8328-0",
+              "at": "12/9/25, 2:49:57 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "No me dejen por fuera a @⁨Andres Eduardo Pinto⁩",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-8328-1",
+              "at": "12/9/25, 2:50:31 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Yo soy más como un Massimo Margiotta en silla de ruedas.",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-8328-2",
+              "at": "12/9/25, 2:50:42 PM",
+              "author": "Karin \"Pie Roto\"",
+              "memberId": "espana34",
+              "text": "Jajajaja tranquilo que el nivel es como en Talavera de la reina",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-8328-3",
+              "at": "12/9/25, 2:51:17 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "El otro día también jugamos con un Palestino, y me tocó marcarlo.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-8328-4",
+              "at": "12/9/25, 2:51:18 PM",
+              "author": "Karin \"Pie Roto\"",
+              "memberId": "espana34",
+              "text": "Aquí la gente no da leñazos y no te lesionan, todo friendly",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-8328-5",
+              "at": "12/9/25, 2:51:33 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Ahí viene",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-8328-6",
+              "at": "12/9/25, 2:51:38 PM",
+              "author": "Karin \"Pie Roto\"",
+              "memberId": "espana34",
+              "text": "Jajajajaja",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "calming-andres-10350",
+          "memberId": "andres",
+          "memberName": "Andrés Eduardo Pinto",
+          "author": "Andrés Eduardo Pinto",
+          "at": "2/26/26, 11:11:44 PM",
+          "timestamp": "2026-02-26T23:11:44.000Z",
+          "score": 5,
+          "intensity": "Baja",
+          "text": "Los sábados es tranquilo, porque van más séniors jajajajaja",
+          "matches": [
+            {
+              "label": "tranquilo",
+              "count": 1,
+              "score": 5
+            }
+          ],
+          "rationale": "Activa la lectura por tranquilo.",
+          "contextWindow": [
+            {
+              "id": "ctx-10350-0",
+              "at": "2/26/26, 10:21:43 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-10350-1",
+              "at": "2/26/26, 11:11:44 PM",
+              "author": "Andrés Eduardo Pinto",
+              "memberId": "andres",
+              "text": "Los sábados es tranquilo, porque van más séniors jajajajaja",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-10350-2",
+              "at": "2/26/26, 11:11:44 PM",
+              "author": "Andrés Eduardo Pinto",
+              "memberId": "andres",
+              "text": "Chapu me manda este mensaje antes de inscribirme en el partido, ahora revisando los demás jugadores, resulta que los Séniors somos el y yo los demás todos tienen 20 años, ya me vi pasando vergüenza en el campo.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10350-3",
+              "at": "2/26/26, 11:12:20 PM",
+              "author": "Andrés Eduardo Pinto",
+              "memberId": "andres",
+              "text": "‎sticker omitted",
+              "kind": "after"
+            }
+          ]
+        }
+      ],
+      "leader": {
+        "id": "calming-javier-7317",
+        "memberId": "javier",
+        "memberName": "Javier Gimenez",
+        "author": "Javier Gimenez",
+        "at": "10/31/25, 3:31:20 PM",
+        "timestamp": "2025-10-31T15:31:20.000Z",
+        "score": 20,
+        "intensity": "Alta",
+        "text": "Dale listo Ya cerré el tema tranquilo no pasa nada, no comparto pero te lo acepto.",
+        "matches": [
+          {
+            "label": "no pasa nada",
+            "count": 1,
+            "score": 9
+          },
+          {
+            "label": "lo acepto",
+            "count": 1,
+            "score": 6
+          },
+          {
+            "label": "tranquilo",
+            "count": 1,
+            "score": 5
+          }
+        ],
+        "rationale": "Activa la lectura por no pasa nada, lo acepto, tranquilo.",
+        "contextWindow": [
+          {
+            "id": "ctx-7317-0",
+            "at": "10/31/25, 2:47:51 PM",
+            "author": "Francisco Arteaga",
+            "memberId": "francisco",
+            "text": "Fuera de paja el vídeo no habla de política más que un mínimo",
+            "kind": "before"
+          },
+          {
+            "id": "ctx-7317-1",
+            "at": "10/31/25, 2:48:16 PM",
+            "author": "Francisco Arteaga",
+            "memberId": "francisco",
+            "text": "No hay necesidad de pelar todo el tiempo…",
+            "kind": "before"
+          },
+          {
+            "id": "ctx-7317-2",
+            "at": "10/31/25, 3:31:20 PM",
+            "author": "Javier Gimenez",
+            "memberId": "javier",
+            "text": "Dale listo Ya cerré el tema tranquilo no pasa nada, no comparto pero te lo acepto.",
+            "kind": "self"
+          },
+          {
+            "id": "ctx-7317-3",
+            "at": "10/31/25, 3:32:02 PM",
+            "author": "Jesús Burgos",
+            "memberId": "jesus",
+            "text": "‎audio omitted",
+            "kind": "after"
+          },
+          {
+            "id": "ctx-7317-4",
+            "at": "10/31/25, 3:33:01 PM",
+            "author": "Javier Gimenez",
+            "memberId": "javier",
+            "text": "Casi parece Milei jajajajaja",
+            "kind": "after"
+          },
+          {
+            "id": "ctx-7317-5",
+            "at": "10/31/25, 3:33:25 PM",
+            "author": "Jesús Burgos",
+            "memberId": "jesus",
+            "text": "Jajajajaj",
+            "kind": "after"
+          },
+          {
+            "id": "ctx-7317-6",
+            "at": "10/31/25, 3:33:30 PM",
+            "author": "Jesús Burgos",
+            "memberId": "jesus",
+            "text": "Fue lo que intenté",
+            "kind": "after"
+          }
+        ]
+      },
+      "memberCount": 8
+    },
+    {
+      "id": "troll",
+      "title": "El comentario más troll",
+      "shortLabel": "Troll",
+      "icon": "🎭",
+      "accent": "oklch(72% 0.18 60)",
+      "description": "Sarcasmo, carnada y frases hechas para pinchar al otro sin declararlo frontalmente.",
+      "entries": [
+        {
+          "id": "troll-javier-6869",
+          "memberId": "javier",
+          "memberName": "Javier Gimenez",
+          "author": "Javier Gimenez",
+          "at": "10/26/25, 1:45:25 AM",
+          "timestamp": "2025-10-26T01:45:25.000Z",
+          "score": 17,
+          "intensity": "Alta",
+          "text": "Igual no vi el vídeo solo fragmentos rápidos. Fue más por joder. Más tarde lo veo con calma",
+          "matches": [
+            {
+              "label": "fue más por joder",
+              "count": 1,
+              "score": 9
+            },
+            {
+              "label": "por joder",
+              "count": 1,
+              "score": 8
+            }
+          ],
+          "rationale": "Activa la lectura por fue más por joder, por joder.",
+          "contextWindow": [
+            {
+              "id": "ctx-6869-0",
+              "at": "10/26/25, 1:44:03 AM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Jajaja vaina tan chistosa",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-6869-1",
+              "at": "10/26/25, 1:44:28 AM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Mañana gana el Barcelona, duerman tranquilos",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-6869-2",
+              "at": "10/26/25, 1:45:25 AM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Igual no vi el vídeo solo fragmentos rápidos. Fue más por joder. Más tarde lo veo con calma",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-6869-3",
+              "at": "10/26/25, 1:46:13 AM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Quiero que sepan que asi se ven los cuales ciegos ‎video omitted",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-6869-4",
+              "at": "10/26/25, 1:46:48 AM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "El Barça no está bien. Creo que el Madrid tiene más posibilidades. Igual ninguno de los dos está en un buen momento.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-6869-5",
+              "at": "10/26/25, 2:14:26 AM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "En un 11 por rendimiento actual. Creo que sacaría a vinicius por Valverde y carrera por balde y el resto posiblemente igual. ‎image omitted",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "troll-francisco-2478",
+          "memberId": "francisco",
+          "memberName": "Francisco Arteaga",
+          "author": "Francisco Arteaga",
+          "at": "5/30/25, 9:30:34 PM",
+          "timestamp": "2025-05-30T21:30:34.000Z",
+          "score": 13,
+          "intensity": "Media",
+          "text": "Coño, estamos discutiendo tranquilos, para que te pongas a trolear. Ve a besar tu afiche de Messi.",
+          "matches": [
+            {
+              "label": "ve a besar tu afiche",
+              "count": 1,
+              "score": 7
+            },
+            {
+              "label": "trolear",
+              "count": 1,
+              "score": 6
+            }
+          ],
+          "rationale": "Activa la lectura por ve a besar tu afiche, trolear.",
+          "contextWindow": [
+            {
+              "id": "ctx-2478-0",
+              "at": "5/30/25, 9:29:31 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Pero debió ser roja ambos o no?",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-2478-1",
+              "at": "5/30/25, 9:30:11 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Eso es una solución. No la causa de la diferencia. Realmente, no hay un protocolo para esto, y el árbitro dijo que “se le olvidó ponerlo en el acta” y si no aparece en el acta, no puede ser sancionado.",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-2478-2",
+              "at": "5/30/25, 9:30:34 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Coño, estamos discutiendo tranquilos, para que te pongas a trolear. Ve a besar tu afiche de Messi.",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-2478-3",
+              "at": "5/30/25, 9:31:41 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "No se te puede preguntar nada por qué para ti todo es trolear y tú sí puedes salir insultando.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-2478-4",
+              "at": "5/30/25, 9:33:25 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Simplemente es para ver cómo sería tu criterio arbitral. Si deberían ser estrictos con las ofensas o no tanto.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-2478-5",
+              "at": "5/30/25, 9:33:32 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "🙄",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-2478-6",
+              "at": "5/30/25, 9:33:33 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Para mí ambas serían rojas",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "troll-gustavo-1049",
+          "memberId": "gustavo",
+          "memberName": "Gustavo Torres",
+          "author": "Gustavo Torres",
+          "at": "4/26/25, 11:43:53 PM",
+          "timestamp": "2025-04-26T23:43:53.000Z",
+          "score": 11,
+          "intensity": "Media",
+          "text": "ah no, está ganando el Madrid? Que bien que todo está siendo muy justo! Todo bajo norma! ‎<This message was edited>",
+          "matches": [
+            {
+              "label": "muy justo",
+              "count": 1,
+              "score": 11
+            }
+          ],
+          "rationale": "Activa la lectura por muy justo.",
+          "contextWindow": [
+            {
+              "id": "ctx-1049-0",
+              "at": "4/26/25, 11:41:18 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Van a ganar la copa pero no celebren todo es culpa del arbitro",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-1049-1",
+              "at": "4/26/25, 11:43:40 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "Sí, que chimbo que este juego estaba manchado desde el principio",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-1049-2",
+              "at": "4/26/25, 11:43:53 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "ah no, está ganando el Madrid? Que bien que todo está siendo muy justo! Todo bajo norma! ‎<This message was edited>",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-1049-3",
+              "at": "4/26/25, 11:49:53 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "perdón, ya están robando de nuevo! 😡",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-1049-4",
+              "at": "4/27/25, 12:03:47 AM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "‎Gabriel Gutiérrez removed Javier Gimenez",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-1049-5",
+              "at": "4/27/25, 12:05:18 AM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "‎Javier Gimenez was added",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-1049-6",
+              "at": "4/27/25, 12:00:27 AM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "La anterior de ferrando fue penalazo",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "troll-gabriel-10606",
+          "memberId": "gabriel",
+          "memberName": "Gabriel Gutiérrez",
+          "author": "Gabriel Gutiérrez",
+          "at": "3/10/26, 7:44:11 PM",
+          "timestamp": "2026-03-10T19:44:11.000Z",
+          "score": 8,
+          "intensity": "Media",
+          "text": "El pana le dio repost a un meme por dos minutos y lo borró enseguida. Capaz hasta metió el dedo y ni se dio cuenta hasta que le avisaron jajaja",
+          "matches": [
+            {
+              "label": "meme",
+              "count": 1,
+              "score": 7
+            },
+            {
+              "label": "jajaja",
+              "count": 1,
+              "score": 1
+            }
+          ],
+          "rationale": "Activa la lectura por meme, jajaja.",
+          "contextWindow": [
+            {
+              "id": "ctx-10606-0",
+              "at": "3/10/26, 7:22:17 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Madriditis, le llaman a eso.",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-10606-1",
+              "at": "3/10/26, 7:28:05 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Si no quieres creer ya es tu problema. No voy a buscar más fuentes.",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-10606-2",
+              "at": "3/10/26, 7:44:11 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "El pana le dio repost a un meme por dos minutos y lo borró enseguida. Capaz hasta metió el dedo y ni se dio cuenta hasta que le avisaron jajaja",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-10606-3",
+              "at": "3/10/26, 7:44:32 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Ya la época woke pasó señoritas, avancemos",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10606-4",
+              "at": "3/10/26, 8:14:16 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "Si quieres creer que no vio lo que hizo👍. El benéfica decide creer que no dijo nada prestianni ‎<This message was edited>",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-10606-5",
+              "at": "3/10/26, 8:16:26 PM",
+              "author": "Javier Gimenez",
+              "memberId": "javier",
+              "text": "los que se la pasan diciendo por qué tanto ataques personales. Los que no aguanta que los jodan. Jajajajaja🤣.",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "troll-jesus-964",
+          "memberId": "jesus",
+          "memberName": "Jesús Burgos",
+          "author": "Jesús Burgos",
+          "at": "4/26/25, 7:43:40 PM",
+          "timestamp": "2025-04-26T19:43:40.000Z",
+          "score": 6,
+          "intensity": "Baja",
+          "text": "Deja al troll en Stand By un momento",
+          "matches": [
+            {
+              "label": "trolear",
+              "count": 1,
+              "score": 6
+            }
+          ],
+          "rationale": "Activa la lectura por trolear.",
+          "contextWindow": [
+            {
+              "id": "ctx-964-0",
+              "at": "4/26/25, 7:34:20 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "Tanto por el Madrid pasarse quejándose del árbitro, como por la liga por no dar más transparencia y formas de callar las críticas. Al final lo único que veo posible es que la gente pierda el interés y listo",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-964-1",
+              "at": "4/26/25, 7:43:31 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Gustavo una pregunta",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-964-2",
+              "at": "4/26/25, 7:43:40 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Deja al troll en Stand By un momento",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-964-3",
+              "at": "4/26/25, 7:44:19 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "Imagínate por un momento que es el RM quien hizo esto. Que pensarías? Siendo sincero",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-964-4",
+              "at": "4/26/25, 8:46:24 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "‎sticker omitted",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-964-5",
+              "at": "4/26/25, 8:48:16 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "Me quejaría de esas instancias en específico. Pero de hacer ese salto a decir que todos los juegos están amañados y todo es trampa me parecería un salto muy grande. Por lo menos con las elecciones de Chávez hay gente que decía que Chávez no ganó ninguna elección. Creo que amañó algunas, pero la mayoría de las elecciones las ganó por ser popular",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-964-6",
+              "at": "4/26/25, 8:48:30 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "La verdad siempre son unos matices de gris, no es blanco y negro",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "troll-luis-9488",
+          "memberId": "luis",
+          "memberName": "Luís Torrado",
+          "author": "Luís Torrado",
+          "at": "1/22/26, 5:25:10 PM",
+          "timestamp": "2026-01-22T17:25:10.000Z",
+          "score": 5,
+          "intensity": "Baja",
+          "text": "Te sacaste el titulo solo para decir q sabes algo de futbol? @⁨Javier Gimenez⁩ le diste en el ego jajaja",
+          "matches": [
+            {
+              "label": "sarcasmo con pregunta",
+              "count": 1,
+              "score": 4
+            },
+            {
+              "label": "jajaja",
+              "count": 1,
+              "score": 1
+            }
+          ],
+          "rationale": "Activa la lectura por sarcasmo con pregunta, jajaja.",
+          "contextWindow": [
+            {
+              "id": "ctx-9488-0",
+              "at": "1/22/26, 5:14:05 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Cuando tengas ranking, puedes volverme a hablar del VAR @⁨Javier Gimenez⁩",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-9488-1",
+              "at": "1/22/26, 5:14:09 PM",
+              "author": "Jesús Burgos",
+              "memberId": "jesus",
+              "text": "‎sticker omitted",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-9488-2",
+              "at": "1/22/26, 5:25:10 PM",
+              "author": "Luís Torrado",
+              "memberId": "luis",
+              "text": "Te sacaste el titulo solo para decir q sabes algo de futbol? @⁨Javier Gimenez⁩ le diste en el ego jajaja",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-9488-3",
+              "at": "1/22/26, 5:25:53 PM",
+              "author": "Gabriel Gutiérrez",
+              "memberId": "gabriel",
+              "text": "Lo tiene loco",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-9488-4",
+              "at": "1/22/26, 5:30:58 PM",
+              "author": "Andrés Eduardo Pinto",
+              "memberId": "andres",
+              "text": "Dile que tienes un amigo que puede ser utilero de la selección, que les llevo el café, les hago sanduchitos, cualquier vaina.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-9488-5",
+              "at": "1/22/26, 5:39:35 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "JAJAJAJA",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-9488-6",
+              "at": "1/22/26, 5:41:39 PM",
+              "author": "Gustavo Torres",
+              "memberId": "gustavo",
+              "text": "Puede decir lo que quiera pero Didi es buena influencia, te hizo superarte y apuntar más alto",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "troll-aaron-6991",
+          "memberId": "aaron",
+          "memberName": "Aaron Rodrigues",
+          "author": "Aaron Rodrigues",
+          "at": "10/26/25, 9:39:58 PM",
+          "timestamp": "2025-10-26T21:39:58.000Z",
+          "score": 4,
+          "intensity": "Baja",
+          "text": "Y la patada a camavinga?😂😂 el bicho con 4 amarillas en todo el juego",
+          "matches": [
+            {
+              "label": "emoji de burla",
+              "count": 2,
+              "score": 4
+            }
+          ],
+          "rationale": "Activa la lectura por emoji de burla.",
+          "contextWindow": [
+            {
+              "id": "ctx-6991-0",
+              "at": "10/26/25, 9:34:30 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Esa era la segunda",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-6991-1",
+              "at": "10/26/25, 9:34:40 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "La primera debió haber sido por simulación",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-6991-2",
+              "at": "10/26/25, 9:39:58 PM",
+              "author": "Aaron Rodrigues",
+              "memberId": "aaron",
+              "text": "Y la patada a camavinga?😂😂 el bicho con 4 amarillas en todo el juego",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-6991-3",
+              "at": "10/26/25, 9:40:37 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Es impresionante como los árbitros le aguantan y aguantan al Barça",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-6991-4",
+              "at": "10/26/25, 10:15:23 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "De Jong es culé de verdad, vive en un mundo alterno:",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-6991-5",
+              "at": "10/26/25, 10:16:21 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Dice que Yamal no dijo nada. Que no dijo que el Madrid robaba.",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "troll-gerardo-9835",
+          "memberId": "gerardo",
+          "memberName": "Gerardo Vitale Errico",
+          "author": "Gerardo Vitale Errico",
+          "at": "2/17/26, 9:14:53 AM",
+          "timestamp": "2026-02-17T09:14:53.000Z",
+          "score": 2,
+          "intensity": "Baja",
+          "text": "Nooooo bro, no le da chance de hacer ni medio gol, así que hace las mamarrachadas sin hacer goles 😂",
+          "matches": [
+            {
+              "label": "emoji de burla",
+              "count": 1,
+              "score": 2
+            }
+          ],
+          "rationale": "Activa la lectura por emoji de burla.",
+          "contextWindow": [
+            {
+              "id": "ctx-9835-0",
+              "at": "2/17/26, 9:14:53 AM",
+              "author": "Gerardo Vitale Errico",
+              "memberId": "gerardo",
+              "text": "Nooooo bro, no le da chance de hacer ni medio gol, así que hace las mamarrachadas sin hacer goles 😂",
+              "kind": "self"
+            }
+          ]
+        },
+        {
+          "id": "troll-espana34-2888",
+          "memberId": "espana34",
+          "memberName": "Karin \"Pie Roto\"",
+          "author": "Karin \"Pie Roto\"",
+          "at": "6/8/25, 10:26:10 AM",
+          "timestamp": "2025-06-08T10:26:10.000Z",
+          "score": 2,
+          "intensity": "Baja",
+          "text": "Sabían que el primer clásico fuera de Europa se jugó en Barquisimeto? en el Farid Richa😂",
+          "matches": [
+            {
+              "label": "emoji de burla",
+              "count": 1,
+              "score": 2
+            }
+          ],
+          "rationale": "Activa la lectura por emoji de burla.",
+          "contextWindow": [
+            {
+              "id": "ctx-2888-0",
+              "at": "6/8/25, 10:10:58 AM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "El Madrid la tiene en la vitrina",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-2888-1",
+              "at": "6/8/25, 10:24:47 AM",
+              "author": "Karin \"Pie Roto\"",
+              "memberId": "espana34",
+              "text": "Yo igual",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-2888-2",
+              "at": "6/8/25, 10:26:10 AM",
+              "author": "Karin \"Pie Roto\"",
+              "memberId": "espana34",
+              "text": "Sabían que el primer clásico fuera de Europa se jugó en Barquisimeto? en el Farid Richa😂",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-2888-3",
+              "at": "6/8/25, 10:26:29 AM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Yep, y lo ganó el Madrid con gol de Del Bosque",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-2888-4",
+              "at": "6/8/25, 10:26:39 AM",
+              "author": "Karin \"Pie Roto\"",
+              "memberId": "espana34",
+              "text": "Eso es",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-2888-5",
+              "at": "6/8/25, 10:26:46 AM",
+              "author": "Karin \"Pie Roto\"",
+              "memberId": "espana34",
+              "text": "Ese trofeo también está en el Bernabéu",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-2888-6",
+              "at": "6/8/25, 10:27:13 AM",
+              "author": "Karin \"Pie Roto\"",
+              "memberId": "espana34",
+              "text": "Era una copa que se llamaba copa presidente creo",
+              "kind": "after"
+            }
+          ]
+        },
+        {
+          "id": "troll-andres-8362",
+          "memberId": "andres",
+          "memberName": "Andrés Eduardo Pinto",
+          "author": "Andrés Eduardo Pinto",
+          "at": "12/9/25, 3:06:11 PM",
+          "timestamp": "2025-12-09T15:06:11.000Z",
+          "score": 2,
+          "intensity": "Baja",
+          "text": "Como diría mi hermano @⁨Gustavo Torres⁩.. Ah mundo el niño Jesús de atocha, pobrecito 😂",
+          "matches": [
+            {
+              "label": "emoji de burla",
+              "count": 1,
+              "score": 2
+            }
+          ],
+          "rationale": "Activa la lectura por emoji de burla.",
+          "contextWindow": [
+            {
+              "id": "ctx-8362-0",
+              "at": "12/9/25, 3:04:06 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Hasta ahora, en 2 meses, solo lesione a un moro, jajajajajaja",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-8362-1",
+              "at": "12/9/25, 3:04:34 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Más bien el que ha llevado coñazo soy yo",
+              "kind": "before"
+            },
+            {
+              "id": "ctx-8362-2",
+              "at": "12/9/25, 3:06:11 PM",
+              "author": "Andrés Eduardo Pinto",
+              "memberId": "andres",
+              "text": "Como diría mi hermano @⁨Gustavo Torres⁩.. Ah mundo el niño Jesús de atocha, pobrecito 😂",
+              "kind": "self"
+            },
+            {
+              "id": "ctx-8362-3",
+              "at": "12/9/25, 3:09:10 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Al Pintin se lo asomé, y no quiso jugar.",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-8362-4",
+              "at": "12/9/25, 3:09:20 PM",
+              "author": "Francisco Arteaga",
+              "memberId": "francisco",
+              "text": "Únete marico @⁨Andres Eduardo Pinto⁩",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-8362-5",
+              "at": "12/9/25, 3:09:41 PM",
+              "author": "Andrés Eduardo Pinto",
+              "memberId": "andres",
+              "text": "Un día me anoto se los prometo",
+              "kind": "after"
+            },
+            {
+              "id": "ctx-8362-6",
+              "at": "12/9/25, 3:09:54 PM",
+              "author": "Andrés Eduardo Pinto",
+              "memberId": "andres",
+              "text": "Que día son los q mas juegan?",
+              "kind": "after"
+            }
+          ]
+        }
+      ],
+      "leader": {
+        "id": "troll-javier-6869",
+        "memberId": "javier",
+        "memberName": "Javier Gimenez",
+        "author": "Javier Gimenez",
+        "at": "10/26/25, 1:45:25 AM",
+        "timestamp": "2025-10-26T01:45:25.000Z",
+        "score": 17,
+        "intensity": "Alta",
+        "text": "Igual no vi el vídeo solo fragmentos rápidos. Fue más por joder. Más tarde lo veo con calma",
+        "matches": [
+          {
+            "label": "fue más por joder",
+            "count": 1,
+            "score": 9
+          },
+          {
+            "label": "por joder",
+            "count": 1,
+            "score": 8
+          }
+        ],
+        "rationale": "Activa la lectura por fue más por joder, por joder.",
+        "contextWindow": [
+          {
+            "id": "ctx-6869-0",
+            "at": "10/26/25, 1:44:03 AM",
+            "author": "Gabriel Gutiérrez",
+            "memberId": "gabriel",
+            "text": "Jajaja vaina tan chistosa",
+            "kind": "before"
+          },
+          {
+            "id": "ctx-6869-1",
+            "at": "10/26/25, 1:44:28 AM",
+            "author": "Gabriel Gutiérrez",
+            "memberId": "gabriel",
+            "text": "Mañana gana el Barcelona, duerman tranquilos",
+            "kind": "before"
+          },
+          {
+            "id": "ctx-6869-2",
+            "at": "10/26/25, 1:45:25 AM",
+            "author": "Javier Gimenez",
+            "memberId": "javier",
+            "text": "Igual no vi el vídeo solo fragmentos rápidos. Fue más por joder. Más tarde lo veo con calma",
+            "kind": "self"
+          },
+          {
+            "id": "ctx-6869-3",
+            "at": "10/26/25, 1:46:13 AM",
+            "author": "Jesús Burgos",
+            "memberId": "jesus",
+            "text": "Quiero que sepan que asi se ven los cuales ciegos ‎video omitted",
+            "kind": "after"
+          },
+          {
+            "id": "ctx-6869-4",
+            "at": "10/26/25, 1:46:48 AM",
+            "author": "Javier Gimenez",
+            "memberId": "javier",
+            "text": "El Barça no está bien. Creo que el Madrid tiene más posibilidades. Igual ninguno de los dos está en un buen momento.",
+            "kind": "after"
+          },
+          {
+            "id": "ctx-6869-5",
+            "at": "10/26/25, 2:14:26 AM",
+            "author": "Javier Gimenez",
+            "memberId": "javier",
+            "text": "En un 11 por rendimiento actual. Creo que sacaría a vinicius por Valverde y carrera por balde y el resto posiblemente igual. ‎image omitted",
+            "kind": "after"
+          }
+        ]
+      },
+      "memberCount": 10
+    }
+  ]
+}

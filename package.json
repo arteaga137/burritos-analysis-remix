@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "links:build": "node scripts/build-link-index.mjs",
+    "comments:build": "node scripts/build-comment-highlights.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

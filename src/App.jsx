@@ -105,6 +105,7 @@ const EDITORIAL_TROLL_SCORES = {
 }
 
 const EMPTY_LINKS = []
+const EMPTY_CATEGORIES = []
 
 const TIMELINE_READ_LABELS = [
   { key: 'active', label: 'Más activos' },
@@ -368,6 +369,29 @@ const buildLinkFragment = (entry) => {
     sourceType: 'link',
     contextLabel: `${entry.at} · ${entry.domain}`,
     participants,
+    contextWindow,
+  }
+}
+
+const buildCommentHighlightFragment = (category, entry) => {
+  const member = MEMBERS.find((item) => item.id === entry.memberId)
+  const contextWindow = (entry.contextWindow ?? []).map((item, index) => ({
+    ...item,
+    id: `${entry.id}-context-${index}`,
+    source: CHAT_SOURCE_NAME,
+  }))
+  const primaryContext = contextWindow.find((item) => item.kind === 'self') ?? contextWindow[0]
+
+  return {
+    ...primaryContext,
+    id: `comment-fragment-${entry.id}`,
+    topic: category.shortLabel || category.title,
+    summary: entry.rationale,
+    sourceId: entry.id,
+    sourceTitle: `${category.title} · ${member?.shortName || member?.name || entry.memberName}`,
+    sourceType: 'comentario',
+    contextLabel: `${entry.at} · score ${entry.score}`,
+    participants: [member?.shortName || member?.name || entry.memberName],
     contextWindow,
   }
 }
@@ -2657,6 +2681,199 @@ const DynamicsView = ({ linksIndex, analytics }) => {
   )
 }
 
+const CommentHighlightsView = ({ highlights, onSelectFragment }) => {
+  const categories = highlights?.categories || EMPTY_CATEGORIES
+  const [activeCategoryId, setActiveCategoryId] = useState('toxic')
+
+  const activeCategory = useMemo(
+    () => categories.find((category) => category.id === activeCategoryId) ?? categories[0] ?? null,
+    [activeCategoryId, categories],
+  )
+
+  if (!highlights) {
+    return (
+      <section className="comments-section" aria-label="Comentarios destacados">
+        <div className="section-intro">
+          <div>
+            <h2>Comentarios</h2>
+            <p>Cargando highlights auditados desde el export completo del chat.</p>
+          </div>
+        </div>
+
+        <article className="comment-leader-card" style={{ '--comment-accent': 'rgba(255,255,255,0.12)' }}>
+          <div className="comment-leader-card__meta">
+            <span>Preparando highlights</span>
+          </div>
+          <h3>Extrayendo los comentarios más representativos por categoría.</h3>
+          <p>El dataset se está leyendo desde el chat real y se va a conectar al explorer de evidencia.</p>
+        </article>
+      </section>
+    )
+  }
+
+  if (!activeCategory) {
+    return (
+      <section className="comments-section" aria-label="Comentarios destacados">
+        <div className="section-intro">
+          <div>
+            <h2>Comentarios</h2>
+            <p>No hay categorías disponibles todavía.</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  return (
+    <section className="comments-section" aria-label="Comentarios destacados">
+      <div className="section-intro">
+        <div>
+          <h2>Comentarios</h2>
+          <p>
+            Highlights derivados del chat real por categoría. Cada tarjeta apunta a un fragmento
+            concreto y abre su bloque de contexto completo.
+          </p>
+        </div>
+      </div>
+
+      <div className="comment-category-tabs" role="tablist" aria-label="Categorías de comentarios">
+        {categories.map((category) => (
+          <button
+            key={category.id}
+            type="button"
+            role="tab"
+            aria-selected={activeCategory.id === category.id}
+            className={`comment-category-tab${activeCategory.id === category.id ? ' active' : ''}`}
+            style={{ '--comment-accent': category.accent }}
+            onClick={() => setActiveCategoryId(category.id)}
+          >
+            <span>{category.icon}</span>
+            {category.shortLabel}
+          </button>
+        ))}
+      </div>
+
+      <div className="timeline-summary">
+        {[
+          {
+            label: 'Categoría activa',
+            value: activeCategory.shortLabel,
+            tone: activeCategory.accent,
+          },
+          {
+            label: 'Miembros con señal',
+            value: String(activeCategory.memberCount),
+            tone: activeCategory.accent,
+          },
+          {
+            label: 'Pico de score',
+            value: String(activeCategory.leader?.score ?? 0),
+            tone: activeCategory.accent,
+          },
+          {
+            label: 'Fuente',
+            value: 'Chat real',
+            tone: 'rgba(255,255,255,0.12)',
+          },
+        ].map((item) => (
+          <div
+            key={item.label}
+            className="timeline-summary__item"
+            style={{ '--summary-accent': item.tone }}
+          >
+            <div className="timeline-summary__value">{item.value}</div>
+            <div className="timeline-summary__label">{item.label}</div>
+          </div>
+        ))}
+      </div>
+
+      <section className="analysis-section" aria-label={`Líder de ${activeCategory.shortLabel}`}>
+        <div className="analysis-section__header">
+          <div>
+            <h3>{activeCategory.title}</h3>
+            <p>{activeCategory.description}</p>
+          </div>
+        </div>
+
+        {activeCategory.leader ? (() => {
+          const member = MEMBERS.find((item) => item.id === activeCategory.leader.memberId)
+          const fragment = buildCommentHighlightFragment(activeCategory, activeCategory.leader)
+
+          return (
+            <article
+              className="comment-leader-card"
+              style={{ '--comment-accent': member?.color || activeCategory.accent }}
+            >
+              <div className="comment-leader-card__meta">
+                <span>{activeCategory.icon} Caso líder</span>
+                <span>{member?.shortName || member?.name || activeCategory.leader.memberName}</span>
+                <span>{activeCategory.leader.intensity}</span>
+                <span>Score {activeCategory.leader.score}</span>
+              </div>
+              <h3>{member?.name || activeCategory.leader.memberName}</h3>
+              <blockquote className="comment-leader-card__quote">“{activeCategory.leader.text}”</blockquote>
+              <p>{activeCategory.leader.rationale}</p>
+              <div className="comment-leader-card__footer">
+                <span>{activeCategory.leader.at}</span>
+                <button
+                  type="button"
+                  className="turning-point-card__action"
+                  onClick={() => onSelectFragment(fragment)}
+                >
+                  Abrir evidencia
+                </button>
+              </div>
+            </article>
+          )
+        })() : null}
+      </section>
+
+      <section className="analysis-section" aria-label={`Ranking por miembro en ${activeCategory.shortLabel}`}>
+        <div className="analysis-section__header">
+          <div>
+            <h3>Mejor muestra por miembro</h3>
+            <p>Se muestra la cita con mayor señal para esta categoría dentro del chat completo.</p>
+          </div>
+        </div>
+
+        <div className="comment-highlights-grid">
+          {activeCategory.entries.map((entry) => {
+            const member = MEMBERS.find((item) => item.id === entry.memberId)
+            const fragment = buildCommentHighlightFragment(activeCategory, entry)
+
+            return (
+              <article
+                key={entry.id}
+                className="comment-highlight-card"
+                style={{ '--comment-accent': member?.color || activeCategory.accent }}
+              >
+                <div className="comment-highlight-card__meta">
+                  <span>{member?.shortName || member?.name || entry.memberName}</span>
+                  <span>{entry.intensity}</span>
+                  <span>Score {entry.score}</span>
+                </div>
+                <h3>{member?.name || entry.memberName}</h3>
+                <p className="comment-highlight-card__rationale">{entry.rationale}</p>
+                <blockquote className="comment-highlight-card__quote">“{entry.text}”</blockquote>
+                <div className="comment-highlight-card__footer">
+                  <span>{entry.at}</span>
+                  <button
+                    type="button"
+                    className="turning-point-card__action"
+                    onClick={() => onSelectFragment(fragment)}
+                  >
+                    Ver contexto
+                  </button>
+                </div>
+              </article>
+            )
+          })}
+        </div>
+      </section>
+    </section>
+  )
+}
+
 const CompareColumn = ({ member, onSelectFragment, analytics }) => {
   const evidenceItems = getEvidenceItems(member).slice(0, 2)
 
@@ -2913,7 +3130,7 @@ const TweakPanel = ({ tweaks, setTweaks, visible }) => {
 const readStoredTab = () => {
   try {
     const value = Number.parseInt(localStorage.getItem('dash-tab') || '0', 10)
-    return [0, 1, 2, 3, 4, 5, 6].includes(value) ? value : 0
+    return [0, 1, 2, 3, 4, 5, 6, 7].includes(value) ? value : 0
   } catch {
     return 0
   }
@@ -2924,6 +3141,7 @@ const App = () => {
   const [selected, setSelected] = useState(null)
   const [selectedFragment, setSelectedFragment] = useState(null)
   const [linksIndex, setLinksIndex] = useState(null)
+  const [commentHighlights, setCommentHighlights] = useState(null)
   const [tweaks, setTweaks] = useState(TWEAK_DEFAULTS)
   const [tweakVisible, setTweakVisible] = useState(false)
   const [compareLeftId, setCompareLeftId] = useState('francisco')
@@ -2971,6 +3189,18 @@ const App = () => {
       .catch((error) => console.error('links-index-load-error', error))
   }, [linksIndex, tab])
 
+  useEffect(() => {
+    if (tab !== 5 || commentHighlights) return
+
+    fetch(`${import.meta.env.BASE_URL}comment-highlights.json`)
+      .then((response) => {
+        if (!response.ok) throw new Error(`comment-highlights-http-${response.status}`)
+        return response.json()
+      })
+      .then((payload) => setCommentHighlights(payload))
+      .catch((error) => console.error('comment-highlights-load-error', error))
+  }, [commentHighlights, tab])
+
   const handleSelect = useCallback((member) => {
     setSelected((previous) => (previous?.id === member.id ? null : member))
   }, [])
@@ -2987,14 +3217,17 @@ const App = () => {
     () => [
       ...TIMELINE_EVENTS.flatMap((event) => buildEventFragments(event)),
       ...(linksIndex ?? []).map((entry) => buildLinkFragment(entry)),
+      ...((commentHighlights?.categories ?? []).flatMap((category) =>
+        category.entries.map((entry) => buildCommentHighlightFragment(category, entry)),
+      )),
       ...MEMBERS.flatMap((member) =>
         getEvidenceItems(member).flatMap((item) => buildEvidenceFragments(member, item)),
       ),
     ],
-    [linksIndex],
+    [commentHighlights, linksIndex],
   )
   const globalAnalytics = useMemo(() => deriveTimelineAnalytics(TIMELINE_EVENTS), [])
-  const tabs = ['Perfiles', 'Relaciones', 'Timeline', 'Links', 'Dinámicas', 'Comparar', 'Premios']
+  const tabs = ['Perfiles', 'Relaciones', 'Timeline', 'Links', 'Dinámicas', 'Comentarios', 'Comparar', 'Premios']
 
   return (
     <div className="dashboard-shell">
@@ -3062,6 +3295,8 @@ const App = () => {
         ) : tab === 4 ? (
           <DynamicsView linksIndex={linksIndex} analytics={globalAnalytics} />
         ) : tab === 5 ? (
+          <CommentHighlightsView highlights={commentHighlights} onSelectFragment={setSelectedFragment} />
+        ) : tab === 6 ? (
           <CompareView
             leftMember={compareLeftMember}
             rightMember={compareRightMember}
