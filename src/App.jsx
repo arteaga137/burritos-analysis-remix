@@ -59,6 +59,25 @@ const LINK_TONE_ACCENTS = {
   Informativo: 'rgba(255,255,255,0.12)',
 }
 
+const LINK_TONE_ORDER = ['Pelea', 'Burla', 'Aprobacion', 'Escepticismo', 'Informativo']
+const ACTIVITY_WINDOWS = [
+  { label: '00-03', start: 0, end: 3 },
+  { label: '04-07', start: 4, end: 7 },
+  { label: '08-11', start: 8, end: 11 },
+  { label: '12-15', start: 12, end: 15 },
+  { label: '16-19', start: 16, end: 19 },
+  { label: '20-23', start: 20, end: 23 },
+]
+const WEEKDAY_ORDER = [
+  { key: 1, label: 'Lun' },
+  { key: 2, label: 'Mar' },
+  { key: 3, label: 'Mié' },
+  { key: 4, label: 'Jue' },
+  { key: 5, label: 'Vie' },
+  { key: 6, label: 'Sáb' },
+  { key: 0, label: 'Dom' },
+]
+
 const EMPTY_LINKS = []
 
 const TIMELINE_READ_LABELS = [
@@ -343,6 +362,19 @@ const getEventPhase = (dateLabel) => {
   const parsed = parseEventDate(dateLabel)
   return (
     ANALYSIS_PHASES.find((phase) => parsed.key >= phase.from && parsed.key <= phase.to) ??
+    ANALYSIS_PHASES[ANALYSIS_PHASES.length - 1]
+  )
+}
+
+const getPhaseFromTimestamp = (timestamp) => {
+  if (!timestamp) return ANALYSIS_PHASES[ANALYSIS_PHASES.length - 1]
+
+  const date = new Date(timestamp)
+  if (Number.isNaN(date.getTime())) return ANALYSIS_PHASES[ANALYSIS_PHASES.length - 1]
+
+  const key = date.getUTCFullYear() * 100 + (date.getUTCMonth() + 1)
+  return (
+    ANALYSIS_PHASES.find((phase) => key >= phase.from && key <= phase.to) ??
     ANALYSIS_PHASES[ANALYSIS_PHASES.length - 1]
   )
 }
@@ -742,6 +774,7 @@ const deriveTimelineAnalytics = (events) => {
     totalEvents: events.length,
     totalFragments,
     dominantTopic: dominantTopicEntry?.[0] ?? 'Sin filtro',
+    ranking,
     topInfluence: pickEditorialLeader(ranking, 'influence'),
     topPacifier: pickEditorialLeader(ranking, 'pacifying'),
     topAggressive: pickEditorialLeader(ranking, 'aggressionIndex', { preferDisruptive: true }),
@@ -752,6 +785,181 @@ const deriveTimelineAnalytics = (events) => {
     roleDrift,
     memberRoleDrift,
     topicDynamics,
+  }
+}
+
+const deriveDynamicsAnalytics = (linksIndex, analytics) => {
+  const links = linksIndex ?? []
+  const phaseBuckets = new Map(
+    ANALYSIS_PHASES.map((phase) => [
+      phase.id,
+      {
+        ...phase,
+        total: 0,
+        heatTotal: 0,
+        reactionTotal: 0,
+        authors: new Set(),
+        tones: Object.fromEntries(LINK_TONE_ORDER.map((tone) => [tone, 0])),
+      },
+    ]),
+  )
+  const heatmapRows = WEEKDAY_ORDER.map((day) => ({
+    ...day,
+    total: 0,
+    cells: ACTIVITY_WINDOWS.map((window) => ({
+      label: window.label,
+      range: `${window.start}:00-${window.end}:59`,
+      count: 0,
+    })),
+  }))
+  const domainBuckets = new Map()
+
+  links.forEach((entry) => {
+    const tone = LINK_TONE_ORDER.includes(entry.tone) ? entry.tone : 'Informativo'
+    const phase = getPhaseFromTimestamp(entry.timestamp)
+    const phaseBucket = phaseBuckets.get(phase.id)
+
+    if (phaseBucket) {
+      phaseBucket.total += 1
+      phaseBucket.heatTotal += entry.heat ?? 0
+      phaseBucket.reactionTotal += entry.reactionCount ?? 0
+      phaseBucket.authors.add(toDisplayName(entry.author))
+      phaseBucket.tones[tone] += 1
+    }
+
+    if (entry.timestamp) {
+      const date = new Date(entry.timestamp)
+      if (!Number.isNaN(date.getTime())) {
+        const row = heatmapRows.find((item) => item.key === date.getUTCDay())
+        const windowIndex = Math.min(Math.floor(date.getUTCHours() / 4), ACTIVITY_WINDOWS.length - 1)
+        if (row && row.cells[windowIndex]) {
+          row.total += 1
+          row.cells[windowIndex].count += 1
+        }
+      }
+    }
+
+    const domainBucket =
+      domainBuckets.get(entry.domain) ??
+      {
+        domain: entry.domain,
+        total: 0,
+        uniqueAuthors: new Set(),
+        tones: Object.fromEntries(LINK_TONE_ORDER.map((item) => [item, 0])),
+      }
+
+    domainBucket.total += 1
+    domainBucket.uniqueAuthors.add(toDisplayName(entry.author))
+    domainBucket.tones[tone] += 1
+    domainBuckets.set(entry.domain, domainBucket)
+  })
+
+  const heatMax = Math.max(
+    1,
+    ...heatmapRows.flatMap((row) => row.cells.map((cell) => cell.count)),
+  )
+  const hottestCell =
+    heatmapRows
+      .flatMap((row) =>
+        row.cells.map((cell) => ({
+          label: `${row.label} · ${cell.label}`,
+          count: cell.count,
+        })),
+      )
+      .sort((left, right) => right.count - left.count)[0] ?? null
+
+  const phaseToneRows = ANALYSIS_PHASES.map((phase) => {
+    const bucket = phaseBuckets.get(phase.id)
+    const topToneEntry =
+      LINK_TONE_ORDER.map((tone) => ({ tone, count: bucket?.tones[tone] ?? 0 }))
+        .sort((left, right) => right.count - left.count)[0] ?? { tone: 'Sin datos', count: 0 }
+
+    return {
+      id: phase.id,
+      label: phase.label,
+      range: phase.range,
+      accent: phase.accent,
+      total: bucket?.total ?? 0,
+      avgHeat: bucket?.total ? Math.round((bucket.heatTotal ?? 0) / bucket.total) : 0,
+      uniqueAuthors: bucket?.authors.size ?? 0,
+      topTone: topToneEntry.tone,
+      segments: LINK_TONE_ORDER.map((tone) => {
+        const count = bucket?.tones[tone] ?? 0
+        return {
+          tone,
+          count,
+          percent: bucket?.total ? (count / bucket.total) * 100 : 0,
+          color: LINK_TONE_ACCENTS[tone] ?? 'rgba(255,255,255,0.12)',
+        }
+      }),
+    }
+  })
+
+  const phaseLeader =
+    [...phaseToneRows]
+      .sort((left, right) => {
+        if (right.avgHeat !== left.avgHeat) return right.avgHeat - left.avgHeat
+        return right.total - left.total
+      })[0] ?? null
+
+  const domainRows = [...domainBuckets.values()]
+    .sort((left, right) => right.total - left.total)
+    .slice(0, 6)
+    .map((bucket) => {
+      const leadTone =
+        LINK_TONE_ORDER.map((tone) => ({ tone, count: bucket.tones[tone] ?? 0 }))
+          .sort((left, right) => right.count - left.count)[0] ?? { tone: 'Informativo', count: 0 }
+
+      return {
+        domain: bucket.domain,
+        total: bucket.total,
+        uniqueAuthors: bucket.uniqueAuthors.size,
+        leadTone: leadTone.tone,
+        segments: LINK_TONE_ORDER.map((tone) => ({
+          tone,
+          count: bucket.tones[tone] ?? 0,
+          percent: bucket.total ? ((bucket.tones[tone] ?? 0) / bucket.total) * 100 : 0,
+          color: LINK_TONE_ACCENTS[tone] ?? 'rgba(255,255,255,0.12)',
+        })),
+      }
+    })
+
+  const rankedMembers = (analytics?.ranking ?? [])
+    .filter((item) => item.volume > 0)
+    .sort((left, right) => right.influence - left.influence)
+    .slice(0, 8)
+  const maxVolume = Math.max(1, ...rankedMembers.map((item) => item.volume))
+  const maxAggression = Math.max(1, ...rankedMembers.map((item) => item.aggressionIndex))
+  const maxInfluence = Math.max(1, ...rankedMembers.map((item) => item.influence))
+
+  const archetypeDots = rankedMembers.map((item) => ({
+    member: item.member,
+    role: item.role,
+    x: (item.volume / maxVolume) * 100,
+    y: (item.aggressionIndex / maxAggression) * 100,
+    size: 14 + (item.influence / maxInfluence) * 14,
+    leverage: item.leverage,
+    influence: item.influence,
+    volume: item.volume,
+    aggressionIndex: item.aggressionIndex,
+  }))
+
+  return {
+    totalShares: links.length,
+    uniqueDomains: domainBuckets.size,
+    phaseToneRows,
+    heatmapRows: heatmapRows.map((row) => ({
+      ...row,
+      cells: row.cells.map((cell) => ({
+        ...cell,
+        intensity: cell.count / heatMax,
+      })),
+    })),
+    hottestCell,
+    phaseLeader,
+    domainRows,
+    archetypeDots,
+    topDomain: domainRows[0] ?? null,
   }
 }
 
@@ -2088,6 +2296,262 @@ const LinksView = ({ linksIndex, onSelectFragment }) => {
   )
 }
 
+const TonePhasesSection = ({ dynamics }) => (
+  <section className="analysis-section" aria-label="Clima por fase">
+    <div className="analysis-section__header">
+      <div>
+        <h3>Clima por fase</h3>
+        <p>Cómo se reparte el tono de los links cuando cambia la etapa del grupo.</p>
+      </div>
+    </div>
+
+    <div className="dynamics-phase-grid">
+      {dynamics.phaseToneRows.map((phase) => (
+        <article
+          key={phase.id}
+          className="dynamics-card"
+          style={{ '--dynamics-accent': phase.accent }}
+        >
+          <div className="dynamics-card__header">
+            <div>
+              <div className="dynamics-card__title">{phase.label}</div>
+              <div className="dynamics-card__meta">{phase.range}</div>
+            </div>
+            <div className="dynamics-card__metric">{phase.total} shares</div>
+          </div>
+
+          <div className="tone-stack" aria-label={`Distribucion de tono en ${phase.label}`}>
+            {phase.segments.map((segment) =>
+              segment.count > 0 ? (
+                <div
+                  key={`${phase.id}-${segment.tone}`}
+                  className="tone-stack__segment"
+                  style={{ width: `${segment.percent}%`, background: segment.color }}
+                  title={`${segment.tone}: ${segment.count}`}
+                />
+              ) : null,
+            )}
+          </div>
+
+          <div className="dynamics-card__chips">
+            <span>Tono dominante: {phase.topTone}</span>
+            <span>Calor medio: {phase.avgHeat}</span>
+            <span>{phase.uniqueAuthors} voces</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+)
+
+const ActivityHeatmapSection = ({ dynamics }) => (
+  <section className="analysis-section" aria-label="Patron horario">
+    <div className="analysis-section__header">
+      <div>
+        <h3>Patrón horario</h3>
+        <p>Qué días y franjas concentran más shares y reacción alrededor de los links.</p>
+      </div>
+    </div>
+
+    <article className="dynamics-surface">
+      <div className="heatmap-grid">
+        <div className="heatmap-grid__corner" />
+        {ACTIVITY_WINDOWS.map((window) => (
+          <div key={window.label} className="heatmap-grid__header">
+            {window.label}
+          </div>
+        ))}
+
+        {dynamics.heatmapRows.flatMap((row) => [
+          <div key={`${row.label}-label`} className="heatmap-grid__label">
+            {row.label}
+          </div>,
+          ...row.cells.map((cell) => (
+            <div
+              key={`${row.label}-${cell.label}`}
+              className="heatmap-cell"
+              style={{
+                '--heat-intensity': cell.intensity,
+              }}
+              title={`${row.label} ${cell.label}: ${cell.count} shares`}
+            >
+              <span>{cell.count > 0 ? cell.count : ''}</span>
+            </div>
+          )),
+        ])}
+      </div>
+
+      <div className="dynamics-surface__footnote">
+        Pico actual: {dynamics.hottestCell ? `${dynamics.hottestCell.label} · ${dynamics.hottestCell.count} shares` : 'Sin datos todavía'}
+      </div>
+    </article>
+  </section>
+)
+
+const ArchetypeScatterSection = ({ dynamics }) => (
+  <section className="analysis-section" aria-label="Mapa de arquetipos">
+    <div className="analysis-section__header">
+      <div>
+        <h3>Mapa de arquetipos</h3>
+        <p>Volumen en X, agresividad en Y e influencia como tamaño del punto.</p>
+      </div>
+    </div>
+
+    <article className="dynamics-surface">
+      <div className="archetype-scatter">
+        <div className="archetype-scatter__quadrant archetype-scatter__quadrant--soft">Mucho volumen, poca fricción</div>
+        <div className="archetype-scatter__quadrant archetype-scatter__quadrant--sharp">Mucho volumen, alta fricción</div>
+        <div className="archetype-scatter__axis archetype-scatter__axis--horizontal">Volumen</div>
+        <div className="archetype-scatter__axis archetype-scatter__axis--vertical">Agresividad</div>
+        <div className="archetype-scatter__guide archetype-scatter__guide--x" />
+        <div className="archetype-scatter__guide archetype-scatter__guide--y" />
+
+        {dynamics.archetypeDots.map((item) => (
+          <div
+            key={item.member.id}
+            className="archetype-dot"
+            style={{
+              left: `${item.x}%`,
+              top: `${100 - item.y}%`,
+              width: `${item.size}px`,
+              height: `${item.size}px`,
+              '--dot-color': item.member.color,
+            }}
+            title={`${item.member.name}: volumen ${item.volume}, agresividad ${item.aggressionIndex}, influencia ${item.influence}`}
+          >
+            <span>{item.member.shortName || item.member.name.split(' ')[0]}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="archetype-legend">
+        {dynamics.archetypeDots.map((item) => (
+          <div key={`legend-${item.member.id}`} className="archetype-legend__item">
+            <span className="archetype-legend__swatch" style={{ background: item.member.color }} />
+            <span>{item.member.shortName || item.member.name.split(' ')[0]}</span>
+            <span>{item.role}</span>
+          </div>
+        ))}
+      </div>
+    </article>
+  </section>
+)
+
+const DomainToneSection = ({ dynamics }) => (
+  <section className="analysis-section" aria-label="Dominios por tono">
+    <div className="analysis-section__header">
+      <div>
+        <h3>Dominios por tono</h3>
+        <p>Qué fuentes pesan más y qué clima tienden a producir cuando entran al grupo.</p>
+      </div>
+    </div>
+
+    <div className="domain-tone-list">
+      {dynamics.domainRows.map((row) => (
+        <article key={row.domain} className="domain-tone-row">
+          <div className="domain-tone-row__header">
+            <div>
+              <div className="domain-tone-row__title">{row.domain}</div>
+              <div className="domain-tone-row__meta">
+                {row.total} shares · {row.uniqueAuthors} autores · dominante {row.leadTone}
+              </div>
+            </div>
+          </div>
+
+          <div className="domain-tone-row__bar" aria-label={`Distribucion de tono para ${row.domain}`}>
+            {row.segments.map((segment) =>
+              segment.count > 0 ? (
+                <div
+                  key={`${row.domain}-${segment.tone}`}
+                  className="domain-tone-row__segment"
+                  style={{ width: `${segment.percent}%`, background: segment.color }}
+                  title={`${segment.tone}: ${segment.count}`}
+                />
+              ) : null,
+            )}
+          </div>
+
+          <div className="dynamics-card__chips">
+            {row.segments
+              .filter((segment) => segment.count > 0)
+              .map((segment) => (
+                <span key={`${row.domain}-${segment.tone}-chip`}>
+                  {segment.tone} {segment.count}
+                </span>
+              ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+)
+
+const DynamicsView = ({ linksIndex, analytics }) => {
+  const dynamics = useMemo(() => deriveDynamicsAnalytics(linksIndex, analytics), [linksIndex, analytics])
+
+  return (
+    <section className="timeline-section" aria-label="Dinamicas del grupo">
+      <div className="section-intro">
+        <div>
+          <h2>Dinámicas</h2>
+          <p>
+            Capa cuantitativa del dashboard: clima por fase, ritmo horario, arquetipos de
+            conversación y comportamiento de los dominios compartidos.
+          </p>
+        </div>
+      </div>
+
+      <div className="timeline-summary">
+        {[
+          {
+            label: 'Shares auditados',
+            value: String(dynamics.totalShares),
+            tone: 'rgba(255,255,255,0.12)',
+          },
+          {
+            label: 'Dominios activos',
+            value: String(dynamics.uniqueDomains),
+            tone: 'rgba(255,255,255,0.12)',
+          },
+          {
+            label: 'Fase más caliente',
+            value: dynamics.phaseLeader?.label ?? 'N/D',
+            tone: dynamics.phaseLeader?.accent ?? 'rgba(255,255,255,0.12)',
+          },
+          {
+            label: 'Pico horario',
+            value: dynamics.hottestCell?.label ?? 'N/D',
+            tone: 'rgba(255,255,255,0.12)',
+          },
+        ].map((item) => (
+          <div
+            key={item.label}
+            className="timeline-summary__item"
+            style={{ '--summary-accent': item.tone }}
+          >
+            <div className="timeline-summary__value">{item.value}</div>
+            <div className="timeline-summary__label">{item.label}</div>
+          </div>
+        ))}
+      </div>
+
+      {!linksIndex ? (
+        <article className="dynamics-surface dynamics-surface--loading">
+          <div className="dynamics-card__title">Cargando capa de links</div>
+          <p>
+            Se está hidratando el índice real del chat para dibujar clima por fase, horario y dominios.
+          </p>
+        </article>
+      ) : null}
+
+      {linksIndex ? <TonePhasesSection dynamics={dynamics} /> : null}
+      {linksIndex ? <ActivityHeatmapSection dynamics={dynamics} /> : null}
+      <ArchetypeScatterSection dynamics={dynamics} />
+      {linksIndex ? <DomainToneSection dynamics={dynamics} /> : null}
+    </section>
+  )
+}
+
 const CompareColumn = ({ member, onSelectFragment, analytics }) => {
   const evidenceItems = getEvidenceItems(member).slice(0, 2)
 
@@ -2344,7 +2808,7 @@ const TweakPanel = ({ tweaks, setTweaks, visible }) => {
 const readStoredTab = () => {
   try {
     const value = Number.parseInt(localStorage.getItem('dash-tab') || '0', 10)
-    return [0, 1, 2, 3, 4, 5].includes(value) ? value : 0
+    return [0, 1, 2, 3, 4, 5, 6].includes(value) ? value : 0
   } catch {
     return 0
   }
@@ -2391,7 +2855,7 @@ const App = () => {
   }, [selectedFragment])
 
   useEffect(() => {
-    if (tab !== 3 || linksIndex) return
+    if (![3, 4].includes(tab) || linksIndex) return
 
     fetch(`${import.meta.env.BASE_URL}links-index.json`)
       .then((response) => {
@@ -2425,8 +2889,7 @@ const App = () => {
     [linksIndex],
   )
   const globalAnalytics = useMemo(() => deriveTimelineAnalytics(TIMELINE_EVENTS), [])
-
-  const tabs = ['Perfiles', 'Relaciones', 'Timeline', 'Links', 'Comparar', 'Premios']
+  const tabs = ['Perfiles', 'Relaciones', 'Timeline', 'Links', 'Dinámicas', 'Comparar', 'Premios']
 
   return (
     <div className="dashboard-shell">
@@ -2492,6 +2955,8 @@ const App = () => {
         ) : tab === 3 ? (
           <LinksView linksIndex={linksIndex} onSelectFragment={setSelectedFragment} />
         ) : tab === 4 ? (
+          <DynamicsView linksIndex={linksIndex} analytics={globalAnalytics} />
+        ) : tab === 5 ? (
           <CompareView
             leftMember={compareLeftMember}
             rightMember={compareRightMember}
